@@ -11,6 +11,11 @@ namespace PlantLuv
 		public LightLevel LightLevel { get; set; }
 		public int LightTime { get; set; }
 		public double SoilPh { get; set; }
+		public SoilType SoilType { get; set; }
+		public string FertilizerType { get; set; }  //Can this be an enum?
+		public WaterType WaterType { get; set; }
+		public int WateringFrequency { get; set; }
+		public int StockImageId { get; set; }	//Is this the best way to track this field?
 
 	}
 }
