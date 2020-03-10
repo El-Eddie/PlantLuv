@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PlantLuv
 {
-	public enum SoilType
+	public enum PlantType_SoilPh
 	{	//Example soil types to be added to/edited later.
 		Gravel = 0,
 		Potting_Soil = 1,

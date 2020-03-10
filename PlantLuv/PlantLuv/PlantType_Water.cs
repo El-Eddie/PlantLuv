@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PlantLuv
 {
-	public enum WaterType
+	public enum PlantType_Water
 	{	//example water types
 		None = 0,
 		Tap = 1,
