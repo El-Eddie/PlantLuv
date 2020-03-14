@@ -15,8 +15,12 @@ namespace PlantLuv
         [DataType(DataType.Password)]
         [Required()]
         public string Password { get; set; }
-        public string Avatar { get; set; }
+        public string Avatar { get; set; }  //Are we storing the string of the image address? Would it make more sense to be an int representing the ImageID?
         public int DateCreated { get; set; }
+        [Required()]
+        [MinLength(4), MaxLength(50)]
+        public string EmailAddress { get; set; }
+        public List<UsersPlant> PlantList { get; set; } //Should this be a list of int instad to store the UserPlant.ID?
     }
 }
 

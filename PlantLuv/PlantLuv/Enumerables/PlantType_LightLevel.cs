@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PlantLuv
 {
-    public enum PlantType_LightLevel
+    public enum LightLevel
     {
         None = 0,
         LowLight = 1,
