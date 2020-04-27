@@ -1,9 +1,7 @@
-﻿using System;
-
-
-namespace PlantLuv
+﻿
+namespace PlantLuv.Plants
 {
-	public class PlantType
+	public class Type
 	{
 		public int PlantID { get; set; }
 		public string LatinName { get; set; }

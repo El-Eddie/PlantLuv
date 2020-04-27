@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PlantLuv
+namespace PlantLuv.Plants
 {
     public enum LightLevel
     {

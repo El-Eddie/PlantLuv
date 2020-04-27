@@ -1,4 +1,4 @@
-﻿namespace PlantLuv
+﻿namespace PlantLuv.Plants
 {
 	public enum SoilPh
 	{	
