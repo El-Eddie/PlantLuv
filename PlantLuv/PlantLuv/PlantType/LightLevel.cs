@@ -9,7 +9,6 @@ namespace PlantLuv
         None = 0,
         LowLight = 1,
         Indirect = 2,
-        BrightLight = 3,
-        Direct = 4
+        FullLight = 3
     }
 }

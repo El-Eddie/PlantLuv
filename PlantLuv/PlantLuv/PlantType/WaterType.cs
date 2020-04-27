@@ -4,11 +4,10 @@ using System.Text;
 
 namespace PlantLuv
 {
-	public enum PlantType_Water
+	public enum WaterType
 	{	//example water types
 		None = 0,
 		Tap = 1,
-		Distilled = 2,
-		Treated = 3
+		Distilled = 2
 	}
 }
