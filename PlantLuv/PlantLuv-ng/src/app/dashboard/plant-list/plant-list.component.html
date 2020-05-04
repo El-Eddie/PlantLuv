@@ -1,0 +1,16 @@
+<div style="border: 1px solid black; margin: 5px" *ngFor="let plant of plantList">
+
+  <div style="border: 1px solid black">
+    <img src={{plant.imageURL}} />
+    <h4>{{plant.species}}</h4>
+    <i>{{plant.lattinName}}</i>
+      <ul>
+        <li>planted on: {{plant.birthday}}</li>
+        <li>last waterd: {{plant.lastWattered}}</li>
+        <li>last fertalized: {{plant.lastFertalized}}</li>
+      </ul>
+      <button (onclick)="waterPlant(plant.plantID)">Water Me</button>
+      <button (onclick)="fertalizePlant(plant.plantID)">Feed Me</button>
+  </div>
+
+</div>
