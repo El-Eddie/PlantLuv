@@ -1,16 +1,21 @@
-<div style="border: 1px solid black; margin: 5px" *ngFor="let plant of plantList">
-
-  <div style="border: 1px solid black">
-    <img src={{plant.imageURL}} />
-    <h4>{{plant.species}}</h4>
-    <i>{{plant.lattinName}}</i>
-      <ul>
-        <li>planted on: {{plant.birthday}}</li>
-        <li>last waterd: {{plant.lastWattered}}</li>
-        <li>last fertalized: {{plant.lastFertalized}}</li>
-      </ul>
-      <button (onclick)="waterPlant(plant.plantID)">Water Me</button>
-      <button (onclick)="fertalizePlant(plant.plantID)">Feed Me</button>
-  </div>
+<div class="plant-list-container" *ngIf="plantList">
+  <mat-card *ngFor="let plant of plantList" class="plant-card">
+  <mat-card-title class="mat-card-header">
+    {{plant.species}}
+  </mat-card-title>
+  <mat-card-content class="mat-card-content">
+    <img class="plant-thumbnail" (click)="plantDetails(plant.plantID)" src={{plant.thumbnailURL}} />
+    <ul>
+      <li>planted on: {{plant.birthday | date}}</li>
+      <li>last waterd: {{plant.lastWattered | date}}</li>
+      <li>last fertalized: {{plant.lastFertalized | date}}</li>
+    </ul>
+  </mat-card-content>
+  <mat-card-actions class="mat-card-actions">
+    <button mat-button (click)="waterPlant(plant.plantID)">Water Me</button>
+    <button mat-button (click)="fertalizePlant(plant.plantID)">Feed Me</button>
+    <button mat-button (click)="plantDetails(plant.plantID)">Details</button>
+  </mat-card-actions>
+</mat-card>
 
 </div>

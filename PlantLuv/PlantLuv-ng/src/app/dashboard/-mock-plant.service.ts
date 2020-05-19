@@ -10,6 +10,8 @@ import { Plant } from './plant.model';
 export class MockPlantService extends PlantService {
 
   fakePlantList: Plant[] = [];
+  plantImageURL: string = "https://i.imgur.com/Kql5Wm4.jpg";
+  plantThumbnailURL: string = "https://i.imgur.com/EoAVWZO.jpg";
 
   constructor(private http: HttpClient) {
     super(http)
@@ -60,7 +62,8 @@ export class MockPlantService extends PlantService {
         height: 64,
         birthday: new Date(Date.parse("9/21/2019")),
         receiveNotifications: false,
-        imageURL: "https://downloadfree3d.com/wp-content/uploads/2020/01/Plant.jpg",
+        imageURL: this.plantImageURL,
+        thumbnailURL: this.plantThumbnailURL,
         isPublic: true,
       },
       {
@@ -75,7 +78,8 @@ export class MockPlantService extends PlantService {
         height: 58,
         birthday: new Date(Date.parse("11/21/2019")),
         receiveNotifications: false,
-        imageURL: "https://downloadfree3d.com/wp-content/uploads/2020/01/Plant.jpg",
+        imageURL: this.plantImageURL,
+        thumbnailURL: this.plantThumbnailURL,
         isPublic: true,
       },
       {
@@ -90,7 +94,8 @@ export class MockPlantService extends PlantService {
         height: 60,
         birthday: new Date(Date.parse("12/25/2019")),
         receiveNotifications: false,
-        imageURL: "https://downloadfree3d.com/wp-content/uploads/2020/01/Plant.jpg",
+        imageURL: this.plantImageURL,
+        thumbnailURL: this.plantThumbnailURL,
         isPublic: false,
       },
       {
@@ -105,7 +110,8 @@ export class MockPlantService extends PlantService {
         height: 90,
         birthday: new Date(Date.parse("12/9/2019")),
         receiveNotifications: false,
-        imageURL: "https://downloadfree3d.com/wp-content/uploads/2020/01/Plant.jpg",
+        imageURL: this.plantImageURL,
+        thumbnailURL: this.plantThumbnailURL,
         isPublic: true,
       },
       {
@@ -120,7 +126,8 @@ export class MockPlantService extends PlantService {
         height: 74,
         birthday: new Date(Date.parse("12/19/2019")),
         receiveNotifications: true,
-        imageURL: "https://downloadfree3d.com/wp-content/uploads/2020/01/Plant.jpg",
+        imageURL: this.plantImageURL,
+        thumbnailURL: this.plantThumbnailURL,
         isPublic: true,
       },
       {
@@ -135,7 +142,8 @@ export class MockPlantService extends PlantService {
         height: 39,
         birthday: new Date(Date.parse("12/13/2019")),
         receiveNotifications: true,
-        imageURL: "https://downloadfree3d.com/wp-content/uploads/2020/01/Plant.jpg",
+        imageURL: this.plantImageURL,
+        thumbnailURL: this.plantThumbnailURL,
         isPublic: false,
       },
       {
@@ -150,7 +158,8 @@ export class MockPlantService extends PlantService {
         height: 19,
         birthday: new Date(Date.parse("11/28/2019")),
         receiveNotifications: false,
-        imageURL: "https://downloadfree3d.com/wp-content/uploads/2020/01/Plant.jpg",
+        imageURL: this.plantImageURL,
+        thumbnailURL: this.plantThumbnailURL,
         isPublic: false,
       },
       {
@@ -165,7 +174,8 @@ export class MockPlantService extends PlantService {
         height: 13,
         birthday: new Date(Date.parse("9/4/2020")),
         receiveNotifications: true,
-        imageURL: "https://downloadfree3d.com/wp-content/uploads/2020/01/Plant.jpg",
+        imageURL: this.plantImageURL,
+        thumbnailURL: this.plantThumbnailURL,
         isPublic: true,
       },
       {
@@ -180,7 +190,8 @@ export class MockPlantService extends PlantService {
         height: 53,
         birthday: new Date(Date.parse("9/1/2020")),
         receiveNotifications: false,
-        imageURL: "https://downloadfree3d.com/wp-content/uploads/2020/01/Plant.jpg",
+        imageURL: this.plantImageURL,
+        thumbnailURL: this.plantThumbnailURL,
         isPublic: true,
       },
     ]

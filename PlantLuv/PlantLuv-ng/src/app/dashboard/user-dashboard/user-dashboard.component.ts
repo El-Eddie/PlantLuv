@@ -11,6 +11,7 @@ import { PlantService } from '../plant.service';
 export class UserDashboardComponent implements OnInit {
 
   plantList$: Observable<Plant[]>;
+  filterValue: string;
   loggedInUserID: number;
 
   constructor(
@@ -24,5 +25,9 @@ export class UserDashboardComponent implements OnInit {
 
   GetUserPlants(id: number){
     this.plantList$ = this.plantService.getUserPlants(id);
+  }
+
+  updateFilter(thing: string){
+    // TODO: implement searching
   }
 }

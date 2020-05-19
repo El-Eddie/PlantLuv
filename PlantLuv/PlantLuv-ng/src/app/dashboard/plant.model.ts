@@ -11,6 +11,7 @@ export interface Plant {
   birthday: Date;
   receiveNotifications: boolean;
   imageURL: string;
+  thumbnailURL?: string;
   //type: PlantType;
   isPublic: boolean;
   // My thought for the water/fertalizeAgain fields is to have the back end

@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Plant } from '../plant.model';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-plant-list',
@@ -10,7 +12,9 @@ export class PlantListComponent implements OnInit {
 
   @Input() plantList: Plant[];
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
 
@@ -22,5 +26,8 @@ export class PlantListComponent implements OnInit {
   }
   fertalizePlant(id: number){
   alert("I don't do anything either!");
+  }
+  plantDetails(id: number){
+    this.router.navigate([`./plant/${id}`])
   }
 }
