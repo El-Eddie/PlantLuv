@@ -1,0 +1,39 @@
+main{
+  padding-left: 10%;
+  padding-right: 10%;
+  background-image: linear-gradient(#005005, #60ad5e 15%)
+}
+#header{
+  background-color: #005005;
+  height: 80px;
+}
+#logo{
+  height: 75px;
+  width: auto;
+}
+#footer{
+  background-color: #60ad5e;
+  height: 40px;
+}
+nav {
+  margin: 0px 30px;
+}
+nav > ul{
+  list-style-type: none;
+  margin: 0em;
+  padding: 0em;
+}
+nav > ul > li{
+  float: left;
+}
+nav > ul > li:not(:last-child)::after{
+  content: "\00A0|\00A0";
+}
+.selected-link{
+  border-bottom: 2px solid #ef6c00;
+}
+#settings-button {
+  margin-left: 25px;
+  float: right;
+  border-radius: 25px;
+}

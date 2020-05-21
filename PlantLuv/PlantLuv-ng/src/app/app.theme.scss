@@ -1,0 +1,16 @@
+@import '~@angular/material/theming';
+@import './app.theme.variables';
+@import './shared/shared-mixins';
+
+@include mat-core();
+@include shared-core();
+
+@mixin app-theme($theme, $dark-theme) {
+  @include angular-material-theme($theme);
+
+  .dark-theme{
+    @include angular-material-theme($dark-theme);
+  }
+}
+
+@include app-theme($main-app-theme, $main-app-dark-theme);
