@@ -1,5 +1,21 @@
-<mat-toolbar color="primary">
-  <h1>PlantLuv</h1>
-</mat-toolbar>
-<router-outlet></router-outlet>
-<footer>Bottom text</footer>
+<header>
+  <mat-toolbar id="header">
+    <img id="logo" src="assets/img/logo.png">
+    <nav>
+      <ul>
+        <li class="selected-link">My Plants</li>
+        <li>Care Sheets</li>
+      </ul>
+    </nav>
+    <app-filter (filterChangeEvent)="updateFilter($event)"></app-filter>
+    <button id="settings-button"(click)="openUserSettings()"><mat-icon>settings</mat-icon></button>
+  </mat-toolbar>
+</header>
+<main>
+  <router-outlet></router-outlet>
+</main>
+<footer>
+  <mat-toolbar id="footer">
+    This is the bottom of the page. Nowhere to go from here but up.
+  </mat-toolbar>
+</footer>

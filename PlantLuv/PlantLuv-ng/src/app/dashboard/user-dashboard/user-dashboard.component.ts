@@ -26,8 +26,4 @@ export class UserDashboardComponent implements OnInit {
   GetUserPlants(id: number){
     this.plantList$ = this.plantService.getUserPlants(id);
   }
-
-  updateFilter(thing: string){
-    // TODO: implement searching
-  }
 }

@@ -4,13 +4,14 @@ import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-plant-list',
-  templateUrl: './plant-list.component.html',
-  styleUrls: ['./plant-list.component.scss']
+  selector: 'app-plant-card',
+  templateUrl: './plant-card.component.html',
+  styleUrls: ['./plant-card.component.scss']
 })
-export class PlantListComponent implements OnInit {
+export class PlantCardComponent implements OnInit {
 
   @Input() plantList: Plant[];
+  @Input() plant: Plant;
 
   constructor(
     private router: Router

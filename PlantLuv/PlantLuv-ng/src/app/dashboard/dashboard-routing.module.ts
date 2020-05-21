@@ -5,22 +5,21 @@ import { PlantDetailsComponent } from './plant-details/plant-details.component';
 
 const routes: Routes = [
   {
-    path: 'dashboard',
-    component:UserDashboardComponent
+    path: '',
+    component: UserDashboardComponent
   },
   {
     path: 'plant/:id',
     component: PlantDetailsComponent
   },
   {
-    path: '',
-    pathMatch: 'full',
-    component: UserDashboardComponent
+    path: '**',
+    redirectTo: 'dashboard'
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)
+  imports: [RouterModule.forChild(routes)
 
   ],
   exports: [RouterModule]

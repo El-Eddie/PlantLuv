@@ -10,8 +10,8 @@ import { Plant } from './plant.model';
 export class MockPlantService extends PlantService {
 
   fakePlantList: Plant[] = [];
-  plantImageURL: string = "https://i.imgur.com/Kql5Wm4.jpg";
-  plantThumbnailURL: string = "https://i.imgur.com/EoAVWZO.jpg";
+  plantImageURL: string = "assets/img/plant-full.jpg";
+  plantThumbnailURL: string = "assets/img/plant-thumb.jpg";
 
   constructor(private http: HttpClient) {
     super(http)
@@ -55,7 +55,7 @@ export class MockPlantService extends PlantService {
         ownerID: 1,
         species: "Jade Plant",
         lattinName: "Crassula Ovata",
-        lastWattered: new Date(Date.parse("10/21/2019 1:40:58")),
+        lastWatered: new Date(Date.parse("10/21/2019 1:40:58")),
         waterAgain: new Date(Date.parse("10/26/2019")),
         lastFertalized: new Date(Date.parse("10/30/2019 11:02:34")),
         fertalizeAgain: new Date(Date.parse("11/6/2019")),
@@ -71,7 +71,7 @@ export class MockPlantService extends PlantService {
         ownerID: 1,
         species: "Weeping Fig",
         lattinName: "Ficus Benjamina",
-        lastWattered: new Date(Date.parse("1/7/2020 0:14:47")),
+        lastWatered: new Date(Date.parse("1/7/2020 0:14:47")),
         waterAgain: new Date(Date.parse("1/10/2020")),
         lastFertalized: new Date(Date.parse("1/18/2020 18:14:47")),
         fertalizeAgain: new Date(Date.parse("1/27/2020")),
@@ -87,7 +87,7 @@ export class MockPlantService extends PlantService {
         ownerID: 1,
         species: "Kaffir Lily",
         lattinName: "Clivia Miniata",
-        lastWattered: new Date(Date.parse("1/7/2020 0:14:47")),
+        lastWatered: new Date(Date.parse("1/7/2020 0:14:47")),
         waterAgain: new Date(Date.parse("1/12/2020")),
         lastFertalized: new Date(Date.parse("1/1/2020 21:07:35")),
         fertalizeAgain: new Date(Date.parse("1/14/2020")),
@@ -103,7 +103,7 @@ export class MockPlantService extends PlantService {
         ownerID: 2,
         species: "Slipper Orchid",
         lattinName: "Paphiopedilum",
-        lastWattered: new Date(Date.parse("1/7/2020 0:14:47")),
+        lastWatered: new Date(Date.parse("1/7/2020 0:14:47")),
         waterAgain: new Date(Date.parse("1/13/2020")),
         lastFertalized: new Date(Date.parse("1/17/2020 16:33:59")),
         fertalizeAgain: new Date(Date.parse("1/30/2020")),
@@ -119,7 +119,7 @@ export class MockPlantService extends PlantService {
         ownerID: 1,
         species: "Moth Orchid",
         lattinName: "Phalaenopsis",
-        lastWattered: new Date(Date.parse("1/7/2020 0:14:47")),
+        lastWatered: new Date(Date.parse("1/7/2020 0:14:47")),
         waterAgain: new Date(Date.parse("1/12/2020")),
         lastFertalized: new Date(Date.parse("12/28/2019 15:36:23")),
         fertalizeAgain: new Date(Date.parse("1/11/2020")),
@@ -135,7 +135,7 @@ export class MockPlantService extends PlantService {
         ownerID: 2,
         species: "Weeping Fig",
         lattinName: "Ficus Benjamina",
-        lastWattered: new Date(Date.parse("1/7/2020 0:14:47")),
+        lastWatered: new Date(Date.parse("1/7/2020 0:14:47")),
         waterAgain: new Date(Date.parse("1/13/2020")),
         lastFertalized: new Date(Date.parse("1/2/2020 4:48:23")),
         fertalizeAgain: new Date(Date.parse("1/13/2020")),
@@ -151,7 +151,7 @@ export class MockPlantService extends PlantService {
         ownerID: 1,
         species: "Flaming Katy",
         lattinName: "Kalanchoe Blossfeldiana",
-        lastWattered: new Date(Date.parse("1/7/2020 0:14:47")),
+        lastWatered: new Date(Date.parse("1/7/2020 0:14:47")),
         waterAgain: new Date(Date.parse("1/13/2020")),
         lastFertalized: new Date(Date.parse("12/31/2019 12:43:35")),
         fertalizeAgain: new Date(Date.parse("1/7/2020")),
@@ -167,7 +167,7 @@ export class MockPlantService extends PlantService {
         ownerID: 2,
         species: "Jade Plant",
         lattinName: "Crassula Ovata",
-        lastWattered: new Date(Date.parse("10/20/2020 0:19:59")),
+        lastWatered: new Date(Date.parse("10/20/2020 0:19:59")),
         waterAgain: new Date(Date.parse("10/22/2020")),
         lastFertalized: new Date(Date.parse("10/17/2020 8:15:11")),
         fertalizeAgain: new Date(Date.parse("10/29/2020")),
@@ -183,7 +183,7 @@ export class MockPlantService extends PlantService {
         ownerID: 2,
         species: "Peace Lily",
         lattinName: "Spathiphyllum Wallisii",
-        lastWattered: new Date(Date.parse("10/20/2020 0:19:59")),
+        lastWatered: new Date(Date.parse("10/20/2020 0:19:59")),
         waterAgain: new Date(Date.parse("10/26/2020")),
         lastFertalized: new Date(Date.parse("10/22/2020 19:31:59")),
         fertalizeAgain: new Date(Date.parse("11/4/2020")),

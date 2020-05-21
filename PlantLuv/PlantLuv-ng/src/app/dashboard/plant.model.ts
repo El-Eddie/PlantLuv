@@ -3,17 +3,17 @@ export interface Plant {
   ownerID: number;
   species: string,
   lattinName: string,
-  lastWattered: Date;
+  lastWatered: Date;
   waterAgain: Date;
   lastFertalized: Date;
   fertalizeAgain: Date;
-  height: number;
+  height: number; //wont need
   birthday: Date;
   receiveNotifications: boolean;
   imageURL: string;
   thumbnailURL?: string;
   //type: PlantType;
-  isPublic: boolean;
+  isPublic: boolean;  //not implementing social yet
   // My thought for the water/fertalizeAgain fields is to have the back end
   // calculate this date based on last wattered date of the database object
   // and the watering frequency of the plant type. That way the front end
