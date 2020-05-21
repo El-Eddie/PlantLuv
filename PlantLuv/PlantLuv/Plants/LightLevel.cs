@@ -7,8 +7,10 @@ namespace PlantLuv.Plants
     public enum LightLevel
     {
         None = 0,
-        LowLight = 1,
-        Indirect = 2,
-        FullLight = 3
+        Low = 1,
+        LowMedium = 2,
+        Medium = 3,
+        MediumHigh = 4,
+        High = 5
     }
 }

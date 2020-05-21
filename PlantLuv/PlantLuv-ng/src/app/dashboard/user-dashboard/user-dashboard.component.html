@@ -1,0 +1,4 @@
+<div id="dashboard-container" >
+  <!-- <app-plant-card [plantList]="plantList$ | async"></app-plant-card> -->
+  <app-plant-card *ngFor="let plant of plantList$ | async" [plant]="plant"></app-plant-card>
+</div>
