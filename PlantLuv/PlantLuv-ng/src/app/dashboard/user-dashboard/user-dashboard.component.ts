@@ -11,6 +11,7 @@ import { PlantService } from '../plant.service';
 export class UserDashboardComponent implements OnInit {
 
   plantList$: Observable<Plant[]>;
+  filterValue: string;
   loggedInUserID: number;
 
   constructor(
