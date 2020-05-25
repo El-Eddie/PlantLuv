@@ -12,10 +12,10 @@ const routes: Routes = [
     path: 'plant/:id',
     component: PlantDetailsComponent
   },
-  {
-    path: '**',
-    redirectTo: 'dashboard'
-  }
+  // {
+  //   path: '**',
+  //   redirectTo: 'dashboard'
+  // }
 ];
 
 @NgModule({

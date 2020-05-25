@@ -1,0 +1,4 @@
+<div id="list-container">
+  <app-type-card *ngFor="let type of typeList$ | async" [type]="type"></app-type-card>
+</div>
+<!-- {{typeList$ | async | json}} -->
