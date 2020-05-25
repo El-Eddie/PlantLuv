@@ -1,133 +1,82 @@
-﻿* {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-}
+﻿@import './_mixin.scss';
+@import './_varibles.scss';
 
 body {
-    font-family: sans-serif;
+  
 }
 
 nav {
-    padding: 5px 20px;
-    font-family: 'Barlow', sans-serif;
+    font-family: $font-nav;
     text-transform: uppercase;
-    color: #999;
+    text-align: right;
+    justify-content: flex-end;
+    padding-right: 3em;
 
-    a {
-        color: #333;
-        font-weight: 600;
+
+    a:link {
+        margin: 0;
+
+    }
+
+    a:not(:first-child):before {
+        content: " | ";
+        margin: 0 1em;
     }
 }
-
-ul {
-    list-style-type: none;
+.mdl-layout__header {
+    background-color: transparent;
+    background: url('../images/bg2.jpg');
+    background-size: cover;
+    height:100vh;
 }
-
-a {
-    color: white;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-.menu li {
-    font-size: 16px;
-    padding: 15px 5px;
-    white-space: nowrap;
-
-}
-
-
-
-/* Mobile menu */
-.menu {
+.mdl-layout__container {
     display: flex;
-    flex-wrap: wrap;
-    align-items:flex-end;
-}
-.toggle {
-    order: 1;
-}
-.item {
-    width: 100%;
-    text-align: center;
-    order: 3;
-    display: none;
-}
+    flex-direction: column;
+    align-items: center;
 
-.item.active {
-    display: block;
+    .mdl-navigation__link {
+        color: $darkColor;
+    }
+
+    .mdl-layout-title {
+        margin: 0 auto;
+
+        img {
+            max-width: 200px;
+        }
+    }
+
+    .item {
+        height: 40px;
+        margin-bottom: 10px;
+    }
 }
-
-/* Navbar Toggle */
-.toggle {
-    cursor: pointer;
+/* Reviews*/
+.reviews {
+    background: $darkColor;
+    color: $lightColor;
+    padding:1em;
 }
+/* Footer */
+footer {
+    background: $darkColor;
+    color: $lightColor;
+    font-size: $xsSize;
+    padding: 1em 0;
 
-.bars {
+    .container {
+        text-align: center;
 
-    display: inline-block;
-    height: 2px;
-    position: relative;
-    transition: background .2s ease-out;
-    width: 18px;
-}
-
-.bars:before,
-.bars:after {
-
-    content: '';
-    display: block;
-    height: 100%;
-    position: absolute;
-    transition: all .2s ease-out;
-    width: 100%;
-}
-
-.bars:before {
-    top: 5px;
+        a {
+            color: $lightColor;
+        }
+    }
 }
 
-.bars:after {
-    top: -5px;
-}
-
-/* Tablet menu */
+/* Dialog */
+/* Desktop */
 @media all and (min-width: 468px) {
-    .menu {
-        justify-content: center;
-    }
-    .logo {
-        flex: 1;
-    }
-    .toggle {
-        order: 2;
-    }
-}
-
-/* Desktop menu */
-@media all and (min-width: 768px) {
-    .item {
-        display: block;
-        width: auto;
-    }
-
-    .toggle {
+    .mdl-layout__drawer-button {
         display: none;
-    }
-
-    .logo {
-        order: 0;
-    }
-
-    .item {
-        order: 1;
-    }
-
-    .menu li {
-        padding: 15px 10px;
     }
 }
