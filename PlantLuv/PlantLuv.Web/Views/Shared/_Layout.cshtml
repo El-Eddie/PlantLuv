@@ -4,54 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - PlantLuv.com</title>
-
-    <link rel="stylesheet" href="~/css/vendor.min.css" />
-
-    <link rel="stylesheet" href="~/css/site.css" />
-<<<<<<< Updated upstream
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
-
-    <link rel="stylesheet" href="/css/site.css">
-    <script src="../js/site.js"></script>
-</head>
-
-<body>
-
-
-    <div class="mdl-layout mdl-js-layout">
-        <header class="mdl-layout__header mdl-layout__header--scroll">
-            <nav class="mdl-navigation item">
-                <a class="mdl-navigation__link" href="">Login/Register</a>
-                <a class="mdl-navigation__link" href="">How It Works</a>
-                <a class="mdl-navigation__link" href="">About</a>
-                <a class="mdl-navigation__link" href="">Contact</a>
-            </nav>
-            <div class="mdl-layout__header-row">
-                <div class="mdl-layout-title item"><img src="../images/logo.png" /></div>
-            </div>
-        </header>
-        <div class="mdl-layout__drawer">
-            <span class="mdl-layout-title"></span>
-            <nav class="mdl-navigation">
-                <a class="mdl-navigation__link" href="">Link</a>
-                <a class="mdl-navigation__link" href="">Link</a>
-                <a class="mdl-navigation__link" href="">Link</a>
-                <a class="mdl-navigation__link" href="">Link</a>
-            </nav>
-        </div>
-        <main class="mdl-layout__content">
-
-            <div class="page-content">@RenderBody()</div>
-        </main>
-        <footer class="border-top footer text-muted">
-            <div class="container">
-                &copy; 2020 - PlantLuv.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-=======
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/vendor.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-
-
+    <script src="../js/site.js"></script>
 </head>
 
 <body>
@@ -73,88 +29,23 @@
                         </li>
                     </ul>
                 </div>
->>>>>>> Stashed changes
             </div>
-        </footer>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
     </div>
 
-<<<<<<< Updated upstream
-
-    <script>mdc.ripple.MDCRipple.attachTo(document.querySelector('.foo-button'));</script>
-
-=======
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2020 - PlantLuv - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2020 - WebApplication1 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
->>>>>>> Stashed changes
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
-
-
-
-
-
-
-    @*
-                    <div id="messages">test</div>
-                <dialog id="dialog" class="_dialog_fixed">
-                    <h3>Reshare</h3>
-                    <input type="text" style="width: 75%" value="I am resharing this.">
-                    <br>
-                    <div class="dialog-setting">
-                        <input id="click-outside-to-close" type="checkbox">
-                        <label for="click-outside-to-close">Close dialog upon clicking outside</label>
-                    </div>
-                    <div class="dialog-setting">
-                        <input id="enable-backdrop" type="checkbox" checked>
-                        <label for="enable-backdrop">Enable ::backdrop</label>
-                    </div>
-                    <div id="close-button"></div>
-                </dialog>
-                <div id="post-container"></div>
-
-        <header>
-                    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-                        <div class="container">
-                            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"></a>
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                                    aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-                            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                                <ul class="navbar-nav flex-grow-1">
-                                    <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Register">Register</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="About">About</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
-                </header>
-                <div class="container">
-                    <main role="main" class="pb-3">
-
-                    </main>
-                </div>
-
-        )*@
-
-
 </body>
 </html>
