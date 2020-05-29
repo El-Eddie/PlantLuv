@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600&display=swap");
+.col-sm {
+  border: 2px solid red; }
+
 .navbar-expand-sm .navbar-collapse {
   justify-content: flex-end;
   width: 100%;
@@ -58,6 +61,14 @@ nav {
   background: #333;
   color: #d3d3d3;
   padding: 1em; }
+  .reviews img {
+    border-radius: 10em;
+    width: 100px;
+    height: 100px;
+    padding: 2px;
+    border: 1px solid #d3d3d3;
+    text-align: left;
+    float: right; }
 
 /* Footer */
 footer {
@@ -84,12 +95,12 @@ footer {
     color: #333; } }
 /* Masonry */
 .grid-container {
-  max-width: 1280px;
-  margin: 0 auto; }
+  max-width: 100%;
+  margin: 0; }
 
 .cols {
   margin: 0 auto;
-  max-width: 1000px; }
+  max-width: 100%; }
 
 .col {
   width: 25%;
