@@ -1,7 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600&display=swap");
-.col-sm {
-  border: 2px solid red; }
-
 .navbar-expand-sm .navbar-collapse {
   justify-content: flex-end;
   width: 100%;
@@ -26,7 +23,7 @@ nav {
   justify-content: normal; }
 
 .headerstacked {
-  height: 50vh; }
+  height: 25vh; }
 
 .mdl-layout__header {
   background-color: transparent;
@@ -61,6 +58,12 @@ nav {
   background: #333;
   color: #d3d3d3;
   padding: 1em; }
+  .reviews :before {
+    content: ' " ';
+    font-size: 1.3em; }
+  .reviews :after {
+    content: ' " ';
+    font-size: 1.3em; }
   .reviews img {
     border-radius: 10em;
     width: 100px;
@@ -96,7 +99,8 @@ footer {
 /* Masonry */
 .grid-container {
   max-width: 100%;
-  margin: 0; }
+  margin: 0;
+  padding: 0; }
 
 .cols {
   margin: 0 auto;
@@ -116,17 +120,15 @@ footer {
     object-fit: cover;
     object-position: center;
     opacity: 0.8; }
-  .col h2 {
-    font-weight: 900;
-    color: #fff;
-    text-shadow: 0 0 20px rgba(0, 0, 0, 0.8); }
 
 .grid-1 {
-  width: 50%; }
+  width: 100%;
+  padding: 0;
+  margin: 0; }
 
 .grid-3 {
   float: right;
-  height: 500px; }
+  height: 20%; }
 
 .grid-5 {
   display: table; }
@@ -185,5 +187,17 @@ footer {
 @media screen and (max-width: 768px) {
   .grid-2 {
     display: none; } }
+/* How It Works */
+span.circle {
+  border-radius: 0.8em;
+  -moz-border-radius: 0.8em;
+  -webkit-border-radius: 0.8em;
+  color: #333;
+  display: inline-block;
+  font-weight: bold;
+  line-height: 1.6em;
+  text-align: center;
+  width: 1.65em;
+  border: 1px solid #333; }
 
 /*# sourceMappingURL=site.css.map */
