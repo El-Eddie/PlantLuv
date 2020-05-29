@@ -26,18 +26,23 @@ export class MockPlantTypeService extends PlantTypeService {
     return of( results );
   }
 
-  grab(id: number): Observable<PlantType>{
-    return of( this.typeList.find ( type => type.typeID == id ));
+  grab(name: string): Observable<PlantType>{
+
+    return of( this.typeList.find ( type => type.lattinName.toUpperCase() == name ));
   }
 
   getPlantTypes(){
     this.typeList = [
       {
         typeID: 1,
-        imageURL: "assets/img/snow_queen_pothos-full.jpg",
+        // imageInfo: {
+        //   imgURL: "assets/img/snow_queen_pothos-full.jpg",
+        //   imgWidth: 867,
+        //   imgHeight: 971
+        // },
         thumbnailURL: "assets/img/snow_queen_pothos-thumb.jpg",
         commonName: "Snow Queen Pothos",
-        lattinName: "Epipremnum aureum 'Snow Queen'",
+        lattinName: "Epipremnum aureum",
         family: "Aracaea",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
         blurb: "",
@@ -54,10 +59,14 @@ export class MockPlantTypeService extends PlantTypeService {
       },
       {
       typeID: 2,
-      imageURL: "assets/img/marble_queen_pothos-full.jpg",
+      // imageInfo: {
+      //   imgURL: "assets/img/marble_queen_pothos-full.jpg",
+      //   imgHeight: 867,
+      //   imgWidth: 934
+      // },
       thumbnailURL: "assets/img/marble_queen_pothos-thumb.jpg",
       commonName: "Marble Queen Pothos",
-      lattinName: "Epipremnum aureum 'Marble Queen'",
+      lattinName: "Epipremnum aureum",
       family: "Aracaea",
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       blurb: "",
@@ -74,7 +83,11 @@ export class MockPlantTypeService extends PlantTypeService {
       },
       {
       typeID: 3,
-      imageURL: "assets/img/dorsera_spatulata-full.jpg",
+      // imageInfo: {
+      //   imgURL: "assets/img/dorsera_spatulata-full.jpg",
+      //   imgHeight: 960,
+      //   imgWidth: 720,
+      // },
       thumbnailURL: "assets/img/dorsera_spatulata-thumb.jpg",
       commonName: "Sundew",
       lattinName: "Drosera spatulata",
@@ -94,7 +107,11 @@ export class MockPlantTypeService extends PlantTypeService {
       },
       {
       typeID: 4,
-      imageURL: "assets/img/saintpaulia-full.jpg",
+      // imageInfo: {
+      //   imgURL: "assets/img/saintpaulia-full.jpg",
+      //   imgHeight: 596,
+      //   imgWidth: 800
+      // },
       thumbnailURL: "assets/img/saintpaulia-thumb.jpg",
       commonName: "African Violet",
       lattinName: "Saintpaulia",
@@ -112,12 +129,6 @@ export class MockPlantTypeService extends PlantTypeService {
       toxisity: "None",
       dificulty: "Easy",
       }
-
-
-
-
-
     ]
-
   }
 }

@@ -1,6 +1,9 @@
+import { PhotoData } from "../shared/image-dialog/photo-data.model"
+
 export interface PlantType{
   typeID: number;
-  imageURL: string;
+  // imageInfo: PhotoData;
+  // imageURL: string;
   thumbnailURL: string;
   commonName: string;
   lattinName: string;

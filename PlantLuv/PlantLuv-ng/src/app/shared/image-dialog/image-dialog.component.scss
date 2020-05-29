@@ -1,0 +1,27 @@
+#slideshow-right {
+  border: 1px solid blue;
+  align-self: flex-end;
+}
+#slideshow-left {
+  border: 1px solid red;
+  align-self: flex-start;
+}
+.slideshow-arrow{
+  position: absolute;
+  // width: 15%;
+  // height: 90%
+}
+#slideshow-arrow-container{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 80%;
+  height: 80%;
+  background: rgba(150,150,150,0.1);
+}
+#left-arrow{
+  border-right: 15vw solid transparentize($color: #D3D3D3, $amount: .5);
+  border-top: 25vh solid transparent;
+  border-bottom: 25vh solid transparent;
+}

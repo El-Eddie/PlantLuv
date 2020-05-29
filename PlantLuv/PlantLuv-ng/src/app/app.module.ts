@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title} from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -33,17 +33,17 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     FilterComponent,
-//    CareCardComponent,
   ],
   imports: [
     BrowserModule,
-//    DashboardModule,
     BrowserAnimationsModule,
     SharedImportsModule,
     RouterModule.forRoot(routes),
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    Title
+  ],
   bootstrap: [AppComponent]
 })
 

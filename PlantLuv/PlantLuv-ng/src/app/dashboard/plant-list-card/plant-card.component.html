@@ -3,7 +3,7 @@
       {{plant.species}}
     </mat-card-title>
     <mat-card-content class="mat-card-content">
-      <img class="plant-thumbnail" (click)="plantDetails(plant.plantID)" src={{plant.thumbnailURL}} />
+      <img class="plant-thumbnail" (click)="plantDetails(plant.plantID )" src={{plant.thumbnailURL}} />
       <ul>
         <li>planted on: {{plant.birthday | date}}</li>
         <li>last waterd: {{plant.lastWatered | date}}</li>

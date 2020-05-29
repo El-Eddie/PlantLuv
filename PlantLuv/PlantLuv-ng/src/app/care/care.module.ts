@@ -4,18 +4,21 @@ import { environment } from '../../environments/environment';
 import { CareRoutingModule } from './care-routing.module';
 import { PlantTypeService } from './plant-type.service';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MockPlantTypeService } from './-mock-plant-type.service';
 
-import { TypeListComponent } from './type-list/type-list.component';
-import { TypeCardComponent } from './type-card/type-card.component';
 import { SharedImportsModule } from '../shared/shared-imports.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { TypeDetailsComponent } from './type-details/type-details.component';
+import { TypeDashboardComponent } from './type-dashboard/type-dashboard.component'
+import { TypeListCardComponent } from './type-list-card/type-list-card.component'
 
 @NgModule({
   declarations: [
-    TypeListComponent,
-    TypeCardComponent
+    TypeDashboardComponent,
+    TypeListCardComponent,
+    TypeDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -23,7 +26,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CareRoutingModule,
     SharedImportsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [
     {
