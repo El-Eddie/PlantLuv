@@ -1,79 +1,273 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
+﻿@import './_mixin.scss';
+@import './_varibles.scss';
 
-a.navbar-brand {
-    white-space: normal;
-    text-align: center;
-    word-break: break-all;
-}
-
-/* Provide sufficient contrast against white background */
-a {
-    color: #0366d6;
-}
-
-.btn-primary {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
-}
-
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-    color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-    font-size: 14px;
-}
-
-@media (min-width: 768px) {
-    html {
-        font-size: 16px;
-    }
-}
-
-
-
-button.accept-policy {
-    font-size: 1rem;
-    line-height: inherit;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-    position: relative;
-    min-height: 100%;
-}
-
-body {
-    margin-bottom: 60px;
-}
-
-.footer {
-    position: absolute;
-    bottom: 0;
+.navbar-expand-sm .navbar-collapse {
+    justify-content: flex-end;
     width: 100%;
-    white-space: nowrap;
-    line-height: 60px; /* Vertically center the text there */
+    flex-grow: 0;
 }
-
-.header-layout-transparent {
-    background: url('/images/bg.jpg');
+.bg-white {
+    background: url(../images/bg2.jpg);
+    background-size: cover;
 }
+nav {
+    font-family: $font-nav;
+    text-transform: uppercase;
+    text-align: right;
+    padding-right: 3em;
+    width: 100%;
 
-.header-layout-transparent .mdl-layout__header,
-.header-layout-transparent .mdl-layout__drawer-button {
-    color: white;
-}
+    .navbar-nav {
+        justify-content: right;
+    }
 
-.mdl-layout-title{
-    border:1px solid red;
-    img{
-        border:25px solid red;
+    a:link {
+        margin: 0;
     }
 }
+.navbar > .container {
+    justify-content: normal;
+}
+.headerstacked{height:25vh;}
+.mdl-layout__header {
+    background-color: transparent;
+    background: url('../images/bg2.jpg');
+    background-size: cover;
+    height: 100vh;
+}
+.navbar-brand {
+    margin: 0 auto;
+   
+
+    img {
+        max-width: 200px;
+        text-shadow: 20px 12px 2px rgba(0, 0, 0, 0.8);
+    }
+}
+.headerstacked {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .mdl-navigation__link {
+        color: $darkColor;
+    }
+    .item {
+        height: 40px;
+        margin-bottom: 10px;
+    }
+}
+.mb-3 {
+    margin-bottom: 0!important;
+}
+.border-bottom {
+    border: 0 !important;
+}
+
+/* Reviews*/
+.reviews {
+    background: $darkColor;
+    color: $lightColor;
+    padding: 1em;
+
+    :before {
+        content: ' " ';
+        font-size: $xlSize;
+    }
+
+    :after {
+        content: ' " ';
+        font-size: $xlSize;
+    }
+
+    img {
+        border-radius: 10em;
+        width: 100px;
+        height: 100px;
+        padding: 2px;
+        border: 1px solid $lightColor;
+        text-align: left;
+        float: right;
+    }
+}
+/* Footer */
+footer {
+    background: $darkColor;
+    color: $lightColor;
+    font-size: $xsSize;
+    padding: 1em 0;
+
+    .container {
+        text-align: center;
+
+        a {
+            color: $lightColor;
+        }
+    }
+}
+
+/* Reviews */
+.container-fluid {
+    background: $darkColor;
+    padding: 0
+}
+/* Desktop */
+@media all and (min-width: 468px) {
+    ul {
+        li:not(:first-child) {
+            a:before {
+                padding-right: 1em;
+                content: "|";
+            }
+
+            a:hover::before {
+                color: $darkColor;
+            }
+        }
+    }
+}
+
+/* Masonry */
+.grid-container {
+    max-width: 100%;
+    margin: 0;
+    padding:0;
+}
+
+.cols {
+    margin: 0 auto;
+    max-width: 100%;
+
+}
+
+.col {
+    width: 25%;
+    height: 250px;
+    float: left;
+    margin: 0;
+    padding: 0;
+
+
+    img {
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        opacity: 0.8;
+    }
+}
+.grid-1 {
+    width: 100%;
+    padding:0;
+    margin:0
+}
+
+.grid-3 {
+    float: right;
+    height: 20%;
+}
+
+.grid-5 {
+    display: table;
+}
+
+    .grid-5 > * {
+        display: table-cell;
+    }
+
+    .grid-5 > .text-container {
+        text-align: center;
+        vertical-align: middle;
+        width: 50%;
+    }
+
+    .grid-5 img {
+        object-position: right;
+    }
+
+.grid-7 {
+    width: 50%;
+}
+
+@supports (display: grid) or (display: -ms-grid) {
+    .grid-area {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        grid-auto-rows: 250px;
+        justify-content: center;
+    }
+
+    .col {
+        width: 100%;
+        height: 100%;
+        float: none;
+
+    }
+
+    .grid-1 {
+        grid-column-end: span 2;
+    }
+
+    .grid-3 {
+        grid-row-end: span 2;
+    }
+
+    .grid-5 {
+        grid-column-end: span 2;
+    }
+
+    .grid-7 {
+        grid-column-end: span 2;
+    }
+}
+
+/* Media queries for other screen widths */
+@media screen and (max-width: 450px) {
+    .col {
+        grid-row-end: unset;
+        grid-column-end: unset;
+        height: 250px;
+    }
+
+    .grid-area {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .grid-3 {
+        order: -1;
+        height: 500px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .grid-2 {
+        display: none;
+    }
+}
+
+
+/* How It Works */
+span.circle {
+    border-radius: 0.8em;
+    -moz-border-radius: 0.8em;
+    -webkit-border-radius: 0.8em;
+    color: $darkColor;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 1.6em;
+    text-align: center;
+    width: 1.65em;
+    border: 1px solid $darkColor;
+}
+
+
+
+
+
+
+
+
+
