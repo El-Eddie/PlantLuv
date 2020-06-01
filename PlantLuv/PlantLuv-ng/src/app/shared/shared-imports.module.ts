@@ -14,6 +14,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule, MatProgressSpinner } from '@angular/material/progress-spinner';
 
+
 export const MATERAIL_MODULES = [
   MatToolbarModule,
   MatButtonModule,
@@ -37,7 +38,7 @@ export const MATERAIL_MODULES = [
     ...MATERAIL_MODULES
   ],
   exports: [
-    ...MATERAIL_MODULES
+    ...MATERAIL_MODULES,
   ]
 })
 export class SharedImportsModule { }

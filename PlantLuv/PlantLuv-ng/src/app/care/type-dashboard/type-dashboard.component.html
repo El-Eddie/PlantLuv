@@ -1,0 +1,3 @@
+<div id="list-container">
+  <app-type-card *ngFor="let type of typeList$ | async" [type]="type" (displayDetailsEvent)="displayDetailsCard($event)"></app-type-card>
+</div>

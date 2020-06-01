@@ -9,18 +9,16 @@ import { SharedImportsModule } from  '../shared/shared-imports.module'
 import { environment } from '../../environments/environment';
 
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
-import { PlantCardComponent } from './plant-list/plant-card.component';
+import { PlantCardComponent } from './plant-list-card/plant-card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { PlantDetailsComponent } from './plant-details/plant-details.component';
-// import { PlantFilterComponent } from './plant-filter/plant-filter.component';
 
 @NgModule({
   declarations: [
     UserDashboardComponent,
     PlantCardComponent,
     PlantDetailsComponent,
-    // PlantFilterComponent
   ],
   imports: [
     CommonModule,
