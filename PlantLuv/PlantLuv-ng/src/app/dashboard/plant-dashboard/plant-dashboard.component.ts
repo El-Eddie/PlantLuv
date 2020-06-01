@@ -4,11 +4,11 @@ import { Plant } from '../plant.model';
 import { PlantService } from '../plant.service';
 
 @Component({
-  selector: 'app-user-dashboard',
-  templateUrl: './user-dashboard.component.html',
-  styleUrls: ['./user-dashboard.component.scss']
+  selector: 'app-plant-dashboard',
+  templateUrl: './plant-dashboard.component.html',
+  styleUrls: ['./plant-dashboard.component.scss']
 })
-export class UserDashboardComponent implements OnInit {
+export class PlantDashboardComponent implements OnInit {
 
   plantList$: Observable<Plant[]>;
   filterValue: string;
