@@ -36,4 +36,20 @@ export class PlantService {
     return this.httpClient.delete<Plant>(''+id)
     //Delete method on the API controller likely won't return a model. What should this method return?
   }
+
+  waterPlant(id: number): Observable<Plant>{
+    return this.httpClient.patch<Plant>('',id)
+  }
+
+  fertalizePlant(id: number): Observable<Plant>{
+    return this.httpClient.patch<Plant>('',id)
+  }
+
+  toggleFavorite(id: number): Observable<Plant>{
+    return this.httpClient.patch<Plant>('',id)
+  }
+
+  toggleAlerts(id: number): Observable<Plant>{
+    return this.httpClient.patch<Plant>('',id)
+  }
 }

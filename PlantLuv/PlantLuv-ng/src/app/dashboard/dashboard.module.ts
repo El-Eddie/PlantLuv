@@ -14,11 +14,20 @@ import { PlantDashboardComponent } from './plant-dashboard/plant-dashboard.compo
 import { PlantCardComponent } from './plant-list-card/plant-card.component';
 import { PlantDetailsComponent } from './plant-details/plant-details.component';
 
+import { FavoritePipe } from './pipes/favorite.pipe';
+import { NotificationPipe } from './pipes/notification.pipe';
+import { DeleteDialogComponent } from './delete-dialog.component';
+import { ConfirmationSnackbarComponent } from './confirmation-snackbar.component';
+
 @NgModule({
   declarations: [
     PlantDashboardComponent,
     PlantCardComponent,
     PlantDetailsComponent,
+    FavoritePipe,
+    NotificationPipe,
+    DeleteDialogComponent,
+    ConfirmationSnackbarComponent,
   ],
   imports: [
     CommonModule,

@@ -26,4 +26,40 @@ export class PlantDashboardComponent implements OnInit {
   GetUserPlants(id: number){
     this.plantList$ = this.plantService.getUserPlants(id);
   }
+
+  waterPlant(id: number){
+    let results = this.plantService.waterPlant(id);
+    results.subscribe(plant => {
+      if(plant){
+        console.log(plant);
+        alert("Your "+plant.species+" plant has been marked as watered.")
+      } else {
+        alert("There was a problem recording your action.\n Please try again later.")
+      }
+    })
+   }
+
+  fertalizePlant(id: number){
+    let results = this.plantService.fertalizePlant(id);
+    results.subscribe(plant => {
+      if(plant){
+        console.log(plant);
+        alert("Your "+plant.species+" plant has been marked as fed.")
+      } else {
+        alert("There was a problem recording your action.\n Please try again later.")
+      }
+    })
+  }
+  toggleFavorite(id: number){
+    this.plantService.toggleFavorite(id)
+  }
+
+  toggleAlerts(id: number){
+    this.plantService.toggleAlerts(id)
+  }
+  deletePlant(id: number){
+    console.log(id+" made it to the dashboard component")
+    this.plantService.delete(id)
+  }
+
 }

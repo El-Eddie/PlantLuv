@@ -1,3 +1,10 @@
 <div id="dashboard-container" >
-  <app-plant-card *ngFor="let plant of plantList$ | async" [plant]="plant"></app-plant-card>
+  <app-plant-card
+    *ngFor="let plant of plantList$ | async" [plant]="plant"
+    (waterPlantEvent)="waterPlant($event)"
+    (fertalizePlantEvent)="fertalizePlant($event)"
+    (toggleAlertsEvent)="toggleAlerts($event)"
+    (toggleFavoriteEvent)="toggleFavorite($event)"
+    (deletePlantEvent)="deletePlant($event)"
+    ></app-plant-card>
 </div>

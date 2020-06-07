@@ -1,3 +1,5 @@
+import { PhotoData } from '../shared/image-dialog/photo-data.model'
+
 export interface Plant {
   plantID: number;
   ownerID: number;
@@ -10,10 +12,14 @@ export interface Plant {
   height: number; //wont need
   birthday: Date;
   receiveNotifications: boolean;
-  imageURL: string;
+  // imageURL: string;
+  imageIDs: number[];
   thumbnailURL?: string;
   //type: PlantType;
   isPublic: boolean;  //not implementing social yet
+  isFavorite: boolean;
+  lightLevel: string;
+  toxisity: string[];
   // My thought for the water/fertalizeAgain fields is to have the back end
   // calculate this date based on last wattered date of the database object
   // and the watering frequency of the plant type. That way the front end

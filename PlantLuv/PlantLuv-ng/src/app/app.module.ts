@@ -6,8 +6,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedImportsModule } from './shared/shared-imports.module';
+import { IconService } from './shared/icon.service'
 
 import { FilterComponent } from './filter/filter.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 const routes: Routes = [
@@ -37,12 +39,18 @@ const routes: Routes = [
     BrowserAnimationsModule,
     SharedImportsModule,
     RouterModule.forRoot(routes),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
-    Title
+    Title,
   ],
   bootstrap: [AppComponent]
 })
 
-export class AppModule { }
+export class AppModule {
+  constructor(
+    iconService: IconService
+  )
+  {}
+}

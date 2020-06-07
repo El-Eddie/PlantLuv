@@ -13,6 +13,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule, MatProgressSpinner } from '@angular/material/progress-spinner';
+import { LightLevelPipe } from './pipes/light-level.pipe';
+import { ToxisityPipe } from './pipes/toxisity.pipe';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 export const MATERAIL_MODULES = [
@@ -28,17 +32,24 @@ export const MATERAIL_MODULES = [
   MatInputModule,
   MatSelectModule,
   MatSnackBarModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatTooltipModule,
+  MatMenuModule
 ]
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    LightLevelPipe,
+    ToxisityPipe
+  ],
   imports: [
     CommonModule,
     ...MATERAIL_MODULES
   ],
   exports: [
     ...MATERAIL_MODULES,
+    LightLevelPipe,
+    ToxisityPipe
   ]
 })
 export class SharedImportsModule { }

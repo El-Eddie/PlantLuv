@@ -11,7 +11,7 @@ export class MockPlantService extends PlantService {
 
   fakePlantList: Plant[] = [];
   plantImageURL: string = "assets/img/plant-full.jpg";
-  plantThumbnailURL: string = "assets/img/plant-thumb.jpg";
+  plantThumbnailURL: string = "assets/img/plants/plant-thumb.jpg";
 
   constructor(private http: HttpClient) {
     super(http)
@@ -45,8 +45,58 @@ export class MockPlantService extends PlantService {
   }
 
   delete(id: number):  Observable<Plant>{
+    console.log("plant "+id+" is getting deleted.")
+    let plantIndex = this.fakePlantList.findIndex(thing => thing.plantID == id);
+    if (plantIndex != -1)
+    {
+      let exPlant = this.fakePlantList.splice(plantIndex, 1);
+      console.log("Plant number "+exPlant[0].plantID)
+    }
+
+    return of(null)
+  }
+
+  waterPlant(id: number): Observable<Plant>{
+    let plantIndex = this.fakePlantList.findIndex(thing => thing.plantID == id);
+    if (plantIndex != -1)
+    {
+
+      this.fakePlantList[plantIndex].lastWatered = new Date(Date.now());
+      return of(this.fakePlantList[plantIndex])
+    }
+   return of(null)
+  }
+
+
+  fertalizePlant(id: number): Observable<Plant>{
+    let plantIndex = this.fakePlantList.findIndex(thing => thing.plantID == id);
+    if (plantIndex != -1)
+    {
+
+      this.fakePlantList[plantIndex].lastFertalized = new Date(Date.now());
+      return of(this.fakePlantList[plantIndex])
+    }
+    return of(null)
+  }
+
+  toggleFavorite(id: number): Observable<Plant>{
+    let plantIndex = this.fakePlantList.findIndex(thing => thing.plantID == id);
+    if (plantIndex != -1){
+      let plant = this.fakePlantList[plantIndex];
+      plant.isFavorite = !plant.isFavorite;
+    }
     return of(null);
   }
+
+  toggleAlerts(id: number): Observable<Plant>{
+    let plantIndex = this.fakePlantList.findIndex(thing => thing.plantID == id);
+    if (plantIndex != -1){
+      let plant = this.fakePlantList[plantIndex];
+      plant.receiveNotifications = !plant.receiveNotifications;
+    }
+    return of(null);
+  }
+
 
   MakeUpSomePlants(){
     this.fakePlantList = [
@@ -62,15 +112,19 @@ export class MockPlantService extends PlantService {
         height: 64,
         birthday: new Date(Date.parse("9/21/2019")),
         receiveNotifications: false,
-        imageURL: this.plantImageURL,
-        thumbnailURL: this.plantThumbnailURL,
+        // imageURL: this.plantImageURL,
+        imageIDs: [1,2,3],
+        thumbnailURL: "assets/img/plants/plant-thumb.jpg",
         isPublic: true,
+        isFavorite: true,
+        lightLevel: 'Low',
+        toxisity: ['cats', 'small animals'],
       },
       {
         plantID: 2,
         ownerID: 1,
-        species: "Weeping Fig",
-        lattinName: "Ficus Benjamina",
+        species: "Snow Queen Pothos",
+        lattinName: "Epipremnum Aureum",
         lastWatered: new Date(Date.parse("1/7/2020 0:14:47")),
         waterAgain: new Date(Date.parse("1/10/2020")),
         lastFertalized: new Date(Date.parse("1/18/2020 18:14:47")),
@@ -78,15 +132,19 @@ export class MockPlantService extends PlantService {
         height: 58,
         birthday: new Date(Date.parse("11/21/2019")),
         receiveNotifications: false,
-        imageURL: this.plantImageURL,
-        thumbnailURL: this.plantThumbnailURL,
+        // imageURL: this.plantImageURL,
+        imageIDs: [4,5],
+        thumbnailURL: "assets/img/plants/snow_queen_pothos-thumb.jpg",
         isPublic: true,
+        isFavorite: false,
+        lightLevel: 'Med',
+        toxisity: ['cats'],
       },
       {
         plantID: 3,
         ownerID: 1,
-        species: "Kaffir Lily",
-        lattinName: "Clivia Miniata",
+        species: "Marble Queen Pothos",
+        lattinName: "Epipremnum Aureum",
         lastWatered: new Date(Date.parse("1/7/2020 0:14:47")),
         waterAgain: new Date(Date.parse("1/12/2020")),
         lastFertalized: new Date(Date.parse("1/1/2020 21:07:35")),
@@ -94,15 +152,19 @@ export class MockPlantService extends PlantService {
         height: 60,
         birthday: new Date(Date.parse("12/25/2019")),
         receiveNotifications: false,
-        imageURL: this.plantImageURL,
-        thumbnailURL: this.plantThumbnailURL,
+        // imageURL: this.plantImageURL,
+        imageIDs: [6,7,8,9],
+        thumbnailURL: "assets/img/plants/marble_queen_pothos-thumb.jpg",
         isPublic: false,
+        isFavorite: false,
+        lightLevel: 'Low/Med',
+        toxisity: ['unknown'],
       },
       {
         plantID: 4,
-        ownerID: 2,
-        species: "Slipper Orchid",
-        lattinName: "Paphiopedilum",
+        ownerID: 1,
+        species: "Sundew",
+        lattinName: "Drosera spatulata",
         lastWatered: new Date(Date.parse("1/7/2020 0:14:47")),
         waterAgain: new Date(Date.parse("1/13/2020")),
         lastFertalized: new Date(Date.parse("1/17/2020 16:33:59")),
@@ -110,15 +172,19 @@ export class MockPlantService extends PlantService {
         height: 90,
         birthday: new Date(Date.parse("12/9/2019")),
         receiveNotifications: false,
-        imageURL: this.plantImageURL,
-        thumbnailURL: this.plantThumbnailURL,
+        // imageURL: this.plantImageURL,
+        imageIDs: [],
+        thumbnailURL: "assets/img/plants/dorsera_spatulata-thumb.jpg",
         isPublic: true,
+        isFavorite: true,
+        lightLevel: 'Med/High',
+        toxisity: ['Cats', 'dogs'],
       },
       {
         plantID: 5,
         ownerID: 1,
-        species: "Moth Orchid",
-        lattinName: "Phalaenopsis",
+        species: "African Violet",
+        lattinName: "Saintpaulia",
         lastWatered: new Date(Date.parse("1/7/2020 0:14:47")),
         waterAgain: new Date(Date.parse("1/12/2020")),
         lastFertalized: new Date(Date.parse("12/28/2019 15:36:23")),
@@ -126,15 +192,20 @@ export class MockPlantService extends PlantService {
         height: 74,
         birthday: new Date(Date.parse("12/19/2019")),
         receiveNotifications: true,
-        imageURL: this.plantImageURL,
-        thumbnailURL: this.plantThumbnailURL,
+        // imageURL: this.plantImageURL,
+        imageIDs: [10,11,12,13],
+        thumbnailURL: "assets/img/plants/saintpaulia-thumb.jpg",
         isPublic: true,
+        isFavorite: true,
+        lightLevel: 'Low/Med',
+        // toxisity: ['none'],
+        toxisity: [],
       },
       {
         plantID: 6,
-        ownerID: 2,
-        species: "Weeping Fig",
-        lattinName: "Ficus Benjamina",
+        ownerID: 1,
+        species: "Snow Queen Pothos",
+        lattinName: "Epipremnum aureum",
         lastWatered: new Date(Date.parse("1/7/2020 0:14:47")),
         waterAgain: new Date(Date.parse("1/13/2020")),
         lastFertalized: new Date(Date.parse("1/2/2020 4:48:23")),
@@ -142,15 +213,19 @@ export class MockPlantService extends PlantService {
         height: 39,
         birthday: new Date(Date.parse("12/13/2019")),
         receiveNotifications: true,
-        imageURL: this.plantImageURL,
-        thumbnailURL: this.plantThumbnailURL,
+        // imageURL: this.plantImageURL,
+        imageIDs: [],
+        thumbnailURL: "assets/img/plants/snow_queen_pothos-thumb.jpg",
         isPublic: false,
+        isFavorite: false,
+        lightLevel: 'Med',
+        toxisity: ['dogs'],
       },
       {
         plantID: 7,
         ownerID: 1,
-        species: "Flaming Katy",
-        lattinName: "Kalanchoe Blossfeldiana",
+        species: "Marble Queen Pothos",
+        lattinName: "Epipremnum aureum",
         lastWatered: new Date(Date.parse("1/7/2020 0:14:47")),
         waterAgain: new Date(Date.parse("1/13/2020")),
         lastFertalized: new Date(Date.parse("12/31/2019 12:43:35")),
@@ -158,15 +233,20 @@ export class MockPlantService extends PlantService {
         height: 19,
         birthday: new Date(Date.parse("11/28/2019")),
         receiveNotifications: false,
-        imageURL: this.plantImageURL,
-        thumbnailURL: this.plantThumbnailURL,
+        // imageURL: this.plantImageURL,
+        imageIDs: [14,15],
+        thumbnailURL: "assets/img/plants/marble_queen_pothos-thumb.jpg",
         isPublic: false,
+        isFavorite: false,
+        lightLevel: 'Med/High',
+        //toxisity: ['Cats', 'dogs'],
+        toxisity: ['Cats', 'dogs', 'small animals', 'humans'],
       },
       {
         plantID: 8,
-        ownerID: 2,
-        species: "Jade Plant",
-        lattinName: "Crassula Ovata",
+        ownerID: 1,
+        species: "Sundew",
+        lattinName: "Drosera spatulata",
         lastWatered: new Date(Date.parse("10/20/2020 0:19:59")),
         waterAgain: new Date(Date.parse("10/22/2020")),
         lastFertalized: new Date(Date.parse("10/17/2020 8:15:11")),
@@ -174,15 +254,20 @@ export class MockPlantService extends PlantService {
         height: 13,
         birthday: new Date(Date.parse("9/4/2020")),
         receiveNotifications: true,
-        imageURL: this.plantImageURL,
-        thumbnailURL: this.plantThumbnailURL,
+        // imageURL: this.plantImageURL,
+        imageIDs: [],
+        thumbnailURL: "assets/img/plants/dorsera_spatulata-thumb.jpg",
         isPublic: true,
+        isFavorite: true,
+        lightLevel: 'High',
+        // toxisity: ['none'],
+        toxisity: [],
       },
       {
         plantID: 9,
-        ownerID: 2,
-        species: "Peace Lily",
-        lattinName: "Spathiphyllum Wallisii",
+        ownerID: 1,
+        species: "African Violet",
+        lattinName: "Saintpaulia",
         lastWatered: new Date(Date.parse("10/20/2020 0:19:59")),
         waterAgain: new Date(Date.parse("10/26/2020")),
         lastFertalized: new Date(Date.parse("10/22/2020 19:31:59")),
@@ -190,9 +275,13 @@ export class MockPlantService extends PlantService {
         height: 53,
         birthday: new Date(Date.parse("9/1/2020")),
         receiveNotifications: false,
-        imageURL: this.plantImageURL,
-        thumbnailURL: this.plantThumbnailURL,
+        // imageURL: this.plantImageURL,
+        imageIDs: [16,17,18],
+        thumbnailURL: "assets/img/plants/saintpaulia-thumb.jpg",
         isPublic: true,
+        isFavorite: false,
+        lightLevel: 'Med/High',
+        toxisity: ['humans'],
       },
     ]
   }

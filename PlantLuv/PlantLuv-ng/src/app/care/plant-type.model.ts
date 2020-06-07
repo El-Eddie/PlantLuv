@@ -19,7 +19,7 @@ export interface PlantType{
   waterFrequency: WaterFrequency;
   waterType: WaterType;
   dificulty: Dificulty;
-  toxisity: string
+  toxisity: Toxisity[]
 }
 
 export type LightLevel = 'Low'
@@ -61,3 +61,9 @@ export type WaterType = 'Any' | 'Distilled'
 
 export type Dificulty = 'Easy' | 'Experianced' | 'Advanced'
 
+export type Toxisity = 'dogs'
+                        | 'cats'
+                        | 'small animals'
+                        | 'humans'
+                        | 'safe'
+                        | 'unknown'

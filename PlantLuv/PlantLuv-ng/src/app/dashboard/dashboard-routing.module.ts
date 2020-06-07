@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { PlantDashboardComponent } from './plant-dashboard/plant-dashboard.component';
 import { PlantDetailsComponent } from './plant-details/plant-details.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: UserDashboardComponent
+    component: PlantDashboardComponent
   },
   {
     path: 'plant/:id',
