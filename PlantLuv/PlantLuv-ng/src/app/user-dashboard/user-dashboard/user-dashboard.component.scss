@@ -1,0 +1,15 @@
+@import '../../app.colors.scss';
+
+.card-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+#dashboard-controlls{
+  padding-left: 35px;
+  padding-top: 10px;
+}
+#dashboard-container{
+  background-color: $background-color;
+  border-radius: 15px;
+  }

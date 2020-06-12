@@ -1,0 +1,22 @@
+<div id="dashboard-container">
+  <div id="dashboard-controlls">
+    <app-filter (filterChangeEvent)="updateFilter($event)"></app-filter>
+    <button mat-button><mat-icon color="primary">add_circle_outline</mat-icon></button>
+  </div>
+  <div class="card-container" *ngIf="(dashboardDisplay$) =='user'">
+    <app-plant-card
+    *ngFor="let plant of plantList$ | async" [plant]="plant"
+    (waterPlantEvent)="waterPlant($event)"
+    (fertalizePlantEvent)="fertalizePlant($event)"
+    (toggleAlertsEvent)="toggleAlerts($event)"
+    (toggleFavoriteEvent)="toggleFavorite($event)"
+    (deletePlantEvent)="deletePlant($event)"
+    (viewCareSheetEvent)="displayDetailsCard($event)"
+    ></app-plant-card>
+  </div>
+
+  <div class="card-container" *ngIf="(dashboardDisplay$) =='type'">
+    <app-type-card *ngFor="let type of typeList$ | async" [type]="type"
+     (displayDetailsEvent)="displayDetailsCard($event)"></app-type-card>
+  </div>
+</div>

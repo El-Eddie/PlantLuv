@@ -1,13 +1,13 @@
 <header>
   <mat-toolbar id="header" color="primary">
     <img id="logo" src="assets/img/logo.png">
-    <nav>
+    <!-- <nav>
       <ul>
         <li><a class="selected-link">My Plants</a></li>
         <li>Care Sheets</li>
       </ul>
-    </nav>
-    <app-filter (filterChangeEvent)="updateFilter($event)"></app-filter>
+    </nav> -->
+    <app-nav-links></app-nav-links>
     <button id="settings-button"(click)="openUserSettings()"><mat-icon>settings</mat-icon></button>
   </mat-toolbar>
 </header>
