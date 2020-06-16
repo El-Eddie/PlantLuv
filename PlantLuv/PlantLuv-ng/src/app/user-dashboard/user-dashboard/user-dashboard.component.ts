@@ -20,7 +20,7 @@ export class UserDashboardComponent implements OnInit {
   typeList$: Observable<PlantType[]>;
   filterValue: string = "";
   loggedInUserID: number;
-  // dashboardDisplay$: Observable<string>;
+  tooltipDelay: number = 250
   dashboardDisplay$: string;
 
   constructor(
@@ -49,7 +49,7 @@ export class UserDashboardComponent implements OnInit {
     results.subscribe(plant => {
       if(plant){
         console.log(plant);
-        alert("Your "+plant.species+" plant has been marked as watered.")
+        alert("Your "+plant.nickName+" plant has been marked as watered.")
       } else {
         alert("There was a problem recording your action.\n Please try again later.")
       }
@@ -61,7 +61,7 @@ export class UserDashboardComponent implements OnInit {
     results.subscribe(plant => {
       if(plant){
         console.log(plant);
-        alert("Your "+plant.species+" plant has been marked as fed.")
+        alert("Your "+plant.nickName+" plant has been marked as fed.")
       } else {
         alert("There was a problem recording your action.\n Please try again later.")
       }
@@ -92,6 +92,10 @@ export class UserDashboardComponent implements OnInit {
       this.typeDialog.open(TypeDetailsComponent, { data: plantType });
       // dialogRef.afterClosed().subscribe(result => {console.log("dialog closed")})
     })
-
   }
+
+  renamePlant(plant: Plant){
+    this.plantService.save(plant);
+  }
+
 }

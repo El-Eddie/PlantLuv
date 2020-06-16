@@ -30,7 +30,7 @@ import { FilterComponent } from './filter/filter.component';
 
 import { DeleteDialogComponent } from './pop-up/delete-dialog.component';
 import { ConfirmationSnackbarComponent } from './pop-up/confirmation-snackbar.component';
-
+import { RenameDialogComponent } from './pop-up/rename-dialog.component';
 
 const routes: Routes = [
   {
@@ -54,7 +54,7 @@ const routes: Routes = [
 
     FilterComponent,
     DeleteDialogComponent,
-
+    RenameDialogComponent,
     ConfirmationSnackbarComponent,
   ],
 

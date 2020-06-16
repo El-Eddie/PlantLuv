@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../pop-up/delete-dialog.component';
 import { PlantService } from '../service/plant.service'
+import { RenameDialogComponent } from '../pop-up/rename-dialog.component';
 
 @Component({
   selector: 'app-plant-card',
@@ -19,6 +20,7 @@ export class PlantCardComponent implements OnInit {
   @Output() toggleAlertsEvent: EventEmitter<number> = new EventEmitter();
   @Output() deletePlantEvent: EventEmitter<number> = new EventEmitter();
   @Output() viewCareSheetEvent: EventEmitter<string> = new EventEmitter();
+  @Output() renamePlantEvent: EventEmitter<Plant> = new EventEmitter();
 
   constructor(
     private service: PlantService,
@@ -27,28 +29,20 @@ export class PlantCardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
   }
 
-  waterPlant(id: number){
-    this.waterPlantEvent.emit(id);
-  }
+  waterPlant(id: number){ this.waterPlantEvent.emit(id); }
 
-  fertalizePlant(id: number){
-    this.fertalizePlantEvent.emit(id);
-  }
+  fertalizePlant(id: number){ this.fertalizePlantEvent.emit(id); }
 
-  triggerSlideshow(id: number){
-    alert("trigger slideshow for plant number "+id);
-  }
+  triggerSlideshow(id: number){ alert("trigger slideshow for plant number "+id); }
 
-  toggleFavorite(id: number){
-    this.toggleFavoriteEvent.emit(id);
-  }
+  toggleFavorite(id: number){ this.toggleFavoriteEvent.emit(id); }
 
-  toggleAlerts(id: number){
-    this.toggleAlertsEvent.emit(id);
-  }
+  toggleAlerts(id: number){ this.toggleAlertsEvent.emit(id); }
+
+
+  openCareSheet(){ this.viewCareSheetEvent.emit(this.plant.lattinName); }
 
   confirmDelete(plant: Plant){
     const dialogRef = this.dialog.open(DeleteDialogComponent, { data: plant });
@@ -62,8 +56,14 @@ export class PlantCardComponent implements OnInit {
     })
   }
 
-  openCareSheet(){
-    console.log("hit the function on plant-card")
-    this.viewCareSheetEvent.emit(this.plant.lattinName);
-  }
+  renamePlant(){
+    var plant = this.plant
+    // alert(this.plant.species)
+    const dialogRef = this.dialog.open(RenameDialogComponent, { data: plant });
+    dialogRef.afterClosed().subscribe(result => {
+      plant.nickName = result.data;
+      this.renamePlantEvent.emit(plant);
+    });
+   }
+
 }

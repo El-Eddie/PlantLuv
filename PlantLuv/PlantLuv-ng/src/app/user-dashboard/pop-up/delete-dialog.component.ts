@@ -7,11 +7,11 @@ import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog'
   template: `
     <h2 mat-dialog-title>Delete Plant</h2>
     <mat-dialog-content class="mat-typography">
-      Are you certain you wish to delete your {{plant.species}}?
+      Are you certain you wish to delete your {{plant.nickName}}?
   </mat-dialog-content>
   <div mat-dialog-actions align="end">
-    <button mat-button [mat-dialog-close]="false">Cancel</button>
-    <button mat-button [mat-dialog-close]="true" color="warn">Confirm</button>
+    <button class="action-button" mat-raised-button [mat-dialog-close]="false">Cancel</button>
+    <button mat-raised-button [mat-dialog-close]="true" color="warn">Confirm</button>
   </div>
   `,
   styles: []

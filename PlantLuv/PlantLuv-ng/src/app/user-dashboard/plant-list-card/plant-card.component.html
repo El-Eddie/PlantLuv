@@ -1,6 +1,6 @@
   <mat-card class="plant-card">
     <div class='thumbnail-container'>
-      <img class="thumbnail" src={{plant.thumbnailURL}} alt="Photo of a {{plant.species}}"/>
+      <img class="thumbnail" src={{plant.thumbnailURL}} alt="Photo of a {{plant.commonName}}"/>
       <div class='thumbnail-icons-container'>
 
         <button mat-icon-button aria-label="toggle favorite"
@@ -31,7 +31,7 @@
           matTooltip="This plant needs a {{plant.lightLevel}} amount of light."></mat-icon>
           <span class=cdk-visually-hidden>This plant needs a {{plant.lightLevel}} amount of light.</span>
       </div>
-      <span class="plant-name common-name">{{plant.species}}</span>
+      <span class="plant-name common-name">{{plant.nickName}}</span>
       <div class='plant-icons' *ngFor="let animal of plant.toxisity">
         <mat-icon class="info-icon" svgIcon="{{animal | toxisityIcon}}"
           matTooltip="Toxic to {{animal}}"></mat-icon>
@@ -58,6 +58,10 @@
     <button mat-menu-item (click)="openCareSheet()">
       <mat-icon>info</mat-icon>
       <span>Care sheet info</span>
+    </button>
+    <button mat-menu-item (click)="renamePlant()">
+      <mat-icon>label</mat-icon>
+      <span>Change nickname</span>
     </button>
     <button mat-menu-item (click)="confirmDelete(plant)">
       <mat-icon color="warn">cancel</mat-icon>

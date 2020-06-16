@@ -12,17 +12,19 @@ export class MockPlantService extends PlantService {
   fakePlantList: Plant[] = [];
   plantImageURL: string = "assets/img/plant-full.jpg";
   plantThumbnailURL: string = "assets/img/plants/plant-thumb.jpg";
+  lastID: number;
 
   constructor(private http: HttpClient) {
     super(http)
     this.MakeUpSomePlants();
+    this.lastID = Math.max( ...this.fakePlantList.map(plant => plant.plantID))
   }
 
   search(criteria: string): Observable<Plant[]>{
     let results = this.fakePlantList.filter( plant =>
       {
         plant.isPublic &&
-        ( plant.species.indexOf( criteria ) != -1 ||
+        ( plant.commonName.indexOf( criteria ) != -1 ||
         plant.lattinName.indexOf( criteria ) != -1 )
       });
     return of(results);
@@ -37,7 +39,17 @@ export class MockPlantService extends PlantService {
   }
 
   save(plant: Plant): Observable<Plant>{
-    return of(null);
+    let match = this.fakePlantList.find(thing => thing.plantID == plant.plantID);
+    if (match)
+    {
+      this.fakePlantList = this.fakePlantList.map(thing =>
+        thing.plantID === match.plantID ? plant : thing
+      )
+    } else {
+      plant.plantID = ++this.lastID;
+      this.fakePlantList = [ ...this.fakePlantList, plant];
+    }
+   return of(null)
   }
 
   create(plant: Plant): Observable<Plant>{
@@ -60,7 +72,6 @@ export class MockPlantService extends PlantService {
     let plantIndex = this.fakePlantList.findIndex(thing => thing.plantID == id);
     if (plantIndex != -1)
     {
-
       this.fakePlantList[plantIndex].lastWatered = new Date(Date.now());
       return of(this.fakePlantList[plantIndex])
     }
@@ -72,7 +83,6 @@ export class MockPlantService extends PlantService {
     let plantIndex = this.fakePlantList.findIndex(thing => thing.plantID == id);
     if (plantIndex != -1)
     {
-
       this.fakePlantList[plantIndex].lastFertalized = new Date(Date.now());
       return of(this.fakePlantList[plantIndex])
     }
@@ -103,7 +113,8 @@ export class MockPlantService extends PlantService {
       {
         plantID: 1,
         ownerID: 1,
-        species: "Jade Plant",
+        commonName: "Jade Plant",
+        nickName: "Jade",
         lattinName: "Crassula Ovata",
         lastWatered: new Date(Date.parse("10/21/2019 1:40:58")),
         waterAgain: new Date(Date.parse("10/26/2019")),
@@ -123,7 +134,8 @@ export class MockPlantService extends PlantService {
       {
         plantID: 2,
         ownerID: 1,
-        species: "Snow Queen Pothos",
+        commonName: "Snow Queen Pothos",
+        nickName: "Snow Queen Pothos",
         lattinName: "Epipremnum Aureum",
         lastWatered: new Date(Date.parse("1/7/2020 0:14:47")),
         waterAgain: new Date(Date.parse("1/10/2020")),
@@ -143,47 +155,8 @@ export class MockPlantService extends PlantService {
       {
         plantID: 12,
         ownerID: 1,
-        species: "Snow Queen Pothos",
-        lattinName: "Epipremnum Aureum",
-        lastWatered: new Date(Date.parse("1/7/2020 0:14:47")),
-        waterAgain: new Date(Date.parse("1/10/2020")),
-        lastFertalized: new Date(Date.parse("1/18/2020 18:14:47")),
-        fertalizeAgain: new Date(Date.parse("1/27/2020")),
-        height: 58,
-        birthday: new Date(Date.parse("11/21/2019")),
-        receiveNotifications: false,
-        // imageURL: this.plantImageURL,
-        imageIDs: [4,5],
-        thumbnailURL: "assets/img/plants/snow_queen_pothos-thumb.jpg",
-        isPublic: true,
-        isFavorite: false,
-        lightLevel: 'Med',
-        toxisity: ['cats'],
-      },
-      {
-        plantID: 11,
-        ownerID: 1,
-        species: "Snow Queen Pothos",
-        lattinName: "Epipremnum Aureum",
-        lastWatered: new Date(Date.parse("1/7/2020 0:14:47")),
-        waterAgain: new Date(Date.parse("1/10/2020")),
-        lastFertalized: new Date(Date.parse("1/18/2020 18:14:47")),
-        fertalizeAgain: new Date(Date.parse("1/27/2020")),
-        height: 58,
-        birthday: new Date(Date.parse("11/21/2019")),
-        receiveNotifications: false,
-        // imageURL: this.plantImageURL,
-        imageIDs: [4,5],
-        thumbnailURL: "assets/img/plants/snow_queen_pothos-thumb.jpg",
-        isPublic: true,
-        isFavorite: false,
-        lightLevel: 'Med',
-        toxisity: ['cats'],
-      },
-      {
-        plantID: 10,
-        ownerID: 1,
-        species: "Snow Queen Pothos",
+        commonName: "Snow Queen Pothos",
+        nickName: "Snowy",
         lattinName: "Epipremnum Aureum",
         lastWatered: new Date(Date.parse("1/7/2020 0:14:47")),
         waterAgain: new Date(Date.parse("1/10/2020")),
@@ -203,7 +176,8 @@ export class MockPlantService extends PlantService {
       {
         plantID: 3,
         ownerID: 1,
-        species: "Marble Queen Pothos",
+        commonName: "Marble Queen Pothos",
+        nickName: "Marble Queen Pothos",
         lattinName: "Epipremnum Aureum",
         lastWatered: new Date(Date.parse("1/7/2020 0:14:47")),
         waterAgain: new Date(Date.parse("1/12/2020")),
@@ -223,7 +197,8 @@ export class MockPlantService extends PlantService {
       {
         plantID: 4,
         ownerID: 1,
-        species: "Sundew",
+        commonName: "Sundew",
+        nickName: "Sundew",
         lattinName: "Drosera spatulata",
         lastWatered: new Date(Date.parse("1/7/2020 0:14:47")),
         waterAgain: new Date(Date.parse("1/13/2020")),
@@ -243,7 +218,8 @@ export class MockPlantService extends PlantService {
       {
         plantID: 5,
         ownerID: 1,
-        species: "African Violet",
+        commonName: "African Violet",
+        nickName: "African Violet",
         lattinName: "Saintpaulia",
         lastWatered: new Date(Date.parse("1/7/2020 0:14:47")),
         waterAgain: new Date(Date.parse("1/12/2020")),
@@ -264,7 +240,8 @@ export class MockPlantService extends PlantService {
       {
         plantID: 6,
         ownerID: 1,
-        species: "Snow Queen Pothos",
+        commonName: "Snow Queen Pothos",
+        nickName: "Snowy2: Pothos' revenge",
         lattinName: "Epipremnum aureum",
         lastWatered: new Date(Date.parse("1/7/2020 0:14:47")),
         waterAgain: new Date(Date.parse("1/13/2020")),
@@ -284,7 +261,8 @@ export class MockPlantService extends PlantService {
       {
         plantID: 7,
         ownerID: 1,
-        species: "Marble Queen Pothos",
+        commonName: "Marble Queen Pothos",
+        nickName: "Marble Queen Pothos",
         lattinName: "Epipremnum aureum",
         lastWatered: new Date(Date.parse("1/7/2020 0:14:47")),
         waterAgain: new Date(Date.parse("1/13/2020")),
@@ -305,7 +283,8 @@ export class MockPlantService extends PlantService {
       {
         plantID: 8,
         ownerID: 1,
-        species: "Sundew",
+        commonName: "Sundew",
+        nickName: "Sundew",
         lattinName: "Drosera spatulata",
         lastWatered: new Date(Date.parse("10/20/2020 0:19:59")),
         waterAgain: new Date(Date.parse("10/22/2020")),
@@ -326,7 +305,8 @@ export class MockPlantService extends PlantService {
       {
         plantID: 9,
         ownerID: 1,
-        species: "African Violet",
+        commonName: "African Violet",
+        nickName:  "Violet",
         lattinName: "Saintpaulia",
         lastWatered: new Date(Date.parse("10/20/2020 0:19:59")),
         waterAgain: new Date(Date.parse("10/26/2020")),

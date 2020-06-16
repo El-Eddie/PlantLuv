@@ -6,10 +6,21 @@
   justify-content: space-around;
 }
 #dashboard-controlls{
-  padding-left: 35px;
+  margin: 0px 10px 0px 5%;
   padding-top: 10px;
+  padding-bottom: 5px;
+  display: flex;
+  width: auto;
+  justify-content: space-between;
+  align-items: center;
 }
 #dashboard-container{
   background-color: $background-color;
   border-radius: 15px;
   }
+.dashboard-buttons{
+  width: 30%;
+  max-width: 200px;
+  display: inline-flex;
+  justify-content: space-evenly;
+}
