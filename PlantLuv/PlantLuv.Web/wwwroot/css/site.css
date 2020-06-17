@@ -1,203 +1,63 @@
-@import url("https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600&display=swap");
-.navbar-expand-sm .navbar-collapse {
-  justify-content: flex-end;
-  width: 100%;
-  flex-grow: 0; }
-
-.bg-white {
-  background: url(../images/bg2.jpg);
-  background-size: cover; }
-
-nav {
-  font-family: "Barlow Semi Condensed", Arial, sans-serif;
-  text-transform: uppercase;
-  text-align: right;
-  padding-right: 3em;
-  width: 100%; }
-  nav .navbar-nav {
-    justify-content: right; }
-  nav a:link {
-    margin: 0; }
-
-.navbar > .container {
-  justify-content: normal; }
-
-.headerstacked {
-  height: 25vh; }
-
-.mdl-layout__header {
-  background-color: transparent;
-  background: url("../images/bg2.jpg");
-  background-size: cover;
-  height: 100vh; }
-
-.navbar-brand {
-  margin: 0 auto; }
-  .navbar-brand img {
-    max-width: 200px;
-    text-shadow: 20px 12px 2px rgba(0, 0, 0, 0.8); }
-
-.headerstacked {
-  display: flex;
-  flex-direction: column;
-  align-items: center; }
-  .headerstacked .mdl-navigation__link {
-    color: #333; }
-  .headerstacked .item {
-    height: 40px;
-    margin-bottom: 10px; }
-
-.mb-3 {
-  margin-bottom: 0 !important; }
-
-.border-bottom {
-  border: 0 !important; }
-
-/* Reviews*/
-.reviews {
-  background: #333;
-  color: #d3d3d3;
-  padding: 1em; }
-  .reviews :before {
-    content: ' " ';
-    font-size: 1.3em; }
-  .reviews :after {
-    content: ' " ';
-    font-size: 1.3em; }
-  .reviews img {
-    border-radius: 10em;
-    width: 100px;
-    height: 100px;
-    padding: 2px;
-    border: 1px solid #d3d3d3;
-    text-align: left;
-    float: right; }
-
-/* Footer */
-footer {
-  background: #333;
-  color: #d3d3d3;
-  font-size: 0.95em;
-  padding: 1em 0; }
-  footer .container {
-    text-align: center; }
-    footer .container a {
-      color: #d3d3d3; }
-
-/* Reviews */
-.container-fluid {
-  background: #333;
-  padding: 0; }
-
-/* Desktop */
-@media all and (min-width: 468px) {
-  ul li:not(:first-child) a:before {
-    padding-right: 1em;
-    content: "|"; }
-  ul li:not(:first-child) a:hover::before {
-    color: #333; } }
-/* Masonry */
-.grid-container {
-  max-width: 100%;
-  margin: 0;
-  padding: 0; }
-
-.cols {
-  margin: 0 auto;
-  max-width: 100%; }
-
-.col {
-  width: 25%;
-  height: 250px;
-  float: left;
-  margin: 0;
-  padding: 0; }
-  .col img {
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    opacity: 0.8; }
-
-.grid-1 {
-  width: 100%;
-  padding: 0;
-  margin: 0; }
-
-.grid-3 {
-  float: right;
-  height: 20%; }
-
-.grid-5 {
-  display: table; }
-
-.grid-5 > * {
-  display: table-cell; }
-
-.grid-5 > .text-container {
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+a.navbar-brand {
+  white-space: normal;
   text-align: center;
-  vertical-align: middle;
-  width: 50%; }
+  word-break: break-all; }
 
-.grid-5 img {
-  object-position: right; }
+/* Provide sufficient contrast against white background */
+a {
+  color: #0366d6; }
 
-.grid-7 {
-  width: 50%; }
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac; }
 
-@supports (display: grid) or (display: -ms-grid) {
-  .grid-area {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    grid-auto-rows: 250px;
-    justify-content: center; }
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac; }
 
-  .col {
-    width: 100%;
-    height: 100%;
-    float: none; }
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  font-size: 14px; }
 
-  .grid-1 {
-    grid-column-end: span 2; }
+@media (min-width: 768px) {
+  html {
+    font-size: 16px; } }
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit; }
 
-  .grid-3 {
-    grid-row-end: span 2; }
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%; }
 
-  .grid-5 {
-    grid-column-end: span 2; }
+body {
+  margin-bottom: 60px; }
 
-  .grid-7 {
-    grid-column-end: span 2; } }
-/* Media queries for other screen widths */
-@media screen and (max-width: 450px) {
-  .col {
-    grid-row-end: unset;
-    grid-column-end: unset;
-    height: 250px; }
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px;
+  /* Vertically center the text there */ }
 
-  .grid-area {
-    display: flex;
-    flex-direction: column; }
+.header-layout-transparent {
+  background: url("/images/bg.jpg"); }
 
-  .grid-3 {
-    order: -1;
-    height: 500px; } }
-@media screen and (max-width: 768px) {
-  .grid-2 {
-    display: none; } }
-/* How It Works */
-span.circle {
-  border-radius: 0.8em;
-  -moz-border-radius: 0.8em;
-  -webkit-border-radius: 0.8em;
-  color: #333;
-  display: inline-block;
-  font-weight: bold;
-  line-height: 1.6em;
-  text-align: center;
-  width: 1.65em;
-  border: 1px solid #333; }
+.header-layout-transparent .mdl-layout__header,
+.header-layout-transparent .mdl-layout__drawer-button {
+  color: white; }
+
+.mdl-layout-title {
+  border: 1px solid red; }
+  .mdl-layout-title img {
+    border: 15px solid red; }
 
 /*# sourceMappingURL=site.css.map */
