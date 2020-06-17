@@ -30,5 +30,6 @@
     "minify": {
       "enabled": false /*already minified*/
     }
+   
   }
 ]
