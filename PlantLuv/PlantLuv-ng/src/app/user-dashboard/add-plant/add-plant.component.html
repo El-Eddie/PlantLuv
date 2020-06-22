@@ -1,0 +1,57 @@
+<mat-dialog-content>
+    <p class="dialog-title">Add a plant to your garden</p>
+  <form [formGroup]="formGroup">
+    <div class="form-container">
+
+      {{filteredTypeList$ | async}}
+      <mat-form-field>
+        <mat-label>Plant Species</mat-label>
+        <!-- <mat-select formControlName="plantType">
+          <mat-option [value]="null">--</mat-option>
+          <mat-option value='cheese' >cheese</mat-option>
+        </mat-select> -->
+
+        <input type="text" matInput formControlName="plantType" [matAutocomplete]="options">
+        <mat-autocomplete #options="matAutocomplete" autoActiveFirstOption >
+          <!-- <mat-option *ngFor=" let type of typeList" [value]="type">{{type}}</mat-option> -->
+          <mat-option *ngFor=" let type of filteredTypeList$ | async" [value]="type">{{type}}</mat-option>
+          <mat-option value="other/unlisted">-- other/unlisted --</mat-option>
+        </mat-autocomplete>
+        <mat-hint>Required</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Give your plant a nickname?" formControlName="nickName" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>When was it last watered?</mat-label>
+        <input matInput [matDatepicker]="picker2" formControlName="lastWatered">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>When was it last fertalized?</mat-label>
+        <input matInput [matDatepicker]="picker3" formControlName="lastFertalized">
+        <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+        <mat-datepicker #picker3></mat-datepicker>
+      </mat-form-field>
+
+      <mat-checkbox labelPosition="before" formControlName="receiveAlerts">
+        Receive notifications for this pant?
+      </mat-checkbox>
+
+      <div>
+        <input hidden (change)="fileChosen($event)" #fileInput accept=".jpg, .png, .jpeg, .bmp" type="file"/>
+        <button mat-raised-button color="primary" (click)="fileInput.click()">Upload a Pic</button>
+        <span class="image-name" *ngIf="imageName">{{imageName}}</span>
+      </div>
+
+  </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-raised-button (click)="cancel()">Cancel</button>
+  <button mat-raised-button (click)="save()" color="accent">Save</button>
+</mat-dialog-actions>

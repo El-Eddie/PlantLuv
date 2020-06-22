@@ -18,7 +18,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule, MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
-
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatCheckboxModule } from '@angular/material/checkbox';;
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 
 export const MATERAIL_MODULES = [
@@ -37,6 +40,10 @@ export const MATERAIL_MODULES = [
   MatProgressSpinnerModule,
   MatTooltipModule,
   MatMenuModule,
+  MatNativeDateModule,
+  MatDatepickerModule,
+  MatCheckboxModule,
+  MatAutocompleteModule,
 ]
 
 @NgModule({

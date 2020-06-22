@@ -1,0 +1,14 @@
+@import '../../app.colors.scss';
+
+.form-container{
+  display: flex;
+  flex-direction: column;
+}
+.image-name{
+  margin-left: 5px;
+  font-size: smaller;
+}
+.dialog-title{
+  text-align: center;
+  font-size: larger;
+}

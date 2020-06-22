@@ -2,7 +2,7 @@
   <div id="dashboard-controlls">
     <app-filters (filterChangeEvent)="updateFilter($event)" [placeholder_text]="'bla'"></app-filters>
     <span class="dashboard-buttons">
-      <button mat-mini-fab color="" matTooltip="Add a new plant to your home"
+      <button mat-mini-fab color="" matTooltip="Add a new plant to your home" (click)="addPlant()"
       [matTooltipShowDelay]="tooltipDelay" [matTooltipHideDelay]="tooltipDelay">
         <mat-icon color="primary">add_circle_outline</mat-icon>
       </button>
@@ -16,7 +16,7 @@
     </button>
     </span>
   </div>
-  <div class="card-container" *ngIf="(dashboardDisplay$) =='user'">
+  <div class="card-container">
     <app-plant-card
     *ngFor="let plant of plantList$ | async" [plant]="plant"
     (waterPlantEvent)="waterPlant($event)"
@@ -27,10 +27,5 @@
     (viewCareSheetEvent)="displayDetailsCard($event)"
     (renamePlantEvent)="renamePlant($event)"
     ></app-plant-card>
-  </div>
-
-  <div class="card-container" *ngIf="(dashboardDisplay$) =='type'">
-    <app-type-card *ngFor="let type of typeList$ | async" [type]="type"
-     (displayDetailsEvent)="displayDetailsCard($event)"></app-type-card>
   </div>
 </div>

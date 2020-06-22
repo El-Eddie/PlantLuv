@@ -1,6 +1,5 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { PlantType } from '../models/plant-type.model';
-import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-type-card',
@@ -19,8 +18,6 @@ export class TypeListCardComponent implements OnInit {
   }
 
   typeDetails(){
-    // this. displayDetailsEvent.emit(this.type)
-    this. displayDetailsEvent.emit(this.type.lattinName)
-    // this.router.navigate([`./care/${encodeURI(name.toLocaleLowerCase())}`]);
+    this.displayDetailsEvent.emit(this.type.lattinName)
   }
 }

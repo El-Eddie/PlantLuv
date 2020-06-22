@@ -12,4 +12,9 @@
   <p>Watering frequency: {{type.waterFrequency}}</p>
   <p>fertalizing frequency: {{type.fertalizerFrequency}}</p>
   <p>Toxic to: {{type.toxisity}}</p>
+  <button mat-mini-fab color="" matTooltip="Add a new plant to your home"
+    [matTooltipShowDelay]="tooltipDelay" [matTooltipHideDelay]="tooltipDelay"
+    (click)="addPlant()">
+    <mat-icon color="primary">add_circle_outline</mat-icon>
+  </button>
 </div>

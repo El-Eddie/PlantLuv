@@ -31,11 +31,21 @@ import { FilterComponent } from './filter/filter.component';
 import { DeleteDialogComponent } from './pop-up/delete-dialog.component';
 import { ConfirmationSnackbarComponent } from './pop-up/confirmation-snackbar.component';
 import { RenameDialogComponent } from './pop-up/rename-dialog.component';
+import { TypeDashboardComponent } from './type-dashboard/type-dashboard.component';
+import { AddPlantComponent } from './add-plant/add-plant.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'user-plants',
     component: UserDashboardComponent
+  },
+  {
+    path: 'care-sheets',
+    component: TypeDashboardComponent
+  },
+  {
+    path: '',
+    redirectTo: 'user-plants'
   }
 ]
 
@@ -56,6 +66,8 @@ const routes: Routes = [
     DeleteDialogComponent,
     RenameDialogComponent,
     ConfirmationSnackbarComponent,
+    TypeDashboardComponent,
+    AddPlantComponent,
   ],
 
   imports: [

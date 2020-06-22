@@ -38,6 +38,10 @@ export class MockPlantService extends PlantService {
     return of( this.fakePlantList.find( plant => plant.plantID == id ));
   }
 
+  create(plant: Plant): Observable<Plant>{
+    return of(null);
+  }
+
   save(plant: Plant): Observable<Plant>{
     let match = this.fakePlantList.find(thing => thing.plantID == plant.plantID);
     if (match)
@@ -52,19 +56,15 @@ export class MockPlantService extends PlantService {
    return of(null)
   }
 
-  create(plant: Plant): Observable<Plant>{
-    return of(null);
-  }
-
   delete(id: number):  Observable<Plant>{
-    console.log("plant "+id+" is getting deleted.")
-    let plantIndex = this.fakePlantList.findIndex(thing => thing.plantID == id);
-    if (plantIndex != -1)
+    let matchIndex = this.fakePlantList.findIndex(thing => thing.plantID == id);
+    console.log(matchIndex);
+    if (matchIndex != -1)
     {
-      let exPlant = this.fakePlantList.splice(plantIndex, 1);
-      console.log("Plant number "+exPlant[0].plantID)
+      console.log(this.fakePlantList);
+      this.fakePlantList = this.fakePlantList.splice(matchIndex, 0);
+      console.log(this.fakePlantList);
     }
-
     return of(null)
   }
 

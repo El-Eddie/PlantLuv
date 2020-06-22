@@ -8,6 +8,7 @@ import { PlantType } from '../models/plant-type.model'
 import { PlantService } from '../service/plant.service';
 import { PlantTypeService } from '../service/plant-type.service';
 import { TypeDetailsComponent } from '../type-details/type-details.component'
+import { AddPlantComponent } from '../add-plant/add-plant.component';
 
 @Component({
   selector: 'app-plant-dashboard',
@@ -20,16 +21,15 @@ export class UserDashboardComponent implements OnInit {
   typeList$: Observable<PlantType[]>;
   filterValue: string = "";
   loggedInUserID: number;
-  tooltipDelay: number = 250
+  tooltipDelay: number = 250;
   dashboardDisplay$: string;
 
   constructor(
     private plantService: PlantService,
     private typeService: PlantTypeService,
-    private typeDialog: MatDialog,
+    private dialog: MatDialog,
     private store: Store<{page: string}>
   ) {
-    // this.dashboardDisplay$ = this.store.pipe(select("page"));
     store.pipe(select('page')).subscribe( p => {
       this.dashboardDisplay$ = p})
   }
@@ -85,13 +85,14 @@ export class UserDashboardComponent implements OnInit {
   updateFilter(value: string){}
 
   displayDetailsCard(type: string){
-    console.log(type)
-    this.typeService.grab(type).subscribe(plantType => {
-      console.log(plantType)
-      console.log("")
-      this.typeDialog.open(TypeDetailsComponent, { data: plantType });
-      // dialogRef.afterClosed().subscribe(result => {console.log("dialog closed")})
-    })
+  }
+
+  addPlant(){
+    var dat = null
+      // this.typeService.grab("Drosera spatulata").subscribe(plantType => {
+      //   dat = plantType
+      // })
+    this.dialog.open(AddPlantComponent, {data: dat });
   }
 
   renamePlant(plant: Plant){
