@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Plant } from '../models/plant.model';
+import { NewUserPlant } from '../models/new-plant.model';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,7 @@ export class PlantService {
     return this.httpClient.put<Plant>('', plant)
   }
 
-  create(plant: Plant): Observable<Plant>{
+  create(plant: NewUserPlant): Observable<Plant>{
     return this.httpClient.post<Plant>('', plant)
   }
 

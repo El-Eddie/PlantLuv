@@ -88,11 +88,9 @@ export class UserDashboardComponent implements OnInit {
   }
 
   addPlant(){
-    var dat = null
-      // this.typeService.grab("Drosera spatulata").subscribe(plantType => {
-      //   dat = plantType
-      // })
-    this.dialog.open(AddPlantComponent, {data: dat });
+    const dialogRef = this.dialog.open(AddPlantComponent, {data: null });
+    dialogRef.afterClosed().subscribe(() => this.GetUserPlants(this.loggedInUserID));
+
   }
 
   renamePlant(plant: Plant){

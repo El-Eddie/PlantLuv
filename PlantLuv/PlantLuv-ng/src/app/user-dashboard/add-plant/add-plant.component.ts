@@ -1,14 +1,16 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { PlantType } from '../models/plant-type.model';
 import { Plant } from '../models/plant.model';
+import { NewUserPlant } from '../models/new-plant.model';
 import { PlantTypeService } from '../service/plant-type.service';
 import { PlantService } from '../service/plant.service'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl, PatternValidator, ValidatorFn, NgModel, ValidationErrors } from '@angular/forms';
 import { Observable, Subscription, from, of } from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { nextTick } from 'process';
+import { async } from 'rxjs/internal/scheduler/async';
 
 @Component({
   selector: 'app-add-plant',
@@ -18,21 +20,24 @@ import { nextTick } from 'process';
 
 export class AddPlantComponent implements OnInit {
 
+  activeUser: number;
   formGroup: FormGroup;
   typeList$: Observable<PlantType[]>;
+  typeArray: PlantType[];
   typeList: string[] = [];
-  filteredTypeList$: Observable<string[]>
-  showNickname: boolean = false;
-  showWatered: boolean = false;
-  showFertalized: boolean = false;
-  snackbarDuration: number = 3000;
+  filteredTypeList$: Observable<string[]>;
+  snackbarDuration: number = 2500;
+  defaultImage: string;
+  placeholderImage: string = "/assets/img/plants/plant-image-placeholder.png"
   imageName: string = "";
+  otherOption: string = "other/unlisted"
   acceptedFileTypes = [
     'image/jpeg',
     'image/jpg',
     'image/bmp',
     'image/png'
   ];
+
 
   constructor(
     private plantService: PlantService,
@@ -44,15 +49,19 @@ export class AddPlantComponent implements OnInit {
   ) {
     var selectedPlant = (this.type && this.type.commonName) ? this.type.commonName : '';
     this.formGroup = this.builder.group({
-      plantType: [selectedPlant],
-      nickName: [''],
+      plantType: [
+        selectedPlant,
+        Validators.required, this.plantTypeValidator.bind(this)
+      ],
+      nickName: ['',],
       birthday: [''],
       lastWatered: [''],
       lastFertalized: [''],
-      photo: [''],
-      receiveAlerts: ['']
+      wherePurchased: [''],
+      receiveNotifications: ['']
     })
   }
+
 
   ngOnInit(): void {
     this.typeList$ = this.typeService.search("")
@@ -61,15 +70,44 @@ export class AddPlantComponent implements OnInit {
       this.filteredTypeList$ = this.getOptions();
     })
 
-    // this.filteredTypeList$ = this.formGroup.get("plantType").valueChanges.pipe(
-    //   startWith(''),
-    //   map(val => this.filterValue(val))
-    // )
+    this.filteredTypeList$ = this.formGroup.get("plantType").valueChanges.pipe(
+      startWith(''),
+      map(val => this.filterValue(val))
+    )
 
+    this.defaultImage = this.placeholderImage;
+    this.activeUser = 1 // change logic to detect actual logged in user
   }
 
+
+  plantTypeValidator(field: AbstractControl): ValidationErrors | null {
+    const input = field.value.toUpperCase()
+    var regexInput = "^"+input+"$";
+    var isValid = false;
+
+    if (input == this.otherOption.toUpperCase()) {
+      isValid = true;
+     }
+
+    this.typeList$.forEach(_array => {
+      _array.forEach(_type => {
+        if (_type.commonName.toUpperCase().match(regexInput)) {
+          isValid = true;
+          field.valid
+        }
+      })
+    })
+    return isValid ? of(null) : of({'invalidEntry': true});
+  }
+
+
+  filterValue(val: string): string[] {
+    const filterValue = val.toLowerCase();
+    return this.typeList.filter(t => t.toLowerCase().includes(filterValue));
+  }
+
+
   getOptions(): Observable<string[]>{
-    // this.typeList$.subscribe(_array => {
     this.typeList$.forEach(_array => {
       _array.forEach(_type => { // this works, but can/should we use map?
         this.typeList.push(_type.commonName)
@@ -78,41 +116,76 @@ export class AddPlantComponent implements OnInit {
     return of(this.typeList);
   }
 
-  filterValue(val: string): string[] {
-    console.log(`value is ${val}`)
-    return this.typeList.filter(type => {
-      type.toUpperCase().includes(val.toUpperCase())
-    })
-  }
 
   cancel(){
     this.dialogRef.close()
   }
 
-  save(){
-    // if(this.formGroup.valid){ return; }
 
-    // var newPlant: Plant = { ...this.formGroup.value};
-    // console.log(newPlant);
+  save(){
+    if(!this.formGroup.valid){ return; }
+
+    const today = new Date();
+    var plant: NewUserPlant = {...this.formGroup.value};
+    plant.ownerID = this.activeUser
+    plant.thumbnailURL = this.defaultImage
+
+    plant.birthday = plant.birthday ? plant.birthday : today;
+    plant.lastFertalized = plant.lastFertalized ? plant.birthday : today;
+    plant.lastWatered = plant.lastWatered ? plant.birthday : today;
+
+
+    this.plantService.create(plant).subscribe(results => {
+      if(results){
+        var message ="Plant added successfully"
+        var action = "bla"
+        this.snackbar.open(message, null ,{
+          duration: this.snackbarDuration
+        });
+      };
+      this.dialogRef.close();
+    });
   }
 
-  filterTypes(val: any){
-    // console.log(val, typeof(val))
+
+  changeDefaultPicure(event: any){
+    const input: string = "^"+event.target.value.toUpperCase()+"$";
+    var newPic: string = null
+
+    this.typeList$.forEach(_array => {
+      _array.forEach(_type => {
+        if (_type.commonName.toUpperCase().match(input)) {
+          newPic = _type.thumbnailURL
+        }
+      })
+    })
+
+    if (newPic) {
+      this.defaultImage = newPic;
+    } else {
+      this.defaultImage = this.placeholderImage;
+    }
+  }
+
+
+  clearImage(){
+    this.imageName = null;
   }
 
 
   fileChosen(event: any){
-    // if (event.target.files && event.target.files[0])
-    // {
-    //   const file = event.target.files[0];
-
-    //   if(!this.acceptedFileTypes.includes(file.type)){
-    //     this.snackbar.open('Invalid file type','ok',{duration: this.snackbarDuration})
-    //     return;
-    //   }
-    //   this.imageName = file.name
-      // const formData = new FormData();
-      // formData.append('model', file)
-    // }
+    if (event.target.files && event.target.files[0])
+    {
+      const file = event.target.files[0];
+      console.log(file)
+      if(!this.acceptedFileTypes.includes(file.type)){
+        this.snackbar.open('Invalid file type','ok',{duration: this.snackbarDuration})
+        return;
+      }
+      this.imageName = file.name
+      const formData = new FormData();
+      formData.append('model', file)
+    }
   }
+
 }

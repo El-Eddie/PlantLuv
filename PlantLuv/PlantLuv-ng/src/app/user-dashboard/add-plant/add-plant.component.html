@@ -3,28 +3,52 @@
   <form [formGroup]="formGroup">
     <div class="form-container">
 
-      {{filteredTypeList$ | async}}
       <mat-form-field>
         <mat-label>Plant Species</mat-label>
-        <!-- <mat-select formControlName="plantType">
-          <mat-option [value]="null">--</mat-option>
-          <mat-option value='cheese' >cheese</mat-option>
-        </mat-select> -->
-
-        <input type="text" matInput formControlName="plantType" [matAutocomplete]="options">
+        <input #species type="text" matInput formControlName="plantType" (blur)="changeDefaultPicure($event)"
+          [matAutocomplete]="options" (keyup)="changeDefaultPicure($event)">
         <mat-autocomplete #options="matAutocomplete" autoActiveFirstOption >
-          <!-- <mat-option *ngFor=" let type of typeList" [value]="type">{{type}}</mat-option> -->
           <mat-option *ngFor=" let type of filteredTypeList$ | async" [value]="type">{{type}}</mat-option>
-          <mat-option value="other/unlisted">-- other/unlisted --</mat-option>
+          <mat-option value={{otherOption}}>-- other/unlisted --</mat-option>
         </mat-autocomplete>
         <mat-hint>Required</mat-hint>
+        <mat-error>Please enter a plant species from the list or select other/unlisted</mat-error>
       </mat-form-field>
 
       <mat-form-field>
         <input matInput placeholder="Give your plant a nickname?" formControlName="nickName" />
       </mat-form-field>
 
-      <mat-form-field>
+<!-- side by side -->
+      <div class="date-input-container">
+        <mat-form-field>
+          <mat-label>Aquired when?</mat-label>
+          <input #birthday matInput [matDatepicker]="picker1" formControlName="birthday">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+          <mat-error>Invalid date</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Last watered?</mat-label>
+          <input #watered matInput [matDatepicker]="picker2" formControlName="lastWatered">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+          <mat-error>Invalid date</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Last fertalized?</mat-label>
+          <input #feartalized matInput [matDatepicker]="picker3" formControlName="lastFertalized">
+          <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+          <mat-datepicker #picker3></mat-datepicker>
+          <mat-error>Invalid date</mat-error>
+        </mat-form-field>
+      </div>
+
+
+<!-- stacked -->
+ <!--     <mat-form-field>
         <mat-label>When was it last watered?</mat-label>
         <input matInput [matDatepicker]="picker2" formControlName="lastWatered">
         <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
@@ -37,18 +61,26 @@
         <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
         <mat-datepicker #picker3></mat-datepicker>
       </mat-form-field>
+  -->
 
-      <mat-checkbox labelPosition="before" formControlName="receiveAlerts">
+  <mat-form-field>
+    <input matInput placeholder="Where was this plant purchased?" formControlName="wherePurchased" />
+  </mat-form-field>
+
+      <mat-checkbox formControlName="receiveNotifications">
         Receive notifications for this pant?
       </mat-checkbox>
 
-      <div>
-        <input hidden (change)="fileChosen($event)" #fileInput accept=".jpg, .png, .jpeg, .bmp" type="file"/>
+      <input hidden (change)="fileChosen($event)" #fileInput accept=".jpg, .png, .jpeg, .bmp" type="file"/>
+      <div class="image-upload-container" *ngIf="!imageName">
         <button mat-raised-button color="primary" (click)="fileInput.click()">Upload a Pic</button>
-        <span class="image-name" *ngIf="imageName">{{imageName}}</span>
+        <img class="placeholder-image" src={{defaultImage}}>
       </div>
-
-  </div>
+      <div class="image-upload-container" *ngIf="imageName">
+        <button mat-raised-button color="primary" (click)="clearImage()">Clear</button>
+        <img class="placeholder-image" src="/assets/img/plants/hoya_carnosa_compacta-thumb.jpg">
+      </div>
+    </div>
   </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">

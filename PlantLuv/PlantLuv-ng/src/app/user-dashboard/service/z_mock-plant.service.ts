@@ -3,6 +3,7 @@ import { PlantService } from './plant.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Plant } from '../models/plant.model';
+import { NewUserPlant} from '../models/new-plant.model';
 
 @Injectable({
   providedIn: 'root'
@@ -38,8 +39,25 @@ export class MockPlantService extends PlantService {
     return of( this.fakePlantList.find( plant => plant.plantID == id ));
   }
 
-  create(plant: Plant): Observable<Plant>{
-    return of(null);
+  create(plant: NewUserPlant): Observable<Plant>{
+    var newPlant: Plant = {
+      plantID: ++this.lastID,
+      commonName: plant.plantType,
+      lattinName: "fakeus plantus",
+      waterAgain: null,
+      fertalizeAgain: null,
+      height: null,
+      imageIDs: [],
+      isPublic: false,
+      lightLevel: 'Med',
+      toxisity: ['safe'],
+      isFavorite: false,
+      ...plant,
+    };
+
+    this.fakePlantList.push(newPlant);
+    console.log(this.lastID,newPlant,"\n---\n",this.fakePlantList);
+    return of(newPlant);
   }
 
   save(plant: Plant): Observable<Plant>{
@@ -53,7 +71,7 @@ export class MockPlantService extends PlantService {
       plant.plantID = ++this.lastID;
       this.fakePlantList = [ ...this.fakePlantList, plant];
     }
-   return of(null)
+   return of(plant)
   }
 
   delete(id: number):  Observable<Plant>{
