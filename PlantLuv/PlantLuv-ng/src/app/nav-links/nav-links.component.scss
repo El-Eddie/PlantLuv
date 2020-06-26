@@ -1,0 +1,23 @@
+@import '../app.colors.scss';
+
+nav {
+  margin: 0px 30px;
+}
+nav > ul{
+  list-style-type: none;
+  margin: 0em;
+  padding: 0em;
+}
+nav > ul > li{
+  float: left;
+}
+nav > ul > li:not(:last-child)::after{
+  content: "\00A0|\00A0";
+  color: $shadow-color;
+}
+.selected-link{
+  border-bottom: 2px solid $accent-md;
+}
+a:hover{
+  cursor: pointer;
+}
