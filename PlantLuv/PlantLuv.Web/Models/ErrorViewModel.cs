@@ -1,8 +1,6 @@
-using System;
-
 namespace PlantLuv.Web.Models
 {
-	public class ErrorViewModel
+    public class ErrorViewModel
 	{
 		public string RequestId { get; set; }
 
