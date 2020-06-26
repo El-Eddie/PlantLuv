@@ -1,5 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 @import './app//app.theme.scss';
+@import './app/app.colors.scss';
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-menu-panel{
+  border-color: $border-color;
+  background-color: $background-color;
+  box-shadow: 10px 10px 5px $shadow-color;
+  // This isn't actually targeting the menu, despite having the same class :/
+}
+
+.no-outline:focus{
+  outline: none;
+  border: 2px solid $accent-lt;
+}
+

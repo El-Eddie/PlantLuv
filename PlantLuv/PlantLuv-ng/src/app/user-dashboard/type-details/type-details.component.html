@@ -1,0 +1,20 @@
+
+<div id='details-container'>
+  <div class='thumbnail-container'>
+    <img src={{type.thumbnailURL}}>
+  </div>
+  <h1>{{type.commonName}}</h1>
+  <h2>{{type.lattinName}}</h2>
+  <p>Dificulty level: {{type.dificulty}}</p>
+  <p class='description-container'>Description:<br/>{{type.description}}</p>
+  <p>Required light level: {{type.lightLevel}}</p>
+  <p>Required humidity: {{type.humidityLevel}}</p>
+  <p>Watering frequency: {{type.waterFrequency}}</p>
+  <p>fertalizing frequency: {{type.fertalizerFrequency}}</p>
+  <p>Toxic to: {{type.toxisity}}</p>
+  <button mat-mini-fab color="" matTooltip="Add a new plant to your home"
+    [matTooltipShowDelay]="tooltipDelay" [matTooltipHideDelay]="tooltipDelay"
+    (click)="addPlant()">
+    <mat-icon color="primary">add_circle_outline</mat-icon>
+  </button>
+</div>

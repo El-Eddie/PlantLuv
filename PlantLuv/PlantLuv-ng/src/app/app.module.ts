@@ -1,24 +1,25 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title} from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 import { AppComponent } from './app.component';
-import { DashboardModule } from './dashboard/dashboard.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedImportsModule } from './shared/shared-imports.module';
+import { IconService } from './shared/icon.service'
 
-import { FilterComponent } from './filter/filter.component'
+
+import { HttpClientModule } from '@angular/common/http';
+import { NavLinksComponent } from './nav-links/nav-links.component';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools'
+import { environment } from '../environments/environment';
 
 
 const routes: Routes = [
   {
     path: 'dashboard',
-    loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
-  },
-  {
-    path: 'caresheets',
-    loadChildren: () => import('./care/care.module').then(m => m.CareModule)
+    loadChildren: () => import('./user-dashboard/user-dashboard.module').then(m => m.UserDashboardModule)
   },
   {
     path: '**',
@@ -30,18 +31,30 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    FilterComponent,
+    NavLinksComponent,
   ],
   imports: [
     BrowserModule,
-    DashboardModule,
     BrowserAnimationsModule,
     SharedImportsModule,
     RouterModule.forRoot(routes),
-    ReactiveFormsModule
+    HttpClientModule,
+    StoreModule.forRoot({}),
+    StoreDevtoolsModule.instrument({
+      name: 'PlantLuv app Detools',
+      maxAge: 25,
+      logOnly: environment.production
+    })
   ],
-  providers: [],
+  providers: [
+    Title,
+  ],
   bootstrap: [AppComponent]
 })
 
-export class AppModule { }
+export class AppModule {
+  constructor(
+    iconService: IconService
+  )
+  {}
+}
