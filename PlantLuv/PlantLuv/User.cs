@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PlantLuv
 {
-    public class Users
+    public class User
     {
         public int UserID { get; set; }
         [MinLength(4), MaxLength(50)]
@@ -20,7 +20,7 @@ namespace PlantLuv
         [Required()]
         [MinLength(4), MaxLength(50)]
         public string EmailAddress { get; set; }
-        public List<UsersPlant> PlantList { get; set; } //Should this be a list of int instad to store the UserPlant.ID?
+        public List<UserPlant> PlantList { get; set; } //Should this be a list of int instad to store the UserPlant.ID?
     }
 }
 

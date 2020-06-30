@@ -1,6 +1,6 @@
 ﻿namespace PlantLuv.Plants
 {
-	public enum SoilPh
+	public enum SoilType
 	{	
 		Gravel = 0,
 		Potting = 1,

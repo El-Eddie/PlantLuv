@@ -4,7 +4,7 @@ export interface Plant {
   plantID: number;
   ownerID: number;
   commonName: string,
-  nickName: string,
+  nickName?: string,
   lattinName: string,
   lastWatered: Date;
   waterAgain: Date;
@@ -14,11 +14,12 @@ export interface Plant {
   birthday: Date;
   receiveNotifications: boolean;
   // imageURL: string;
-  imageIDs: number[];
+  imageIDs?: number[];
   thumbnailURL?: string;
   //type: PlantType;
   isPublic: boolean;  //not implementing social yet
   isFavorite: boolean;
   lightLevel: string;
   toxisity: string[];
+
 }
