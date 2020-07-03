@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using PlantLuv.Web.Models.Customers;
+using PlantLuv.Web.Models;
 
 namespace PlantLuv.Web.Filters
 {

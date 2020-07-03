@@ -16,7 +16,7 @@ export class PlantService {
     return this.httpClient.get<Plant[]>('', { params: query }) // ToDo: Fill in url to controller action here
   }
 
-  getUserPlants(id: number): Observable<Plant[]>{ // Temporary function. To be removed when searching is fully implemented.
+  getUserPlants(id: string): Observable<Plant[]>{ // Temporary function. To be removed when searching is fully implemented.
     return this.httpClient.get<Plant[]>('');
   }
 

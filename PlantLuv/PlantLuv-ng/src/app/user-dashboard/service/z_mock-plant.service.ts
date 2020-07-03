@@ -31,7 +31,7 @@ export class MockPlantService extends PlantService {
     return of(results);
   }
 
-  getUserPlants(id: number): Observable<Plant[]>{
+  getUserPlants(id: string): Observable<Plant[]>{
     return of( this.fakePlantList.filter( plant => plant.ownerID == id ));
   }
 
@@ -56,7 +56,7 @@ export class MockPlantService extends PlantService {
     };
 
     this.fakePlantList.push(newPlant);
-    console.log(this.lastID,newPlant,"\n---\n",this.fakePlantList);
+    console.log(plant);
     return of(newPlant);
   }
 
@@ -130,7 +130,8 @@ export class MockPlantService extends PlantService {
     this.fakePlantList = [
       {
         plantID: 1,
-        ownerID: 1,
+        typeID: 5,
+        ownerID: "user@me.com",
         commonName: "Jade Plant",
         nickName: "Jade",
         lattinName: "Crassula Ovata",
@@ -151,7 +152,8 @@ export class MockPlantService extends PlantService {
       },
       {
         plantID: 2,
-        ownerID: 1,
+        typeID: 1,
+        ownerID: "user@me.com",
         commonName: "Snow Queen Pothos",
         nickName: "Snow Queen Pothos",
         lattinName: "Epipremnum Aureum",
@@ -172,7 +174,8 @@ export class MockPlantService extends PlantService {
       },
       {
         plantID: 12,
-        ownerID: 1,
+        typeID: 1,
+        ownerID: "user@me.com",
         commonName: "Snow Queen Pothos",
         nickName: "Snowy",
         lattinName: "Epipremnum Aureum",
@@ -193,7 +196,8 @@ export class MockPlantService extends PlantService {
       },
       {
         plantID: 3,
-        ownerID: 1,
+        typeID: 2,
+        ownerID: "user@me.com",
         commonName: "Marble Queen Pothos",
         nickName: "Marble Queen Pothos",
         lattinName: "Epipremnum Aureum",
@@ -214,7 +218,8 @@ export class MockPlantService extends PlantService {
       },
       {
         plantID: 4,
-        ownerID: 1,
+        typeID: 3,
+        ownerID: "user@me.com",
         commonName: "Sundew",
         nickName: "Sundew",
         lattinName: "Drosera spatulata",
@@ -235,7 +240,8 @@ export class MockPlantService extends PlantService {
       },
       {
         plantID: 5,
-        ownerID: 1,
+        typeID: 4,
+        ownerID: "user@me.com",
         commonName: "African Violet",
         nickName: "African Violet",
         lattinName: "Saintpaulia",
@@ -257,7 +263,8 @@ export class MockPlantService extends PlantService {
       },
       {
         plantID: 6,
-        ownerID: 1,
+        typeID: 1,
+        ownerID: "user@me.com",
         commonName: "Snow Queen Pothos",
         nickName: "Snowy2: Pothos' revenge",
         lattinName: "Epipremnum aureum",
@@ -278,7 +285,8 @@ export class MockPlantService extends PlantService {
       },
       {
         plantID: 7,
-        ownerID: 1,
+        typeID: 2,
+        ownerID: "user@me.com",
         commonName: "Marble Queen Pothos",
         nickName: "Marble Queen Pothos",
         lattinName: "Epipremnum aureum",
@@ -300,7 +308,8 @@ export class MockPlantService extends PlantService {
       },
       {
         plantID: 8,
-        ownerID: 1,
+        typeID: 3,
+        ownerID: "user@me.com",
         commonName: "Sundew",
         nickName: "Sundew",
         lattinName: "Drosera spatulata",
@@ -322,7 +331,8 @@ export class MockPlantService extends PlantService {
       },
       {
         plantID: 9,
-        ownerID: 1,
+        typeID: 4,
+        ownerID: "user@me.com",
         commonName: "African Violet",
         nickName:  "Violet",
         lattinName: "Saintpaulia",

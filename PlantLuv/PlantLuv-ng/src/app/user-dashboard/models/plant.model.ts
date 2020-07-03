@@ -2,9 +2,11 @@ import { PhotoData } from './photo-data.model'
 
 export interface Plant {
   plantID: number;
-  ownerID: number;
+  ownerID: String;
+  typeID: number;
   commonName: string,
   nickName?: string,
+  wherePurchased?: string;
   lattinName: string,
   lastWatered: Date;
   waterAgain: Date;
@@ -16,7 +18,6 @@ export interface Plant {
   // imageURL: string;
   imageIDs?: number[];
   thumbnailURL?: string;
-  //type: PlantType;
   isPublic: boolean;  //not implementing social yet
   isFavorite: boolean;
   lightLevel: string;

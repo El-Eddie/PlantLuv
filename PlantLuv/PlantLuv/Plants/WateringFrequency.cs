@@ -12,6 +12,6 @@ namespace PlantLuv.Plants
         Weekly = 4,
         Fortnight = 5,
         Monthly = 6,
-        BiMonthly = 7 
+        SemiMonthly = 7 
     }
 }

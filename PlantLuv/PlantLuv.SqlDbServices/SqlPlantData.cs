@@ -6,7 +6,7 @@ using System.Text;
 
 namespace PlantLuv.SqlDbServices
 {
-	class SqlPlantData : IPlantData
+	public class SqlPlantData : IPlantData
 	{
 		private PlantLuvDbContext _dbContext;
 
@@ -41,7 +41,7 @@ namespace PlantLuv.SqlDbServices
 		}
 
 
-		public List<UserPlant> Search(int userId, QueryItemListParameters options)
+		public List<UserPlant> Search(QueryItemListParameters options)
 		{
 			IQueryable<UserPlant> query = _dbContext.UserPlant;
 

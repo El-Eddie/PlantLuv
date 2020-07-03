@@ -19,7 +19,9 @@ using PlantLuv.Web.Filters;
 using PlantLuv.Web.Auth;
 using PlantLuv.SqlDbServices;
 using Microsoft.AspNetCore.Hosting;
+using PlantLuv;
 using PlantLuv.Files;
+using PlantLuv.Plants;
 
 namespace PlantLuv.Web
 {
@@ -146,6 +148,8 @@ namespace PlantLuv.Web
             services.AddSingleton<IJwtFactory, JwtFactory>();
             services.AddScoped<IFileData, SqlFileData>();
             services.AddScoped<IImageResizer, SixLaborsImageResizer>();
+            services.AddScoped<IPlantData, SqlPlantData>();
+            services.AddScoped<ITypeData, SqlTypeData>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

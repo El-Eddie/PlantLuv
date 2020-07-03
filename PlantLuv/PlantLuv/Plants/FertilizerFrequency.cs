@@ -5,6 +5,6 @@
         Weekly = 1,
         Fortnight = 2,
         Monthly = 3,
-        BiMonthly = 4
+        SemiMonthly = 4
     }
 }

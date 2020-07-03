@@ -20,7 +20,7 @@ export class UserDashboardComponent implements OnInit {
   plantList$: Observable<Plant[]>;
   typeList$: Observable<PlantType[]>;
   filterValue: string = "";
-  loggedInUserID: number;
+  loggedInUserID: string;
   tooltipDelay: number = 250;
   dashboardDisplay$: string;
 
@@ -35,12 +35,12 @@ export class UserDashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loggedInUserID = 1;
+    this.loggedInUserID = "user@me.com";
     this.GetUserPlants(this.loggedInUserID);
     this.getPlantTypes(this.filterValue);
   }
 
-  GetUserPlants(id: number){
+  GetUserPlants(id: string){
     this.plantList$ = this.plantService.getUserPlants(id);
   }
 

@@ -22,6 +22,7 @@ namespace PlantLuv
         {
 
         }
+
         public QueryItemListParameters(QueryItemListParameters source)
         {
             if (source == null)

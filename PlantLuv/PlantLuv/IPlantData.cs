@@ -10,7 +10,7 @@ namespace PlantLuv
         void Add(UserPlant plant);
         void Update(UserPlant plant);
         void Commit();
-        List<UserPlant> Search(int userId, QueryItemListParameters options);
+        List<UserPlant> Search(QueryItemListParameters options);
         void Delete(UserPlant plant);
     }
 }
