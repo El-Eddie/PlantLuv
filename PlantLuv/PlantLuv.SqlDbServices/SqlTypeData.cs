@@ -35,7 +35,7 @@ namespace PlantLuv.SqlDbServices
 			return _dbContext.PlantType.FirstOrDefault(x => x.TypeId == typeId);
 		}
 
-		public List<PlantType> Search(QueryItemListParameters options)
+		public List<PlantType> Search(PlantQueryParameters options)
 		{
 			throw new NotImplementedException();
 		}

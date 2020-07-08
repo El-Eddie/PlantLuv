@@ -10,8 +10,7 @@ namespace PlantLuv.Plants
 		void Add(PlantType type);
 		void Update(PlantType type);
 		void Comit();
-		List<PlantType> Search(QueryItemListParameters options);
+		List<PlantType> Search(PlantQueryParameters options);
 		void Delete(PlantType type);
-
 	}
 }

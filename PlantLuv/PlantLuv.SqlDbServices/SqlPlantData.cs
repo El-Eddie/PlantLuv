@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic;
 using System.Reflection;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace PlantLuv.SqlDbServices
 {
 	public class SqlPlantData : IPlantData
 	{
-		private PlantLuvDbContext _dbContext;
+		readonly PlantLuvDbContext _dbContext; 
 
 		public SqlPlantData(PlantLuvDbContext dbContext)
 		{
@@ -18,8 +20,11 @@ namespace PlantLuv.SqlDbServices
 
 		public UserPlant Get(int plantId)
 		{
-			return _dbContext.UserPlant.FirstOrDefault(x =>
-				x.PlantId == plantId);
+			var plant = _dbContext.UserPlant
+				.Include(plant => plant.PlantType)
+				.ToList()
+				.FirstOrDefault(p => p.PlantId == plantId);
+			return plant;
 		}
 
 
@@ -41,9 +46,9 @@ namespace PlantLuv.SqlDbServices
 		}
 
 
-		public List<UserPlant> Search(QueryItemListParameters options)
+		public List<UserPlant> Get(PlantQueryParameters options)
 		{
-			IQueryable<UserPlant> query = _dbContext.UserPlant;
+			IQueryable<UserPlant> query = _dbContext.UserPlant.Include(plant => plant.PlantType);
 
 			if (!String.IsNullOrWhiteSpace(options.OwnerID))
 				query = query.Where(x => x.OwnerID == options.OwnerID);
@@ -51,45 +56,47 @@ namespace PlantLuv.SqlDbServices
 			if (options.IsDeleted)
 				query = query.Where(x => x.IsDeleted == true);
 
-			if (options.ReceiveNotifications)
-				query = query.Where(x => x.ReceiveNotifications == true);
-
-			if (options.IsFavorite)
-				query = query.Where(x => x.IsFavorite == true);
-
-			if (options.NotFavorite)
-				query = query.Where(x => x.IsFavorite == false);
-
 			if (!String.IsNullOrWhiteSpace(options.Term))
 			{
-				query = query.Where(x =>
-					x.NickName.Contains(options.Term) ||
-					x.WherePurchased.Contains(options.Term) // ||
-				//	x.PlantType.ToString().Contains(options.Term) ||
-				// We also want to be able to search on Type.CommonName and Type.LattinName, but how?
+				query = query.Where(plant =>
+					plant.NickName.Contains(options.Term) ||
+					plant.WherePurchased.Contains(options.Term) ||
+					plant.PlantType.LatinName.Contains(options.Term) ||
+					plant.PlantType.CommonName.Contains(options.Term)
 				);
 			}
+				
+			if (!string.IsNullOrWhiteSpace(options.OrderBy))
+			{
+				string[] sortArray = ValidateSortStrings(options.OrderBy);
+				if (sortArray != null)
+				{
+					foreach (string field in sortArray)
+					{
+						query = query.OrderBy(field);
+					}
+				}
+			}
 
-
-			//if (!string.IsNullOrWhiteSpace(options.OrderBy))
-			//{
-			//	string[] sortArray = ValidateSortStrings(options.OrderBy);
-			//	if (sortArray != null)
-			//	{
-			//		foreach (string field in sortArray)
-			//		{
-			//			query = query.OrderBy(field);
-			//		}
-			//	}
-			//}
 			return query.Skip(options.PageIndex * options.Take).
 				Take(options.Take).ToList();
 		}
+
+
+		public List<UserPlant> Get(IEnumerable<int> plantIdList)
+		{
+			return _dbContext.UserPlant
+				.Include(plant => plant.PlantType)
+				.Where(p => plantIdList.Contains(p.PlantId))
+				.ToList();
+		}
+
 
 		public void Delete(UserPlant plant)
 		{
 			plant.IsDeleted = true;
 		}
+
 
 		private string[] ValidateSortStrings(string sortFields)
 		{
@@ -109,6 +116,7 @@ namespace PlantLuv.SqlDbServices
 			return parsedFields;
 		}
 
+
 		private List<string> GetPropertyList()
 		{
 			PropertyInfo[] properties = typeof(UserPlant).GetProperties();
@@ -119,5 +127,6 @@ namespace PlantLuv.SqlDbServices
 			}
 			return propertyNames;
 		}
+
 	}
 }

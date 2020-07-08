@@ -10,7 +10,8 @@ namespace PlantLuv
         void Add(UserPlant plant);
         void Update(UserPlant plant);
         void Commit();
-        List<UserPlant> Search(QueryItemListParameters options);
+        List<UserPlant> Get(PlantQueryParameters options);
+        List<UserPlant> Get(IEnumerable<int> plantIdList);
         void Delete(UserPlant plant);
     }
 }
