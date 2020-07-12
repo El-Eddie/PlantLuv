@@ -138,7 +138,7 @@ export class AddPlantComponent implements OnInit {
     this.plantService.create(plant).subscribe(results => {
       if(results){
         var message ="Plant added successfully"
-        var action = "bla"
+        var action = "Search your plants..."
         this.snackbar.open(message, null ,{
           duration: this.snackbarDuration
         });

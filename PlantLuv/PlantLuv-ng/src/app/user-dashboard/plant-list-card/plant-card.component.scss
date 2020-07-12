@@ -1,89 +1,78 @@
 @import '../../app.colors.scss';
-
-.plant-card{
-  border: 1px solid;
+.plant-card {
+    border: 1px solid;
     width: fit-content;
     width: 300px;
     height: 400px;
     box-sizing: content-box;
     // box-shadow: 10px 10px 5px #c0c0c0;
-    box-shadow: 10px 10px 5px $shadow-color;
+    box-shadow: 2px 2px 1px $shadow-color;
     border-radius: 10px;
     margin: 10px
 }
 
-.thumbnail-container{
-  width: 300px;
-  height: 250px;
-  overflow: hidden;
-  // border: 1px solid #e2e2e2;
-  border: 1px solid $border-color;
-  position: relative;
-  box-sizing: content-box;
-  // background-color: #e2e2e2;
-  background-color: $shadow-color;
-  margin-bottom: 10px;
-
-  .thumbnail{
-    width: 300px;
-    height: auto;
-    position: absolute;
-    top: 50%;
-    transform: translate(0px, -50%);
-  }
-
-  .thumbnail-icons-container{
-    display: flex;
+.thumbnail-container {
+    height: 250px;
+    overflow: hidden;
+    // border: 1px solid #e2e2e2;
+    border: 1px solid $border-color;
     position: relative;
+    box-sizing: content-box;
+    // background-color: #e2e2e2;
+    background-color: $shadow-color;
+    margin-bottom: 10px;
+    .thumbnail {
+        width: 300px;
+        height: auto;
+        position: absolute;
+        top: 50%;
+        transform: translate(0px, -50%);
+    }
+    .thumbnail-icons-container {
+        display: flex;
+        position: relative;
+        justify-content: space-between;
+        height: 100%;
+         :nth-child(2) {
+            order: 2
+        }
+         :nth-child(3) {
+            align-self: flex-end;
+            order: 1;
+        }
+    }
+}
+
+.plant-card-content {
+    display: flex;
+    flex-flow: row wrap;
+    .plant-name {
+        flex-grow: 1;
+        flex-basis: 51%;
+    }
+    .plant-icons {
+        justify-self: flex-end;
+        margin-left: 2px;
+    }
+    .plant-schedule {
+        flex-grow: 2;
+        flex-basis: 98%;
+    }
+}
+
+.bottom-actions {
+    display: flex;
+    flex-flow: row wrap;
     justify-content: space-between;
-    height: 100%;
-
-    :nth-child(2){
-      order:2
+    .action-button {
+        flex-grow: 1;
+        max-width: 40%;
+        border: 1px solid $primary-md;
     }
-
-    :nth-child(3){
-      align-self: flex-end;
-      order: 1;
+    .menu-button {
+        flex-shrink: 1;
+        justify-self: flex-end;
     }
-  }
-}
-
-.plant-card-content{
-  display: flex;
-  flex-flow: row wrap;
-
-  .plant-name{
-    flex-grow: 1;
-    flex-basis: 51%;
-  }
-
-  .plant-icons{
-    justify-self: flex-end;
-    margin-left: 2px;
-  }
-
-  .plant-schedule{
-    flex-grow: 2;
-    flex-basis: 98%;
-  }
-}
-
-.bottom-actions{
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-
-
-  .action-button{
-    flex-grow: 1;
-    max-width: 40%;
-    border: 1px solid $primary-md;
-  }
-  .menu-button{
-    flex-shrink: 1;
-    justify-self: flex-end;
-  }
 }
 
 // .action-icon{

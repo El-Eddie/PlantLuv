@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-logout-complete',
   templateUrl: './logout-complete.component.html',
   styleUrls: ['./logout-complete.component.scss']
 })
-export class LogoutCompleteComponent implements OnInit {
+export class LogoutCompleteComponent {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
-  ngOnInit(): void {
+  login() {
+    this.router.navigate(['account', 'login']);
   }
 
 }

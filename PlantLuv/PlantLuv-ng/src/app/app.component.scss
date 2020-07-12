@@ -1,44 +1,104 @@
 @import '~@angular/material/theming';
 @import './app.colors.scss';
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600&display=swap');
+main {
+    padding-left: 10%;
+    padding-right: 10%;
+    //background-image: linear-gradient(#005005, #60ad5e 15%)
+    //background-image: linear-gradient($primary-dk, $primary-md 15%)
+}
 
-main{
-  padding-left: 10%;
-  padding-right: 10%;
-  // background-image: linear-gradient(#005005, #60ad5e 15%)
-  background-image: linear-gradient($primary-dk, $primary-md 15%)
+header {
+    background-color: $primary-dk;
+    width: 100%;
+    padding: 10pxem 0;
+    .center-header {
+        justify-content: center;
+        margin: 0 auto;
+        width: 1500px;
+        background-color: $primary-dk;
+    }
+    .mat-toolbar.mat-primary {
+        background-color: $primary-dk;
+    }
+    img {
+        margin-top: 10px;
+    }
 }
-#header{
-  background-color: $primary-dk;
-  height: 80px;
+
+#logo {
+    height: 50px;
+    width: auto;
 }
-#logo{
-  height: 75px;
-  width: auto;
+
+#footer {
+    background: $grey-dk;
+    height: 60px;
+    font-size: 0.8em;
+    color: #fff;
+    a {
+        color: #fff;
+        text-decoration: none;
+    }
+    .footer {
+        margin: 0 auto;
+    }
 }
-#footer{
-  background: $primary-md;
-  height: 40px;
-}
+
 nav {
-  margin: 0px 30px;
+    margin: 0px 30px;
 }
-nav > ul{
-  list-style-type: none;
-  margin: 0em;
-  padding: 0em;
+
+nav>ul {
+    list-style-type: none;
+    margin: 0em;
+    padding: 0em;
 }
-nav > ul > li{
-  float: left;
+
+nav>ul>li {
+    float: left;
 }
-nav > ul > li:not(:last-child)::after{
-  content: "\00A0|\00A0";
-  color: $shadow-color;
+
+nav>ul>li:not(:last-child)::after {
+    content: "\00A0|\00A0";
+    color: $shadow-color;
 }
-.selected-link{
-  border-bottom: 2px solid $accent-md;
+
+.selected-link {
+    border-bottom: 2px solid $accent-md;
 }
+
 #settings-button {
-  margin-left: 25px;
-  float: right;
-  border-radius: 25px;
+    margin-left: 25px;
+    float: right;
+    border-radius: 25px;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 1200px;
+}
+
+#dashboard-controlls {
+    margin: 0px 10px 0px 5%;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    display: flex;
+    width: auto;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#dashboard-container {
+    background-color: $background-color;
+    border-radius: 15px;
+}
+
+.dashboard-buttons {
+    width: 30%;
+    max-width: 200px;
+    display: inline-flex;
+    justify-content: space-evenly;
 }
