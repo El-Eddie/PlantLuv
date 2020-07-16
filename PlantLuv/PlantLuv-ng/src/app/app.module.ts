@@ -16,20 +16,10 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools'
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
+import { AccountModule } from './account/account.module';
 import { AppRoutingModule } from './app-routing.module';
 import { ServiceWorkerModule } from '@angular/service-worker'
 
-
-//const routes: Routes = [
-// {
-//   path: 'dashboard',
-//    loadChildren: () => import('./user-dashboard/user-dashboard.module').then(m => m.UserDashboardModule)
-//  },
-//  {
-//    path: '**',
-//    redirectTo: 'dashboard'
-//  }
-//];
 
 
 @NgModule({
@@ -40,13 +30,13 @@ import { ServiceWorkerModule } from '@angular/service-worker'
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
     SharedImportsModule,
-    RouterModule.forRoot(routes),
+    AccountModule,
+    AppRoutingModule,
     HttpClientModule,
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({
-      name: 'PlantLuv app Detools',
+      name: 'PlantLuv App',
       maxAge: 25,
       logOnly: environment.production
     }),
