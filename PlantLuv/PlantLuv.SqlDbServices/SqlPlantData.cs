@@ -51,10 +51,10 @@ namespace PlantLuv.SqlDbServices
 			IQueryable<UserPlant> query = _dbContext.UserPlant.Include(plant => plant.PlantType);
 
 			if (!String.IsNullOrWhiteSpace(options.OwnerID))
-				query = query.Where(x => x.OwnerID == options.OwnerID);
-
-			if (options.IsDeleted)
-				query = query.Where(x => x.IsDeleted == true);
+				query = query.Where(x => 
+					x.OwnerID == options.OwnerID &&
+					x.IsDeleted == options.IsDeleted
+				);
 
 			if (!String.IsNullOrWhiteSpace(options.Term))
 			{

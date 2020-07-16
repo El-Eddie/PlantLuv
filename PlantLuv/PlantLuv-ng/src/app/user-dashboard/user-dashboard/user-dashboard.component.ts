@@ -9,6 +9,7 @@ import { PlantService } from '../service/plant.service';
 import { PlantTypeService } from '../service/plant-type.service';
 import { TypeDetailsComponent } from '../type-details/type-details.component'
 import { AddPlantComponent } from '../add-plant/add-plant.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-plant-dashboard',
@@ -21,6 +22,7 @@ export class UserDashboardComponent implements OnInit {
   typeList$: Observable<PlantType[]>;
   filterValue: string = "";
   loggedInUserID: string;
+  snackbarDuration: number = 2500;
   tooltipDelay: number = 250;
   dashboardDisplay$: string;
 
@@ -28,6 +30,7 @@ export class UserDashboardComponent implements OnInit {
     private plantService: PlantService,
     private typeService: PlantTypeService,
     private dialog: MatDialog,
+    private snackbar: MatSnackBar,
     private store: Store<{page: string}>
   ) {
     store.pipe(select('page')).subscribe( p => {
@@ -44,47 +47,55 @@ export class UserDashboardComponent implements OnInit {
     this.plantList$ = this.plantService.getUserPlants(id);
   }
 
-  waterPlant(id: number){
-    let results = this.plantService.waterPlant(id);
-    results.subscribe(plant => {
-      if(plant){
-        console.log(plant);
-        alert("Your "+plant.nickName+" plant has been marked as watered.")
+  waterPlant(...ids: number[]){
+
+    this.plantService.waterPlant(ids).subscribe((plants: Plant[]) => {
+      if (plants.length > 1){
+        var message = "Your plants have been marked as watered"
       } else {
-        alert("There was a problem recording your action.\n Please try again later.")
+        var message = plants[0].nickName ?
+        `${plants[0].nickName} has been marked as watered` :
+        `Your ${plants[0].commonName} has been marked as watered`
       }
-    })
+      this.snackbar.open(message, null ,{
+        duration: this.snackbarDuration
+      });
+    }, results => {
+      alert("There was a problem recording your action.\n Please try again later.");
+    });
    }
 
-  fertalizePlant(id: number){
-    let results = this.plantService.fertalizePlant(id);
-    results.subscribe(plant => {
-      if(plant){
-        console.log(plant);
-        alert("Your "+plant.nickName+" plant has been marked as fed.")
-      } else {
-        alert("There was a problem recording your action.\n Please try again later.")
-      }
-    })
-  }
-  toggleFavorite(id: number){
-    this.plantService.toggleFavorite(id)
+
+  fertalizePlant(...ids: number[]){
+    this.plantService.fertalizePlant(ids).subscribe(plant => {
+      var message  = plant.nickName ?
+        `${plant.nickName} has been marked as fed` :
+        `Your ${plant.commonName} has been marked as fed`
+      this.snackbar.open(message, null ,{
+        duration: this.snackbarDuration
+      });
+    }, results => {
+      alert("There was a problem recording your action.\n Please try again later.");
+    });
   }
 
-  toggleAlerts(id: number){
-    this.plantService.toggleAlerts(id)
-  }
+
   deletePlant(id: number){
-    console.log(id+" made it to the dashboard component")
     this.plantService.delete(id)
   }
+
   getPlantTypes(criteria: string){
     this.typeList$ = this.typeService.search(criteria)
   }
 
   updateFilter(value: string){}
 
-  displayDetailsCard(type: string){
+  updatePlant(plant: Plant){
+    this.plantService.save(plant);
+  }
+
+  displayDetailsCard(type: number){
+    alert("care sheet goes here!")
   }
 
   addPlant(){
@@ -92,9 +103,4 @@ export class UserDashboardComponent implements OnInit {
     dialogRef.afterClosed().subscribe(() => this.GetUserPlants(this.loggedInUserID));
 
   }
-
-  renamePlant(plant: Plant){
-    this.plantService.save(plant);
-  }
-
 }

@@ -1,7 +1,7 @@
 import { PhotoData } from "./photo-data.model"
 
 export interface PlantType{
-  typeID: number;
+  typeId: number;
   // imageInfo: PhotoData;
   // imageURL: string;
   thumbnailURL: string;

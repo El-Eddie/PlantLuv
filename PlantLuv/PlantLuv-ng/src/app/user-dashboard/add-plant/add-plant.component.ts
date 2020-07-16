@@ -26,7 +26,7 @@ export class AddPlantComponent implements OnInit {
   typeArray: PlantType[];
   typeList: string[] = [];
   filteredTypeList$: Observable<string[]>;
-  selectedTypeID: number;
+  selectedtypeId: number;
   snackbarDuration: number = 2500;
   defaultImage: string;
   placeholderImage: string = "/assets/img/plants/plant-image-placeholder.png"
@@ -87,7 +87,7 @@ export class AddPlantComponent implements OnInit {
     var isValid = false;
 
     if (input == this.otherOption.toUpperCase()) {
-      this.selectedTypeID = 0;
+      this.selectedtypeId = 0;
       isValid = true;
      }
 
@@ -95,7 +95,7 @@ export class AddPlantComponent implements OnInit {
       _array.forEach(_type => {
         if (_type.commonName.toUpperCase().match(regexInput)) {
           isValid = true;
-          this.selectedTypeID = _type.typeID;
+          this.selectedtypeId = _type.typeId;
         }
       })
     })
@@ -129,23 +129,24 @@ export class AddPlantComponent implements OnInit {
 
     const today = new Date();
     var plant: NewUserPlant = {...this.formGroup.value};
-    plant.ownerID = this.activeUser
+    plant.ownerId = this.activeUser
     plant.thumbnailURL = this.defaultImage
-    plant.typeID = this.selectedTypeID;
+    plant.typeId = this.selectedtypeId;
+
+    if (!plant.receiveNotifications) { plant.receiveNotifications = false }
 
     plant.birthday = plant.birthday ? plant.birthday : today;
-    plant.lastFertalized = plant.lastFertalized ? plant.birthday : today;
-    plant.lastWatered = plant.lastWatered ? plant.birthday : today;
-
+    plant.lastFertalized = plant.lastFertalized ? plant.lastFertalized : today;
+    plant.lastWatered = plant.lastWatered ? plant.lastWatered : today;
 
     this.plantService.create(plant).subscribe(results => {
-      if(results){
         var message ="Plant added successfully"
         this.snackbar.open(message, null ,{
           duration: this.snackbarDuration
         });
-      };
       this.dialogRef.close();
+    }, results => {
+      alert("There was an error saving your new plant.\n Please check the information and try again.");
     });
   }
 

@@ -1,9 +1,9 @@
 import { PhotoData } from './photo-data.model'
 
 export interface Plant {
-  plantID: number;
-  ownerID: String;
-  typeID: number;
+  plantId: number;
+  ownerId: String;
+  typeId: number;
   commonName: string,
   nickName?: string,
   wherePurchased?: string;

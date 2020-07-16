@@ -21,11 +21,9 @@
     *ngFor="let plant of plantList$ | async" [plant]="plant"
     (waterPlantEvent)="waterPlant($event)"
     (fertalizePlantEvent)="fertalizePlant($event)"
-    (toggleAlertsEvent)="toggleAlerts($event)"
-    (toggleFavoriteEvent)="toggleFavorite($event)"
     (deletePlantEvent)="deletePlant($event)"
     (viewCareSheetEvent)="displayDetailsCard($event)"
-    (renamePlantEvent)="renamePlant($event)"
+    (updatePlant)="updatePlant($event)"
     ></app-plant-card>
   </div>
 </div>

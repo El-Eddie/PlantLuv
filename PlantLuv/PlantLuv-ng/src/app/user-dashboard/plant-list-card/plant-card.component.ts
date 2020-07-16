@@ -16,11 +16,9 @@ export class PlantCardComponent implements OnInit {
   @Input() plant: Plant;
   @Output() waterPlantEvent: EventEmitter<number> = new EventEmitter();
   @Output() fertalizePlantEvent: EventEmitter<number> = new EventEmitter();
-  @Output() toggleFavoriteEvent: EventEmitter<number> = new EventEmitter();
-  @Output() toggleAlertsEvent: EventEmitter<number> = new EventEmitter();
   @Output() deletePlantEvent: EventEmitter<number> = new EventEmitter();
-  @Output() viewCareSheetEvent: EventEmitter<string> = new EventEmitter();
-  @Output() renamePlantEvent: EventEmitter<Plant> = new EventEmitter();
+  @Output() viewCareSheetEvent: EventEmitter<number> = new EventEmitter();
+  @Output() updatePlant: EventEmitter<Plant> = new EventEmitter();
 
   constructor(
     private service: PlantService,
@@ -33,36 +31,49 @@ export class PlantCardComponent implements OnInit {
 
   waterPlant(id: number){ this.waterPlantEvent.emit(id); }
 
+
   fertalizePlant(id: number){ this.fertalizePlantEvent.emit(id); }
+
 
   triggerSlideshow(id: number){ alert("trigger slideshow for plant number "+id); }
 
-  toggleFavorite(id: number){ this.toggleFavoriteEvent.emit(id); }
 
-  toggleAlerts(id: number){ this.toggleAlertsEvent.emit(id); }
+  toggleFavorite(){
+    var changedPlant = {...this.plant};
+    changedPlant.isFavorite = !this.plant.isFavorite
+    this.updatePlant.emit(changedPlant);
+  }
 
 
-  openCareSheet(){ this.viewCareSheetEvent.emit(this.plant.lattinName); }
+  toggleAlerts(){
+    var changedPlant = {...this.plant};
+    changedPlant.receiveNotifications = !this.plant.receiveNotifications;
+    this.updatePlant.emit(changedPlant);
+  }
 
-  confirmDelete(plant: Plant){
-    const dialogRef = this.dialog.open(DeleteDialogComponent, { data: plant });
+
+  openCareSheet(){ this.viewCareSheetEvent.emit(this.plant.typeId); }
+
+
+  confirmDelete(){
+    const dialogRef = this.dialog.open(DeleteDialogComponent, { data: this.plant });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log("delete confirmation is true")
-        this.deletePlantEvent.emit(plant.plantID);
+        this.deletePlantEvent.emit(this.plant.plantId);
       } else {
         console.log("delete confirmation is false")
       }
     })
   }
 
+
   renamePlant(){
-    var plant = this.plant
-    // alert(this.plant.species)
-    const dialogRef = this.dialog.open(RenameDialogComponent, { data: plant });
+    var changedPlant = {...this.plant};
+    const dialogRef = this.dialog.open(RenameDialogComponent, { data: this.plant });
     dialogRef.afterClosed().subscribe(result => {
-      plant.nickName = result.data;
-      this.renamePlantEvent.emit(plant);
+      changedPlant.nickName = result.data;
+      this.updatePlant.emit(changedPlant);
     });
    }
 

@@ -78,10 +78,11 @@ const routes: Routes = [
     StoreModule.forFeature('page', displayReducer)
   ],
   providers: [
-    {
-      provide: PlantService,
-      useClass: environment.production ? PlantService : MockPlantService
-    },
+    PlantService,
+    // {
+    //   provide: PlantService,
+    //   useClass: environment.production ? PlantService : MockPlantService
+    // },
     {
       provide: PlantTypeService,
       useClass: environment.production ? PlantTypeService : MockPlantTypeService

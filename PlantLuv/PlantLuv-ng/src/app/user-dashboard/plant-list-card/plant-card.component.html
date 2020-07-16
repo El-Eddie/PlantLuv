@@ -3,20 +3,22 @@
       <img class="thumbnail" src={{plant.thumbnailURL}} alt="Photo of a {{plant.commonName}}"/>
       <div class='thumbnail-icons-container'>
 
+        <!-- (click)="toggleFavorite(plant.plantId)" -->
         <button mat-icon-button aria-label="toggle favorite"
-          (click)="toggleFavorite(plant.plantID)"
+          (click)="toggleFavorite()"
           matTooltip="Toggle as a favorite">
             <mat-icon>{{plant.isFavorite | favoriteIcon}}</mat-icon>
         </button>
 
+        <!-- (click)="toggleAlerts(plant.plantId)" -->
         <button mat-icon-button aria-label="toggle notifications"
-          (click)="toggleAlerts(plant.plantID)"
+          (click)="toggleAlerts()"
           matTooltip="Toggle notifications for this plant">
             <mat-icon>{{plant.receiveNotifications | notificationIcon}}</mat-icon>
         </button>
 
-        <button *ngIf="plant.imageIDs.length" mat-icon-button
-          aria-label="view photos" (click)="triggerSlideshow(plant.plantID)"
+        <button *ngIf="plant.imageIDs && plant.imageIDs.length" mat-icon-button
+          aria-label="view photos" (click)="triggerSlideshow(plant.plantId)"
           matTooltip="View pictures of this plant">
             <mat-icon>more_horiz</mat-icon>
         </button>
@@ -42,10 +44,10 @@
     </mat-card-content>
 
     <div class="bottom-actions">
-      <button class="action-button" mat-raised-button (click)="waterPlant(plant.plantID)">
+      <button class="action-button" mat-raised-button (click)="waterPlant(plant.plantId)">
         <mat-icon class="action-icon" svgIcon="action-watering"></mat-icon>
       </button>
-      <button class="action-button" mat-raised-button (click)="fertalizePlant(plant.plantID)">
+      <button class="action-button" mat-raised-button (click)="fertalizePlant(plant.plantId)">
         <mat-icon class="action-icon" svgIcon="action-fertalize"></mat-icon>
       </button>
       <button class="menu-button" mat-icon-button color="accent"
@@ -63,7 +65,8 @@
       <mat-icon>label</mat-icon>
       <span>Change nickname</span>
     </button>
-    <button mat-menu-item (click)="confirmDelete(plant)">
+    <!-- <button mat-menu-item (click)="confirmDelete(plant)"> -->
+    <button mat-menu-item (click)="confirmDelete()">
       <mat-icon color="warn">cancel</mat-icon>
       <span>Delete</span>
     </button>

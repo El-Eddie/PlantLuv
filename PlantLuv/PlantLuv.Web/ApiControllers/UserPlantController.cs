@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace PlantLuv.Web.ApiControllers
 {
-	[Route("api/plant")]
+	[Route("api/plants")]
 	public class UserPlantController : ControllerBase
 	{
 
@@ -44,7 +44,7 @@ namespace PlantLuv.Web.ApiControllers
 		[HttpGet("search")]
 		[ProducesResponseType(404)]
 		[ProducesResponseType(200, Type = typeof(PlantDisplayViewModel))]
-		public IActionResult Get([FromBody] PlantQueryParameters queryParams)
+		public IActionResult Get([FromQuery] PlantQueryParameters queryParams)
 		{
 			queryParams.Take = (queryParams.Take < 1 || queryParams.Take > 200) ? 50 : queryParams.Take;
 			queryParams.PageIndex = (queryParams.PageIndex < 0) ? 0 : queryParams.PageIndex;
@@ -121,7 +121,7 @@ namespace PlantLuv.Web.ApiControllers
 		}
 
 		
-		[HttpPut("{id}")]
+		[HttpPost("{id}")]
 		[ProducesResponseType(404)]
 		[ProducesResponseType(200, Type = typeof(PlantUpdateViewModel))]
 		[ProducesResponseType(422, Type = typeof(ValidationErrorModel))]
@@ -136,17 +136,9 @@ namespace PlantLuv.Web.ApiControllers
 
 			PlantType plantType = _typeData.Get(model.TypeID);
 
-			// if model.typeID is not provided, set to the current PlantType so the GetNextWater/Feed methods will be able to function correctly.
-			if (plantType == null)
-				plantType = plant.PlantType;
-
 			plant.NickName = model.NickName;
 			plant.WherePurchased = model.WherePurchased;
 			plant.PlantType = plantType;
-			plant.LastWatered = model.LastWatered;
-			plant.WaterAgain = GetNextWater(model.LastWatered, plantType);
-			plant.LastFertalized = model.LastFertalized;
-			plant.FertalizeAgain = GetNextFeed(model.LastFertalized, plantType);
 			plant.ReceiveNotifications = model.ReceiveNotifications;
 			plant.IsFavorite = model.IsFavorite;
 			plant.PrimaryImageID = model.PrimaryImageID;
@@ -202,6 +194,8 @@ namespace PlantLuv.Web.ApiControllers
 
 			foreach (UserPlant plant in plantList)
 			{
+				// TODO: add error handling.
+				//desired behavior is that if one fails, the commit does not run
 				plant.LastWatered = model.TimeStamp;
 				plant.WaterAgain = GetNextWater(
 					model.TimeStamp, plant.PlantType);
@@ -216,7 +210,7 @@ namespace PlantLuv.Web.ApiControllers
 
 
 		[HttpDelete("{id}")]
-		[ProducesResponseType(200)]
+		[ProducesResponseType(204)]
 		[ProducesResponseType(404)]
 		public IActionResult Delete(int id)
 		{
@@ -229,7 +223,7 @@ namespace PlantLuv.Web.ApiControllers
 			}
 			_plantData.Delete(plant);
 			_plantData.Commit();
-			return Ok();
+			return NoContent();
 		}
 
 
