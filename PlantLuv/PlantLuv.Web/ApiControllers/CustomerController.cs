@@ -1,31 +1,40 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
+﻿using System;
+using System.Linq;
 using PlantLuv.Web.Filters;
 using PlantLuv.Web.Models;
 using PlantLuv.Web.Models.Customers;
-using System;
-using System.Linq;
+using Newtonsoft.Json;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
 
 
 namespace PlantLuv.Web.ApiControllers
 {
     [Route("api/customers")]
+    [Authorize(Policy = "ApiUser")]
     public class CustomerController : Controller
     {
         private readonly ICustomerData _customerData;
+        private readonly ILogger<CustomerController> _logger;
         private readonly IUrlHelper _urlHelper;
 
         public CustomerController(
             ICustomerData customerData,
+            ILogger<CustomerController> logger,
             IUrlHelper urlHelper)
         {
             _customerData = customerData;
+            _logger = logger;
             _urlHelper = urlHelper;
         }
 
 
         [HttpGet("", Name = "GetCustomers")]
+        [ResponseCache(Duration = 30, Location = ResponseCacheLocation.Any)]
         public IActionResult GetAll([FromQuery] CustomerListParameters listParams)
+
         {
             if (listParams.PageNumber < 1)
             {
@@ -62,6 +71,7 @@ namespace PlantLuv.Web.ApiControllers
 
         [Route("{id}")] //  ./api/customers/:id
         [HttpGet]
+        [ResponseCache(Duration = 30, Location = ResponseCacheLocation.Client)]
         public IActionResult Get(int id)
         {
             var xcustomer = _customerData.Get(id);
@@ -83,6 +93,7 @@ namespace PlantLuv.Web.ApiControllers
 
             if (!ModelState.IsValid)
             {
+                _logger.LogWarning("Error!");
                 return new ValidationFailedResult(ModelState);
             }
             var customer = new Customer
@@ -125,9 +136,11 @@ namespace PlantLuv.Web.ApiControllers
             var xcustomer = _customerData.Get(id);
             if (xcustomer == null)
             {
+                _logger.LogWarning("Customer {0} not found", id);
                 return NotFound();
             }
 
+            _logger.LogInformation("Deleting customer: {0}", id);
             _customerData.Delete(xcustomer);
             _customerData.Commit();
             return NoContent();
