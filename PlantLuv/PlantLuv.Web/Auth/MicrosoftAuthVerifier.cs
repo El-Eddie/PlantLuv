@@ -30,7 +30,7 @@ namespace PlantLuv.Web.Auth
                 var tokenRequestParameters = new Dictionary<string, string>()
             {
                 { "client_id", _microsoftAuthSettings.ClientId },
-                { "client_secret", _microsoftAuthSettings.Password },
+                { "client_secret", _microsoftAuthSettings.ClientSecret },
                 { "redirect_uri", _host + "signin-microsoft" },
                 { "code", token },
                 { "grant_type", "authorization_code" }
