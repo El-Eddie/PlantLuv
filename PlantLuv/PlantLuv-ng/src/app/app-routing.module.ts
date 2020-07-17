@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'dashboard'
+    redirectTo: 'dashboard' //CHANGE TO 404 PAGE
   }
 ];
 

@@ -95,11 +95,11 @@ namespace PlantLuv.Web.Auth
                     // TODO: ^ "Cannot cast Newtonsoft.Json.Linq.JArray to Newtonsoft.Json.Linq.JToken."
                     DisplayName = graphPayload.Value<string>("displayName"),
                     GivenName = graphPayload.Value<string>("givenName"),
-                    JobTitle = graphPayload.Value<string>("jobTitle"),
-                    Mail = graphPayload.Value<string>("mail"),
+                    //JobTitle = graphPayload.Value<string>("jobTitle"),
+                    //Mail = graphPayload.Value<string>("mail"),
                     MobilePhone = graphPayload.Value<string>("mobilePhone"),
-                    OfficeLocation = graphPayload.Value<string>("officeLocation"),
-                    PreferredLanguage = graphPayload.Value<string>("preferredLanguage"),
+                    //OfficeLocation = graphPayload.Value<string>("officeLocation"),
+                    //PreferredLanguage = graphPayload.Value<string>("preferredLanguage"),
                     Surname = graphPayload.Value<string>("surname"),
                     UserPrincipalName = graphPayload.Value<string>("userPrincipalName")
                 };

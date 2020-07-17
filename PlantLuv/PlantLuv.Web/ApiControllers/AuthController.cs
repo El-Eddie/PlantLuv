@@ -194,7 +194,7 @@ namespace PlantLuv.Web.ApiControllers
             var roles = await _userManager.GetRolesAsync(user);
             if (roles.Count == 0)
             {
-                roles.Add("prospect");
+                roles.Add("Member");
             }
 
             // generate the jwt for the local user...

@@ -22,7 +22,7 @@ export class AuthenticatedGuard implements CanActivate {
       }
       const user = this.accountService.user;
       if (!user || !user.roles || user.roles.length === 0) {
-        this.router.navigate(['not-authorized']);
+        this.router.navigate(['unauthorized']);
         return false;
       }
 

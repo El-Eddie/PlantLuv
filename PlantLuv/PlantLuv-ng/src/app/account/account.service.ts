@@ -122,5 +122,4 @@ export class AccountService {
       this.router.navigate([returnUrl]);
     }
   }
-
 }
