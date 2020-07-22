@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { Store, select } from '@ngrx/store'
 
@@ -19,7 +19,7 @@ import { map } from 'rxjs/operators';
 })
 export class UserDashboardComponent implements OnInit {
 
-  plantList$: Observable<Plant[]>;
+  plantList$ = new BehaviorSubject<Plant[]>([]);
   typeList$: Observable<PlantType[]>;
   filterValue: string = "";
   snackbarDuration: number = 2500;
@@ -51,11 +51,15 @@ export class UserDashboardComponent implements OnInit {
 
 
   GetUserPlants(id: string){
-    this.plantList$ = this.plantService.getUserPlants(id);
+    // this.plantList$ = this.plantService.getUserPlants(id);
+    this.plantService.getUserPlants(id).subscribe(value => {
+      this.plantList$.next(value);
+    });
+
   }
 
 
-  trackByPlantId(index, plant: Plant): number{
+  trackByPlantId(_, plant: Plant): number{
     return plant.plantId;
   }
 
@@ -69,13 +73,9 @@ export class UserDashboardComponent implements OnInit {
         `${plants[0].nickName} has been marked as watered` :
         `Your ${plants[0].commonName} has been marked as watered`
       };
-      this.GetUserPlants(this.getLoggedInUser());
       this.snackbar.open(message, null ,{
         duration: this.snackbarDuration
       });
-      // The page does not currently auto-update with new information.
-      // GetUserPlants is being used to refresh the information until this bug can be fixed.
-      this.GetUserPlants(this.getLoggedInUser());
     }, error => {
       alert("There was a problem recording your action.\n Please try again later.");
     });
@@ -94,9 +94,6 @@ export class UserDashboardComponent implements OnInit {
       this.snackbar.open(message, null ,{
         duration: this.snackbarDuration
       });
-      // The page does not currently auto-update with new information.
-      // GetUserPlants is being used to refresh the information until this bug can be fixed.
-      this.GetUserPlants(this.getLoggedInUser());
     }, error => {
       alert("There was a problem recording your action.\n Please try again later.");
     });
@@ -104,10 +101,7 @@ export class UserDashboardComponent implements OnInit {
 
 
   deletePlant(id: number){
-    this.plantService.delete(id)
-    // The page does not currently auto-update with new information.
-    // GetUserPlants is being used to refresh the information until this bug can be fixed.
-    this.GetUserPlants(this.getLoggedInUser());
+    this.plantService.delete(id);
   }
 
 
@@ -120,11 +114,7 @@ export class UserDashboardComponent implements OnInit {
 
 
   updatePlant(plant: Plant){
-    this.plantService.save(plant).subscribe(result => {
-      // The page does not currently auto-update with new information.
-      // GetUserPlants is being used to refresh the information until this bug can be fixed.
-      this.GetUserPlants(this.getLoggedInUser());
-
+    this.plantService.save(plant).subscribe(() => {
     }, error => {
       alert("There was a problem recording your action.\n Please try again later.");
     });
@@ -137,12 +127,7 @@ export class UserDashboardComponent implements OnInit {
 
 
   addPlant(){
-    const dialogRef = this.dialog.open(AddPlantComponent, {data: null });
-    dialogRef.afterClosed().subscribe(() => {
-      // The page does not currently auto-update with new information.
-      // GetUserPlants is being used to refresh the information until this bug can be fixed.
-      this.GetUserPlants(this.getLoggedInUser());
-    });
+    this.dialog.open(AddPlantComponent, {data: null });
   }
 
 }

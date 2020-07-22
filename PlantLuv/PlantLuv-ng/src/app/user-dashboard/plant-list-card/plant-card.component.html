@@ -3,14 +3,12 @@
       <img class="thumbnail" src={{plant.thumbnailURL}} alt="Photo of a {{plant.commonName}}"/>
       <div class='thumbnail-icons-container'>
 
-        <!-- (click)="toggleFavorite(plant.plantId)" -->
         <button mat-icon-button aria-label="toggle favorite"
           (click)="toggleFavorite()"
           matTooltip="Toggle as a favorite">
             <mat-icon>{{plant.isFavorite | favoriteIcon}}</mat-icon>
         </button>
 
-        <!-- (click)="toggleAlerts(plant.plantId)" -->
         <button mat-icon-button aria-label="toggle notifications"
           (click)="toggleAlerts()"
           matTooltip="Toggle notifications for this plant">
@@ -70,7 +68,6 @@
       <mat-icon>label</mat-icon>
       <span>Change nickname</span>
     </button>
-    <!-- <button mat-menu-item (click)="confirmDelete(plant)"> -->
     <button mat-menu-item (click)="confirmDelete()">
       <mat-icon color="warn">cancel</mat-icon>
       <span>Delete</span>

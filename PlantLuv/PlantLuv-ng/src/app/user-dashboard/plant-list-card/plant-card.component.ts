@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Plant } from '../models/plant.model';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -10,7 +10,6 @@ import { RenameDialogComponent } from '../pop-up/rename-dialog.component';
   selector: 'app-plant-card',
   templateUrl: './plant-card.component.html',
   styleUrls: ['./plant-card.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PlantCardComponent implements OnInit {
 
@@ -25,7 +24,6 @@ export class PlantCardComponent implements OnInit {
     private service: PlantService,
     private router: Router,
     private dialog: MatDialog,
-    private changeDetector: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
