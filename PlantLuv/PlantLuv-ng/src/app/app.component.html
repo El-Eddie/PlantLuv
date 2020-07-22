@@ -1,25 +1,54 @@
 <header>
-    <div class="center-header">
-        <mat-toolbar id="header" color="primary">
-            <a href="http://plantluv.com"><img id="logo" src="assets/img/logo-white.png"></a>
-            <!-- <nav>
-    <ul>
-      <li><a class="selected-link">My Plants</a></li>
-      <li>Care Sheets</li>
-    </ul>
-  </nav> -->
-            <app-nav-links></app-nav-links>
-            <!--<button id="settings-button" (click)="openUserSettings()"><mat-icon>settings</mat-icon></button>-->
-        </mat-toolbar>
+    <div class="nav-container">
+        <div class="nav-logo">
+            <a href="http://plantluv.com"><img src="assets/img/logo-white.png"></a>
+        </div>
+        <div class="nav-left">
+            <ul>
+                <li class="item"><a href="">My Plants</a></li>
+                <li class="item"><a href="">Browse Plants</a></li>
+            </ul>
+        </div>
+        <div class="nav-right">
+            <ul>
+                <li class="item-2"><a href=" "><span class="material-icons">
+                  help_outline
+                  </span>
+                </a>
+                </li>
+                <li class="item-2"><a href=" "><span class="material-icons">
+                  power_settings_new
+                  </span>
+                  </a>
+                </li>
+                <li class="item-2 logout "><a href=" ">Logout</a></li>
+            </ul>
+        </div>
     </div>
+
+
+
+
+
+    <!--<div>
+        <a href="http://plantluv.com "><img src="assets/img/logo-white.png "></a>
+        <nav>
+            <ul>
+                <li><a class="selected-link ">My Plants</a></li>
+                <li>Care Sheets</li>
+            </ul>
+        </nav>
+    <app-nav-links></app-nav-links>-->
+    <!--<button id="settings-button " (click)="openUserSettings() "><mat-icon>settings</mat-icon></button>
+    </div>-->
 </header>
 <main>
     <router-outlet></router-outlet>
 </main>
 <footer>
-    <mat-toolbar id="footer">
-        <div class="footer">
-            <a href="http://plantluv.com">Plantluv.com 2020©</a> - All Rights Reserved
+    <mat-toolbar id="footer ">
+        <div class="footer ">
+            <a href="http://plantluv.com ">Plantluv.com 2020©</a> - All Rights Reserved
         </div>
     </mat-toolbar>
 </footer>

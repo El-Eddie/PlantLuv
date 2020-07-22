@@ -1,104 +1,124 @@
 @import '~@angular/material/theming';
+@import './app.theme.variables.scss';
 @import './app.colors.scss';
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600&display=swap');
-main {
-    padding-left: 10%;
-    padding-right: 10%;
-    //background-image: linear-gradient(#005005, #60ad5e 15%)
-    //background-image: linear-gradient($primary-dk, $primary-md 15%)
+html {
+    scroll-behavior: smooth;
+    border: 0;
 }
 
-header {
-    background-color: $primary-dk;
-    width: 100%;
-    padding: 10pxem 0;
-    .center-header {
-        justify-content: center;
-        margin: 0 auto;
-        width: 1500px;
-        background-color: $primary-dk;
-    }
-    .mat-toolbar.mat-primary {
-        background-color: $primary-dk;
-    }
-    img {
-        margin-top: 10px;
-    }
-}
-
-#logo {
-    height: 50px;
-    width: auto;
-}
-
-#footer {
-    background: $grey-dk;
-    height: 60px;
-    font-size: 0.8em;
-    color: #fff;
-    a {
-        color: #fff;
-        text-decoration: none;
-    }
-    .footer {
-        margin: 0 auto;
-    }
-}
-
-nav {
-    margin: 0px 30px;
-}
-
-nav>ul {
-    list-style-type: none;
-    margin: 0em;
-    padding: 0em;
-}
-
-nav>ul>li {
-    float: left;
-}
-
-nav>ul>li:not(:last-child)::after {
-    content: "\00A0|\00A0";
-    color: $shadow-color;
-}
-
-.selected-link {
-    border-bottom: 2px solid $accent-md;
-}
-
-#settings-button {
-    margin-left: 25px;
-    float: right;
-    border-radius: 25px;
-}
-
-.card-container {
+body {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    width: 1200px;
-}
-
-#dashboard-controlls {
-    margin: 0px 10px 0px 5%;
-    padding-top: 10px;
-    padding-bottom: 5px;
-    display: flex;
-    width: auto;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    min-height: 100vh;
+    border: 0;
 }
 
-#dashboard-container {
-    background-color: $background-color;
-    border-radius: 15px;
+.nav-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background: $primary-md;
+    padding: 10px 8px;
+    font-family: $font-barlow;
+    .nav-logo {
+        text-align: center;
+        img {
+            width: 85px;
+        }
+    }
+    // Left Navigation //
+    .nav-left {
+        justify-content: flex-start;
+        @media all and (min-width: 0) and (max-width: 360px) and (orientation: portrait) {
+            flex-grow: 1;
+            padding-left: 2em;
+        }
+        li:first-child {
+            a:after {
+                padding: 0 0.5em;
+                content: "|";
+            }
+            a:hover::after {
+                color: $accent-white;
+            }
+        }
+    }
+    // Right Navigation //
+    .nav-right {
+        float: right;
+        width: auto;
+        flex-grow: 1;
+        text-align: right;
+        margin-top: 0;
+        .logout {
+            a {
+                background: $accent-md;
+                border: $accent-white;
+                padding: 6px 15px 10px 15px
+            }
+            a:hover {
+                color: $primary-dk;
+            }
+        }
+        .material-icons {
+            vertical-align: middle;
+            font-size: $xxlSize;
+            padding-right: 5px;
+        }
+        .item-2:nth-child(2) {
+            display: none;
+        }
+    }
+    .item {
+        justify-content: flex-start;
+    }
+    ul {
+        a {
+            text-decoration: none;
+            color: $accent-white;
+        }
+        a:hover {
+            color: $accent-md;
+        }
+        li {
+            font-size: $xlSize;
+            display: inline;
+        }
+    }
 }
 
-.dashboard-buttons {
-    width: 30%;
-    max-width: 200px;
-    display: inline-flex;
-    justify-content: space-evenly;
+@media all and (min-width: 0) and (max-width: 360px) and (orientation: portrait) {
+    .nav-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 0px;
+        font-family: $font-barlow;
+        .nav-logo {
+            text-align: center;
+            float: left;
+            img {
+                width: 85px;
+                padding: 5px;
+            }
+        }
+        .nav-left {
+            order: 3;
+            background: $primary-dk;
+            line-height: 8px;
+        }
+        .nav-right {
+            order: 0;
+            .item-2:nth-child(2) {
+                display: initial;
+            }
+            .item-2:nth-child(3) {
+                display: none;
+            }
+            a:hover {
+                color: $primary-dk;
+            }
+        }
+    }
 }
