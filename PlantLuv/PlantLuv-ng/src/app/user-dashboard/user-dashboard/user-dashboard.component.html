@@ -18,7 +18,7 @@
   </div>
   <div class="card-container">
     <app-plant-card
-    *ngFor="let plant of plantList$ | async" [plant]="plant"
+    *ngFor="let plant of (plantList$ | async); trackBy:trackByPlantId"  [plant]="plant"
     (waterPlantEvent)="waterPlant($event)"
     (fertalizePlantEvent)="fertalizePlant($event)"
     (deletePlantEvent)="deletePlant($event)"

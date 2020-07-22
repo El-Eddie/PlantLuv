@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { Plant } from '../models/plant.model';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
@@ -9,7 +9,8 @@ import { RenameDialogComponent } from '../pop-up/rename-dialog.component';
 @Component({
   selector: 'app-plant-card',
   templateUrl: './plant-card.component.html',
-  styleUrls: ['./plant-card.component.scss']
+  styleUrls: ['./plant-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PlantCardComponent implements OnInit {
 
@@ -23,7 +24,8 @@ export class PlantCardComponent implements OnInit {
   constructor(
     private service: PlantService,
     private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private changeDetector: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -59,22 +61,21 @@ export class PlantCardComponent implements OnInit {
     const dialogRef = this.dialog.open(DeleteDialogComponent, { data: this.plant });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log("delete confirmation is true")
         this.deletePlantEvent.emit(this.plant.plantId);
-      } else {
-        console.log("delete confirmation is false")
       }
     })
   }
 
 
   renamePlant(){
-    var changedPlant = {...this.plant};
     const dialogRef = this.dialog.open(RenameDialogComponent, { data: this.plant });
     dialogRef.afterClosed().subscribe(result => {
-      changedPlant.nickName = result.data;
-      this.updatePlant.emit(changedPlant);
+      if(result && result.data){
+        var changedPlant = {...this.plant};
+        changedPlant.nickName = result.data;
+        this.updatePlant.emit(changedPlant);
+      }
     });
-   }
+  }
 
 }

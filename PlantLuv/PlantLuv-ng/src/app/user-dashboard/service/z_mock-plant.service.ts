@@ -87,23 +87,23 @@ export class MockPlantService extends PlantService {
   }
 
   waterPlant(ids: number[]): Observable<Plant[]>{
-    // let plantIndex = this.fakePlantList.findIndex(thing => thing.plantId == id);
-    // if (plantIndex != -1)
-    // {
-    //   this.fakePlantList[plantIndex].lastWatered = new Date(Date.now());
-    //   return of(this.fakePlantList[plantIndex])
-    // }
+    let plantIndex = this.fakePlantList.findIndex(thing => ids.includes(thing.plantId));
+    if (plantIndex != -1)
+    {
+      this.fakePlantList[plantIndex].lastWatered = new Date(Date.now());
+      return of(this.fakePlantList)
+    }
    return of(null)
   }
 
 
-  fertalizePlant(ids: number[]): Observable<Plant>{
-    // let plantIndex = this.fakePlantList.findIndex(thing => thing.plantId == id);
-    // if (plantIndex != -1)
-    // {
-    //   this.fakePlantList[plantIndex].lastFertalized = new Date(Date.now());
-    //   return of(this.fakePlantList[plantIndex])
-    // }
+  fertalizePlant(ids: number[]): Observable<Plant[]>{
+    let plantIndex = this.fakePlantList.findIndex(thing => ids.includes(thing.plantId));
+    if (plantIndex != -1)
+    {
+      this.fakePlantList[plantIndex].lastFertalized = new Date(Date.now());
+      return of(this.fakePlantList)
+    }
     return of(null)
   }
 

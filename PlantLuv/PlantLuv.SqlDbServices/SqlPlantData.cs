@@ -48,13 +48,12 @@ namespace PlantLuv.SqlDbServices
 
 		public List<UserPlant> Get(PlantQueryParameters options)
 		{
-			IQueryable<UserPlant> query = _dbContext.UserPlant.Include(plant => plant.PlantType);
-
+			IQueryable<UserPlant> query = _dbContext.UserPlant
+				.Include(plant => plant.PlantType)
+				.Where(x => x.IsDeleted == options.IsDeleted);
+				
 			if (!String.IsNullOrWhiteSpace(options.OwnerID))
-				query = query.Where(x => 
-					x.OwnerID == options.OwnerID &&
-					x.IsDeleted == options.IsDeleted
-				);
+				query = query.Where(x => x.OwnerID == options.OwnerID );
 
 			if (!String.IsNullOrWhiteSpace(options.Term))
 			{

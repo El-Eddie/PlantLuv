@@ -25,11 +25,11 @@ namespace PlantLuv
         /// If Specified, search only returns plants with this ownerID.
         /// </summary>
         public string OwnerID { get; set; }
-        
+
         /// <summary>
-        /// When false, search will only return plants not marked as archived.
+        /// When false (default), search will only return plants not marked as archived.
         /// </summary>
-        public bool IsDeleted { get; set; }
+        public bool IsDeleted { get; set; } = false;
         
         /// <summary>
         /// String term to compare as a partial value to all searchable fields.

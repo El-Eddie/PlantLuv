@@ -17,15 +17,15 @@ export class PlantService {
   }
 
   getUserPlants(id: string): Observable<Plant[]>{
-    return this.httpClient.get<Plant[]>(`api/plants/search?ownerId=${id}`)
+    return this.httpClient.get<Plant[]>(`api/plants/search?ownerId=${id}`);
   }
 
   grab(id: number): Observable<Plant>{
-    return this.httpClient.get<Plant>(`api/plants/${id}`)
+    return this.httpClient.get<Plant>(`api/plants/${id}`);
   }
 
   save(plant: Plant): Observable<Plant>{
-    return this.httpClient.post<Plant>(`api/plants/${plant.plantId}`, plant)
+    return this.httpClient.post<Plant>(`api/plants/${plant.plantId}`, plant);
   }
 
   create(plant: NewUserPlant): Observable<Plant>{
@@ -41,20 +41,20 @@ export class PlantService {
     return of(null)
   }
 
-  waterPlant(ids: number[]): Observable<Plant>{
+  waterPlant(ids: number[]): Observable<Plant[]>{
     var model = {
       plantIdArray: ids,
       Timestamp: new Date()
     };
-    return this.httpClient.patch<Plant>('api/plants/water', model)
+    return this.httpClient.patch<Plant[]>('api/plants/water', model)
   }
 
-  fertalizePlant(ids: number[]): Observable<Plant>{
+  fertalizePlant(ids: number[]): Observable<Plant[]>{
     var model = {
       plantIdArray: ids,
       Timestamp: new Date()
     };
-    return this.httpClient.patch<Plant>('api/plants/feed', model)
+    return this.httpClient.patch<Plant[]>('api/plants/feed', model)
   }
 
 }

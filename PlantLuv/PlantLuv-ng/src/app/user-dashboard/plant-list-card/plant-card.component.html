@@ -33,7 +33,12 @@
           matTooltip="This plant needs a {{plant.lightLevel}} amount of light."></mat-icon>
           <span class=cdk-visually-hidden>This plant needs a {{plant.lightLevel}} amount of light.</span>
       </div>
-      <span class="plant-name common-name">{{plant.nickName}}</span>
+
+      <span class="plant-name common-name" *ngIf="plant.nickName && plant.nickName !=''; else noNickname">{{ plant.nickName}}</span>
+      <ng-template #noNickname>
+        <span class="plant-name common-name">{{plant.commonName}}</span>
+      </ng-template>
+
       <div class='plant-icons' *ngFor="let animal of plant.toxisity">
         <mat-icon class="info-icon" svgIcon="{{animal | toxisityIcon}}"
           matTooltip="Toxic to {{animal}}"></mat-icon>

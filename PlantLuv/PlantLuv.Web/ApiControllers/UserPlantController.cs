@@ -123,7 +123,7 @@ namespace PlantLuv.Web.ApiControllers
 		
 		[HttpPost("{id}")]
 		[ProducesResponseType(404)]
-		[ProducesResponseType(200, Type = typeof(PlantUpdateViewModel))]
+		[ProducesResponseType(200, Type = typeof(PlantDisplayViewModel))]
 		[ProducesResponseType(422, Type = typeof(ValidationErrorModel))]
 		public IActionResult Update(int id, [FromBody]PlantUpdateViewModel model)
 		{
@@ -143,9 +143,11 @@ namespace PlantLuv.Web.ApiControllers
 			plant.IsFavorite = model.IsFavorite;
 			plant.PrimaryImageID = model.PrimaryImageID;
 
+			PlantDisplayViewModel updated = new PlantDisplayViewModel(plant);
+
 			_plantData.Update(plant);
 			_plantData.Commit();
-			return Ok(model);
+			return Ok(updated);
 		}
 
 
