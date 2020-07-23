@@ -267,7 +267,7 @@ namespace PlantLuv.Web.ApiControllers
 
 			// Line temporarily in place to return a valid link.
 			return _urlHelper.Content("api/plant/search");
-			return _urlHelper.Link("search", newParams);
+			//return _urlHelper.Link("search", newParams);
 
 
 		}

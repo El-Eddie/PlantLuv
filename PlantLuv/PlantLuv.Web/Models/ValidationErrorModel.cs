@@ -26,7 +26,7 @@ namespace PlantLuv.Web.Models
                     {
                         Error.Add(new ValidationError
                         {
-                            Field = key,
+                            PropertyName = key,
                             Message = err.ErrorMessage
                         });
                     }
