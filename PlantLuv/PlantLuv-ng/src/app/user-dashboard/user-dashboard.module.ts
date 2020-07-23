@@ -33,27 +33,11 @@ import { ConfirmationSnackbarComponent } from './pop-up/confirmation-snackbar.co
 import { RenameDialogComponent } from './pop-up/rename-dialog.component';
 import { TypeDashboardComponent } from './type-dashboard/type-dashboard.component';
 import { AddPlantComponent } from './add-plant/add-plant.component';
-
-const routes: Routes = [
-  {
-    path: 'user-plants',
-    component: UserDashboardComponent
-  },
-  {
-    path: 'care-sheets',
-    component: TypeDashboardComponent
-  },
-  {
-    path: '',
-    redirectTo: 'user-plants'
-  }
-]
-
+import { UserDashboardRoutingModule } from './user-dashboard.routing'
 @NgModule({
   declarations: [
     UserDashboardComponent,
     PlantCardComponent,
-
     TypeListCardComponent,
     TypeDetailsComponent,
 
@@ -74,7 +58,7 @@ const routes: Routes = [
     CommonModule,
     HttpClientModule,
     SharedImportsModule,
-    RouterModule.forChild(routes),
+    UserDashboardRoutingModule,
     StoreModule.forFeature('page', displayReducer)
   ],
   providers: [
@@ -89,4 +73,5 @@ const routes: Routes = [
     }
   ],
 })
+
 export class UserDashboardModule { }

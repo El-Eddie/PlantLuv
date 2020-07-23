@@ -8,9 +8,9 @@ namespace PlantLuv.SqlDbServices
     public class PlantLuvIdentityDbContext : IdentityDbContext<PlantLuvIdentityUser>
     {
         public PlantLuvIdentityDbContext(DbContextOptions<PlantLuvIdentityDbContext> options) : base(options) { }
-        protected PlantLuvIdentityDbContext() : base()
-        {
+        //protected PlantLuvIdentityDbContext() : base()
+        //{
 
-        }
+        //}
     }
 }
