@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PlantLuv.Files;
+using PlantLuv.Plants;
 
 namespace PlantLuv.SqlDbServices
 {
@@ -9,9 +10,11 @@ namespace PlantLuv.SqlDbServices
 
         public DbSet<FileMetadata> FileMetadata { get; set; }
         public DbSet<File> File { get; set; }
-        public DbSet<Customer> Customer { get; set; }
         public DbSet<FileImageAlternateMetadata> FileImageAlternateMetadata { get; set; }
         public DbSet<FileImageAlternate> FileImageAlternate { get; set; }
+
+        public DbSet<UserPlant> UserPlant { get; set; }
+        public DbSet<PlantType> PlantType { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -7,7 +7,7 @@ import { PlantService } from '../service/plant.service'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl, PatternValidator, ValidatorFn, NgModel, ValidationErrors } from '@angular/forms';
 import { Observable, Subscription, from, of } from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import {map, startWith, filter} from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { nextTick } from 'process';
 import { async } from 'rxjs/internal/scheduler/async';
@@ -20,12 +20,13 @@ import { async } from 'rxjs/internal/scheduler/async';
 
 export class AddPlantComponent implements OnInit {
 
-  activeUser: number;
+  activeUser: string;
   formGroup: FormGroup;
   typeList$: Observable<PlantType[]>;
   typeArray: PlantType[];
   typeList: string[] = [];
   filteredTypeList$: Observable<string[]>;
+  selectedtypeId: number;
   snackbarDuration: number = 2500;
   defaultImage: string;
   placeholderImage: string = "/assets/img/plants/plant-image-placeholder.png"
@@ -76,7 +77,7 @@ export class AddPlantComponent implements OnInit {
     )
 
     this.defaultImage = this.placeholderImage;
-    this.activeUser = 1 // change logic to detect actual logged in user
+    this.activeUser = "user@me.com" // change logic to detect actual logged in user
   }
 
 
@@ -86,6 +87,7 @@ export class AddPlantComponent implements OnInit {
     var isValid = false;
 
     if (input == this.otherOption.toUpperCase()) {
+      this.selectedtypeId = 0;
       isValid = true;
      }
 
@@ -93,7 +95,7 @@ export class AddPlantComponent implements OnInit {
       _array.forEach(_type => {
         if (_type.commonName.toUpperCase().match(regexInput)) {
           isValid = true;
-          field.valid
+          this.selectedtypeId = _type.typeId;
         }
       })
     })
@@ -101,10 +103,10 @@ export class AddPlantComponent implements OnInit {
   }
 
 
-  filterValue(val: string): string[] {
-    const filterValue = val.toLowerCase();
-    return this.typeList.filter(t => t.toLowerCase().includes(filterValue));
-  }
+    filterValue(val: string): string[] {
+      const filterValue = val.toLowerCase();
+      return this.typeList.filter(t => t.toLowerCase().includes(filterValue));
+    }
 
 
   getOptions(): Observable<string[]>{
@@ -127,23 +129,24 @@ export class AddPlantComponent implements OnInit {
 
     const today = new Date();
     var plant: NewUserPlant = {...this.formGroup.value};
-    plant.ownerID = this.activeUser
+    plant.ownerId = this.activeUser
     plant.thumbnailURL = this.defaultImage
+    plant.typeId = this.selectedtypeId;
+
+    if (!plant.receiveNotifications) { plant.receiveNotifications = false }
 
     plant.birthday = plant.birthday ? plant.birthday : today;
-    plant.lastFertalized = plant.lastFertalized ? plant.birthday : today;
-    plant.lastWatered = plant.lastWatered ? plant.birthday : today;
-
+    plant.lastFertalized = plant.lastFertalized ? plant.lastFertalized : today;
+    plant.lastWatered = plant.lastWatered ? plant.lastWatered : today;
 
     this.plantService.create(plant).subscribe(results => {
-      if(results){
         var message ="Plant added successfully"
-        var action = "Search your plants..."
         this.snackbar.open(message, null ,{
           duration: this.snackbarDuration
         });
-      };
       this.dialogRef.close();
+    }, results => {
+      alert("There was an error saving your new plant.\n Please check the information and try again.");
     });
   }
 

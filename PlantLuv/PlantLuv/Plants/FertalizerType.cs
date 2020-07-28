@@ -4,10 +4,11 @@ using System.Text;
 
 namespace PlantLuv.Plants
 {
-	public enum WaterType
-	{	
-		None = 0,
-		Tap = 1,
-		Distilled = 2
+	public enum FertalizerType
+	{
+		Any = 0,
+		NitroginRich = 1,
+		PhosphateRich = 2,
+		PotasiumRich = 3
 	}
 }

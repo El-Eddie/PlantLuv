@@ -33,7 +33,7 @@ export class MockPlantTypeService extends PlantTypeService {
   getPlantTypes(){
     this.typeList = [
       {
-        typeID: 1,
+        typeId: 1,
         // imageInfo: {
         //   imgURL: "assets/img/snow_queen_pothos-full.jpg",
         //   imgWidth: 867,
@@ -57,7 +57,7 @@ export class MockPlantTypeService extends PlantTypeService {
         dificulty: "Easy",
       },
       {
-      typeID: 2,
+      typeId: 2,
       // imageInfo: {
       //   imgURL: "assets/img/marble_queen_pothos-full.jpg",
       //   imgHeight: 867,
@@ -81,7 +81,7 @@ export class MockPlantTypeService extends PlantTypeService {
       dificulty: "Easy",
       },
       {
-      typeID: 3,
+      typeId: 3,
       // imageInfo: {
       //   imgURL: "assets/img/dorsera_spatulata-full.jpg",
       //   imgHeight: 960,
@@ -105,7 +105,7 @@ export class MockPlantTypeService extends PlantTypeService {
       dificulty: "Easy",
       },
       {
-      typeID: 4,
+      typeId: 4,
       // imageInfo: {
       //   imgURL: "assets/img/saintpaulia-full.jpg",
       //   imgHeight: 596,
@@ -129,7 +129,7 @@ export class MockPlantTypeService extends PlantTypeService {
       dificulty: "Easy",
       },
       {
-        typeID: 5,
+        typeId: 5,
         // imageInfo: {
         //   imgURL: "assets/img/snow_queen_pothos-full.jpg",
         //   imgWidth: 867,

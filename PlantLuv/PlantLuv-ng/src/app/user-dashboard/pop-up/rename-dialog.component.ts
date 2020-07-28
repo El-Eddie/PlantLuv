@@ -45,10 +45,7 @@ export class RenameDialogComponent implements OnInit {
   }
 
   save(){
-    var newName = this.form.value['nickName'];
-    if(newName.length == 0){
-      newName = this.plant.commonName
-    }
+    var newName = this.form.value['nickName'].trim();
     this.dialogRef.close({data: newName})
   }
 }

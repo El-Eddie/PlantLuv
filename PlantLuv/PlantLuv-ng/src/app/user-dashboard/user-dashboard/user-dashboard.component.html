@@ -4,36 +4,31 @@
             <app-filters (filterChangeEvent)="updateFilter($event)" [placeholder_text]="'Filter Plant List...'"></app-filters>
         </div>
         <div id="dash-controls">
-
             <button mat-mini-fab color="" matTooltip="Add New Plant" (click)="addPlant()" [matTooltipShowDelay]="tooltipDelay" [matTooltipHideDelay]="tooltipDelay">
               <span class="material-icons">
                 add_circle
                 </span>
-              <!-- <mat-icon color="primary">add_circle_outline</mat-icon> -->
             </button>
-            <!-- <button mat-mini-fab color="" matTooltip="Sort Alphabetically" [matTooltipShowDelay]="tooltipDelay" [matTooltipHideDelay]="tooltipDelay">
+            <!-- Button To Sort by:
+               <button mat-mini-fab color="" matTooltip="Sort Alphabetically" [matTooltipShowDelay]="tooltipDelay" [matTooltipHideDelay]="tooltipDelay">
               <span class="material-icons">
                 sort
                 </span>
             </button> -->
-            <button mat-mini-fab color="" matTooltip="Mark All Plants Watered" [matTooltipShowDelay]="tooltipDelay" [matTooltipHideDelay]="tooltipDelay">
-              <span class="material-icons">
+            <button mat-mini-fab color="" matTooltip="Mark All Plants Watered" [matTooltipShowDelay]="tooltipDelay " [matTooltipHideDelay]="tooltipDelay ">
+              <span class="material-icons ">
                 opacity
                 </span>
-              <!-- <mat-icon svgIcon="action-watering"></mat-icon> -->
-            </button>
+              </button>
 
-            <button mat-mini-fab color="" matTooltip="Mark All Plants Fertalized" [matTooltipShowDelay]="tooltipDelay" [matTooltipHideDelay]="tooltipDelay">
-              <span class="material-icons">
+            <button mat-mini-fab color=" " matTooltip="Mark All Plants Fertalized" [matTooltipShowDelay]="tooltipDelay " [matTooltipHideDelay]="tooltipDelay">
+              <span class="material-icons ">
                 emoji_nature
                 </span>
-              <!-- <mat-icon svgIcon="action-fertalize"></mat-icon> -->
             </button>
-
         </div>
     </div>
-    <div id="dash-main">
-        <app-plant-card *ngFor="let plant of plantList$ | async" [plant]="plant" (waterPlantEvent)="waterPlant($event)" (fertalizePlantEvent)="fertalizePlant($event)" (toggleAlertsEvent)="toggleAlerts($event)" (toggleFavoriteEvent)="toggleFavorite($event)" (deletePlantEvent)="deletePlant($event)"
-            (viewCareSheetEvent)="displayDetailsCard($event)" (renamePlantEvent)="renamePlant($event)"></app-plant-card>
+    <div id="dash-main ">
+        <app-plant-card *ngFor="let plant of (plantList$ | async); trackBy:trackByPlantId " [plant]="plant " (waterPlantEvent)="waterPlant($event) " (fertalizePlantEvent)="fertalizePlant($event) " (deletePlantEvent)="deletePlant($event)
+                " (viewCareSheetEvent)="displayDetailsCard($event) " (updatePlant)="updatePlant($event) "></app-plant-card>
     </div>
-</div>

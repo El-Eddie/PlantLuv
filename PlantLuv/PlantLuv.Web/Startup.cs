@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
@@ -19,7 +22,10 @@ using PlantLuv.Web.Filters;
 using PlantLuv.Web.Auth;
 using PlantLuv.SqlDbServices;
 using Microsoft.AspNetCore.Hosting;
+using PlantLuv;
 using PlantLuv.Files;
+using PlantLuv.Plants;
+using Microsoft.AspNetCore.Http;
 
 namespace PlantLuv.Web
 {
@@ -146,6 +152,16 @@ namespace PlantLuv.Web
             services.AddSingleton<IJwtFactory, JwtFactory>();
             services.AddScoped<IFileData, SqlFileData>();
             services.AddScoped<IImageResizer, SixLaborsImageResizer>();
+            services.AddScoped<IPlantData, SqlPlantData>();
+            services.AddScoped<ITypeData, SqlTypeData>();
+
+            services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+            services.AddScoped<IUrlHelper>(factory =>
+              {
+                  var context = factory.GetService<IActionContextAccessor>().ActionContext;
+                  return new UrlHelper(context);
+              });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

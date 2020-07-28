@@ -18,7 +18,7 @@ export class MockPlantService extends PlantService {
   constructor(private http: HttpClient) {
     super(http)
     this.MakeUpSomePlants();
-    this.lastID = Math.max( ...this.fakePlantList.map(plant => plant.plantID))
+    this.lastID = Math.max( ...this.fakePlantList.map(plant => plant.plantId))
   }
 
   search(criteria: string): Observable<Plant[]>{
@@ -31,17 +31,17 @@ export class MockPlantService extends PlantService {
     return of(results);
   }
 
-  getUserPlants(id: number): Observable<Plant[]>{
-    return of( this.fakePlantList.filter( plant => plant.ownerID == id ));
+  getUserPlants(id: string): Observable<Plant[]>{
+    return of( this.fakePlantList.filter( plant => plant.ownerId == id ));
   }
 
   grab(id: number): Observable<Plant>{
-    return of( this.fakePlantList.find( plant => plant.plantID == id ));
+    return of( this.fakePlantList.find( plant => plant.plantId == id ));
   }
 
   create(plant: NewUserPlant): Observable<Plant>{
     var newPlant: Plant = {
-      plantID: ++this.lastID,
+      plantId: ++this.lastID,
       commonName: plant.plantType,
       lattinName: "fakeus plantus",
       waterAgain: null,
@@ -56,26 +56,26 @@ export class MockPlantService extends PlantService {
     };
 
     this.fakePlantList.push(newPlant);
-    console.log(this.lastID,newPlant,"\n---\n",this.fakePlantList);
+    console.log(plant);
     return of(newPlant);
   }
 
   save(plant: Plant): Observable<Plant>{
-    let match = this.fakePlantList.find(thing => thing.plantID == plant.plantID);
+    let match = this.fakePlantList.find(thing => thing.plantId == plant.plantId);
     if (match)
     {
       this.fakePlantList = this.fakePlantList.map(thing =>
-        thing.plantID === match.plantID ? plant : thing
+        thing.plantId === match.plantId ? plant : thing
       )
     } else {
-      plant.plantID = ++this.lastID;
+      plant.plantId = ++this.lastID;
       this.fakePlantList = [ ...this.fakePlantList, plant];
     }
    return of(plant)
   }
 
   delete(id: number):  Observable<Plant>{
-    let matchIndex = this.fakePlantList.findIndex(thing => thing.plantID == id);
+    let matchIndex = this.fakePlantList.findIndex(thing => thing.plantId == id);
     console.log(matchIndex);
     if (matchIndex != -1)
     {
@@ -86,29 +86,29 @@ export class MockPlantService extends PlantService {
     return of(null)
   }
 
-  waterPlant(id: number): Observable<Plant>{
-    let plantIndex = this.fakePlantList.findIndex(thing => thing.plantID == id);
+  waterPlant(ids: number[]): Observable<Plant[]>{
+    let plantIndex = this.fakePlantList.findIndex(thing => ids.includes(thing.plantId));
     if (plantIndex != -1)
     {
       this.fakePlantList[plantIndex].lastWatered = new Date(Date.now());
-      return of(this.fakePlantList[plantIndex])
+      return of(this.fakePlantList)
     }
    return of(null)
   }
 
 
-  fertalizePlant(id: number): Observable<Plant>{
-    let plantIndex = this.fakePlantList.findIndex(thing => thing.plantID == id);
+  fertalizePlant(ids: number[]): Observable<Plant[]>{
+    let plantIndex = this.fakePlantList.findIndex(thing => ids.includes(thing.plantId));
     if (plantIndex != -1)
     {
       this.fakePlantList[plantIndex].lastFertalized = new Date(Date.now());
-      return of(this.fakePlantList[plantIndex])
+      return of(this.fakePlantList)
     }
     return of(null)
   }
 
   toggleFavorite(id: number): Observable<Plant>{
-    let plantIndex = this.fakePlantList.findIndex(thing => thing.plantID == id);
+    let plantIndex = this.fakePlantList.findIndex(thing => thing.plantId == id);
     if (plantIndex != -1){
       let plant = this.fakePlantList[plantIndex];
       plant.isFavorite = !plant.isFavorite;
@@ -116,8 +116,8 @@ export class MockPlantService extends PlantService {
     return of(null);
   }
 
-  toggleAlerts(id: number): Observable<Plant>{
-    let plantIndex = this.fakePlantList.findIndex(thing => thing.plantID == id);
+  toggleAlerts(plant: Plant): Observable<Plant>{
+    let plantIndex = this.fakePlantList.findIndex(thing => thing.plantId == plant.plantId);
     if (plantIndex != -1){
       let plant = this.fakePlantList[plantIndex];
       plant.receiveNotifications = !plant.receiveNotifications;
@@ -129,8 +129,9 @@ export class MockPlantService extends PlantService {
   MakeUpSomePlants(){
     this.fakePlantList = [
       {
-        plantID: 1,
-        ownerID: 1,
+        plantId: 1,
+        typeId: 5,
+        ownerId: "user@me.com",
         commonName: "Jade Plant",
         nickName: "Jade",
         lattinName: "Crassula Ovata",
@@ -150,8 +151,9 @@ export class MockPlantService extends PlantService {
         toxisity: ['cats'],
       },
       {
-        plantID: 2,
-        ownerID: 1,
+        plantId: 2,
+        typeId: 1,
+        ownerId: "user@me.com",
         commonName: "Snow Queen Pothos",
         nickName: "Snow Queen Pothos",
         lattinName: "Epipremnum Aureum",
@@ -171,8 +173,9 @@ export class MockPlantService extends PlantService {
         toxisity: ['cats'],
       },
       {
-        plantID: 12,
-        ownerID: 1,
+        plantId: 12,
+        typeId: 1,
+        ownerId: "user@me.com",
         commonName: "Snow Queen Pothos",
         nickName: "Snowy",
         lattinName: "Epipremnum Aureum",
@@ -192,8 +195,9 @@ export class MockPlantService extends PlantService {
         toxisity: ['cats'],
       },
       {
-        plantID: 3,
-        ownerID: 1,
+        plantId: 3,
+        typeId: 2,
+        ownerId: "user@me.com",
         commonName: "Marble Queen Pothos",
         nickName: "Marble Queen Pothos",
         lattinName: "Epipremnum Aureum",
@@ -213,8 +217,9 @@ export class MockPlantService extends PlantService {
         toxisity: ['cats'],
       },
       {
-        plantID: 4,
-        ownerID: 1,
+        plantId: 4,
+        typeId: 3,
+        ownerId: "user@me.com",
         commonName: "Sundew",
         nickName: "Sundew",
         lattinName: "Drosera spatulata",
@@ -234,8 +239,9 @@ export class MockPlantService extends PlantService {
         toxisity: ['Cats', 'dogs'],
       },
       {
-        plantID: 5,
-        ownerID: 1,
+        plantId: 5,
+        typeId: 4,
+        ownerId: "user@me.com",
         commonName: "African Violet",
         nickName: "African Violet",
         lattinName: "Saintpaulia",
@@ -256,8 +262,9 @@ export class MockPlantService extends PlantService {
         toxisity: [],
       },
       {
-        plantID: 6,
-        ownerID: 1,
+        plantId: 6,
+        typeId: 1,
+        ownerId: "user@me.com",
         commonName: "Snow Queen Pothos",
         nickName: "Snowy2: Pothos' revenge",
         lattinName: "Epipremnum aureum",
@@ -277,8 +284,9 @@ export class MockPlantService extends PlantService {
         toxisity: ['dogs'],
       },
       {
-        plantID: 7,
-        ownerID: 1,
+        plantId: 7,
+        typeId: 2,
+        ownerId: "user@me.com",
         commonName: "Marble Queen Pothos",
         nickName: "Marble Queen Pothos",
         lattinName: "Epipremnum aureum",
@@ -299,8 +307,9 @@ export class MockPlantService extends PlantService {
         toxisity: ['Cats', 'dogs'],
       },
       {
-        plantID: 8,
-        ownerID: 1,
+        plantId: 8,
+        typeId: 3,
+        ownerId: "user@me.com",
         commonName: "Sundew",
         nickName: "Sundew",
         lattinName: "Drosera spatulata",
@@ -321,8 +330,9 @@ export class MockPlantService extends PlantService {
         toxisity: [],
       },
       {
-        plantID: 9,
-        ownerID: 1,
+        plantId: 9,
+        typeId: 4,
+        ownerId: "user@me.com",
         commonName: "African Violet",
         nickName:  "Violet",
         lattinName: "Saintpaulia",

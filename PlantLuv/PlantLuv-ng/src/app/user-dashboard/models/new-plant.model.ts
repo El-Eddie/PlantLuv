@@ -1,11 +1,12 @@
 export interface NewUserPlant {
-  ownerID: number;
+  ownerId: string;
   plantType: string;
+  typeId: number;
   nickName: string,
   birthday: Date;
   lastWatered: Date,
   lastFertalized: Date;
-  wherePurchased: string;
+  wherePurchased?: string;
   receiveNotifications: boolean;
   thumbnailURL?: string;
 }
