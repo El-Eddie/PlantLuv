@@ -4,7 +4,7 @@
             <app-filters (filterChangeEvent)="updateFilter($event)" [placeholder_text]="'Filter Plant List...'"></app-filters>
         </div>
         <div id="dash-controls">
-            <button mat-mini-fab color="" matTooltip="Add New Plant" (click)="addPlant()" [matTooltipShowDelay]="tooltipDelay" [matTooltipHideDelay]="tooltipDelay">
+            <button mat-mini-fab matTooltip="Add New Plant" (click)="addPlant()" [matTooltipShowDelay]="tooltipDelay" [matTooltipHideDelay]="tooltipDelay">
               <span class="material-icons">
                 add_circle
                 </span>
@@ -15,13 +15,13 @@
                 sort
                 </span>
             </button> -->
-            <button mat-mini-fab color="" matTooltip="Mark All Plants Watered" [matTooltipShowDelay]="tooltipDelay " [matTooltipHideDelay]="tooltipDelay ">
+            <button mat-mini-fab matTooltip="Mark All Plants Watered" [matTooltipShowDelay]="tooltipDelay " [matTooltipHideDelay]="tooltipDelay ">
               <span class="material-icons ">
                 opacity
                 </span>
               </button>
 
-            <button mat-mini-fab color=" " matTooltip="Mark All Plants Fertalized" [matTooltipShowDelay]="tooltipDelay " [matTooltipHideDelay]="tooltipDelay">
+            <button mat-mini-fab matTooltip="Mark All Plants Fertalized" [matTooltipShowDelay]="tooltipDelay " [matTooltipHideDelay]="tooltipDelay">
               <span class="material-icons ">
                 emoji_nature
                 </span>

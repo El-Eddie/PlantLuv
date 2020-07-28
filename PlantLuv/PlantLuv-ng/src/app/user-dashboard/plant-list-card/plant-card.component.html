@@ -84,13 +84,13 @@
     </div>
 
     <div class="bottom-actions">
-        <button class="action-button" mat-raised-button (click)="waterPlant()">
+        <button class="action-button" mat-raised-button (click)="waterPlant(plant.plantId)">
           <span class="material-icons">
             opacity
             </span>
         <!-- <mat-icon class="action-icon" svgIcon="action-watering"></mat-icon> -->
       </button>
-        <button class="action-button" mat-raised-button (click)="fertalizePlant()">
+        <button class="action-button" mat-raised-button (click)="fertalizePlant(plant.plantId)">
           <span class="material-icons">
             emoji_nature
             </span>
