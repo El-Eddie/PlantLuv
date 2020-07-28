@@ -2,24 +2,55 @@
 
 @import './app//app.theme.scss';
 @import './app/app.colors.scss';
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600&display=swap');
 html,
 body {
-    height: 100%;
-}
-
-body {
+    min-height: 100vh;
+    scroll-behavior: smooth;
+    border: 0;
+    align-items: center;
+    padding: 0;
     margin: 0;
-    font-family: $font-body;
 }
 
-.mat-menu-panel {
-    border-color: $border-color;
-    background-color: $background-color;
-    box-shadow: 10px 10px 5px $shadow-color;
-    // This isn't actually targeting the menu, despite having the same class :/
+a,
+a:link,
+a:visited {
+    text-decoration: none;
+    color: $accent-white;
+    cursor: pointer;
 }
 
-.no-outline:focus {
-    outline: none;
-    border: 2px solid $accent-lt;
+a:hover {
+    color: $accent-md;
+}
+
+ul li {
+    font-size: $xlSize;
+    display: inline;
+}
+
+
+/** Fix the wrap issue with checkbox */
+
+.mat-checkbox-layout {
+    white-space: normal !important;
+}
+
+
+/** keep checkbox on first line */
+
+.mat-checkbox-inner-container {
+    margin-top: 4px !important;
+}
+
+@media all and (-ms-high-contrast: none),
+(-ms-high-contrast: active) {
+    /** wrap label ie */
+    .mat-checkbox-layout {
+        display: block !important;
+    }
+    .mat-checkbox-inner-container {
+        margin-top: 0 !important;
+    }
 }

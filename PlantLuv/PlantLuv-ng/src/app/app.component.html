@@ -1,18 +1,20 @@
 <header>
-    <div class="nav-container">
-        <div class="nav-logo">
+    <div id="nav-container">
+        <div id="nav-logo">
             <a href="http://plantluv.com"><img src="assets/img/logo-white.png"></a>
         </div>
-        <div class="nav-left">
-            <ul>
-                <li class="item"><a href="">My Plants</a></li>
-                <li class="item"><a href="">Browse Plants</a></li>
-            </ul>
+        <div id="nav-left">
+            <app-nav-links></app-nav-links>
         </div>
-        <div class="nav-right">
+        <div id="nav-right">
             <ul>
                 <li class="item-2"><a href=" "><span class="material-icons">
                   help_outline
+                  </span>
+                </a>
+                </li>
+                <li class="item-2"><a href=" "><span class="material-icons">
+                  admin_panel_settings
                   </span>
                 </a>
                 </li>
@@ -21,33 +23,19 @@
                   </span>
                   </a>
                 </li>
-                <li class="item-2 logout "><a href=" ">Logout</a></li>
+
+                <li class="item-2 logout"><a href=" ">Logout</a></li>
             </ul>
         </div>
     </div>
-
-
-
-
-
-    <!--<div>
-        <a href="http://plantluv.com "><img src="assets/img/logo-white.png "></a>
-        <nav>
-            <ul>
-                <li><a class="selected-link ">My Plants</a></li>
-                <li>Care Sheets</li>
-            </ul>
-        </nav>
-    <app-nav-links></app-nav-links>-->
-    <!--<button id="settings-button " (click)="openUserSettings() "><mat-icon>settings</mat-icon></button>
-    </div>-->
+    <!--<button id="settings-button " (click)="openUserSettings() "><mat-icon>settings</mat-icon></button>-->
 </header>
 <main>
     <router-outlet></router-outlet>
 </main>
 <footer>
-    <mat-toolbar id="footer ">
-        <div class="footer ">
+    <mat-toolbar>
+        <div>
             <a href="http://plantluv.com ">Plantluv.com 2020©</a> - All Rights Reserved
         </div>
     </mat-toolbar>

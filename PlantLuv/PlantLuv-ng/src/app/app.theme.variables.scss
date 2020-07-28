@@ -4,3 +4,6 @@ $main-app-accent: mat-palette($mat-orange, $default: 700, $lighter: 500, $darker
 $app-warn: mat-palette($mat-red);
 $main-app-theme: mat-light-theme($main-app-primary, $main-app-accent, $app-warn);
 $main-app-dark-theme: mat-dark-theme($main-app-primary, $main-app-accent, $app-warn);
+@mixin debug {
+    border: (1px solid red);
+}

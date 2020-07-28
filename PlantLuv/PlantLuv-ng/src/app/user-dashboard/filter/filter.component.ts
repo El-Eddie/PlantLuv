@@ -4,21 +4,12 @@ import { isNullOrUndefined } from 'util';
 
 @Component({
   selector: 'app-filters',
-  template: `
-      <input id="filter" class="no-outline" type="text" [formControl]="formControl"
-        (input)="filterChange(this)" [placeholder]="placeholder_text"
-      />
-  `,
-  styles: [`
-    #filter{
-      padding-left:10px;
-      border-radius:10px;
-      width:300px;
-      height: 1.5em
-    }
+  templateUrl: './filter.component.html',
+  styleUrls: ['./filter.component.scss']
 
-  `]
 })
+
+
 
 export class FilterComponent implements OnInit {
 

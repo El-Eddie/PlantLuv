@@ -101,7 +101,7 @@ export class MockPlantTypeService extends PlantTypeService {
       soilPH: "Any",
       waterType: "Distilled",
       waterFrequency: "Always keep moist",
-      toxisity: ["unknown"],
+      toxisity: ['cats','dogs'],
       dificulty: "Easy",
       },
       {

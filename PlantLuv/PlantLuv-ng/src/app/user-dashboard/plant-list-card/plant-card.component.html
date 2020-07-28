@@ -1,48 +1,103 @@
 <mat-card class="plant-card">
     <div class='thumbnail-container'>
-        <img class="thumbnail" src={{plant.thumbnailURL}} alt="Photo of a {{plant.commonName}}" />
+        <div class="thumbnail">
+            <img src={{plant.thumbnailURL}} alt="Photo of a {{plant.commonName}}" />
+        </div>
         <div class='thumbnail-icons-container'>
-
-            <button mat-icon-button aria-label="toggle favorite" (click)="toggleFavorite(plant.plantID)" matTooltip="Toggle as a favorite">
+            <button mat-icon-button aria-label="toggle favorite" (click)="toggleFavorite(plant.plantID)" matTooltip="Toggle Favorite">
             <mat-icon>{{plant.isFavorite | favoriteIcon}}</mat-icon>
         </button>
 
-            <button mat-icon-button aria-label="toggle notifications" (click)="toggleAlerts(plant.plantID)" matTooltip="Toggle notifications for this plant">
+            <button mat-icon-button aria-label="toggle notifications" (click)="toggleAlerts(plant.plantID)" matTooltip="Toggle Notification">
             <mat-icon>{{plant.receiveNotifications | notificationIcon}}</mat-icon>
         </button>
-
+        </div>
+        <div class="thumnails-additional">
             <button *ngIf="plant.imageIDs.length" mat-icon-button aria-label="view photos" (click)="triggerSlideshow(plant.plantID)" matTooltip="View pictures of this plant">
             <mat-icon>more_horiz</mat-icon>
         </button>
-
         </div>
     </div>
+    <div class="plant-content">
+        <mat-card-content class="mat-card-content plant-card-content">
+            <div class="plant-title">
+                <h5>{{plant.lattinName}}</h5>
+                <h3>{{plant.nickName}}</h3>
+            </div>
+            <div class="plant-icons">
+                <div class="plant-item-label">
+                    Light Requirement:
+                </div>
 
-    <mat-card-content class="mat-card-content plant-card-content">
-        <span class="plant-name lattin-name">{{plant.lattinName}}</span>
-        <div class="plant-icons">
-            <mat-icon class="info-icon" svgIcon="{{plant.lightLevel | lightLevelIcon}}" matTooltip="This plant needs a {{plant.lightLevel}} amount of light."></mat-icon>
-            <span class=cdk-visually-hidden>This plant needs a {{plant.lightLevel}} amount of light.</span>
-        </div>
-        <span class="plant-name common-name">{{plant.nickName}}</span>
-        <div class='plant-icons' *ngFor="let animal of plant.toxisity">
-            <mat-icon class="info-icon" svgIcon="{{animal | toxisityIcon}}" matTooltip="Toxic to {{animal}}"></mat-icon>
-            <span class=cdk-visually-hidden>This plant is toxic to {{plant.toxisity}}.</span>
-        </div>
-        <div class="plant-schedule">Last watered: {{plant.lastWatered | date:'M/d h:mm a'}}</div>
-        <div class="plant-schedule">Last fertalized: {{plant.lastFertalized | date:'M/d h:mm a'}}</div>
-    </mat-card-content>
+                <div class="plant-item-icon">
+                    <mat-icon class="info-icon" svgIcon="{{plant.lightLevel | lightLevelIcon}}" matTooltip="{{plant.lightLevel}} Light"></mat-icon>
+                    <span class=cdk-visually-hidden>This plant needs a {{plant.lightLevel}} amount of light.</span>
+                </div>
+            </div>
+            <div class="plant-icons">
+                <div class="plant-item-label">
+                    Toxic to:
+                </div>
+
+                <div class='plant-item-icon' *ngFor="let animal of plant.toxisity">
+                    <mat-icon class="info-icon" svgIcon="{{animal | toxisityIcon}}" matTooltip="Toxic to {{animal}}"></mat-icon>
+                    <span class=cdk-visually-hidden>This plant is toxic to {{plant.toxisity}}.</span>
+                </div>
+            </div>
+            <div class="plant-icons">
+                <div class="plant-item-label">
+                    Watered Last On:
+                </div>
+
+                <div class='plant-item-icon label-text'>
+                    {{plant.lastWatered | date:'MMM d, y'}}
+                </div>
+            </div>
+            <div class="plant-icons">
+                <div class="plant-item-label">
+                    Fertalized Last On:
+                </div>
+
+                <div class='plant-item-icon label-text'>
+                    {{plant.lastFertalized | date:'MMM d, y'}}
+                </div>
+            </div>
+            <!-- <div class="plant-icons">
+                <div class="plant-lights">
+                    <mat-icon class="info-icon" svgIcon="{{plant.lightLevel | lightLevelIcon}}" matTooltip="{{plant.lightLevel}} Light"></mat-icon>
+                    <span class=cdk-visually-hidden>This plant needs a {{plant.lightLevel}} amount of light.</span>
+                </div>
+
+                <div class='plant-pets' *ngFor="let animal of plant.toxisity">
+                    <mat-icon class="info-icon" svgIcon="{{animal | toxisityIcon}}" matTooltip="Toxic to {{animal}}"></mat-icon>
+                    <span class=cdk-visually-hidden>This plant is toxic to {{plant.toxisity}}.</span>
+                </div>
+            </div> -->
+            <!-- <div class="plant-past-schedule">
+                <div>Last Watered: {{plant.lastWatered | date:'M/d'}}</div>
+                <div>Last Fertalized: {{plant.lastFertalized | date:'M/d'}}</div>
+            </div> -->
+        </mat-card-content>
+    </div>
+
 
     <div class="bottom-actions">
         <button class="action-button" mat-raised-button (click)="waterPlant(plant.plantID)">
-        <mat-icon class="action-icon" svgIcon="action-watering"></mat-icon>
+          <span class="material-icons">
+            opacity
+            </span>
+        <!-- <mat-icon class="action-icon" svgIcon="action-watering"></mat-icon> -->
       </button>
         <button class="action-button" mat-raised-button (click)="fertalizePlant(plant.plantID)">
-        <mat-icon class="action-icon" svgIcon="action-fertalize"></mat-icon>
+          <span class="material-icons">
+            emoji_nature
+            </span>
+        <!-- <mat-icon class="action-icon" svgIcon="action-fertalize"></mat-icon> -->
       </button>
         <button class="menu-button" mat-icon-button color="accent" [matMenuTriggerFor]="menu">
         <mat-icon>more_vert</mat-icon></button>
     </div>
+
 </mat-card>
 
 <mat-menu #menu="matMenu" xPosition="before" yPosition="above">

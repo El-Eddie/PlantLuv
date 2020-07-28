@@ -147,7 +147,7 @@ export class MockPlantService extends PlantService {
         isPublic: true,
         isFavorite: true,
         lightLevel: 'Low',
-        toxisity: ['cats', 'small animals'],
+        toxisity: ['cats'],
       },
       {
         plantID: 2,
@@ -167,7 +167,7 @@ export class MockPlantService extends PlantService {
         thumbnailURL: "assets/img/plants/snow_queen_pothos-thumb.jpg",
         isPublic: true,
         isFavorite: false,
-        lightLevel: 'Med',
+        lightLevel: 'Medium',
         toxisity: ['cats'],
       },
       {
@@ -188,7 +188,7 @@ export class MockPlantService extends PlantService {
         thumbnailURL: "assets/img/plants/snow_queen_pothos-thumb.jpg",
         isPublic: true,
         isFavorite: false,
-        lightLevel: 'Med',
+        lightLevel: 'Medium',
         toxisity: ['cats'],
       },
       {
@@ -209,8 +209,8 @@ export class MockPlantService extends PlantService {
         thumbnailURL: "assets/img/plants/marble_queen_pothos-thumb.jpg",
         isPublic: false,
         isFavorite: false,
-        lightLevel: 'Low/Med',
-        toxisity: ['unknown'],
+        lightLevel: 'Low/Medium',
+        toxisity: ['cats'],
       },
       {
         plantID: 4,
@@ -230,7 +230,7 @@ export class MockPlantService extends PlantService {
         thumbnailURL: "assets/img/plants/dorsera_spatulata-thumb.jpg",
         isPublic: true,
         isFavorite: true,
-        lightLevel: 'Med/High',
+        lightLevel: 'Medium/High',
         toxisity: ['Cats', 'dogs'],
       },
       {
@@ -251,7 +251,7 @@ export class MockPlantService extends PlantService {
         thumbnailURL: "assets/img/plants/saintpaulia-thumb.jpg",
         isPublic: true,
         isFavorite: true,
-        lightLevel: 'Low/Med',
+        lightLevel: 'Low/Medium',
         // toxisity: ['none'],
         toxisity: [],
       },
@@ -273,7 +273,7 @@ export class MockPlantService extends PlantService {
         thumbnailURL: "assets/img/plants/snow_queen_pothos-thumb.jpg",
         isPublic: false,
         isFavorite: false,
-        lightLevel: 'Med',
+        lightLevel: 'Medium',
         toxisity: ['dogs'],
       },
       {
@@ -294,9 +294,9 @@ export class MockPlantService extends PlantService {
         thumbnailURL: "assets/img/plants/marble_queen_pothos-thumb.jpg",
         isPublic: false,
         isFavorite: false,
-        lightLevel: 'Med/High',
+        lightLevel: 'Medium/High',
         //toxisity: ['Cats', 'dogs'],
-        toxisity: ['Cats', 'dogs', 'small animals', 'humans'],
+        toxisity: ['Cats', 'dogs'],
       },
       {
         plantID: 8,
@@ -338,8 +338,8 @@ export class MockPlantService extends PlantService {
         thumbnailURL: "assets/img/plants/saintpaulia-thumb.jpg",
         isPublic: true,
         isFavorite: false,
-        lightLevel: 'Med/High',
-        toxisity: ['humans'],
+        lightLevel: 'Medium/High',
+        toxisity: ['cats'],
       },
     ]
   }

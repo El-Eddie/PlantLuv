@@ -1,51 +1,28 @@
 @import '~@angular/material/theming';
 @import './app.theme.variables.scss';
 @import './app.colors.scss';
-html {
-    scroll-behavior: smooth;
-    border: 0;
-}
-
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    border: 0;
-}
-
-.nav-container {
+#nav-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     background: $primary-md;
-    padding: 10px 8px;
+    padding: 10px 17px;
     font-family: $font-barlow;
-    .nav-logo {
+    #nav-logo {
         text-align: center;
         img {
             width: 85px;
         }
     }
-    // Left Navigation //
-    .nav-left {
+    #nav-left {
         justify-content: flex-start;
-        @media all and (min-width: 0) and (max-width: 360px) and (orientation: portrait) {
-            flex-grow: 1;
-            padding-left: 2em;
-        }
-        li:first-child {
-            a:after {
-                padding: 0 0.5em;
-                content: "|";
-            }
-            a:hover::after {
-                color: $accent-white;
-            }
-        }
     }
+    // Left Navigation //
+    //
+    // CSS found in Nav-link. Media queries found below. Button Media queries and nav-link
+    //
     // Right Navigation //
-    .nav-right {
+    #nav-right {
         float: right;
         width: auto;
         flex-grow: 1;
@@ -66,36 +43,20 @@ body {
             font-size: $xxlSize;
             padding-right: 5px;
         }
-        .item-2:nth-child(2) {
+        .item-2:nth-child(3) {
             display: none;
         }
     }
     .item {
         justify-content: flex-start;
     }
-    ul {
-        a {
-            text-decoration: none;
-            color: $accent-white;
-        }
-        a:hover {
-            color: $accent-md;
-        }
-        li {
-            font-size: $xlSize;
-            display: inline;
-        }
-    }
 }
 
-@media all and (min-width: 0) and (max-width: 360px) and (orientation: portrait) {
-    .nav-container {
+@media all and (min-width: 0) and (max-width: 360px) {
+    #nav-container {
         display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
         padding: 0px;
-        font-family: $font-barlow;
-        .nav-logo {
+        #nav-logo {
             text-align: center;
             float: left;
             img {
@@ -103,22 +64,38 @@ body {
                 padding: 5px;
             }
         }
-        .nav-left {
+        #nav-left {
             order: 3;
-            background: $primary-dk;
             line-height: 8px;
+            background: $accent-md;
+            flex-grow: 1;
+            padding-left: 1.5em;
+            a,
+            a:active,
+            a:visited {
+                border: $accent-white;
+                cursor: pointer;
+            }
         }
-        .nav-right {
+        #nav-right {
             order: 0;
             .item-2:nth-child(2) {
                 display: initial;
             }
-            .item-2:nth-child(3) {
+            .item-2:nth-child(4) {
                 display: none;
             }
-            a:hover {
-                color: $primary-dk;
-            }
         }
+    }
+}
+
+// Footer
+footer {
+    mat-toolbar {
+        background-color: $grey-dk;
+        font-size: $xxsSize;
+        margin: 0 auto;
+        justify-content: center;
+        color: $accent-white;
     }
 }
