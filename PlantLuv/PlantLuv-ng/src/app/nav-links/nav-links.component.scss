@@ -2,7 +2,7 @@
 @import '../app.theme.variables.scss';
 @import '../app.component.scss';
 #nav-left {
-    justify-content: flex-start;
+    @include debug;
     a,
     a:link,
     a:visited {
@@ -19,6 +19,7 @@
 }
 
 ul {
+    padding: 0;
     li:first-child {
         a:after {
             padding: 0 0.5em;

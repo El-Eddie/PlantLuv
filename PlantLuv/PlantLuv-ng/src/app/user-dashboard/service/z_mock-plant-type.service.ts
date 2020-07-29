@@ -53,7 +53,7 @@ export class MockPlantTypeService extends PlantTypeService {
         soilPH: "Slightly Acidic",
         waterType: "Any",
         waterFrequency: "When soil becomes dry",
-        toxisity: ['cats','dogs'],
+        toxisity: ['Cats','Dogs'],
         dificulty: "Easy",
       },
       {
@@ -77,7 +77,7 @@ export class MockPlantTypeService extends PlantTypeService {
       soilPH: "Slightly Acidic",
       waterType: "Any",
       waterFrequency: "When soil becomes dry",
-      toxisity: ['cats','dogs'],
+      toxisity: ['Cats','Dogs'],
       dificulty: "Easy",
       },
       {
@@ -101,7 +101,7 @@ export class MockPlantTypeService extends PlantTypeService {
       soilPH: "Any",
       waterType: "Distilled",
       waterFrequency: "Always keep moist",
-      toxisity: ['cats','dogs'],
+      toxisity: ['Small Animals','Cats'],
       dificulty: "Easy",
       },
       {
@@ -125,7 +125,7 @@ export class MockPlantTypeService extends PlantTypeService {
       soilPH: "Slightly Acidic",
       waterType: "Any",
       waterFrequency: "Water from bottom",
-      toxisity: ['safe'],
+      toxisity: ['Pet-Safe'],
       dificulty: "Easy",
       },
       {
@@ -149,7 +149,7 @@ export class MockPlantTypeService extends PlantTypeService {
         soilPH: "Slightly Acidic",
         waterType: "Any",
         waterFrequency: "When soil becomes dry",
-        toxisity: ['safe'],
+        toxisity: ['Pet-Safe'],
         dificulty: "Easy",
       },
     ]

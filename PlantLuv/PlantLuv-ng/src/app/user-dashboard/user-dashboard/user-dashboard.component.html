@@ -22,13 +22,14 @@
               </button>
 
             <button mat-mini-fab matTooltip="Mark All Plants Fertalized" [matTooltipShowDelay]="tooltipDelay " [matTooltipHideDelay]="tooltipDelay">
-              <span class="material-icons ">
-                emoji_nature
+              <span class="material-icons">
+                filter_vintage
                 </span>
             </button>
         </div>
     </div>
-    <div id="dash-main ">
+    <div id="dash-main">
         <app-plant-card *ngFor="let plant of (plantList$ | async); trackBy:trackByPlantId " [plant]="plant " (waterPlantEvent)="waterPlant($event) " (fertalizePlantEvent)="fertalizePlant($event) " (deletePlantEvent)="deletePlant($event)
                 " (viewCareSheetEvent)="displayDetailsCard($event) " (updatePlant)="updatePlant($event) "></app-plant-card>
     </div>
+</div>

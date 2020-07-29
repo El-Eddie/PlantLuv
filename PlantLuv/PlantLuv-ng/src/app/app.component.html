@@ -1,34 +1,38 @@
 <header>
     <div id="nav-container">
         <div id="nav-logo">
-            <a href="http://plantluv.com"><img src="assets/img/logo-white.png"></a>
+            <a href="http://plantluv.net"><img src="assets/img/logo-white.png"></a>
         </div>
         <div id="nav-left">
             <app-nav-links></app-nav-links>
         </div>
         <div id="nav-right">
             <ul>
-                <li class="item-2"><a href=" "><span class="material-icons">
+                <li class="item-2 icon-help"><a href=" "><span class="material-icons" title="Help">
                   help_outline
                   </span>
                 </a>
                 </li>
-                <li class="item-2"><a href=" "><span class="material-icons">
+                <li class="item-2 icon-settings"><a href=" " (click)="openUserSettings()" title="Settings"><span class="material-icons">
+                  settings
+                  </span>
+                </a>
+                </li>
+                <li class="item-2 icon-admin"><a href=" "><span class="material-icons" title="Admin Panel">
                   admin_panel_settings
                   </span>
                 </a>
                 </li>
-                <li class="item-2"><a href=" "><span class="material-icons">
+                <li class="item-2 icon-logout"><a href=" "><span class="material-icons" title="Logout">
                   power_settings_new
                   </span>
                   </a>
                 </li>
 
-                <li class="item-2 logout"><a href=" ">Logout</a></li>
+                <li class="item-2 button-logout"><a href=" ">Logout</a></li>
             </ul>
         </div>
     </div>
-    <!--<button id="settings-button " (click)="openUserSettings() "><mat-icon>settings</mat-icon></button>-->
 </header>
 <main>
     <router-outlet></router-outlet>

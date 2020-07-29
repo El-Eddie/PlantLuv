@@ -1,21 +1,18 @@
 <mat-card class="plant-card">
     <div class='thumbnail-container'>
         <div class="thumbnail">
-            <img src={{plant.thumbnailURL}} alt="Photo of a {{plant.commonName}}" />
+            <img src={{plant.thumbnailURL}} />
         </div>
         <div class='thumbnail-icons-container'>
-            <!-- <button mat-icon-button aria-label="toggle favorite" (click)="toggleFavorite(plant.plantID)" matTooltip="Toggle Favorite"> -->
-            <button mat-icon-button aria-label="toggle favorite" (click)="toggleFavorite()" matTooltip="Toggle as a favorite">
+            <button mat-icon-button aria-label="toggle favorite" (click)="toggleFavorite()" matTooltip="Toggle Favorite">
             <mat-icon>{{plant.isFavorite | favoriteIcon}}</mat-icon>
         </button>
 
-            <!-- <button mat-icon-button aria-label="toggle notifications" (click)="toggleAlerts(plant.plantID)" matTooltip="Toggle Notification"> -->
-            <button mat-icon-button aria-label="toggle notifications" (click)="toggleAlerts()" matTooltip="Toggle notifications for this plant">
+            <button mat-icon-button aria-label="toggle notifications" (click)="toggleAlerts()" matTooltip="Toggle Notification">
             <mat-icon>{{plant.receiveNotifications | notificationIcon}}</mat-icon>
         </button>
         </div>
         <div class="thumnails-additional">
-            <!-- <button *ngIf="plant.imageIDs.length" mat-icon-button aria-label="view photos" (click)="triggerSlideshow(plant.plantID)" matTooltip="View pictures of this plant"> -->
             <button *ngIf="plant.imageIDs && plant.imageIDs.length" mat-icon-button aria-label="view photos" (click)="triggerSlideshow(plant.plantId)" matTooltip="View pictures of this plant">
             <mat-icon>more_horiz</mat-icon>
         </button>
@@ -43,7 +40,7 @@
                 </div>
 
                 <div class='plant-item-icon' *ngFor="let animal of plant.toxisity">
-                    <mat-icon class="info-icon" svgIcon="{{animal | toxisityIcon}}" matTooltip="Toxic to {{animal}}"></mat-icon>
+                    <mat-icon class="info-icon" svgIcon="{{animal | toxisityIcon}}" matTooltip="{{animal}}"></mat-icon>
                     <span class=cdk-visually-hidden>This plant is toxic to {{plant.toxisity}}.</span>
                 </div>
             </div>
@@ -70,7 +67,6 @@
                     <mat-icon class="info-icon" svgIcon="{{plant.lightLevel | lightLevelIcon}}" matTooltip="{{plant.lightLevel}} Light"></mat-icon>
                     <span class=cdk-visually-hidden>This plant needs a {{plant.lightLevel}} amount of light.</span>
                 </div>
-
                 <div class='plant-pets' *ngFor="let animal of plant.toxisity">
                     <mat-icon class="info-icon" svgIcon="{{animal | toxisityIcon}}" matTooltip="Toxic to {{animal}}"></mat-icon>
                     <span class=cdk-visually-hidden>This plant is toxic to {{plant.toxisity}}.</span>
@@ -82,6 +78,7 @@
             </div> -->
         </mat-card-content>
     </div>
+
 
     <div class="bottom-actions">
         <button class="action-button" mat-raised-button (click)="waterPlant(plant.plantId)">
@@ -95,36 +92,6 @@
             emoji_nature
             </span>
         <!-- <mat-icon class="action-icon" svgIcon="action-fertalize"></mat-icon> -->
-<!-- =======
-    <mat-card-content class="mat-card-content plant-card-content">
-      <span class="plant-name lattin-name">{{plant.lattinName}}</span>
-      <div class="plant-icons">
-        <mat-icon  class="info-icon" svgIcon="{{plant.lightLevel | lightLevelIcon}}"
-          matTooltip="This plant needs a {{plant.lightLevel}} amount of light."></mat-icon>
-          <span class=cdk-visually-hidden>This plant needs a {{plant.lightLevel}} amount of light.</span>
-      </div>
-
-      <span class="plant-name common-name" *ngIf="plant.nickName && plant.nickName !=''; else noNickname">{{ plant.nickName}}</span>
-      <ng-template #noNickname>
-        <span class="plant-name common-name">{{plant.commonName}}</span>
-      </ng-template>
-
-      <div class='plant-icons' *ngFor="let animal of plant.toxisity">
-        <mat-icon class="info-icon" svgIcon="{{animal | toxisityIcon}}"
-          matTooltip="Toxic to {{animal}}"></mat-icon>
-          <span class=cdk-visually-hidden>This plant is toxic to {{plant.toxisity}}.</span>
-      </div>
-      <div class="plant-schedule">Last watered: {{plant.lastWatered | date:'M/d h:mm a'}}</div>
-      <div class="plant-schedule">Last fertalized: {{plant.lastFertalized | date:'M/d h:mm a'}}</div>
-    </mat-card-content>
-
-    <div class="bottom-actions">
-      <button class="action-button" mat-raised-button (click)="waterPlant(plant.plantId)">
-        <mat-icon class="action-icon" svgIcon="action-watering"></mat-icon>
-      </button>
-        <button class="action-button" mat-raised-button (click)="fertalizePlant(plant.plantId)">
-        <mat-icon class="action-icon" svgIcon="action-fertalize"></mat-icon>
->>>>>>> dev -->
       </button>
         <button class="menu-button" mat-icon-button color="accent" [matMenuTriggerFor]="menu">
         <mat-icon>more_vert</mat-icon></button>
@@ -135,11 +102,15 @@
 <mat-menu #menu="matMenu" xPosition="before" yPosition="above">
     <button mat-menu-item (click)="openCareSheet()">
       <mat-icon>info</mat-icon>
-      <span>Care sheet info</span>
+      <span>Infomation</span>
     </button>
     <button mat-menu-item (click)="renamePlant()">
       <mat-icon>label</mat-icon>
-      <span>Change nickname</span>
+      <span>Rename</span>
+    </button>
+    <button mat-menu-item (click)="renamePlant()">
+      <mat-icon>edit</mat-icon>
+      <span>Edit</span>
     </button>
     <button mat-menu-item (click)="confirmDelete()">
       <mat-icon color="warn">cancel</mat-icon>

@@ -50,7 +50,7 @@ export class MockPlantService extends PlantService {
       imageIDs: [],
       isPublic: false,
       lightLevel: 'Med',
-      toxisity: ['safe'],
+      toxisity: ['Pet-Safe'],
       isFavorite: false,
       ...plant,
     };
@@ -148,7 +148,7 @@ export class MockPlantService extends PlantService {
         isPublic: true,
         isFavorite: true,
         lightLevel: 'Low',
-        toxisity: ['cats'],
+        toxisity: ['Cats'],
       },
       {
         plantId: 2,
@@ -170,7 +170,7 @@ export class MockPlantService extends PlantService {
         isPublic: true,
         isFavorite: false,
         lightLevel: 'Medium',
-        toxisity: ['cats'],
+        toxisity: ['Cats'],
       },
       {
         plantId: 12,
@@ -192,7 +192,7 @@ export class MockPlantService extends PlantService {
         isPublic: true,
         isFavorite: false,
         lightLevel: 'Medium',
-        toxisity: ['cats'],
+        toxisity: ['Cats'],
       },
       {
         plantId: 3,
@@ -214,7 +214,7 @@ export class MockPlantService extends PlantService {
         isPublic: false,
         isFavorite: false,
         lightLevel: 'Low/Medium',
-        toxisity: ['cats'],
+        toxisity: ['Cats'],
       },
       {
         plantId: 4,
@@ -259,7 +259,7 @@ export class MockPlantService extends PlantService {
         isFavorite: true,
         lightLevel: 'Low/Medium',
         // toxisity: ['none'],
-        toxisity: [],
+        toxisity: ['Pet-Safe'],
       },
       {
         plantId: 6,
@@ -281,7 +281,7 @@ export class MockPlantService extends PlantService {
         isPublic: false,
         isFavorite: false,
         lightLevel: 'Medium',
-        toxisity: ['dogs'],
+        toxisity: ['Dogs'],
       },
       {
         plantId: 7,
@@ -304,7 +304,7 @@ export class MockPlantService extends PlantService {
         isFavorite: false,
         lightLevel: 'Medium/High',
         //toxisity: ['Cats', 'dogs'],
-        toxisity: ['Cats', 'dogs'],
+        toxisity: ['Cats', 'Dogs'],
       },
       {
         plantId: 8,
@@ -327,7 +327,7 @@ export class MockPlantService extends PlantService {
         isFavorite: true,
         lightLevel: 'High',
         // toxisity: ['none'],
-        toxisity: [],
+        toxisity: ['Pet-Safe'],
       },
       {
         plantId: 9,
@@ -349,7 +349,7 @@ export class MockPlantService extends PlantService {
         isPublic: true,
         isFavorite: false,
         lightLevel: 'Medium/High',
-        toxisity: ['cats'],
+        toxisity: ['Small-Animals'],
       },
     ]
   }

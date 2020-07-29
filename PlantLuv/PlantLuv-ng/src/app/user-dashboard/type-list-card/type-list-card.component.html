@@ -1,11 +1,28 @@
+<!-- <mat-card class='type-card' (click)="typeDetails()">
+    <div class='thumbnail-container'>
+        <img class='thumbnail' src={{type.thumbnailURL}}>
+    </div>
+    <mat-card-title>
+        {{type.commonName}}
+    </mat-card-title>
+    <mat-card-subtitle>
+        {{type.lattinName}}
+    </mat-card-subtitle>
+</mat-card> -->
+
+
 <mat-card class='type-card' (click)="typeDetails()">
-  <div class='thumbnail-container'>
-    <img class='thumbnail' src={{type.thumbnailURL}}>
-  </div>
-  <mat-card-title>
-    {{type.commonName}}
-  </mat-card-title>
-  <mat-card-subtitle>
-    {{type.lattinName}}
-  </mat-card-subtitle>
+    <div class='thumbnail-container'>
+        <div class="thumbnail">
+            <img src={{type.thumbnailURL}}>
+        </div>
+    </div>
+    <div class="plant-content">
+        <mat-card-content class="mat-card-content plant-card-content">
+            <div class="plant-title">
+                <h5>{{type.lattinName}}</h5>
+                <h3>{{type.commonName}}</h3>
+            </div>
+        </mat-card-content>
+    </div>
 </mat-card>

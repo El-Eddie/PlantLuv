@@ -1,20 +1,83 @@
-
 <div id='details-container'>
-  <div class='thumbnail-container'>
-    <img src={{type.thumbnailURL}}>
-  </div>
-  <h1>{{type.commonName}}</h1>
-  <h2>{{type.lattinName}}</h2>
-  <p>Dificulty level: {{type.dificulty}}</p>
-  <p class='description-container'>Description:<br/>{{type.description}}</p>
-  <p>Required light level: {{type.lightLevel}}</p>
-  <p>Required humidity: {{type.humidityLevel}}</p>
-  <p>Watering frequency: {{type.waterFrequency}}</p>
-  <p>fertalizing frequency: {{type.fertalizerFrequency}}</p>
-  <p>Toxic to: {{type.toxisity}}</p>
-  <button mat-mini-fab color="" matTooltip="Add a new plant to your home"
-    [matTooltipShowDelay]="tooltipDelay" [matTooltipHideDelay]="tooltipDelay"
-    (click)="addPlant()">
+    <!-- <div class='thumbnail-container'>
+        <img src={{type.thumbnailURL}}>
+    </div>
+    <h1>{{type.commonName}}</h1>
+    <h2>{{type.lattinName}}</h2>
+    <p>Dificulty level: {{type.dificulty}}</p>
+    <p class='description-container'>Description:<br/>{{type.description}}</p>
+    <p>Required light level: {{type.lightLevel}}</p>
+    <p>Required humidity: {{type.humidityLevel}}</p>
+    <p>Watering frequency: {{type.waterFrequency}}</p>
+    <p>fertalizing frequency: {{type.fertalizerFrequency}}</p>
+    <p>Toxic to: {{type.toxisity}}</p>
+    <button mat-mini-fab color="" matTooltip="Save Plant to Collection" [matTooltipShowDelay]="tooltipDelay" [matTooltipHideDelay]="tooltipDelay" (click)="addPlant()">
     <mat-icon color="primary">add_circle_outline</mat-icon>
-  </button>
+  </button> -->
+    <mat-card class="plant-card">
+        <div class='thumbnail-container'>
+            <div class="thumbnail">
+                <img src={{type.thumbnailURL}}>
+            </div>
+        </div>
+        <div class="plant-content">
+            <mat-card-content class="mat-card-content plant-card-content">
+                <div class="plant-title">
+                    <h5>{{type.lattinName}}</h5>
+                    <h3>{{type.commonName}}</h3>
+                </div>
+
+                <div class="plant-icons">
+                    <div class="plant-item-label">
+                        Light Requirement:
+                    </div>
+
+                    <div class="plant-item-icon">
+                        <mat-icon class="info-icon" svgIcon="{{type.lightLevel | lightLevelIcon}}" matTooltip="{{type.lightLevel}} Light"></mat-icon>
+                        <span class=cdk-visually-hidden>{{type.lightLevel}}</span>
+                    </div>
+                </div>
+                <div class="plant-icons">
+                    <div class="plant-item-label">
+                        Toxic To:
+                    </div>
+
+                    <div class='plant-item-icon' *ngFor="let animal of type.toxisity">
+                        <mat-icon class="info-icon" svgIcon="{{animal | toxisityIcon}}" matTooltip="{{animal}}"></mat-icon>
+                        <span class=cdk-visually-hidden>This plant is toxic to {{type.toxisity}}.</span>
+                    </div>
+                </div>
+                <div class="plant-icons">
+                    <div class="plant-item-label">
+                        Humidity Requirement:
+                    </div>
+
+                    <div class="plant-item-icon">
+                        <span>{{type.humidityLevel}}</span>
+                    </div>
+                </div>
+                <div class="plant-icons">
+                    <div class="plant-item-label">
+                        Water Frequency:
+                    </div>
+
+                    <div class="plant-item-icon">
+                        <span>{{type.waterFrequency}}</span>
+                    </div>
+                </div>
+                <div class="plant-icons">
+                    <div class="plant-item-label">
+                        Fertalization Frequency:
+                    </div>
+
+                    <div class="plant-item-icon">
+                        <span>{{type.fertalizerFrequency}}</span>
+                    </div>
+                </div>
+            </mat-card-content>
+        </div>
+        <button mat-mini-fab color="" matTooltip="Save Plant to Collection" [matTooltipShowDelay]="tooltipDelay" [matTooltipHideDelay]="tooltipDelay" (click)="addPlant()">
+          <mat-icon color="primary">add_circle_outline</mat-icon>
+        </button>
+    </mat-card>
 </div>
