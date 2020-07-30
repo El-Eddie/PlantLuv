@@ -62,20 +62,6 @@
                     {{plant.lastFertalized | date:'MMM d, y'}}
                 </div>
             </div>
-            <!-- <div class="plant-icons">
-                <div class="plant-lights">
-                    <mat-icon class="info-icon" svgIcon="{{plant.lightLevel | lightLevelIcon}}" matTooltip="{{plant.lightLevel}} Light"></mat-icon>
-                    <span class=cdk-visually-hidden>This plant needs a {{plant.lightLevel}} amount of light.</span>
-                </div>
-                <div class='plant-pets' *ngFor="let animal of plant.toxisity">
-                    <mat-icon class="info-icon" svgIcon="{{animal | toxisityIcon}}" matTooltip="Toxic to {{animal}}"></mat-icon>
-                    <span class=cdk-visually-hidden>This plant is toxic to {{plant.toxisity}}.</span>
-                </div>
-            </div> -->
-            <!-- <div class="plant-past-schedule">
-                <div>Last Watered: {{plant.lastWatered | date:'M/d'}}</div>
-                <div>Last Fertalized: {{plant.lastFertalized | date:'M/d'}}</div>
-            </div> -->
         </mat-card-content>
     </div>
 
@@ -84,13 +70,13 @@
         <button class="action-button" mat-raised-button (click)="waterPlant(plant.plantId)">
           <span class="material-icons">
             opacity
-            </span>
+            </span> Water
         <!-- <mat-icon class="action-icon" svgIcon="action-watering"></mat-icon> -->
       </button>
         <button class="action-button" mat-raised-button (click)="fertalizePlant(plant.plantId)">
           <span class="material-icons">
-            emoji_nature
-            </span>
+            landscape
+            </span> Fertalize
         <!-- <mat-icon class="action-icon" svgIcon="action-fertalize"></mat-icon> -->
       </button>
         <button class="menu-button" mat-icon-button color="accent" [matMenuTriggerFor]="menu">

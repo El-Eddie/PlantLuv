@@ -1,52 +1,143 @@
 @import '../../app.component.scss';
-#care-container {
-    margin: 0 auto;
-    @include debug;
-    border: 5px;
-    #dash-toolbar {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        background: $grey-lt;
+
+.type-card {
+  border: 1px solid $grey-lt;
+  margin: 0.1em;
+
+  .thumbnail-container {
+    width: 335px;
+    height: 250px;
+    border: 1px solid $border-color;
+    box-sizing: content-box;
+    background-color: $accent-white;
+
+    @media all and (min-width: 0) and (max-width: 537px) {
+      width: 280px;
+    }
+
+    .thumbnail {
+      width: 335px;
+      height: 250px;
+      position: absolute;
+      overflow: hidden;
+      background: url('/assets/img/plants/placeholder.png') 0 0;
+
+      img {
         width: 100%;
-        #dash-filter {
-            flex-grow: 1;
-            padding: 1em;
-            @media all and (min-width: 0) and (max-width: 360px) {
-                padding: 0.35em 0.25em;
-            }
-        }
-        #dash-controls {
-            padding: 1em;
-            @media all and (min-width: 0) and (max-width: 360px) {
-                padding: 0.35em 0 0 0.25em;
-                width: 125px;
-            }
-            .mat-mini-fab {
-                box-shadow: none;
-                border-radius: 0;
-                margin-top: -8px;
-                background: transparent;
-            }
-            button {
-                background: $grey-lt;
-                .material-icons {
-                    border: 1px solid $grey-dk;
-                    font-size: $xhlSize;
-                    flex-shrink: 1;
-                }
-                .material-icons:hover {
-                    color: $accent-md;
-                }
-            }
-        }
+      }
+
+      @media all and (min-width: 0) and (max-width: 537px) {
+        width: 280px;
+        background: url('/assets/img/plants/placeholder-mobile.png') 0 0;
+      }
     }
-    #dash-main {
-        background: $grey-xlt;
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        padding: 0.5em;
-        justify-content: center
+
+    .thumbnail-icons-container {
+      position: absolute;
+      top: 18px;
+      padding: 0;
+
+      button {
+        .material-icons:hover {
+          color: $accent-md;
+        }
+      }
     }
+
+    .thumnails-additional {
+      position: relative;
+      margin-left: auto;
+      margin-right: auto;
+      left: 0;
+      right: 0;
+      text-align: center;
+      top: 86%;
+
+      .material-icons {
+        font-size: $xxhlSize;
+        color: $accent-md;
+      }
+    }
+  }
+
+  .type-content {
+    .type-title {
+      h5 {
+        color: $grey-md;
+        padding: 0.15em;
+        margin: 10px 0 0 0;
+        font-weight: normal;
+      }
+
+      h3 {
+        padding: 0.15em 0.15em 0.15em 0;
+        margin: 0;
+        font-size: $xllSize;
+        font-family: 'Barlow Semi Condensed';
+        text-transform: capitalize;
+      }
+    }
+  }
+
+  .type-icons {
+    display: flex;
+    flex-flow: row wrap;
+    border-top: 1px solid $grey-lt;
+    height: 28px;
+    font-size: $xsSize;
+    padding-top: 0.25em;
+    vertical-align: middle;
+
+    .type-item-label {
+      flex-grow: 1;
+      color: $grey-md;
+      vertical-align: middle;
+      padding-top: 0.35em;
+    }
+
+    .type-item-icon:last-child {
+      padding: 0;
+      font-size: $xsSize;
+    }
+
+    .label-text {
+      margin-top: 0.35em;
+    }
+  }
+
+  .bottom-actions {
+    background-color: $grey-dk;
+    color: $accent-white;
+    padding: 0;
+
+    .mat-raised-button {
+      box-shadow: none;
+      background: transparent;
+    }
+
+    .material-icons {
+      font-size: $xxlSize;
+      background: transparent;
+    }
+
+    .action-button {
+      width: 50%;
+      border-radius: 0;
+      color: $accent-white;
+      padding: 0.45em;
+    }
+
+    .action-button:hover {
+      background-color: $accent-md;
+      border-radius: 0;
+    }
+
+    .menu-button {
+      color: $accent-white
+    }
+
+    .menu-button:hover {
+      color: $accent-md;
+    }
+  }
 }

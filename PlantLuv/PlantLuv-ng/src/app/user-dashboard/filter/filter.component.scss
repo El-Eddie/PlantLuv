@@ -1,16 +1,18 @@
 @import '../../app.component.scss';
+
 input {
-    border: 1px solid $accent-dk;
-    padding: 0.5em;
-    width: 100%;
-    margin: 0;
-    font-size: $lSize;
-    @media all and (min-width: 0) and (max-width: 360px) {
-        width: 95%;
-    }
+  border: 1px solid $accent-dk;
+  padding: 0.5em;
+  width: 100%;
+  margin: 0;
+  font-size: $lSize;
+
+  @media all and (min-width: 0) and (max-width: 537px) {
+    width: 95%;
+  }
 }
 
 input:focus {
-    color: $accent-black;
-    text-transform: capitalize;
+  color: $accent-black;
+  text-transform: capitalize;
 }

@@ -86,7 +86,7 @@ export class AccountService {
   private verifyUser(user: UserSummary): Observable<UserSummary> {
     const model = {};
     const options = !user || !user.jwtToken ? {}
-      : { headers : { Authorization: 'Bearer ' + user.jwtToken }};
+      : { headers: { Authorization: 'Bearer ' + user.jwtToken } };
     return this.http.post<UserSummary>(
       this.baseUrl + 'verify',
       model,
@@ -101,7 +101,7 @@ export class AccountService {
       },
       resp => {
         console.error(resp);
-        this.snackBar.open(resp.error.message, 'Ok');
+        this.snackBar.open(resp.error.message, 'Login Successful', { duration: 3000 });
         if (navigate) {
           this.router.navigate(['unauthorized']);
         }

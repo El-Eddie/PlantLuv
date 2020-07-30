@@ -1,24 +1,11 @@
-<!-- <div id="dashboard-container">
-    <div id="dashboard-controls">
-        <app-filters (filterChangeEvent)="updateFilter($event)" [placeholder_text]="'Filter your plant list...'"></app-filters>
-        <span class="dashboard-buttons">
-      <button mat-mini-fab color="" matTooltip="Suggest a new plant type" [matTooltipShowDelay]="tooltipDelay" [matTooltipHideDelay]="tooltipDelay">
-        <mat-icon color="primary">add_circle_outline</mat-icon>
-      </button>
-    </span>
-    </div>
-    <div class="card-container">
-        <app-type-card *ngFor="let type of typeList$ | async" [type]="type" (displayDetailsEvent)="displayDetailsCard($event)"></app-type-card>
-    </div>
-</div> -->
+<div id="info-container">
+    <div id="info-toolbar">
+        <div id="info-filter">
+            <app-filters (filterChangeEvent)="updateFilter($event)" [placeholder_text]="'Filter Plant List...'">
 
-
-<div id="care-container">
-    <div id="dash-toolbar">
-        <div id="dash-filter">
-            <app-filters (filterChangeEvent)="updateFilter($event)" [placeholder_text]="'Filter Plant List...'"></app-filters>
+            </app-filters>
         </div>
-        <div id="dash-controls">
+        <div id="info-controls">
             <button mat-mini-fab matTooltip="Suggest New Plant" [matTooltipShowDelay]="tooltipDelay" [matTooltipHideDelay]="tooltipDelay">
             <span class="material-icons">
               add_circle
@@ -26,7 +13,7 @@
           </button>
         </div>
     </div>
-    <div id="dash-main">
+    <div id="info-main">
         <app-type-card *ngFor="let type of typeList$ | async" [type]="type" (displayDetailsEvent)="displayDetailsCard($event)"></app-type-card>
     </div>
 </div>

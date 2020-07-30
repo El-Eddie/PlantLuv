@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Output, EventEmitter  } from '@angular/core';
+import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
 import { PlantType } from '../models/plant-type.model'
 import { ImageDialogComponent } from '../image-dialog/image-dialog.component'
 import { PhotoData } from '../models/photo-data.model'
@@ -12,7 +12,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 export class TypeDetailsComponent implements OnInit {
 
-  tooltipDelay: number =250
+  tooltipDelay: number = 250
 
   constructor(
     public dialogRef: MatDialogRef<TypeDetailsComponent>,
@@ -21,8 +21,8 @@ export class TypeDetailsComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  addPlant(){
-    console.log('beep')
-    this.dialogRef.close({addUserPlant: true});
+  addPlant() {
+    this.dialogRef.close({ addUserPlant: true });
   }
+  cancelPlant() { }
 }

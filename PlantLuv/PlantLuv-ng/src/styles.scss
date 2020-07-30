@@ -2,55 +2,70 @@
 
 @import './app//app.theme.scss';
 @import './app/app.colors.scss';
+
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600&display=swap');
+
 html,
 body {
-    min-height: 100vh;
-    scroll-behavior: smooth;
-    border: 0;
-    align-items: center;
-    padding: 0;
-    margin: 0;
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  border: 0;
+  align-items: center;
+  padding: 0;
+  margin: 0;
 }
 
 a,
 a:link,
 a:visited {
-    text-decoration: none;
-    color: $accent-white;
-    cursor: pointer;
+  text-decoration: none;
+  color: $accent-white;
+  cursor: pointer;
 }
 
 a:hover {
-    color: $accent-md;
+  color: $accent-md;
 }
 
 ul li {
-    font-size: $xlSize;
-    display: inline;
+  font-size: $xlSize;
+  display: inline;
+}
+
+// Login snackbar
+div.cdk-overlay-container div.cdk-global-overlay-wrapper div#cdk-overlay-0.cdk-overlay-pane snack-bar-container.mat-snack-bar-container.ng-tns-c204-0.ng-trigger.ng-trigger-state.mat-snack-bar-center.ng-star-inserted simple-snack-bar.mat-simple-snackbar.ng-star-inserted {
+
+  display: block;
+  justify-content: center;
+  align-items: center;
+  line-height: 20px;
+  opacity: 1;
+  text-align: center;
 }
 
 
 /** Fix the wrap issue with checkbox */
 
 .mat-checkbox-layout {
-    white-space: normal !important;
+  white-space: normal !important;
 }
 
 
 /** keep checkbox on first line */
 
 .mat-checkbox-inner-container {
-    margin-top: 4px !important;
+  margin-top: 4px !important;
 }
 
 @media all and (-ms-high-contrast: none),
 (-ms-high-contrast: active) {
-    /** wrap label ie */
-    .mat-checkbox-layout {
-        display: block !important;
-    }
-    .mat-checkbox-inner-container {
-        margin-top: 0 !important;
-    }
+
+  /** wrap label ie */
+  .mat-checkbox-layout {
+    display: block !important;
+  }
+
+  .mat-checkbox-inner-container {
+    margin-top: 0 !important;
+  }
 }

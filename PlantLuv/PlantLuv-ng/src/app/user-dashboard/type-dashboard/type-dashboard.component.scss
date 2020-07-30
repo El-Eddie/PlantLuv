@@ -1,0 +1,61 @@
+@import '../../app.component.scss';
+
+#info-container {
+  margin: 0 auto;
+
+  #info-toolbar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    background: $grey-lt;
+    width: 100%;
+
+    #info-filter {
+      flex-grow: 1;
+      padding: 1em;
+
+      @media all and (min-width: 0) and (max-width: 537px) {
+        padding: 0.35em 0.25em;
+      }
+    }
+
+    #info-controls {
+      padding: 1em;
+
+      @media all and (min-width: 0) and (max-width: 537px) {
+        padding: 0.35em 0 0 0.25em;
+        width: 45px;
+      }
+
+      .mat-mini-fab {
+        box-shadow: none;
+        border-radius: 0;
+        margin-top: -8px;
+        background: transparent;
+      }
+
+      button {
+        background: $grey-lt;
+
+        .material-icons {
+          border: 1px solid $grey-dk;
+          font-size: $xhlSize;
+          flex-shrink: 1;
+        }
+
+        .material-icons:hover {
+          color: $accent-md;
+        }
+      }
+    }
+  }
+
+  #info-main {
+    background: $grey-xlt;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0.5em;
+    justify-content: center
+  }
+}
