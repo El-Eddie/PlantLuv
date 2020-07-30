@@ -31,7 +31,7 @@
 
                 <div class="plant-item-icon">
                     <mat-icon class="info-icon" svgIcon="{{plant.lightLevel | lightLevelIcon}}" matTooltip="{{plant.lightLevel}} Light"></mat-icon>
-                    <span class=cdk-visually-hidden>This plant needs a {{plant.lightLevel}} amount of light.</span>
+                    <span class=cdk-visually-hidden>{{plant.lightLevel}}</span>
                 </div>
             </div>
             <div class="plant-icons">
@@ -41,7 +41,7 @@
 
                 <div class='plant-item-icon' *ngFor="let animal of plant.toxisity">
                     <mat-icon class="info-icon" svgIcon="{{animal | toxisityIcon}}" matTooltip="{{animal}}"></mat-icon>
-                    <span class=cdk-visually-hidden>This plant is toxic to {{plant.toxisity}}.</span>
+                    <span class=cdk-visually-hidden>{{plant.toxisity}}</span>
                 </div>
             </div>
             <div class="plant-icons">
@@ -55,7 +55,7 @@
             </div>
             <div class="plant-icons">
                 <div class="plant-item-label">
-                    Fertalized Last On:
+                    Fertilized Last On:
                 </div>
 
                 <div class='plant-item-icon label-text'>
@@ -76,7 +76,7 @@
         <button class="action-button" mat-raised-button (click)="fertalizePlant(plant.plantId)">
           <span class="material-icons">
             landscape
-            </span> Fertalize
+            </span> Fertilize
         <!-- <mat-icon class="action-icon" svgIcon="action-fertalize"></mat-icon> -->
       </button>
         <button class="menu-button" mat-icon-button color="accent" [matMenuTriggerFor]="menu">
