@@ -1,29 +1,53 @@
-<div id="dashboard-container">
-  <div id="dashboard-controlls">
-    <app-filters (filterChangeEvent)="updateFilter($event)" [placeholder_text]="'bla'"></app-filters>
-    <span class="dashboard-buttons">
-      <button mat-mini-fab color="" matTooltip="Add a new plant to your home" (click)="addPlant()"
-      [matTooltipShowDelay]="tooltipDelay" [matTooltipHideDelay]="tooltipDelay">
-        <mat-icon color="primary">add_circle_outline</mat-icon>
-      </button>
-      <button mat-mini-fab color="" matTooltip="Water all plants"
-        [matTooltipShowDelay]="tooltipDelay" [matTooltipHideDelay]="tooltipDelay">
-        <mat-icon svgIcon="action-watering"></mat-icon>
-      </button>
-      <button mat-mini-fab color="" matTooltip="Fertalize all plants"
-      [matTooltipShowDelay]="tooltipDelay" [matTooltipHideDelay]="tooltipDelay">
-      <mat-icon svgIcon="action-fertalize"></mat-icon>
-    </button>
-    </span>
-  </div>
-  <div class="card-container">
-    <app-plant-card
-    *ngFor="let plant of (plantList$ | async); trackBy:trackByPlantId"  [plant]="plant"
-    (waterPlantEvent)="waterPlant($event)"
-    (fertalizePlantEvent)="fertalizePlant($event)"
-    (deletePlantEvent)="deletePlant($event)"
-    (viewCareSheetEvent)="displayDetailsCard($event)"
-    (updatePlant)="updatePlant($event)"
-    ></app-plant-card>
-  </div>
+<div id="body-scrollup"></div>
+<div id="dash-container">
+    <div id="dash-toolbar">
+        <div id="dash-filter">
+            <app-filters (filterChangeEvent)="updateFilter($event)" [placeholder_text]="'Filter Plant List...'"></app-filters>
+        </div>
+        <div id="dash-controls">
+            <!-- <button mat-mini-fab matTooltip="Add New Plant" (click)="addPlant()" [matTooltipShowDelay]="tooltipDelay" [matTooltipHideDelay]="tooltipDelay">
+              <span class="material-icons">
+                add_circle
+                </span>
+            </button> -->
+
+            <button mat-mini-fab color="" matTooltip="Sort by:" [matTooltipShowDelay]="tooltipDelay" [matTooltipHideDelay]="tooltipDelay">
+              <span class="material-icons">
+                sort
+                </span>
+            </button>
+            <button mat-mini-fab matTooltip="Mark All Plants Watered" [matTooltipShowDelay]="tooltipDelay " [matTooltipHideDelay]="tooltipDelay ">
+              <span class="material-icons ">
+                opacity
+                </span>
+              </button>
+
+            <button mat-mini-fab matTooltip="Mark All Plants Fertilize" [matTooltipShowDelay]="tooltipDelay " [matTooltipHideDelay]="tooltipDelay">
+              <span class="material-icons">
+                landscape
+                </span>
+            </button>
+        </div>
+    </div>
+    <div id="Page-Header">
+        <div class="item">
+            <h2>My Collection</h2>
+        </div>
+        <div class="item">
+            <button mat-mini-fab matTooltip="Add New Plant" (click)="addPlant()" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
+            <i class="material-icons">add</i> Add New Plant
+          </button>
+        </div>
+    </div>
+    <div id="dash-main">
+        <app-plant-card *ngFor="let plant of (plantList$ | async); trackBy:trackByPlantId " [plant]="plant " (waterPlantEvent)="waterPlant($event) " (fertalizePlantEvent)="fertalizePlant($event) " (deletePlantEvent)="deletePlant($event)
+                " (viewCareSheetEvent)="displayDetailsCard($event) " (updatePlant)="updatePlant($event) "></app-plant-card>
+    </div>
+    <div id="scroll-up">
+        <a href="#" mat-mini-fab>
+            <span class="material-icons">
+          keyboard_arrow_up
+          </span>
+        </a>
+    </div>
 </div>

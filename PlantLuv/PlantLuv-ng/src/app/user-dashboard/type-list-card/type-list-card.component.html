@@ -1,11 +1,65 @@
-<mat-card class='type-card' (click)="typeDetails()">
-  <div class='thumbnail-container'>
-    <img class='thumbnail' src={{type.thumbnailURL}}>
-  </div>
-  <mat-card-title>
-    {{type.commonName}}
-  </mat-card-title>
-  <mat-card-subtitle>
-    {{type.lattinName}}
-  </mat-card-subtitle>
+<!-- <mat-card class='type-card' (click)="typeDetails()">
+    <div class='thumbnail-container'>
+        <img class='thumbnail' src={{type.thumbnailURL}}>
+    </div>
+    <mat-card-title>
+        {{type.commonName}}
+    </mat-card-title>
+    <mat-card-subtitle>
+        {{type.lattinName}}
+    </mat-card-subtitle>
+</mat-card> -->
+
+
+<mat-card class='type-card'>
+    <div class='thumbnail-container'>
+        <div class="thumbnail">
+            <img src={{type.thumbnailURL}}>
+        </div>
+    </div>
+    <div class="type-content">
+        <mat-card-content class="mat-card-content type-card-content">
+            <div class="type-title">
+                <h5>{{type.lattinName}}</h5>
+                <h3>{{type.commonName}}</h3>
+            </div>
+            <div class="type-icons">
+                <div class="type-item-label">
+                    Light Requirement:
+                </div>
+                <div class="type-item-icon">
+                    <mat-icon class="info-icon" svgIcon="{{type.lightLevel | lightLevelIcon}}" matTooltip="{{type.lightLevel}} Light"></mat-icon>
+                </div>
+            </div>
+            <div class="type-icons">
+                <div class="type-item-label">
+                    Difficulty:
+                </div>
+                <div class="type-item-icon">
+                    {{type.dificulty}}
+                </div>
+            </div>
+            <div class="type-icons">
+                <div class="type-item-label">
+                    Toxic To:
+                </div>
+                <div class='type-item-icon' *ngFor="let animal of type.toxisity">
+                    <mat-icon class="info-icon" svgIcon="{{animal | toxisityIcon}}" matTooltip="{{animal}}"></mat-icon>
+
+                </div>
+            </div>
+        </mat-card-content>
+        <div class="bottom-actions">
+            <button class="action-button" mat-raised-button (click)="typeDetails()">
+            <span class="material-icons">
+            fullscreen
+            </span> View Details
+            </button>
+            <button class="action-button" mat-raised-button>
+            <span class="material-icons">
+              save
+              </span> Save
+          </button>
+        </div>
+    </div>
 </mat-card>

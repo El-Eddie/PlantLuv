@@ -1,19 +1,115 @@
-@import '../../app.colors.scss';
-.card-container {
+@import '../../app.component.scss';
+
+#dash-container {
+  margin: 0 auto;
+
+  #dash-toolbar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    background: $grey-lt;
+    width: 100%;
+
+    #dash-filter {
+      flex-grow: 1;
+      padding: 1em;
+
+      @media all and (min-width: 0) and (max-width: 537px) {
+        padding: 0.35em 0.25em;
+      }
+    }
+
+    #dash-controls {
+      padding: 1em;
+
+      @media all and (min-width: 0) and (max-width: 537px) {
+        padding: 0.35em 0 0 0.25em;
+        width: 125px;
+      }
+
+      .mat-mini-fab {
+        box-shadow: none;
+        border-radius: 0;
+        margin-top: -8px;
+        background: transparent;
+      }
+
+      button {
+        background: $grey-lt;
+
+        .material-icons {
+          border: 1px solid $grey-dk;
+          font-size: $xhlSize;
+          flex-shrink: 1;
+        }
+
+        .material-icons:hover {
+          color: $accent-md;
+        }
+      }
+    }
+  }
+
+  #dash-main {
+    background: $grey-xlt;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0.5em;
+    justify-content: center
+  }
+
+  #scroll-up {
+    position: fixed;
+    bottom: 1em;
+    right: 10px;
+  }
+
+  #Page-Header {
+    padding-left: 0.85em;
+    padding: 0;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-}
 
-#dashboard-controlls {
-    margin: 0px 10px;
-    padding-top: 10px;
-    padding-bottom: 5px;
-}
+    div {
+      flex: 1 0 50%;
+      box-sizing: border-box
+    }
 
-//#dashboard-container {}
-.dashboard-buttons {
-    width: 30%;
-    max-width: 200px;
-    display: inline-flex;
+    .item {
+      width: 100%;
+
+      h2 {
+        font-family: "Barlow Semi Condensed";
+        text-transform: capitalize;
+        padding-left: 0.85em;
+        line-height: 0;
+        color: $accent-md;
+      }
+    }
+
+    .item:last-child {
+      text-align: right;
+
+      button {
+        background: $accent-md;
+        border-radius: 2em 0 0 2em;
+        transition: 0.8s;
+        overflow: hidden;
+        color: $accent-white;
+
+        .material-icons {
+          padding-left: 0.3em;
+          padding-right: 0.3em;
+
+        }
+      }
+
+      button:hover {
+        width: 150px;
+        transition: 0.8s;
+        background: $accent-md;
+      }
+    }
+  }
 }

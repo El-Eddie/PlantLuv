@@ -12,12 +12,12 @@ export class TypeListCardComponent implements OnInit {
   @Input() type: PlantType;
   @Output() displayDetailsEvent: EventEmitter<string> = new EventEmitter();
 
-  constructor( ){}
+  constructor() { }
 
-  ngOnInit(){
+  ngOnInit() {
   }
 
-  typeDetails(){
+  typeDetails() {
     this.displayDetailsEvent.emit(this.type.lattinName)
   }
 }

@@ -31,11 +31,12 @@ export class UserDashboardComponent implements OnInit {
     private typeService: PlantTypeService,
     private dialog: MatDialog,
     private snackbar: MatSnackBar,
-    private store: Store<{page: string}>,
+    private store: Store<{ page: string }>,
     private changeDetection: ChangeDetectorRef
   ) {
-    store.pipe(select('page')).subscribe( p => {
-      this.dashboardDisplay$ = p})
+    store.pipe(select('page')).subscribe(p => {
+      this.dashboardDisplay$ = p
+    })
   }
 
   ngOnInit(): void {
@@ -44,13 +45,13 @@ export class UserDashboardComponent implements OnInit {
   }
 
 
-  getLoggedInUser(): string{
+  getLoggedInUser(): string {
     // return localStorage.getItem('currentUser');
     return "user@me.com";
   }
 
 
-  GetUserPlants(id: string){
+  GetUserPlants(id: string) {
     // this.plantList$ = this.plantService.getUserPlants(id);
     this.plantService.getUserPlants(id).subscribe(value => {
       this.plantList$.next(value);
@@ -59,21 +60,21 @@ export class UserDashboardComponent implements OnInit {
   }
 
 
-  trackByPlantId(_, plant: Plant): number{
+  trackByPlantId(_, plant: Plant): number {
     return plant.plantId;
   }
 
 
-  waterPlant(...ids: number[]){
+  waterPlant(...ids: number[]) {
     this.plantService.waterPlant(ids).subscribe((plants: Plant[]) => {
-      if (plants.length > 1){
+      if (plants.length > 1) {
         var message = "Your plants have been marked as watered"
       } else {
         var message = plants[0].nickName ?
-        `${plants[0].nickName} has been marked as watered` :
-        `Your ${plants[0].commonName} has been marked as watered`
+          `${plants[0].nickName} has been marked as watered` :
+          `Your ${plants[0].commonName} has been marked as watered`
       };
-      this.snackbar.open(message, null ,{
+      this.snackbar.open(message, null, {
         duration: this.snackbarDuration
       });
     }, error => {
@@ -82,16 +83,16 @@ export class UserDashboardComponent implements OnInit {
   }
 
 
-  fertalizePlant(...ids: number[]){
+  fertalizePlant(...ids: number[]) {
     this.plantService.fertalizePlant(ids).subscribe((plants: Plant[]) => {
-      if (plants.length > 1){
+      if (plants.length > 1) {
         var message = "Your plants have been marked as fed"
       } else {
-        var message  = plants[0].nickName ?
-        `${plants[0].nickName} has been marked as fed` :
+        var message = plants[0].nickName ?
+          `${plants[0].nickName} has been marked as fed` :
           `Your ${plants[0].commonName} has been marked as fed`
       };
-      this.snackbar.open(message, null ,{
+      this.snackbar.open(message, null, {
         duration: this.snackbarDuration
       });
     }, error => {
@@ -100,20 +101,20 @@ export class UserDashboardComponent implements OnInit {
   }
 
 
-  deletePlant(id: number){
+  deletePlant(id: number) {
     this.plantService.delete(id);
   }
 
 
-  getPlantTypes(criteria: string){
+  getPlantTypes(criteria: string) {
     this.typeList$ = this.typeService.search(criteria)
   }
 
 
-  updateFilter(value: string){}
+  updateFilter(value: string) { }
 
 
-  updatePlant(plant: Plant){
+  updatePlant(plant: Plant) {
     this.plantService.save(plant).subscribe(() => {
     }, error => {
       alert("There was a problem recording your action.\n Please try again later.");
@@ -121,13 +122,13 @@ export class UserDashboardComponent implements OnInit {
   }
 
 
-  displayDetailsCard(type: number){
+  displayDetailsCard(type: number) {
     alert("care sheet goes here!")
   }
 
 
-  addPlant(){
-    this.dialog.open(AddPlantComponent, {data: null });
+  addPlant() {
+    this.dialog.open(AddPlantComponent, { data: null });
   }
 
 }

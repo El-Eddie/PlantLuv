@@ -1,20 +1,82 @@
+<div id="type-container">
+    <mat-dialog-content>
+        <div class="type-title">
+            <h5>{{type.lattinName}}</h5>
+            <h3>{{type.commonName}}</h3>
+        </div>
+        <div class='thumbnail-container'>
+            <div class="thumbnail">
+                <img src={{type.thumbnailURL}}>
+            </div>
+        </div>
+        <div id="type-detail-container">
+            <p>{{type.description}}</p>
+            <div class="type-content">
+                <div class="type-card-content">
+                    <div class="type-icons">
+                        <div class="type-item-label">
+                            Light Requirement:
+                        </div>
+                        <div class="type-item-icon">
+                            <mat-icon class="info-icon" svgIcon="{{type.lightLevel | lightLevelIcon}}" matTooltip="{{type.lightLevel}} Light"></mat-icon>
+                        </div>
+                    </div>
+                    <div class="type-icons">
+                        <div class="type-item-label">
+                            Difficulty:
+                        </div>
+                        <div class="type-item-text-icon">
+                            {{type.dificulty}}
+                        </div>
+                    </div>
+                    <div class="type-icons">
+                        <div class="type-item-label">
+                            Toxic To:
+                        </div>
+                        <div class='type-item-icon' *ngFor="let animal of type.toxisity">
+                            <mat-icon class="info-icon" svgIcon="{{animal | toxisityIcon}}" matTooltip="{{animal}}"></mat-icon>
+                        </div>
+                    </div>
+                    <div class="type-icons">
+                        <div class="type-item-label">
+                            Humidity Requirement:
+                        </div>
+                        <div class="type-item-text-icon">
+                            {{type.humidityLevel}}
+                        </div>
+                    </div>
+                    <div class="type-icons">
+                        <div class="type-item-label">
+                            Watering:
+                        </div>
+                        <div class="type-item-text-icon">
+                            {{type.waterFrequency}}
+                        </div>
+                    </div>
+                    <div class="type-icons">
+                        <div class="type-item-label">
+                            Fertalization Frequency:
+                        </div>
+                        <div class="type-item-text-icon">
+                            {{type.fertalizerFrequency}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-dialog-content>
 
-<div id='details-container'>
-  <div class='thumbnail-container'>
-    <img src={{type.thumbnailURL}}>
-  </div>
-  <h1>{{type.commonName}}</h1>
-  <h2>{{type.lattinName}}</h2>
-  <p>Dificulty level: {{type.dificulty}}</p>
-  <p class='description-container'>Description:<br/>{{type.description}}</p>
-  <p>Required light level: {{type.lightLevel}}</p>
-  <p>Required humidity: {{type.humidityLevel}}</p>
-  <p>Watering frequency: {{type.waterFrequency}}</p>
-  <p>fertalizing frequency: {{type.fertalizerFrequency}}</p>
-  <p>Toxic to: {{type.toxisity}}</p>
-  <button mat-mini-fab color="" matTooltip="Add a new plant to your home"
-    [matTooltipShowDelay]="tooltipDelay" [matTooltipHideDelay]="tooltipDelay"
-    (click)="addPlant()">
-    <mat-icon color="primary">add_circle_outline</mat-icon>
-  </button>
+    <div class="bottom-actions">
+        <button class="action-button" mat-raised-button (click)="cancelPlant()">
+            <span class="material-icons">
+        cancel
+      </span> Cancel
+      </button>
+
+        <button class="action-button" mat-raised-button (click)="addPlant()">
+      <span class="material-icons">
+        save
+        </span> Save
+    </button>
+    </div>
 </div>
