@@ -127,7 +127,7 @@ export class UserDashboardComponent implements OnInit {
 
 
   addPlant(){
-    this.dialog.open(AddPlantComponent, {data: null });
+    this.dialog.open(AddPlantComponent, {data: null, disableClose: true});
   }
 
 }

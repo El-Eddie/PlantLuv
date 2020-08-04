@@ -57,18 +57,6 @@ export class FileService {
   }
 
   deleteByOwner(fileId: string): Observable<{}> {
-
-    var fakeId = '1685FA9C-988C-4D48-95B4-7EDECC647F1C'
-    this.http.delete(this.baseUrl + '/' + fakeId).subscribe((result) =>
-    // this.http.delete(this.baseUrl + '/' + fileId).subscribe((result) =>
-    {
-      console.log("from success ", typeof(result), result);
-      return of(result);
-    },
-    (err) => {
-      console.log("from failure ", typeof(err), err);
-      return of(err);
-    });
-    return;
+    return this.http.delete(this.baseUrl + '/' + fileId);
   }
 }

@@ -9,7 +9,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl, Patte
 import { Observable, Subscription, from, of } from 'rxjs';
 import {map, startWith, filter} from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar'
-import { nextTick } from 'process';
+import { nextTick, config } from 'process';
 import { async } from 'rxjs/internal/scheduler/async';
 import { FileService } from '../service/file.service';
 import { FileMetadata } from '../models/file.model';
@@ -32,7 +32,6 @@ export class AddPlantComponent implements OnInit {
   snackbarDuration: number = 2500;
   defaultImage: string;
   placeholderImage: string = "/assets/img/plants/plant-image-placeholder.png"
- // imageName: string = "";
   otherOption: string = "other/unlisted"
   acceptedFileTypes = [
     'image/jpeg',
@@ -43,7 +42,6 @@ export class AddPlantComponent implements OnInit {
   uploadedFileUrl: string = null;
   uploadedFileId: string = null;
   uploadedFileName: string = null;
-  formSubmitted: Boolean;
 
   constructor(
     private plantService: PlantService,
@@ -84,15 +82,8 @@ export class AddPlantComponent implements OnInit {
 
     this.defaultImage = this.placeholderImage;
     this.activeUser = "user@me.com" // change logic to detect actual logged in user
-    this.formSubmitted = false;
   }
 
-  ngOnDestroy(): void {
-    console.log("Bleep! Closing.")
-    if(!this.formSubmitted && this.uploadedFileId){
-      this.clearImage();
-    }
-  }
 
   plantTypeValidator(field: AbstractControl): ValidationErrors | null {
     const input = field.value.toUpperCase()
@@ -116,10 +107,10 @@ export class AddPlantComponent implements OnInit {
   }
 
 
-    filterValue(val: string): string[] {
-      const filterValue = val.toLowerCase();
-      return this.typeList.filter(t => t.toLowerCase().includes(filterValue));
-    }
+  filterValue(val: string): string[] {
+    const filterValue = val.toLowerCase();
+    return this.typeList.filter(t => t.toLowerCase().includes(filterValue));
+  }
 
 
   getOptions(): Observable<string[]>{
@@ -157,7 +148,6 @@ export class AddPlantComponent implements OnInit {
         this.snackbar.open(message, null ,{
           duration: this.snackbarDuration
         });
-      this.formSubmitted = true;
       this.dialogRef.close();
     }, results => {
       alert("There was an error saving your new plant.\n Please check the information and try again.");
@@ -188,17 +178,7 @@ export class AddPlantComponent implements OnInit {
   clearImage(){
     this.uploadedFileUrl = null;
     this.uploadedFileName = null;
-    this.fileService.deleteByOwner(this.uploadedFileId)
-    // the file service is destroyed by the time the subscription gets a response.
-    //What's the best way to handle errors in this situation?
-    // .subscribe(
-    //   () => {},
-    //   err => {
-    //     console.error(`Failed to delete uploaded file with message: ${err.error}`);
-    //   },
-    //   () => {
-        this.uploadedFileId = null;
-      // })
+    this.uploadedFileId = null;
   }
 
 
@@ -207,7 +187,7 @@ export class AddPlantComponent implements OnInit {
     {
       const file = event.target.files[0];
       if(!this.acceptedFileTypes.includes(file.type)){
-        this.snackbar.open('Invalid file type','ok',{duration: this.snackbarDuration})
+        this.snackbar.open('Invalid file type','', {duration: this.snackbarDuration})
         return;
       }
       const formData = new FormData();
@@ -218,7 +198,7 @@ export class AddPlantComponent implements OnInit {
         this.uploadedFileName = file.name;
         this.uploadedFileUrl = this.fileService.thumbnailUrl(result.fileId, null);
       }, (err) => {
-        console.error("Upload failed", err)
+        this.snackbar.open("Image upload failed. Please try again later.",'',{duration: this.snackbarDuration})
       })
     }
   }

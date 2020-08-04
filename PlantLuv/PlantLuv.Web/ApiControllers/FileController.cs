@@ -180,8 +180,9 @@ namespace PlantLuv.Web.ApiControllers
                 return Unauthorized("User does not own the file");
             
             _fileData.Delete(id);
+            _fileData.Delete(fileMetadata);
+
             return NoContent();
         }
     }
-
 }
