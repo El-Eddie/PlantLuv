@@ -9,7 +9,7 @@ import { MockPlantService } from './service/z_mock-plant.service';
 import { PlantTypeService } from './service/plant-type.service'
 import { MockPlantTypeService } from './service/z_mock-plant-type.service'
 
-import { SharedImportsModule } from  '../shared/shared-imports.module'
+import { SharedImportsModule } from '../shared/shared-imports.module'
 import { environment } from '../../environments/environment';
 
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
@@ -18,7 +18,7 @@ import { PlantCardComponent } from './plant-list-card/plant-card.component';
 import { TypeListCardComponent } from './type-list-card/type-list-card.component';
 import { TypeDetailsComponent } from './type-details/type-details.component';
 
-import { StoreModule} from '@ngrx/store'
+import { StoreModule } from '@ngrx/store'
 import { displayReducer } from '../store/nav-state'
 
 import { FavoritePipe } from './pipes/favorite.pipe';
@@ -33,7 +33,9 @@ import { ConfirmationSnackbarComponent } from './pop-up/confirmation-snackbar.co
 import { RenameDialogComponent } from './pop-up/rename-dialog.component';
 import { TypeDashboardComponent } from './type-dashboard/type-dashboard.component';
 import { AddPlantComponent } from './add-plant/add-plant.component';
-import { UserDashboardRoutingModule } from './user-dashboard.routing'
+import { UserDashboardRoutingModule } from './dashboard.routing'
+
+
 @NgModule({
   declarations: [
     UserDashboardComponent,
