@@ -77,8 +77,9 @@ namespace PlantLuv.SqlDbServices
 				}
 			}
 
-			return query.Skip(options.PageIndex * options.Take).
-				Take(options.Take).ToList();
+			var list = query.Skip(options.PageIndex * options.Take).Take(options.Take).ToList();
+			
+			return list;
 		}
 
 

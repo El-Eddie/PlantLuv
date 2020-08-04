@@ -23,6 +23,6 @@ namespace PlantLuv.Web.Models.Plants
 		[DataType(DataType.Date)]
 		public DateTime LastFertalized{ get; set; }
 		public bool ReceiveNotifications { get; set; }
-		public int PrimaryImageID { get; set; }
+		public string PrimaryImageID { get; set; }
 	}
 }

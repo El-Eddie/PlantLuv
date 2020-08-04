@@ -50,22 +50,28 @@ namespace PlantLuv.Web.ApiControllers
         {
             return GetFileBestFit(fileId, 125, 125);
         }
+
+
         [HttpGet("{fileId}/medium")]
         public IActionResult GetMedium(string fileId)
         {
             return GetFileBestFit(fileId, 450, 340);
         }
+        
+        
         [HttpGet("{fileId}/large")]
         public IActionResult GetLarge(string fileId)
         {
             return GetFileBestFit(fileId, 960, 720);
         }
 
+
         [HttpGet("{fileId}")]
         public IActionResult GetBestFit(string fileId, [FromQuery] int width, [FromQuery] int height)
         {
             return GetFileBestFit(fileId, width, height);
         }
+
 
         private IActionResult GetFileBestFit(string fileId, int width, int height)
         {
@@ -87,6 +93,7 @@ namespace PlantLuv.Web.ApiControllers
             return GetFileFullContent(file, width, height);
         }
 
+
         private IActionResult GetFileFullContent(File file, int width, int height)
         {
             if (!file.Metadata.ContentType.Contains("image"))
@@ -98,6 +105,7 @@ namespace PlantLuv.Web.ApiControllers
                 file.Metadata.ContentType
             );
         }
+
 
         [Authorize(Policy = "ApiUser")]
         [HttpPost("upload")]
@@ -154,5 +162,26 @@ namespace PlantLuv.Web.ApiControllers
 
             return Ok(files.Select(x => x.Metadata));
         }
+    
+        [HttpDelete("{fileId}")]
+        [Authorize(Policy = "ApiUser")]
+        public IActionResult DeleteFileDataById(string fileId)
+        {
+            if (!Guid.TryParse(fileId, out Guid id))
+                return BadRequest("Invalid file id");
+
+            var userIdClaim = User.Claims.Single(c => c.Type == "id");
+            var fileMetadata = _fileData.GetFileMetadata(id);
+
+            if (fileMetadata == null)
+                return BadRequest("File not found");
+
+            if (userIdClaim.Value != fileMetadata.Audit.CreatedUserId)
+                return Unauthorized("User does not own the file");
+            
+            _fileData.Delete(id);
+            return NoContent();
+        }
     }
+
 }

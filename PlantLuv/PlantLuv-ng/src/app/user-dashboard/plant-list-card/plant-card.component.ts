@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../pop-up/delete-dialog.component';
 import { PlantService } from '../service/plant.service'
+import { FileService } from '../service/file.service'
 import { RenameDialogComponent } from '../pop-up/rename-dialog.component';
 
 @Component({
@@ -19,14 +20,17 @@ export class PlantCardComponent implements OnInit {
   @Output() deletePlantEvent: EventEmitter<number> = new EventEmitter();
   @Output() viewCareSheetEvent: EventEmitter<number> = new EventEmitter();
   @Output() updatePlant: EventEmitter<Plant> = new EventEmitter();
+  imageUrl: string;
 
   constructor(
+    private fileService: FileService,
     private service: PlantService,
     private router: Router,
     private dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
+    this.imageUrl = this.fileService.mediumUrl(this.plant.primaryImageID, null);
   }
 
   waterPlant(id: number){ this.waterPlantEvent.emit(id); }

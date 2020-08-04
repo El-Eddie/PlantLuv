@@ -25,7 +25,7 @@ namespace PlantLuv.Web.Models.Plants
 
         public bool ReceiveNotifications { get; set; }
         public bool IsFavorite { get; set; }
-        public int PrimaryImageID { get; set; }
+        public string PrimaryImageID { get; set; }
 
         public string LightLevel { get; set; }
         public List<string> Toxisity { get; set; }

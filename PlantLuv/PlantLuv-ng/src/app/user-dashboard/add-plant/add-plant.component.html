@@ -72,13 +72,16 @@
       </mat-checkbox>
 
       <input hidden (change)="fileChosen($event)" #fileInput accept=".jpg, .png, .jpeg, .bmp" type="file"/>
-      <div class="image-upload-container" *ngIf="!imageName">
+      <div class="image-upload-container" *ngIf="!uploadedFileUrl">
         <button mat-raised-button color="primary" (click)="fileInput.click()">Upload a Pic</button>
         <img class="placeholder-image" src={{defaultImage}}>
       </div>
-      <div class="image-upload-container" *ngIf="imageName">
+      <div class="image-upload-container" *ngIf="uploadedFileUrl">
         <button mat-raised-button color="primary" (click)="clearImage()">Clear</button>
-        <img class="placeholder-image" src="/assets/img/plants/hoya_carnosa_compacta-thumb.jpg">
+        <figure>
+          <img class="placeholder-image" src={{uploadedFileUrl}} />
+          <figcaption>{{uploadedFileName}}</figcaption>
+        </figure>
       </div>
     </div>
   </form>

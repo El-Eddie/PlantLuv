@@ -10,7 +10,7 @@ namespace PlantLuv.Plants
 		public string LatinName { get; set; }
 		public string CommonName { get; set; }
 		public string Family { get; set; }
-		public int StockImageID { get; set; }   //Is this the best way to track this field? This will be linked to an image we upload 
+		public string StockImageID { get; set; }   //Is this the best way to track this field? This will be linked to an image we upload 
 		public string Description { get; set; }
 		public Level Dificulty { get; set; }
 		
