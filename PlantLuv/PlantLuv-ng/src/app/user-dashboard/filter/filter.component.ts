@@ -31,7 +31,7 @@ export class FilterComponent implements OnInit {
   ngOnInit(): void {
     this.formControl = new FormControl();
     if(isNullOrUndefined(this.placeholder_text)){
-      this.placeholder_text = "filter..."
+      this.placeholder_text = "filter...."
     }
   }
 
