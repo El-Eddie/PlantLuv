@@ -1,0 +1,105 @@
+<mat-card class="plant-card">
+    <div class='thumbnail-container'>
+        <div class="thumbnail">
+            <img src={{plant.thumbnailURL}} />
+        </div>
+        <div class='thumbnail-icons-container'>
+            <button mat-icon-button aria-label="toggle favorite" (click)="toggleFavorite()" matTooltip="Toggle Favorite">
+            <mat-icon>{{plant.isFavorite | favoriteIcon}}</mat-icon>
+        </button>
+
+            <button mat-icon-button aria-label="toggle notifications" (click)="toggleAlerts()" matTooltip="Toggle Notification">
+            <mat-icon>{{plant.receiveNotifications | notificationIcon}}</mat-icon>
+        </button>
+        </div>
+        <div class="thumnails-additional">
+            <button *ngIf="plant.imageIDs && plant.imageIDs.length" mat-icon-button aria-label="view photos" (click)="triggerSlideshow(plant.plantId)" matTooltip="View pictures of this plant">
+            <mat-icon>more_horiz</mat-icon>
+        </button>
+        </div>
+    </div>
+    <div class="plant-content">
+        <mat-card-content class="mat-card-content plant-card-content">
+            <div class="plant-title">
+                <h5>{{plant.lattinName}}</h5>
+                <h3>{{plant.nickName}}</h3>
+            </div>
+            <div class="plant-icons">
+                <div class="plant-item-label">
+                    Light Requirement:
+                </div>
+
+                <div class="plant-item-icon">
+                    <mat-icon class="info-icon" svgIcon="{{plant.lightLevel | lightLevelIcon}}" matTooltip="{{plant.lightLevel}} Light"></mat-icon>
+                    <span class=cdk-visually-hidden>{{plant.lightLevel}}</span>
+                </div>
+            </div>
+            <div class="plant-icons">
+                <div class="plant-item-label">
+                    Toxic to:
+                </div>
+
+                <div class='plant-item-icon' *ngFor="let animal of plant.toxisity">
+                    <mat-icon class="info-icon" svgIcon="{{animal | toxisityIcon}}" matTooltip="{{animal}}"></mat-icon>
+                    <span class=cdk-visually-hidden>{{plant.toxisity}}</span>
+                </div>
+            </div>
+            <div class="plant-icons">
+                <div class="plant-item-label">
+                    Watered Last On:
+                </div>
+
+                <div class='plant-item-icon label-text'>
+                    {{plant.lastWatered | date:'MMM d, y'}}
+                </div>
+            </div>
+            <div class="plant-icons">
+                <div class="plant-item-label">
+                    Fertilized Last On:
+                </div>
+
+                <div class='plant-item-icon label-text'>
+                    {{plant.lastFertalized | date:'MMM d, y'}}
+                </div>
+            </div>
+        </mat-card-content>
+    </div>
+
+
+    <div class="bottom-actions">
+        <button class="action-button" mat-raised-button (click)="waterPlant(plant.plantId)">
+          <span class="material-icons">
+            opacity
+            </span> Water
+        <!-- <mat-icon class="action-icon" svgIcon="action-watering"></mat-icon> -->
+      </button>
+        <button class="action-button" mat-raised-button (click)="fertalizePlant(plant.plantId)">
+          <span class="material-icons">
+            landscape
+            </span> Fertilize
+        <!-- <mat-icon class="action-icon" svgIcon="action-fertalize"></mat-icon> -->
+      </button>
+        <button class="menu-button" mat-icon-button color="accent" [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon></button>
+    </div>
+
+</mat-card>
+
+<mat-menu #menu="matMenu" xPosition="before" yPosition="above">
+    <button mat-menu-item (click)="openCareSheet()">
+      <mat-icon>info</mat-icon>
+      <span>Infomation</span>
+    </button>
+    <button mat-menu-item (click)="renamePlant()">
+      <mat-icon>label</mat-icon>
+      <span>Rename</span>
+    </button>
+    <button mat-menu-item (click)="renamePlant()">
+      <mat-icon>edit</mat-icon>
+      <span>Edit</span>
+    </button>
+    <button mat-menu-item (click)="confirmDelete()">
+      <mat-icon color="warn">cancel</mat-icon>
+      <span>Delete</span>
+    </button>
+</mat-menu>

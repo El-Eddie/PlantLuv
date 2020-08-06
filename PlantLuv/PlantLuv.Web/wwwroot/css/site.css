@@ -1,58 +1,204 @@
-/*
-Error: Invalid CSS after "... marketingpages": expected "{", was "}"
-        on line 255 of C:\Repo\PlantLuv\PlantLuv\PlantLuv.Web\wwwroot\css\site.scss
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600&display=swap");
+.navbar-expand-sm .navbar-collapse {
+  justify-content: flex-end;
+  width: 100%;
+  flex-grow: 0; }
 
-250: =======
-251: @media screen and (max-width: 768px) {
-252:     .grid-2 {
-253:         display: none;
-254: >>>>>>> marketingpages
-255:     }
-256: }
-257: 
-258: 
-259: /* How It Works *\/
-260: span.circle {
+.bg-white {
+  background: url(../images/bg2.jpg);
+  background-size: cover; }
 
-Backtrace:
-C:\Repo\PlantLuv\PlantLuv\PlantLuv.Web\wwwroot\css\site.scss:255
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:1278:in `expected'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:1208:in `expected'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:1203:in `tok!'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:677:in `block'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:747:in `declaration_or_ruleset'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:697:in `block_child'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:689:in `block_contents'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:678:in `block'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:747:in `declaration_or_ruleset'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:697:in `block_child'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:686:in `block_contents'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:678:in `block'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:747:in `declaration_or_ruleset'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:697:in `block_child'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:689:in `block_contents'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:678:in `block'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:747:in `declaration_or_ruleset'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:697:in `block_child'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:689:in `block_contents'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:678:in `block'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:670:in `ruleset'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:696:in `block_child'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:689:in `block_contents'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:137:in `stylesheet'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/scss/parser.rb:41:in `parse'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/engine.rb:414:in `_to_tree'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/engine.rb:389:in `_render_with_sourcemap'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/engine.rb:307:in `render_with_sourcemap'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/sass_scss.rb:391:in `run'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/sass_scss.rb:63:in `process_result'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/base.rb:52:in `parse'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/base.rb:19:in `parse!'
-C:/Program Files (x86)/Koala/rubygems/gems/sass-3.5.2/bin/sass:13:in `<top (required)>'
-C:/Program Files (x86)/Koala/bin/sass:22:in `load'
-C:/Program Files (x86)/Koala/bin/sass:22:in `<main>'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: Invalid CSS after \"... marketingpages\": expected \"{\", was \"}\"\A         on line 255 of C:\Repo\PlantLuv\PlantLuv\PlantLuv.Web\wwwroot\css\site.scss\A \A 250: =======\A 251: @media screen and (max-width: 768px) {\A 252:     .grid-2 {\A 253:         display: none;\A 254: >>>>>>> marketingpages\A 255:     }\A 256: }\A 257: \A 258: \A 259: /* How It Works */\A 260: span.circle {"; }
+nav {
+  font-family: "Barlow Semi Condensed", Arial, sans-serif;
+  text-transform: uppercase;
+  text-align: right;
+  padding-right: 3em;
+  width: 100%; }
+  nav .navbar-nav {
+    justify-content: right; }
+  nav a:link {
+    margin: 0; }
+
+.navbar > .container {
+  justify-content: normal; }
+
+.headerstacked {
+  height: 25vh; }
+
+.mdl-layout__header {
+  background-color: transparent;
+  background: url("../images/bg2.jpg");
+  background-size: cover;
+  height: 100vh; }
+
+.navbar-brand {
+  margin: 0 auto; }
+  .navbar-brand img {
+    max-width: 200px;
+    text-shadow: 20px 12px 2px rgba(0, 0, 0, 0.8); }
+
+.headerstacked {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .headerstacked .mdl-navigation__link {
+    color: #333; }
+  .headerstacked .item {
+    height: 40px;
+    margin-bottom: 10px; }
+
+.mb-3 {
+  margin-bottom: 0 !important; }
+
+.border-bottom {
+  border: 0 !important; }
+
+/* Reviews*/
+.reviews {
+  background: #333;
+  color: #d3d3d3;
+  padding: 1em; }
+  .reviews :before {
+    content: ' " ';
+    font-size: 1.3em; }
+  .reviews :after {
+    content: ' " ';
+    font-size: 1.3em; }
+  .reviews img {
+    border-radius: 10em;
+    width: 100px;
+    height: 100px;
+    padding: 2px;
+    border: 1px solid #d3d3d3;
+    text-align: left;
+    float: right; }
+
+/* Footer */
+footer {
+  background: #333;
+  color: #d3d3d3;
+  font-size: 0.95em;
+  padding: 1em 0; }
+  footer .container {
+    text-align: center; }
+    footer .container a {
+      color: #d3d3d3; }
+
+/* Reviews */
+.container-fluid {
+  background: #333;
+  padding: 0; }
+
+/* Desktop */
+@media all and (min-width: 468px) {
+  ul li:not(:first-child) a:before {
+    padding-right: 1em;
+    content: "|"; }
+  ul li:not(:first-child) a:hover::before {
+    color: #333; } }
+/* Masonry */
+.grid-container {
+  max-width: 100%;
+  margin: 0;
+  padding: 0; }
+
+.cols {
+  margin: 0 auto;
+  max-width: 100%; }
+
+.col {
+  width: 25%;
+  height: 250px;
+  float: left;
+  margin: 0;
+  padding: 0; }
+  .col img {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0.8; }
+
+.grid-1 {
+  width: 100%;
+  padding: 0;
+  margin: 0; }
+
+.grid-3 {
+  float: right;
+  height: 20%; }
+
+.grid-5 {
+  display: table; }
+
+.grid-5 > * {
+  display: table-cell; }
+
+.grid-5 > .text-container {
+  text-align: center;
+  vertical-align: middle;
+  width: 50%; }
+
+.grid-5 img {
+  object-position: right; }
+
+.grid-7 {
+  width: 50%; }
+
+@supports (display: grid) or (display: -ms-grid) {
+  .grid-area {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-auto-rows: 250px;
+    justify-content: center; }
+
+  .col {
+    width: 100%;
+    height: 100%;
+    float: none; }
+
+  .grid-1 {
+    grid-column-end: span 2; }
+
+  .grid-3 {
+    grid-row-end: span 2; }
+
+  .grid-5 {
+    grid-column-end: span 2; }
+
+  .grid-7 {
+    grid-column-end: span 2; } }
+/* Media queries for other screen widths */
+@media screen and (max-width: 450px) {
+  .col {
+    grid-row-end: unset;
+    grid-column-end: unset;
+    height: 250px; }
+
+  .grid-area {
+    display: flex;
+    flex-direction: column; }
+
+  .grid-3 {
+    order: -1;
+    height: 500px; } }
+@media screen and (max-width: 768px) {
+  .grid-2 {
+    display: none; } }
+/* How It Works */
+span.circle {
+  border-radius: 0.8em;
+  -moz-border-radius: 0.8em;
+  -webkit-border-radius: 0.8em;
+  color: #333;
+  display: inline-block;
+  font-weight: bold;
+  line-height: 1.6em;
+  text-align: center;
+  width: 1.65em;
+  border: 1px solid #333;
+  border: 2px; }
+
+/*# sourceMappingURL=site.css.map */

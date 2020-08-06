@@ -1,104 +1,116 @@
 @import '~@angular/material/theming';
+@import './app.theme.variables.scss';
 @import './app.colors.scss';
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600&display=swap');
-main {
-    padding-left: 10%;
-    padding-right: 10%;
-    //background-image: linear-gradient(#005005, #60ad5e 15%)
-    //background-image: linear-gradient($primary-dk, $primary-md 15%)
-}
 
-header {
-    background-color: $primary-dk;
-    width: 100%;
-    padding: 10pxem 0;
-    .center-header {
-        justify-content: center;
-        margin: 0 auto;
-        width: 1500px;
-        background-color: $primary-dk;
-    }
-    .mat-toolbar.mat-primary {
-        background-color: $primary-dk;
-    }
+#nav-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background: $primary-md;
+  padding: 10px 17px;
+  font-family: $font-barlow;
+
+  #nav-logo {
+    text-align: center;
+    margin-right: 1em;
+
     img {
-        margin-top: 10px;
+      width: 85px;
     }
-}
+  }
 
-#logo {
-    height: 50px;
-    width: auto;
-}
+  #nav-left {
+    justify-content: flex-start;
+  }
 
-#footer {
-    background: $grey-dk;
-    height: 60px;
-    font-size: 0.8em;
-    color: #fff;
-    a {
-        color: #fff;
-        text-decoration: none;
-    }
-    .footer {
-        margin: 0 auto;
-    }
-}
-
-nav {
-    margin: 0px 30px;
-}
-
-nav>ul {
-    list-style-type: none;
-    margin: 0em;
-    padding: 0em;
-}
-
-nav>ul>li {
-    float: left;
-}
-
-nav>ul>li:not(:last-child)::after {
-    content: "\00A0|\00A0";
-    color: $shadow-color;
-}
-
-.selected-link {
-    border-bottom: 2px solid $accent-md;
-}
-
-#settings-button {
-    margin-left: 25px;
+  #nav-right {
     float: right;
-    border-radius: 25px;
-}
-
-.card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    width: 1200px;
-}
-
-#dashboard-controlls {
-    margin: 0px 10px 0px 5%;
-    padding-top: 10px;
-    padding-bottom: 5px;
-    display: flex;
     width: auto;
-    justify-content: space-between;
-    align-items: center;
+    flex-grow: 1;
+    text-align: right;
+    margin-top: 0;
+
+    .button-logout {
+      a {
+        background: $primary-lt;
+        border: 1px solid $accent-white;
+        padding: 6px 15px 10px 15px;
+        transition: 0.25s;
+      }
+
+      a:hover {
+        color: $accent-mdlt;
+        border: 1px solid $accent-mdlt;
+      }
+    }
+
+    .material-icons {
+      vertical-align: middle;
+      font-size: $xxlSize;
+      padding-right: 5px;
+    }
+
+    .icon-logout {
+      display: none;
+    }
+  }
+
+  .item {
+    justify-content: flex-start;
+  }
 }
 
-#dashboard-container {
-    background-color: $background-color;
-    border-radius: 15px;
+@media only screen and (max-width: 537px) {
+  #nav-container {
+    padding: 0px;
+
+    #nav-logo {
+      float: left;
+
+      img {
+        padding: 5px;
+      }
+    }
+
+    #nav-left {
+      order: 3;
+      line-height: 0;
+      background: $accent-md;
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-left: 0;
+      width: 100%;
+
+      a,
+      a:active,
+      a:visited {
+        cursor: pointer;
+      }
+    }
+
+    #nav-right {
+      order: 0;
+
+      .icon-logout {
+        display: initial;
+      }
+
+      .button-logout {
+        display: none;
+      }
+    }
+  }
 }
 
-.dashboard-buttons {
-    width: 30%;
-    max-width: 200px;
-    display: inline-flex;
-    justify-content: space-evenly;
+// Footer
+footer {
+  mat-toolbar {
+    background-color: $grey-dk;
+    font-size: $xxsSize;
+    margin: 0 auto;
+    justify-content: center;
+    color: $accent-white;
+  }
 }

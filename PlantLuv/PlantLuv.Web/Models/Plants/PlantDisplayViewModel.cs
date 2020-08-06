@@ -60,19 +60,19 @@ namespace PlantLuv.Web.Models.Plants
             List<string> toxisity = new List<string>();
 
             if (type.ToxicToCats)
-                toxisity.Add("cats");
+                toxisity.Add("Cats");
 
             if (type.ToxicToDogs)
-                toxisity.Add("dogs");
+                toxisity.Add("Dogs");
 
             if (type.ToxicToHumans)
-                toxisity.Add("humans");
+                toxisity.Add("Humans"); // We can remove this. It's not necessary
 
             if (type.ToxicToSmallAnimals)
-                toxisity.Add("small animals");
+                toxisity.Add("Small-Animals");
 
             if (toxisity.Count == 0)
-                toxisity.Add("safe");
+                toxisity.Add("Pet-Safe");
 
             return toxisity;
         }
