@@ -1,5 +1,8 @@
 ﻿
+using System;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace PlantLuv.Plants
 {
@@ -9,11 +12,10 @@ namespace PlantLuv.Plants
 		public int TypeId { get; set; }
 		public string LatinName { get; set; }
 		public string CommonName { get; set; }
-		public string Family { get; set; }
-		public int StockImageID { get; set; }   //Is this the best way to track this field? This will be linked to an image we upload 
+		public int StockImageID { get; set; }
 		public string Description { get; set; }
-		public Level Dificulty { get; set; }
-		
+		public Level Difficulty { get; set; }
+
 		public Level HumidityLevel { get; set; }
 		public Level LightLevel { get; set; }
 		public int LightTime { get; set; }
@@ -29,5 +31,16 @@ namespace PlantLuv.Plants
 		public bool ToxicToDogs { get; set; }
 		public bool ToxicToSmallAnimals { get; set; }
 		public bool ToxicToHumans { get; set; }
+
+		//Scientific Information
+
+		public string ScienceKingdom { get; set; }
+		public string ScienceClade1 { get; set; }
+		public string ScienceClade2 { get; set; }
+		public string ScienceClade3 { get; set; }
+		public string ScienceOrder { get; set; }
+		public string ScienceFamily { get; set;}
+		public string ScienceSubfamily { get; set;}
+		public string ScienceGenus { get; set; }
 	}
 }
