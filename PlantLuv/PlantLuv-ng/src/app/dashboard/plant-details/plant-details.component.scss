@@ -1,0 +1,153 @@
+@import '../../app.component.scss';
+
+#type-container {
+  mat-dialog-content {
+    .plant-card {
+      // border: 1px solid $grey-lt;
+      margin: 0.1em;
+      padding: 0.25em 1em;
+
+      @media all and (min-width: 0) and (max-width: 537px) {
+        padding: 0
+      }
+
+      h5 {
+        color: $grey-md;
+        padding: 0.15em;
+        margin: 10px 0 0 0;
+        font-weight: normal;
+      }
+
+      h3 {
+        padding: 0.15em;
+        margin: 0;
+        font-size: $xllSize;
+        font-family: 'Barlow Semi Condensed';
+      }
+
+      .thumbnail-container {
+        width: 480px;
+        height: 400px;
+        border: 1px solid $border-color;
+        box-sizing: content-box;
+        background-color: $accent-white;
+        margin: 0 auto;
+
+        @media all and (min-width: 0) and (max-width: 537px) {
+          width: 200px;
+          height: 150px;
+        }
+      }
+
+      .thumbnail {
+        width: 480px;
+        height: 400px;
+        position: relative;
+        overflow: hidden;
+        background: url('/assets/img/plants/placeholder.png') 0 0;
+
+        img {
+          width: 100%;
+        }
+
+        @media all and (min-width: 0) and (max-width: 537px) {
+          width: 200px;
+          height: 150px;
+          background: url('/assets/img/plants/placeholder-mobile.png') 0 0;
+        }
+      }
+
+      #plant-detail-container {
+        max-width: 500px;
+
+        @media all and (min-width: 0) and (max-width: 537px) {
+          width: 205px;
+          padding: 0
+        }
+      }
+
+      .plant-card-content {
+        display: flex;
+        flex-flow: row wrap;
+        border-top: 1px solid $grey-lt;
+        height: 28px;
+        font-size: $xsSize;
+        padding-top: 0.25em;
+        vertical-align: middle;
+
+        .plant-icons {
+          display: flex;
+          flex-flow: row wrap;
+          border-top: 1px solid $grey-lt;
+          height: 28px;
+          font-size: $xsSize;
+          padding-top: 0.25em;
+          vertical-align: middle;
+        }
+
+        .plant-item-label {
+          flex-grow: 1;
+          color: $grey-md;
+          vertical-align: middle;
+          padding-top: 0.35em;
+        }
+
+        .plant-item-icon:last-child {
+          padding: 0;
+          font-size: $xsSize;
+          margin-top: 3px;
+        }
+
+        .plant-item-text-icon {
+          font-size: $xsSize;
+          margin-top: 0.35em;
+        }
+
+        .label-text {
+          margin-top: 0.35em;
+        }
+
+        .rating .mat-icon {
+          width: initial;
+          margin-top: -4px;
+        }
+      }
+    }
+  }
+
+  .bottom-actions {
+    background-color: $grey-dk;
+    color: $accent-white;
+    padding: 0;
+
+    .mat-raised-button {
+      box-shadow: none;
+      background: transparent;
+    }
+
+    .material-icons {
+      font-size: $xhlSize;
+      background: transparent;
+    }
+
+    .action-button {
+      width: 50%;
+      border-radius: 0;
+      color: $accent-white;
+      padding: 0.45em;
+    }
+
+    .action-button:hover {
+      background-color: $accent-md;
+      border-radius: 0;
+    }
+
+    .menu-button {
+      color: $accent-white
+    }
+
+    .menu-button:hover {
+      color: $accent-md;
+    }
+  }
+}

@@ -11,6 +11,6 @@ namespace PlantLuv.Plants
         LowMedium = 2,
         Medium = 3,
         MediumHigh = 4,
-        High = 5
+        Bright = 5
     }
 }

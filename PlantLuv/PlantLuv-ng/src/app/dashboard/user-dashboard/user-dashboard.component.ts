@@ -7,7 +7,7 @@ import { Plant } from '../models/plant.model';
 import { PlantType } from '../models/plant-type.model'
 import { PlantService } from '../service/plant.service';
 import { PlantTypeService } from '../service/plant-type.service';
-import { TypeDetailsComponent } from '../type-details/type-details.component'
+import { PlantDetailsComponent } from '../plant-details/plant-details.component'
 import { AddPlantComponent } from '../add-plant/add-plant.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { map } from 'rxjs/operators';

@@ -1,0 +1,110 @@
+@import '../../app.component.scss';
+
+#info-container {
+  margin: 0 auto;
+
+  #info-toolbar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    background: $grey-lt;
+    width: 100%;
+
+    #info-filter {
+      flex-grow: 1;
+      padding: 1em;
+
+      @media all and (min-width: 0) and (max-width: 537px) {
+        padding: 0.35em 0.25em;
+      }
+    }
+
+    #info-controls {
+      padding: 1em;
+
+      @media all and (min-width: 0) and (max-width: 537px) {
+        padding: 0.35em 0 0 0.25em;
+        width: 45px;
+      }
+
+      .mat-mini-fab {
+        box-shadow: none;
+        border-radius: 0;
+        margin-top: -8px;
+        background: transparent;
+      }
+
+      button {
+        background: $grey-lt;
+
+        .material-icons {
+          border: 1px solid $grey-dk;
+          font-size: $xhlSize;
+          flex-shrink: 1;
+        }
+
+        .material-icons:hover {
+          color: $accent-md;
+        }
+      }
+    }
+  }
+
+  #info-main {
+    background: $grey-xlt;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0.5em;
+    justify-content: center
+  }
+
+}
+
+#Page-Header {
+  padding-left: 0.85em;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+
+  div {
+    flex: 1 0 50%;
+    box-sizing: border-box
+  }
+
+  .item {
+    width: 100%;
+
+    h2 {
+      font-family: "Barlow Semi Condensed";
+      text-transform: capitalize;
+      padding-left: 0.85em;
+      line-height: 0;
+      color: $accent-md;
+    }
+  }
+
+  .item:last-child {
+    text-align: right;
+
+    button {
+      background: $accent-md;
+      border-radius: 2em 0 0 2em;
+      transition: 0.8s;
+      overflow: hidden;
+      color: $accent-white;
+
+      .material-icons {
+        padding-left: 0.3em;
+        padding-right: 0.3em;
+
+      }
+    }
+
+    button:hover {
+      width: 190px;
+      transition: 0.8s;
+      background: $accent-md;
+    }
+  }
+}

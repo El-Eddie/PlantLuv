@@ -7,7 +7,7 @@ export interface Plant {
   commonName: string,
   nickName?: string,
   wherePurchased?: string;
-  lattinName: string,
+  latinName: string,
   lastWatered: Date;
   waterAgain: Date;
   lastFertalized: Date;
@@ -22,5 +22,5 @@ export interface Plant {
   isFavorite: boolean;
   lightLevel: string;
   toxisity: string[];
-
+  difficulty: string;
 }
