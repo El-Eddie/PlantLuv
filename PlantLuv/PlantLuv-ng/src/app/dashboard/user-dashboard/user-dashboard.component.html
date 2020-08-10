@@ -2,7 +2,8 @@
 <div id="dash-container">
     <div id="dash-toolbar">
         <div id="dash-filter">
-            <app-filters (filterChangeEvent)="updateFilter($event)" [placeholder_text]="'Filter Plant List...'"></app-filters>
+
+            <app-filters id="app-filter" (filterChangeEvent)="updateFilterValue($event)" [placeholder_text]="'Filter Plant List...'"></app-filters>
         </div>
         <div id="dash-controls">
             <!-- <button mat-mini-fab matTooltip="Add New Plant" (click)="addPlant()" [matTooltipShowDelay]="tooltipDelay" [matTooltipHideDelay]="tooltipDelay">
@@ -40,8 +41,15 @@
         </div>
     </div>
     <div id="dash-main">
-        <app-plant-card *ngFor="let plant of (plantList$ | async); trackBy:trackByPlantId " [plant]="plant " (waterPlantEvent)="waterPlant($event) " (fertalizePlantEvent)="fertalizePlant($event) " (deletePlantEvent)="deletePlant($event)
-                " (viewCareSheetEvent)="displayDetailsCard($event) " (updatePlant)="updatePlant($event) "></app-plant-card>
+
+        <app-plant-card *ngFor="let plant of (refinedList$ | async); trackBy:trackByPlantId"
+          [plant]="plant"
+          (waterPlantEvent)="waterPlant($event)"
+          (fertalizePlantEvent)="fertalizePlant($event)"
+          (deletePlantEvent)="deletePlant($event)"
+          (viewCareSheetEvent)="displayDetailsCard($event)"
+          (updatePlant)="updatePlant($event)">
+        </app-plant-card>
     </div>
     <div id="scroll-up">
         <a href="#" mat-mini-fab>

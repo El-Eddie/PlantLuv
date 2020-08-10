@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Observable, of } from 'rxjs';
 import { isNullOrUndefined } from 'util';
 
 @Component({
@@ -8,8 +9,6 @@ import { isNullOrUndefined } from 'util';
   styleUrls: ['./filter.component.scss']
 
 })
-
-
 
 export class FilterComponent implements OnInit {
 
@@ -25,6 +24,7 @@ export class FilterComponent implements OnInit {
       this.placeholder_text = "filter..."
     }
   }
+
 
   filterChange(input: any){
     this.filterChangeEvent.emit(input.formControl.value);

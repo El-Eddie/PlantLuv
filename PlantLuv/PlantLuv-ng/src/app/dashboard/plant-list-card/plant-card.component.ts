@@ -30,7 +30,8 @@ export class PlantCardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.imageUrl = this.fileService.mediumUrl(this.plant.primaryImageID, null);
+    // this.imageUrl = this.fileService.mediumUrl(this.plant.primaryImagKseId, null);
+    this.imageUrl = this.fileService.mediumUrl(this.plant.primaryImageId, null);
   }
 
   waterPlant(id: number){ this.waterPlantEvent.emit(id); }

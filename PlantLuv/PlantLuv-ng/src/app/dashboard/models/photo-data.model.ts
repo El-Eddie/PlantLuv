@@ -1,6 +1,6 @@
 // Contains URL and other data about images.
 export interface PhotoData{
-  imageID: number;
+  imageId: number;
   imgURL: string;
   imgDate?: Date;
   imgHeight: number;

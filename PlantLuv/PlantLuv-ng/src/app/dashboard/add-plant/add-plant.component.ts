@@ -135,6 +135,7 @@ export class AddPlantComponent implements OnInit {
     var plant: NewUserPlant = {...this.formGroup.value};
     plant.ownerId = this.activeUser
     plant.thumbnailURL = this.defaultImage
+    // plant.typeId = this.selectedtypeId;
     plant.typeId = this.selectedtypeId;
 
     if (!plant.receiveNotifications) { plant.receiveNotifications = false }

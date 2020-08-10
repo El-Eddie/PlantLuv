@@ -25,7 +25,10 @@ export class PlantService {
   }
 
   save(plant: Plant): Observable<Plant>{
-    return this.httpClient.post<Plant>(`api/plants/${plant.plantId}`, plant);
+    // return this.httpClient.post<Plant>(`api/plants/${plant.plantId}`, plant);
+    var val = this.httpClient.post<Plant>(`api/plants/${plant.plantId}`, plant);
+    console.log(val, typeof(val));
+    return val;
   }
 
   create(plant: NewUserPlant): Observable<Plant>{

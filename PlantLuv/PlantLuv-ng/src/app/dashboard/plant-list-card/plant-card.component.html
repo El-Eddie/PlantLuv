@@ -1,7 +1,7 @@
 <mat-card class="plant-card">
     <div class='thumbnail-container'>
         <div class="thumbnail">
-            <img src={{plant.thumbnailURL}} />
+            <img src={{this.imageUrl}} />
         </div>
         <div class='thumbnail-icons-container'>
             <button mat-icon-button aria-label="toggle favorite" (click)="toggleFavorite()" matTooltip="Toggle Favorite">
@@ -13,7 +13,7 @@
         </button>
         </div>
         <div class="thumnails-additional">
-            <button *ngIf="plant.imageIDs && plant.imageIDs.length" mat-icon-button aria-label="view photos" (click)="triggerSlideshow(plant.plantId)" matTooltip="View pictures of this plant">
+            <button *ngIf="plant.imageIds && plant.imageIds.length" mat-icon-button aria-label="view photos" (click)="triggerSlideshow(plant.plantId)" matTooltip="View pictures of this plant">
             <mat-icon>more_horiz</mat-icon>
         </button>
         </div>
@@ -22,7 +22,10 @@
         <mat-card-content class="mat-card-content plant-card-content">
             <div class="plant-title">
                 <h5>{{plant.lattinName}}</h5>
-                <h3>{{plant.nickName}}</h3>
+                <h3 *ngIf="plant.nickName; else noNickname">{{plant.nickName}}</h3>
+                <ng-template #noNickname>
+                  <h3>{{plant.commonName}}</h3>
+                </ng-template>
             </div>
             <div class="plant-icons">
                 <div class="plant-item-label">

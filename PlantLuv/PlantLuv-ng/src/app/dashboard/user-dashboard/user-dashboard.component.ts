@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { Observable, of, BehaviorSubject, combineLatest, fromEvent, Subscription, Subject } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { Store, select } from '@ngrx/store'
 
@@ -10,23 +10,29 @@ import { PlantTypeService } from '../service/plant-type.service';
 import { TypeDetailsComponent } from '../type-details/type-details.component'
 import { AddPlantComponent } from '../add-plant/add-plant.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { map } from 'rxjs/operators';
+import { map, startWith, debounceTime } from 'rxjs/operators';
+import { FilterComponent } from '../filter/filter.component';
 
 @Component({
   selector: 'app-plant-dashboard',
   templateUrl: './user-dashboard.component.html',
   styleUrls: ['./user-dashboard.component.scss'],
 })
+
 export class UserDashboardComponent implements OnInit {
 
+  // plantList$ = new Observable<Plant[]>();
   plantList$ = new BehaviorSubject<Plant[]>([]);
+  refinedList$: Observable<Plant[]>;
   typeList$: Observable<PlantType[]>;
-  filterValue: string = "";
+  filterValue$ = new BehaviorSubject<string>('');
+  filter: Subscription;
   snackbarDuration: number = 2500;
   tooltipDelay: number = 250;
   dashboardDisplay$: string;
 
   constructor(
+
     private plantService: PlantService,
     private typeService: PlantTypeService,
     private dialog: MatDialog,
@@ -41,7 +47,7 @@ export class UserDashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.GetUserPlants(this.getLoggedInUser());
-    this.getPlantTypes(this.filterValue);
+    this.filterPlants();
   }
 
 
@@ -52,11 +58,12 @@ export class UserDashboardComponent implements OnInit {
 
 
   GetUserPlants(id: string) {
-    // this.plantList$ = this.plantService.getUserPlants(id);
-    this.plantService.getUserPlants(id).subscribe(value => {
+    this.plantService.getUserPlants(id).subscribe((value: Plant[]) => {
+      value.sort((x,y) => {
+        return y.isFavorite < x.isFavorite ? -1 : 1
+      });
       this.plantList$.next(value);
     });
-
   }
 
 
@@ -111,7 +118,27 @@ export class UserDashboardComponent implements OnInit {
   }
 
 
-  updateFilter(value: string) { }
+  updateFilterValue(input) {
+    this.filterValue$.next(input);
+  }
+
+
+  filterPlants(): void {
+    this.filterValue$.subscribe(() => {
+      this.refinedList$ = combineLatest([this.plantList$, this.filterValue$])
+        .pipe(map(([plantList, filterValue]) => {
+          filterValue = filterValue.toUpperCase();
+          return plantList.filter(plant => {
+            return (
+              plant.commonName.toUpperCase().match(filterValue) ||
+              plant.lattinName.toUpperCase().match(filterValue) ||
+              plant.nickName.toUpperCase().match(filterValue) ||
+              plant.wherePurchased.toUpperCase().match(filterValue)
+            )
+          })
+        }))
+    })
+  }
 
 
   updatePlant(plant: Plant) {
@@ -123,7 +150,7 @@ export class UserDashboardComponent implements OnInit {
 
 
   displayDetailsCard(type: number) {
-    alert("care sheet goes here!")
+    console.log(type);
   }
 
 
