@@ -24,6 +24,6 @@
         </div>
     </div>
     <div id="info-main">
-        <app-plant-card *ngFor="let type of plantList$ | async" [type]="type" (displayDetailsEvent)="displayDetailsCard($event)"></app-plant-card>
+        <app-plant-type-card *ngFor="let type of plantList$ | async" [planttype]="type" (displayDetailsEvent)="displayDetailsCard($event)"></app-plant-type-card>
     </div>
 </div>

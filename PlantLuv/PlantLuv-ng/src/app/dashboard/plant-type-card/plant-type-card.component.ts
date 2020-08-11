@@ -2,14 +2,14 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { PlantType } from '../models/plant-type.model';
 
 @Component({
-  selector: 'app-plant-card',
+  selector: 'app-plant-type-card',
   templateUrl: './plant-type-card.component.html',
   styleUrls: ['./plant-type-card.component.scss'],
 })
 
 export class PlantCardComponent implements OnInit {
 
-  @Input() type: PlantType;
+  @Input() planttype: PlantType;
   @Output() displayDetailsEvent: EventEmitter<string> = new EventEmitter();
 
   constructor() { }
@@ -18,7 +18,7 @@ export class PlantCardComponent implements OnInit {
   }
 
   typeDetails() {
-    this.displayDetailsEvent.emit(this.type.latinName)
+    this.displayDetailsEvent.emit(this.planttype.latinName)
   }
 
 

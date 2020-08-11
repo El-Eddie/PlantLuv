@@ -1,21 +1,21 @@
 <mat-card class='plant-card'>
     <div class='thumbnail-container'>
         <div class="thumbnail">
-            <img src={{type.thumbnailURL}}>
+            <img src={{planttype.thumbnailURL}}>
         </div>
     </div>
     <div class="plant-content">
         <mat-card-content class="mat-card-content plant-card-content">
             <div class="plant-title">
-                <h5>{{type.latinName}}</h5>
-                <h3>{{type.commonName}}</h3>
+                <h5>{{planttype.latinName}}</h5>
+                <h3>{{planttype.commonName}}</h3>
             </div>
             <div class="plant-icons">
                 <div class="plant-item-label">
                     Light Requirement:
                 </div>
                 <div class="plant-item-icon">
-                    <mat-icon class="info-icon" svgIcon="{{type.lightLevel | lightLevelIcon}}" matTooltip="{{type.lightLevel}} Light"></mat-icon>
+                    <mat-icon class="info-icon" svgIcon="{{planttype.lightLevel | lightLevelIcon}}" matTooltip="{{planttype.lightLevel}} Light"></mat-icon>
                 </div>
             </div>
             <div class="plant-icons">
@@ -23,14 +23,14 @@
                     Difficulty:
                 </div>
                 <div class="plant-item-text-icon rating">
-                    <mat-icon class="info-icon " svgIcon="{{type.difficulty | difficultyIcons }}" matTooltip="{{type.difficulty}} Difficulty"></mat-icon>
+                    <mat-icon class="info-icon " svgIcon="{{planttype.difficulty | difficultyIcons }}" matTooltip="{{planttype.difficulty}} Difficulty"></mat-icon>
                 </div>
             </div>
             <div class="plant-icons">
                 <div class="plant-item-label">
                     Toxic To:
                 </div>
-                <div class='plant-item-icon' *ngFor="let animal of type.toxisity">
+                <div class='plant-item-icon' *ngFor="let animal of planttype.toxisity">
                     <mat-icon class="info-icon" svgIcon="{{animal | toxisityIcon}}" matTooltip="{{animal}}"></mat-icon>
                 </div>
             </div>

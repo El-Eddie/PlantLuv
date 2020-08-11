@@ -12,11 +12,11 @@ namespace PlantLuv.Plants
 		public int TypeId { get; set; }
 		public string LatinName { get; set; }
 		public string CommonName { get; set; }
-		public int StockImageID { get; set; }
+		public string StockImageID { get; set; }
 		public string Description { get; set; }
 		public DifficultyLevel Difficulty { get; set; }
 		public int HumidityLowLevel { get; set; }
-		public int HumidityHighLeve { get; set; } 
+		public int HumidityHighLevel { get; set; } 
 		public LightLevel LightLevel { get; set; }
 		public int LightTime { get; set; }
 		public double SoilPh { get; set; }

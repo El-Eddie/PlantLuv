@@ -4,7 +4,8 @@ using System.Text;
 
 namespace PlantLuv.Plants
 {
-    class DifficultyLevel
+    public enum DifficultyLevel
     {
+        Beginner = 0
     }
 }

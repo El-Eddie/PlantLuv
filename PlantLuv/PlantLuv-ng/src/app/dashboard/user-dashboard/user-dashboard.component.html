@@ -40,8 +40,8 @@
         </div>
     </div>
     <div id="dash-main">
-        <!-- <app-plant-card *ngFor="let plant of (plantList$ | async); trackBy:trackByPlantId " [plant]="plant" (waterPlantEvent)="waterPlant($event) " (fertalizePlantEvent)="fertalizePlant($event) " (deletePlantEvent)="deletePlant($event)
-                " (viewCareSheetEvent)="displayDetailsCard($event) " (updatePlant)="updatePlant($event) "></app-plant-card> -->
+        <app-user-plant-card *ngFor="let plant of (plantList$ | async); trackBy:trackByPlantId " [plant]="plant" (waterPlantEvent)="waterPlant($event) " (fertalizePlantEvent)="fertalizePlant($event) " (deletePlantEvent)="deletePlant($event)
+                " (viewCareSheetEvent)="displayDetailsCard($event) " (updatePlant)="updatePlant($event) "></app-user-plant-card>
     </div>
     <div id="scroll-up">
         <a href="#" mat-mini-fab>
