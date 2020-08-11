@@ -61,13 +61,13 @@
             <ul class="add-new">
                 <li class="add-new-item">
                     <input hidden (change)="fileChosen($event)" #fileInput accept=".jpg, .png, .jpeg, .bmp" type="file" />
-                    <div class="image-upload-container" *ngIf="!imageName">
+                    <div class="image-upload-container" *ngIf="!uploadedFileName">
                         <button mat-raised-button color="primary" (click)="fileInput.click()">Upload Your Photo</button>
                         <img class="placeholder-image" src={{defaultImage}}>
                     </div>
                 </li>
                 <li class="add-new-item">
-                    <div class="image-upload-container" *ngIf="imageName">
+                    <div class="image-upload-container" *ngIf="uploadedFileName">
                         <button mat-raised-button color="primary" (click)="clearImage()">Clear</button>
                         <img class="placeholder-image" src="/assets/img/plants/hoya_carnosa_compacta-thumb.jpg">
                     </div>

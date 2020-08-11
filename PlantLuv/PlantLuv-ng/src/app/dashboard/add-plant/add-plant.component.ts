@@ -9,8 +9,10 @@ import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl, Patte
 import { Observable, Subscription, from, of } from 'rxjs';
 import {map, startWith, filter} from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar'
-import { nextTick } from 'process';
+import { nextTick, config } from 'process';
 import { async } from 'rxjs/internal/scheduler/async';
+import { FileService } from '../service/file.service';
+import { FileMetadata } from '../models/file.model';
 
 @Component({
   selector: 'app-add-plant',
@@ -30,7 +32,6 @@ export class AddPlantComponent implements OnInit {
   snackbarDuration: number = 2500;
   defaultImage: string;
   placeholderImage: string = "/assets/img/plants/plant-image-placeholder.png"
-  imageName: string = "";
   otherOption: string = "other/unlisted"
   acceptedFileTypes = [
     'image/jpeg',
@@ -38,11 +39,14 @@ export class AddPlantComponent implements OnInit {
     'image/bmp',
     'image/png'
   ];
-
+  uploadedFileUrl: string = null;
+  uploadedFileId: string = null;
+  uploadedFileName: string = null;
 
   constructor(
     private plantService: PlantService,
     private typeService: PlantTypeService,
+    private fileService: FileService,
     private snackbar: MatSnackBar,
     public dialogRef: MatDialogRef<AddPlantComponent>,
     public builder: FormBuilder,
@@ -103,10 +107,10 @@ export class AddPlantComponent implements OnInit {
   }
 
 
-    filterValue(val: string): string[] {
-      const filterValue = val.toLowerCase();
-      return this.typeList.filter(t => t.toLowerCase().includes(filterValue));
-    }
+  filterValue(val: string): string[] {
+    const filterValue = val.toLowerCase();
+    return this.typeList.filter(t => t.toLowerCase().includes(filterValue));
+  }
 
 
   getOptions(): Observable<string[]>{
@@ -172,7 +176,9 @@ export class AddPlantComponent implements OnInit {
 
 
   clearImage(){
-    this.imageName = null;
+    this.uploadedFileUrl = null;
+    this.uploadedFileName = null;
+    this.uploadedFileId = null;
   }
 
 
@@ -180,14 +186,20 @@ export class AddPlantComponent implements OnInit {
     if (event.target.files && event.target.files[0])
     {
       const file = event.target.files[0];
-      console.log(file)
       if(!this.acceptedFileTypes.includes(file.type)){
-        this.snackbar.open('Invalid file type','ok',{duration: this.snackbarDuration})
+        this.snackbar.open('Invalid file type','', {duration: this.snackbarDuration})
         return;
       }
-      this.imageName = file.name
       const formData = new FormData();
       formData.append('model', file)
+
+      this.fileService.upload(formData).subscribe((result: FileMetadata) => {
+        this.uploadedFileId = result.fileId;
+        this.uploadedFileName = file.name;
+        this.uploadedFileUrl = this.fileService.thumbnailUrl(result.fileId, null);
+      }, (err) => {
+        this.snackbar.open("Image upload failed. Please try again later.",'',{duration: this.snackbarDuration})
+      })
     }
   }
 

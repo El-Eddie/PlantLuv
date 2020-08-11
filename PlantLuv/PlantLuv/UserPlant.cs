@@ -24,6 +24,6 @@ namespace PlantLuv
         public bool IsDeleted { get; set; }
         public bool ReceiveNotifications { get; set; }
         public bool IsFavorite { get; set; }
-        public int PrimaryImageID { get; set; }
+        public string PrimaryImageID { get; set; }
     }
 }
