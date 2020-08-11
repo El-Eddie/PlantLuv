@@ -18,7 +18,8 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { AccountModule } from './account/account.module';
 import { AppRoutingModule } from './app-routing.module';
-import { ServiceWorkerModule } from '@angular/service-worker'
+import { ServiceWorkerModule } from '@angular/service-worker';
+
 
 
 
@@ -56,5 +57,5 @@ import { ServiceWorkerModule } from '@angular/service-worker'
 })
 
 export class AppModule {
-  constructor( iconService: IconService) {}
+  constructor(iconService: IconService) { }
 }

@@ -1,23 +1,32 @@
 @import '../app.colors.scss';
+@import '../app.theme.variables.scss';
+@import '../app.component.scss';
+#nav-left {
+    @include debug;
+    a,
+    a:link,
+    a:visited {
+        text-decoration: none;
+        color: $accent-white;
+    }
+    a:hover {
+        color: $accent-md;
+        cursor: pointer;
+    }
+    .selected-link {
+        color: $accent-md;
+    }
+}
 
-nav {
-  margin: 0px 30px;
-}
-nav > ul{
-  list-style-type: none;
-  margin: 0em;
-  padding: 0em;
-}
-nav > ul > li{
-  float: left;
-}
-nav > ul > li:not(:last-child)::after{
-  content: "\00A0|\00A0";
-  color: $shadow-color;
-}
-.selected-link{
-  border-bottom: 2px solid $accent-md;
-}
-a:hover{
-  cursor: pointer;
+ul {
+    padding: 0;
+    li:first-child {
+        a:after {
+            padding: 0 0.5em;
+            content: "|";
+        }
+        a:hover::after {
+            color: $accent-white;
+        }
+    }
 }
