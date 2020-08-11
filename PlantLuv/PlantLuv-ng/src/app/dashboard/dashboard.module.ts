@@ -16,8 +16,8 @@ import { environment } from '../../environments/environment';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { UserPlantCardComponent } from './user-plant-card/user-plant-card.component';
 
-import { PlantCardComponent } from './plant-card/plant-card.component';
-import { PlantDetailsComponent } from './plant-details/plant-details.component';
+import { PlantCardComponent } from './plant-type-card/plant-type-card.component';
+import { PlantDetailsComponent } from './plant-type-details/plant-type-details.component';
 
 import { StoreModule } from '@ngrx/store'
 import { displayReducer } from '../store/nav-state'
@@ -33,7 +33,7 @@ import { FilterComponent } from './filter/filter.component';
 import { DeleteDialogComponent } from './pop-up/delete-dialog.component';
 import { ConfirmationSnackbarComponent } from './pop-up/confirmation-snackbar.component';
 import { RenameDialogComponent } from './pop-up/rename-dialog.component';
-import { PlantDashboardComponent } from './plant-dashboard/plant-dashboard.component';
+import { PlantTypeDashboardComponent } from './plant-type-dashboard/plant-type-dashboard.component';
 import { AddPlantComponent } from './add-plant/add-plant.component';
 import { UserDashboardRoutingModule } from './dashboard.routing';
 
@@ -55,7 +55,7 @@ import { UserDashboardRoutingModule } from './dashboard.routing';
     DeleteDialogComponent,
     RenameDialogComponent,
     ConfirmationSnackbarComponent,
-    PlantDashboardComponent,
+    PlantTypeDashboardComponent,
     AddPlantComponent
   ],
 

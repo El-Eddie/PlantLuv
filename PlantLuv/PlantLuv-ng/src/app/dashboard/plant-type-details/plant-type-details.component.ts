@@ -6,8 +6,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-plant-details',
-  templateUrl: './plant-details.component.html',
-  styleUrls: ['./plant-details.component.scss']
+  templateUrl: './plant-type-details.component.html',
+  styleUrls: ['./plant-type-details.component.scss']
 })
 
 export class PlantDetailsComponent implements OnInit {

@@ -14,10 +14,10 @@ namespace PlantLuv.Plants
 		public string CommonName { get; set; }
 		public int StockImageID { get; set; }
 		public string Description { get; set; }
-		public Level Difficulty { get; set; }
-
-		public Level HumidityLevel { get; set; }
-		public Level LightLevel { get; set; }
+		public DifficultyLevel Difficulty { get; set; }
+		public int HumidityLowLevel { get; set; }
+		public int HumidityHighLeve { get; set; } 
+		public LightLevel LightLevel { get; set; }
 		public int LightTime { get; set; }
 		public double SoilPh { get; set; }
 		public SoilType SoilType { get; set; }

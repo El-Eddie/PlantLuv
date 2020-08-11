@@ -7,15 +7,15 @@ import { Plant } from '../models/plant.model';
 import { PlantType } from '../models/plant-type.model'
 import { PlantService } from '../service/plant.service';
 import { PlantTypeService } from '../service/plant-type.service';
-import { PlantDetailsComponent } from '../plant-details/plant-details.component'
+import { PlantDetailsComponent } from '../plant-type-details/plant-type-details.component'
 import { AddPlantComponent } from '../add-plant/add-plant.component'
 
 @Component({
   selector: 'app-plant-dashboard',
-  templateUrl: './plant-dashboard.component.html',
-  styleUrls: ['./plant-dashboard.component.scss']
+  templateUrl: './plant-type-dashboard.component.html',
+  styleUrls: ['./plant-type-dashboard.component.scss']
 })
-export class PlantDashboardComponent implements OnInit {
+export class PlantTypeDashboardComponent implements OnInit {
 
   plantList$: Observable<PlantType[]>;
   filterValue: string = "";
