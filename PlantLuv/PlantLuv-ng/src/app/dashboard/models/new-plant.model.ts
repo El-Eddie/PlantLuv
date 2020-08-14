@@ -8,5 +8,5 @@ export interface NewUserPlant {
   lastFertalized: Date;
   wherePurchased?: string;
   receiveNotifications: boolean;
-  thumbnailURL?: string;
+  PrimaryImageID?: string;
 }

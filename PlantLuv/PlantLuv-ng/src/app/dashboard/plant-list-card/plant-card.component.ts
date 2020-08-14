@@ -18,7 +18,7 @@ export class PlantCardComponent implements OnInit {
   @Output() waterPlantEvent: EventEmitter<number> = new EventEmitter();
   @Output() fertalizePlantEvent: EventEmitter<number> = new EventEmitter();
   @Output() deletePlantEvent: EventEmitter<number> = new EventEmitter();
-  @Output() viewCareSheetEvent: EventEmitter<number> = new EventEmitter();
+  @Output() viewCareSheetEvent: EventEmitter<string> = new EventEmitter();
   @Output() updatePlant: EventEmitter<Plant> = new EventEmitter();
   imageUrl: string;
 
@@ -30,7 +30,6 @@ export class PlantCardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.imageUrl = this.fileService.mediumUrl(this.plant.primaryImagKseId, null);
     this.imageUrl = this.fileService.mediumUrl(this.plant.primaryImageId, null);
   }
 
@@ -57,7 +56,7 @@ export class PlantCardComponent implements OnInit {
   }
 
 
-  openCareSheet(){ this.viewCareSheetEvent.emit(this.plant.typeId); }
+  openCareSheet(){ this.viewCareSheetEvent.emit(this.plant.lattinName); }
 
 
   confirmDelete(){

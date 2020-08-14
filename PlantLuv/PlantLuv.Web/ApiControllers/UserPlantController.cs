@@ -112,7 +112,7 @@ namespace PlantLuv.Web.ApiControllers
 				IsDeleted = false,
 				ReceiveNotifications = model.ReceiveNotifications,
 				IsFavorite = false,
-				PrimaryImageID = type.StockImageID	// Change to select image thumbnail when file upload is implemented.
+				PrimaryImageID = model.PrimaryImageID
 			};
 
 			_plantData.Add(plant);

@@ -81,7 +81,13 @@ export class AddPlantComponent implements OnInit {
     )
 
     this.defaultImage = this.placeholderImage;
-    this.activeUser = "user@me.com" // change logic to detect actual logged in user
+    this.activeUser = this.getLoggedInUser();
+  }
+
+
+  getLoggedInUser(): string {
+    let currentUser = localStorage.getItem('currentUser');
+    return JSON.parse(currentUser).id;
   }
 
 
@@ -133,9 +139,8 @@ export class AddPlantComponent implements OnInit {
 
     const today = new Date();
     var plant: NewUserPlant = {...this.formGroup.value};
-    plant.ownerId = this.activeUser
-    plant.thumbnailURL = this.defaultImage
-    // plant.typeId = this.selectedtypeId;
+    plant.ownerId = this.activeUser;
+    plant.PrimaryImageID = this.uploadedFileId ? this.uploadedFileId : this.defaultImage;
     plant.typeId = this.selectedtypeId;
 
     if (!plant.receiveNotifications) { plant.receiveNotifications = false }

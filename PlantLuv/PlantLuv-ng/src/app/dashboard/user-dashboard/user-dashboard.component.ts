@@ -23,7 +23,8 @@ export class UserDashboardComponent implements OnInit {
 
   // plantList$ = new Observable<Plant[]>();
   plantList$ = new BehaviorSubject<Plant[]>([]);
-  refinedList$: Observable<Plant[]>;
+  // refinedList$: Observable<Plant[]>;
+  refinedList$ = new BehaviorSubject<Plant[]>([]);
   typeList$: Observable<PlantType[]>;
   filterValue$ = new BehaviorSubject<string>('');
   filter: Subscription;
@@ -52,8 +53,10 @@ export class UserDashboardComponent implements OnInit {
 
 
   getLoggedInUser(): string {
-    // return localStorage.getItem('currentUser');
-    return "user@me.com";
+    let currentUser = localStorage.getItem('currentUser');
+    return JSON.parse(currentUser).id;
+
+    //return "user@me.com";
   }
 
 
@@ -124,20 +127,20 @@ export class UserDashboardComponent implements OnInit {
 
 
   filterPlants(): void {
-    this.filterValue$.subscribe(() => {
-      this.refinedList$ = combineLatest([this.plantList$, this.filterValue$])
-        .pipe(map(([plantList, filterValue]) => {
-          filterValue = filterValue.toUpperCase();
-          return plantList.filter(plant => {
-            return (
-              plant.commonName.toUpperCase().match(filterValue) ||
-              plant.lattinName.toUpperCase().match(filterValue) ||
-              plant.nickName.toUpperCase().match(filterValue) ||
-              plant.wherePurchased.toUpperCase().match(filterValue)
-            )
-          })
-        }))
-    })
+    combineLatest([this.plantList$, this.filterValue$])
+      .pipe(map(([plantList, filterValue]) => {
+        filterValue = filterValue.toUpperCase();
+        return plantList.filter(plant => {
+          return (
+            plant.commonName.toUpperCase().match(filterValue) ||
+            plant.lattinName.toUpperCase().match(filterValue) ||
+            plant.nickName.toUpperCase().match(filterValue) ||
+            plant.wherePurchased.toUpperCase().match(filterValue)
+          )
+        })
+      })).subscribe(list => {
+        this.refinedList$.next(list);
+      })
   }
 
 
@@ -149,8 +152,10 @@ export class UserDashboardComponent implements OnInit {
   }
 
 
-  displayDetailsCard(type: number) {
-    console.log(type);
+  displayDetailsCard(type: string) {
+    this.typeService.grab(type).subscribe(plantType => {
+      const detailCard = this.dialog.open(TypeDetailsComponent, { data: plantType });
+    })
   }
 
 
