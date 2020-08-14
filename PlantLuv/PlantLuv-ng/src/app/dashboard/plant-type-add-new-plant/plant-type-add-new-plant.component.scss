@@ -3,7 +3,7 @@
 #add-new-container {
     ul {
         display: flex;
-        flex-flow: row wrap;
+        flex-flow: row nowrap;
         // @media all and (min-width: 0) and (max-width: 537px) {
         //     flex-flow: row wrap;
         // }
@@ -21,6 +21,13 @@
         max-width: 200px;
         border: 1px solid $border-color;
     }
+    .fullwidth {
+        padding: 0;
+        margin: 0 -10px 0 -10px;
+        .mat-form-field {
+            width: 100%;
+        }
+    }
 }
 
 h5 {
@@ -31,7 +38,7 @@ h5 {
 }
 
 h3 {
-    padding: 0.15em;
+    padding: 0.15em 0;
     margin: 0;
     font-size: $xllSize;
     font-family: 'Barlow Semi Condensed';
