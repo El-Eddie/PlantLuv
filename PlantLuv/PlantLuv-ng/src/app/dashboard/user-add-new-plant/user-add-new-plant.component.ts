@@ -7,7 +7,7 @@ import { PlantService } from '../service/plant.service'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl, PatternValidator, ValidatorFn, NgModel, ValidationErrors } from '@angular/forms';
 import { Observable, Subscription, from, of } from 'rxjs';
-import {map, startWith, filter} from 'rxjs/operators';
+import { map, startWith, filter } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { nextTick, config } from 'process';
 import { async } from 'rxjs/internal/scheduler/async';
@@ -16,8 +16,8 @@ import { FileMetadata } from '../models/file.model';
 
 @Component({
   selector: 'app-add-plant',
-  templateUrl: './add-plant.component.html',
-  styleUrls: ['./add-plant.component.scss']
+  templateUrl: './user-add-new-plant.component.html',
+  styleUrls: ['./user-add-new-plant.component.scss']
 })
 
 export class AddPlantComponent implements OnInit {
@@ -71,7 +71,7 @@ export class AddPlantComponent implements OnInit {
   ngOnInit(): void {
     this.typeList$ = this.typeService.search("")
 
-    this.typeList$.subscribe(() =>{
+    this.typeList$.subscribe(() => {
       this.filteredTypeList$ = this.getOptions();
     })
 
@@ -87,13 +87,13 @@ export class AddPlantComponent implements OnInit {
 
   plantTypeValidator(field: AbstractControl): ValidationErrors | null {
     const input = field.value.toUpperCase()
-    var regexInput = "^"+input+"$";
+    var regexInput = "^" + input + "$";
     var isValid = false;
 
     if (input == this.otherOption.toUpperCase()) {
       this.selectedtypeId = 0;
       isValid = true;
-     }
+    }
 
     this.typeList$.forEach(_array => {
       _array.forEach(_type => {
@@ -103,7 +103,7 @@ export class AddPlantComponent implements OnInit {
         }
       })
     })
-    return isValid ? of(null) : of({'invalidEntry': true});
+    return isValid ? of(null) : of({ 'invalidEntry': true });
   }
 
 
@@ -113,7 +113,7 @@ export class AddPlantComponent implements OnInit {
   }
 
 
-  getOptions(): Observable<string[]>{
+  getOptions(): Observable<string[]> {
     this.typeList$.forEach(_array => {
       _array.forEach(_type => { // this works, but can/should we use map?
         this.typeList.push(_type.commonName)
@@ -123,16 +123,16 @@ export class AddPlantComponent implements OnInit {
   }
 
 
-  cancel(){
+  cancel() {
     this.dialogRef.close()
   }
 
 
-  save(){
-    if(!this.formGroup.valid){ return; }
+  save() {
+    if (!this.formGroup.valid) { return; }
 
     const today = new Date();
-    var plant: NewUserPlant = {...this.formGroup.value};
+    var plant: NewUserPlant = { ...this.formGroup.value };
     plant.ownerId = this.activeUser
     plant.thumbnailURL = this.defaultImage
     plant.typeId = this.selectedtypeId;
@@ -144,10 +144,10 @@ export class AddPlantComponent implements OnInit {
     plant.lastWatered = plant.lastWatered ? plant.lastWatered : today;
 
     this.plantService.create(plant).subscribe(results => {
-        var message ="Plant added successfully"
-        this.snackbar.open(message, null ,{
-          duration: this.snackbarDuration
-        });
+      var message = "Plant added successfully"
+      this.snackbar.open(message, null, {
+        duration: this.snackbarDuration
+      });
       this.dialogRef.close();
     }, results => {
       alert("There was an error saving your new plant.\n Please check the information and try again.");
@@ -155,8 +155,8 @@ export class AddPlantComponent implements OnInit {
   }
 
 
-  changeDefaultPicure(event: any){
-    const input: string = "^"+event.target.value.toUpperCase()+"$";
+  changeDefaultPicure(event: any) {
+    const input: string = "^" + event.target.value.toUpperCase() + "$";
     var newPic: string = null
 
     this.typeList$.forEach(_array => {
@@ -175,19 +175,18 @@ export class AddPlantComponent implements OnInit {
   }
 
 
-  clearImage(){
+  clearImage() {
     this.uploadedFileUrl = null;
     this.uploadedFileName = null;
     this.uploadedFileId = null;
   }
 
 
-  fileChosen(event: any){
-    if (event.target.files && event.target.files[0])
-    {
+  fileChosen(event: any) {
+    if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
-      if(!this.acceptedFileTypes.includes(file.type)){
-        this.snackbar.open('Invalid file type','', {duration: this.snackbarDuration})
+      if (!this.acceptedFileTypes.includes(file.type)) {
+        this.snackbar.open('Invalid file type', '', { duration: this.snackbarDuration })
         return;
       }
       const formData = new FormData();
@@ -198,7 +197,7 @@ export class AddPlantComponent implements OnInit {
         this.uploadedFileName = file.name;
         this.uploadedFileUrl = this.fileService.thumbnailUrl(result.fileId, null);
       }, (err) => {
-        this.snackbar.open("Image upload failed. Please try again later.",'',{duration: this.snackbarDuration})
+        this.snackbar.open("Image upload failed. Please try again later.", '', { duration: this.snackbarDuration })
       })
     }
   }

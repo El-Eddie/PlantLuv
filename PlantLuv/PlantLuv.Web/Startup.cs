@@ -24,7 +24,7 @@ using PlantLuv.SqlDbServices;
 using Microsoft.AspNetCore.Hosting;
 using PlantLuv;
 using PlantLuv.Files;
-using PlantLuv.Plants;
+using PlantLuv.PlantOptions;
 using Microsoft.AspNetCore.Http;
 
 namespace PlantLuv.Web

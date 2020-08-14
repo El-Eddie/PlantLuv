@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PlantLuv.Plants
+﻿namespace PlantLuv.PlantOptions
 {
     public enum LightLevel
     {

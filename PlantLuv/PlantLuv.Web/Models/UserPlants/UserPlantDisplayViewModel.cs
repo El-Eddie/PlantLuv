@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using PlantLuv.Plants;
+using PlantLuv.PlantOptions;
 
 namespace PlantLuv.Web.Models.Plants
 {
-    public class PlantDisplayViewModel
+    public class UserPlantDisplayViewModel
     {
-        public int PlantId { get; set; }
+        public int PlantID { get; set; }
         public string OwnerID { get; set; }
         public int TypeID { get; set; }
 
@@ -30,11 +28,11 @@ namespace PlantLuv.Web.Models.Plants
         public string LightLevel { get; set; }
         public List<string> Toxisity { get; set; }
 
-        public PlantDisplayViewModel(UserPlant plant)
+        public UserPlantDisplayViewModel(UserPlant plant)
         {
-            this.PlantId = plant.PlantId;
+            this.PlantID = plant.PlantID;
             this.OwnerID = plant.OwnerID;
-            this.TypeID = plant.PlantType.TypeId;
+            this.TypeID = plant.PlantType.PlantTypeID;
 
             this.CommonName = plant.PlantType.CommonName;
             this.LattinName = plant.PlantType.LatinName;
@@ -64,9 +62,6 @@ namespace PlantLuv.Web.Models.Plants
 
             if (type.ToxicToDogs)
                 toxisity.Add("Dogs");
-
-            if (type.ToxicToHumans)
-                toxisity.Add("Humans"); // We can remove this. It's not necessary
 
             if (type.ToxicToSmallAnimals)
                 toxisity.Add("Small-Animals");

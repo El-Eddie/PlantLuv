@@ -1,4 +1,4 @@
-﻿namespace PlantLuv.Plants
+﻿namespace PlantLuv.PlantOptions
 {
 	public enum SoilType
 	{	

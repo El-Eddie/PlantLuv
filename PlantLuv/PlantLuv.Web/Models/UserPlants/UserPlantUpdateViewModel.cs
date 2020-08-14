@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using PlantLuv.Plants;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace PlantLuv.Web.Models.Plants
 {
-	public class PlantUpdateViewModel
+    public class UserPlantUpdateViewModel
 	{
 		[MaxLength(255)]
 		public string NickName { get; set; }

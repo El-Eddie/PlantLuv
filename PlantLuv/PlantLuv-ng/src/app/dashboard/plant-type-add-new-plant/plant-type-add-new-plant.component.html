@@ -1,0 +1,27 @@
+<mat-dialog-content>
+    <h3>Add New Plant</h3>
+    <form [formGroup]="newPlantType">
+        <div id="add-new-container">
+            <!-- START -->
+            <ul class="add-new">
+                <li class="add-new-item">
+                    <mat-form-field>
+                        <mat-label>Plant Type</mat-label>
+                        <input #species type="text" matInput formControlName="plantType">
+                        <mat-hint>Required</mat-hint>
+                    </mat-form-field>
+                </li>
+                <li class="add-new-item">
+                    <mat-form-field>
+                        <input matInput placeholder="Plant Nickname" formControlName="nickName" />
+                    </mat-form-field>
+                </li>
+            </ul>
+            <!-- END -->
+        </div>
+        <mat-dialog-actions align="end">
+            <button mat-raised-button (click)="cancel()">Cancel</button>
+            <button mat-raised-button (click)="save()" color="accent">Save</button>
+        </mat-dialog-actions>
+    </form>
+</mat-dialog-content>

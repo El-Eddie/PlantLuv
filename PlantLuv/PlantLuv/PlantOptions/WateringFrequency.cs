@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PlantLuv.Plants
+﻿namespace PlantLuv.PlantOptions
 {
-	public enum WateringFrequency
+    public enum WateringFrequency
 	{
         Daily = 1,
         BiWeekly = 2,

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace PlantLuv.Plants
+namespace PlantLuv.PlantOptions
 {
-	public interface ITypeData
+    public interface ITypeData
 	{
 		PlantType Get(int typeID);
 		void Add(PlantType type);

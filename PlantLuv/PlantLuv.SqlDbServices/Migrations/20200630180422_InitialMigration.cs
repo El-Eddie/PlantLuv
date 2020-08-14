@@ -116,7 +116,7 @@ namespace PlantLuv.SqlDbServices.Migrations
                 name: "UserPlant",
                 columns: table => new
                 {
-                    PlantId = table.Column<int>(nullable: false)
+                   PlantID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     OwnerID = table.Column<string>(nullable: true),
                     NickName = table.Column<string>(nullable: true),
@@ -134,7 +134,7 @@ namespace PlantLuv.SqlDbServices.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserPlant", x => x.PlantId);
+                    table.PrimaryKey("PK_UserPlant", x => x.PlantID);
                     table.ForeignKey(
                         name: "FK_UserPlant_PlantType_PlantTypeTypeId",
                         column: x => x.PlantTypeTypeId,

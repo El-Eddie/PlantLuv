@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
 namespace PlantLuv.Web.Models.Plants
 {
-	public class PlantCreateViewModel
+    public class UserPlantCreateViewModel
 	{
 		[Required]
 		public string OwnerID { get; set; }
 		[Required]
-		public int TypeID { get; set; }
+		public int PlantTypeID { get; set; }
 		[MaxLength(255)]
 		public string WherePurchased { get; set; }
 		[MaxLength(255)]

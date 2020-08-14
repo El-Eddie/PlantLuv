@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
-using PlantLuv.Plants;
+using PlantLuv.PlantOptions;
 
 namespace PlantLuv
 {
     public class UserPlant
     {
         [Key]
-        public int PlantId { get; set; }
+        public int PlantID { get; set; }
         public string OwnerID { get; set; }
         public string NickName { get; set; }
         public string WherePurchased { get; set; }

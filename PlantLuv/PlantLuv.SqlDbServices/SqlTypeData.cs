@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using PlantLuv.Plants;
+using PlantLuv.PlantOptions;
 
 
 namespace PlantLuv.SqlDbServices
@@ -32,7 +32,7 @@ namespace PlantLuv.SqlDbServices
 
 		public PlantType Get(int typeId)
 		{
-			return _dbContext.PlantType.FirstOrDefault(x => x.TypeId == typeId);
+			return _dbContext.PlantType.FirstOrDefault(x => x.PlantTypeID == typeId);
 		}
 
 		public List<PlantType> Search(PlantQueryParameters options)

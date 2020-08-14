@@ -30,12 +30,13 @@ import { DifficultyPipe } from './pipes/difficulty.pipe'
 // Fitler
 import { FilterComponent } from './filter/filter.component';
 // Plant cards
-import { DeleteDialogComponent } from './pop-up/delete-dialog.component';
-import { ConfirmationSnackbarComponent } from './pop-up/confirmation-snackbar.component';
-import { RenameDialogComponent } from './pop-up/rename-dialog.component';
+import { DeleteDialogComponent } from '../dashboard/pop-up/delete-dialog.component';
+import { ConfirmationSnackbarComponent } from '../dashboard/pop-up/confirmation-snackbar.component';
+import { RenameDialogComponent } from '../dashboard/pop-up/rename-dialog.component';
 import { PlantTypeDashboardComponent } from './plant-type-dashboard/plant-type-dashboard.component';
-import { AddPlantComponent } from './add-plant/add-plant.component';
+import { AddPlantComponent } from './user-add-new-plant/user-add-new-plant.component';
 import { UserDashboardRoutingModule } from './dashboard.routing';
+import { PlantTypeAddNewComponent } from './plant-type-add-new-plant/plant-type-add-new-plant.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { UserDashboardRoutingModule } from './dashboard.routing';
     RenameDialogComponent,
     ConfirmationSnackbarComponent,
     PlantTypeDashboardComponent,
-    AddPlantComponent
+    AddPlantComponent,
+    PlantTypeAddNewComponent
   ],
 
   imports: [

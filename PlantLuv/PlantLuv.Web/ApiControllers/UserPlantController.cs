@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using PlantLuv;
-using PlantLuv.Plants;
+using PlantLuv.PlantOptions;
 using PlantLuv.Web.Models;
 using PlantLuv.Web.Models.Plants;
 using Newtonsoft.Json;
@@ -43,7 +43,7 @@ namespace PlantLuv.Web.ApiControllers
 
 		[HttpGet("search")]
 		[ProducesResponseType(404)]
-		[ProducesResponseType(200, Type = typeof(PlantDisplayViewModel))]
+		[ProducesResponseType(200, Type = typeof(UserPlantDisplayViewModel))]
 		public IActionResult Get([FromQuery] PlantQueryParameters queryParams)
 		{
 			queryParams.Take = (queryParams.Take < 1 || queryParams.Take > 200) ? 50 : queryParams.Take;
@@ -54,8 +54,8 @@ namespace PlantLuv.Web.ApiControllers
 			if (plantList == null)
 				return NotFound();
 
-			IEnumerable<PlantDisplayViewModel> models =
-				plantList.Select(p => new PlantDisplayViewModel(p));
+			IEnumerable<UserPlantDisplayViewModel> models =
+				plantList.Select(p => new UserPlantDisplayViewModel(p));
 
 			PaginationModel nextPreviousQuary = new PaginationModel
 			{
@@ -73,7 +73,7 @@ namespace PlantLuv.Web.ApiControllers
 
 		[HttpGet("{id}")]
 		[ProducesResponseType(404)]
-		[ProducesResponseType(200, Type = typeof(PlantDisplayViewModel))]
+		[ProducesResponseType(200, Type = typeof(UserPlantDisplayViewModel))]
 		public IActionResult Get(int id)
 		{
 			UserPlant plant = _plantData.Get(id);
@@ -83,20 +83,20 @@ namespace PlantLuv.Web.ApiControllers
 				this.logger.LogWarning($"Plant number {id} was not found.");
 				return NotFound();
 			}
-			return Ok( new PlantDisplayViewModel(plant) );
+			return Ok( new UserPlantDisplayViewModel(plant) );
 		}
 
 
 		[HttpPost("")]
-		[ProducesResponseType(201, Type = typeof(PlantDisplayViewModel))]
+		[ProducesResponseType(201, Type = typeof(UserPlantDisplayViewModel))]
 		[ProducesResponseType(422, Type = typeof(ValidationErrorModel))]
-		public IActionResult Create([FromBody] PlantCreateViewModel model)
+		public IActionResult Create([FromBody] UserPlantCreateViewModel model)
 		{
 
 			if (!ModelState.IsValid)
 				return UnprocessableEntity(new ValidationErrorModel(ModelState));
 
-			PlantType type = _typeData.Get(model.TypeID);
+			PlantType type = _typeData.Get(model.PlantTypeID);
 
 			UserPlant plant = new UserPlant
 			{
@@ -117,15 +117,15 @@ namespace PlantLuv.Web.ApiControllers
 
 			_plantData.Add(plant);
 			_plantData.Commit();
-			return Created("", new PlantDisplayViewModel(plant));
+			return Created("", new UserPlantDisplayViewModel(plant));
 		}
 
 		
 		[HttpPost("{id}")]
 		[ProducesResponseType(404)]
-		[ProducesResponseType(200, Type = typeof(PlantDisplayViewModel))]
+		[ProducesResponseType(200, Type = typeof(UserPlantDisplayViewModel))]
 		[ProducesResponseType(422, Type = typeof(ValidationErrorModel))]
-		public IActionResult Update(int id, [FromBody]PlantUpdateViewModel model)
+		public IActionResult Update(int id, [FromBody]UserPlantUpdateViewModel model)
 		{
 			UserPlant plant = _plantData.Get(id);
 			if (plant == null)
@@ -143,7 +143,7 @@ namespace PlantLuv.Web.ApiControllers
 			plant.IsFavorite = model.IsFavorite;
 			plant.PrimaryImageID = model.PrimaryImageID;
 
-			PlantDisplayViewModel updated = new PlantDisplayViewModel(plant);
+			UserPlantDisplayViewModel updated = new UserPlantDisplayViewModel(plant);
 
 			_plantData.Update(plant);
 			_plantData.Commit();
@@ -153,9 +153,9 @@ namespace PlantLuv.Web.ApiControllers
 
 		[HttpPatch("feed")]
 		[ProducesResponseType(404)]
-		[ProducesResponseType(200, Type = typeof(PlantUpdateViewModel))]
+		[ProducesResponseType(200, Type = typeof(UserPlantUpdateViewModel))]
 		[ProducesResponseType(422, Type = typeof(ValidationErrorModel))]
-		public IActionResult FeedPlants([FromBody]PlantCareUpdateModel model)
+		public IActionResult FeedPlants([FromBody]UserPlantUpdateModel model)
 		{
 			if (!ModelState.IsValid)
 			return UnprocessableEntity(new ValidationErrorModel(ModelState));
@@ -173,8 +173,8 @@ namespace PlantLuv.Web.ApiControllers
 				_plantData.Update(plant);
 			}
 
-			IEnumerable<PlantDisplayViewModel> models =
-				plantList.Select(p => new PlantDisplayViewModel(p));
+			IEnumerable<UserPlantDisplayViewModel> models =
+				plantList.Select(p => new UserPlantDisplayViewModel(p));
 			_plantData.Commit();
 			return Ok(models);
 		}
@@ -182,9 +182,9 @@ namespace PlantLuv.Web.ApiControllers
 
 		[HttpPatch("water")]
 		[ProducesResponseType(404)]
-		[ProducesResponseType(200, Type = typeof(PlantUpdateViewModel))]
+		[ProducesResponseType(200, Type = typeof(UserPlantUpdateViewModel))]
 		[ProducesResponseType(422, Type = typeof(ValidationErrorModel))]
-		public IActionResult WaterPlants([FromBody]PlantCareUpdateModel model)
+		public IActionResult WaterPlants([FromBody]UserPlantUpdateModel model)
 		{
 			if (!ModelState.IsValid)
 				return UnprocessableEntity(new ValidationErrorModel(ModelState));
@@ -204,8 +204,8 @@ namespace PlantLuv.Web.ApiControllers
 				_plantData.Update(plant);
 			}
 
-			IEnumerable<PlantDisplayViewModel> models =
-				plantList.Select(p => new PlantDisplayViewModel(p));
+			IEnumerable<UserPlantDisplayViewModel> models =
+				plantList.Select(p => new UserPlantDisplayViewModel(p));
 			_plantData.Commit();
 			return Ok(models);
 		}

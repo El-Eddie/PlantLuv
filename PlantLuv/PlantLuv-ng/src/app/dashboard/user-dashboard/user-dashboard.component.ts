@@ -8,7 +8,7 @@ import { PlantType } from '../models/plant-type.model'
 import { PlantService } from '../service/plant.service';
 import { PlantTypeService } from '../service/plant-type.service';
 import { PlantDetailsComponent } from '../plant-type-details/plant-type-details.component'
-import { AddPlantComponent } from '../add-plant/add-plant.component';
+import { AddPlantComponent } from '../user-add-new-plant/user-add-new-plant.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { map } from 'rxjs/operators';
 
@@ -127,7 +127,7 @@ export class UserDashboardComponent implements OnInit {
   }
 
 
-  addPlant(){
-    this.dialog.open(AddPlantComponent, {data: null, disableClose: true});
+  addPlant() {
+    this.dialog.open(AddPlantComponent, { data: null, disableClose: true });
   }
 }
