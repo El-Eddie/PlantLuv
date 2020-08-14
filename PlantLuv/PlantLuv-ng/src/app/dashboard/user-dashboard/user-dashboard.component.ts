@@ -133,7 +133,7 @@ export class UserDashboardComponent implements OnInit {
         return plantList.filter(plant => {
           return (
             plant.commonName.toUpperCase().match(filterValue) ||
-            plant.lattinName.toUpperCase().match(filterValue) ||
+            plant.latinName.toUpperCase().match(filterValue) ||
             plant.nickName.toUpperCase().match(filterValue) ||
             plant.wherePurchased.toUpperCase().match(filterValue)
           )
@@ -154,7 +154,7 @@ export class UserDashboardComponent implements OnInit {
 
   displayDetailsCard(type: string) {
     this.typeService.grab(type).subscribe(plantType => {
-      const detailCard = this.dialog.open(TypeDetailsComponent, { data: plantType });
+      const detailCard = this.dialog.open(PlantDetailsComponent, { data: plantType });
     })
   }
 

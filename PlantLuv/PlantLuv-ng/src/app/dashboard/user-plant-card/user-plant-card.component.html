@@ -21,7 +21,7 @@
     <div class="plant-content">
         <mat-card-content class="mat-card-content plant-card-content">
             <div class="plant-title">
-                <h5>{{plant.lattinName}}</h5>
+                <h5>{{plant.latinName}}</h5>
                 <h3 *ngIf="plant.nickName; else noNickname">{{plant.nickName}}</h3>
                 <ng-template #noNickname>
                   <h3>{{plant.commonName}}</h3>
