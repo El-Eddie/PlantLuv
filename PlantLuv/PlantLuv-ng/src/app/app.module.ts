@@ -3,7 +3,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import { Routes, RouterModule, ROUTES, Router } from '@angular/router';
-
 import { AppComponent } from './app.component';
 
 import { SharedImportsModule } from './shared/shared-imports.module';
@@ -19,9 +18,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { AccountModule } from './account/account.module';
 import { AppRoutingModule } from './app-routing.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
-
-
-
 
 @NgModule({
   declarations: [

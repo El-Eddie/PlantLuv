@@ -174,7 +174,7 @@ namespace PlantLuv.SqlDbServices.Migrations
 
             modelBuilder.Entity("PlantLuv.UserPlant", b =>
                 {
-                    b.Property<int>("PlantId")
+                    b.Property<int>("PlantID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -218,7 +218,7 @@ namespace PlantLuv.SqlDbServices.Migrations
                     b.Property<string>("WherePurchased")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("PlantId");
+                    b.HasKey("PlantID");
 
                     b.HasIndex("PlantTypeTypeId");
 

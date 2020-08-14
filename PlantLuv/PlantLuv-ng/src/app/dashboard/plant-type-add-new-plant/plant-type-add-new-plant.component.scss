@@ -1,0 +1,45 @@
+@import '../../app.colors.scss';
+@import '../../app.component.scss';
+#add-new-container {
+    ul {
+        display: flex;
+        flex-flow: row nowrap;
+        // @media all and (min-width: 0) and (max-width: 537px) {
+        //     flex-flow: row wrap;
+        // }
+        justify-content: space-around;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        font-size: $lSize;
+        li {
+            padding: 5px;
+            flex: 1 2 45%;
+        }
+    }
+    .placeholder-image {
+        max-width: 200px;
+        border: 1px solid $border-color;
+    }
+    .fullwidth {
+        padding: 0;
+        margin: 0 -10px 0 -10px;
+        .mat-form-field {
+            width: 100%;
+        }
+    }
+}
+
+h5 {
+    color: $grey-md;
+    padding: 0.15em;
+    margin: 10px 0 0 0;
+    font-weight: normal;
+}
+
+h3 {
+    padding: 0.15em 0;
+    margin: 0;
+    font-size: $xllSize;
+    font-family: 'Barlow Semi Condensed';
+}

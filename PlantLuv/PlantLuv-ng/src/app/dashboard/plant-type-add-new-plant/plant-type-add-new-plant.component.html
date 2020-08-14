@@ -1,0 +1,174 @@
+<mat-dialog-content>
+    <h3>Add New Plant</h3>
+    <form [formGroup]="newPlantType">
+        <div id="add-new-container">
+            <!-- START -->
+            <ul class="add-new">
+                <li class="add-new-item">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Latin Name" formControlName="latinName">
+                    </mat-form-field>
+                </li>
+                <li class="add-new-item">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Common Name" formControlName="commonName" />
+                    </mat-form-field>
+                </li>
+            </ul>
+            <!-- END -->
+            <!-- START -->
+            <ul class="add-new">
+                <li class="add-new-item fullwidth">
+                    <mat-form-field>
+                        <textarea matInput placeholder="Description" formControlName="description"></textarea>
+                    </mat-form-field>
+                </li>
+            </ul>
+            <!-- END -->
+            <!-- START -->
+            <ul class="add-new">
+                <li class="add-new-item">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Difficulty Level" formControlName="diffisultyLevel">
+                    </mat-form-field>
+                </li>
+                <li class="add-new-item">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Toxic To" formControlName="toxicTo" />
+                    </mat-form-field>
+                </li>
+            </ul>
+            <!-- END -->
+            <!-- START -->
+            <ul class="add-new">
+                <li class="add-new-item">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Humidity Low Level" formControlName="humidityLow">
+                    </mat-form-field>
+                </li>
+                <li class="add-new-item">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Humidity High Level" formControlName="humidityHigh" />
+                    </mat-form-field>
+                </li>
+            </ul>
+            <!-- END -->
+            <!-- START -->
+            <ul class="add-new">
+                <li class="add-new-item">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Light Level" formControlName="lightLevel">
+                    </mat-form-field>
+                </li>
+                <li class="add-new-item">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Light Time" formControlName="lightTime" />
+                    </mat-form-field>
+                </li>
+            </ul>
+            <!-- END -->
+            <!-- START -->
+            <ul class="add-new">
+                <li class="add-new-item">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Soil Ph" formControlName="soilPh">
+                    </mat-form-field>
+                </li>
+                <li class="add-new-item">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Soil Type" formControlName="soilType" />
+                    </mat-form-field>
+                </li>
+            </ul>
+            <!-- END -->
+            <!-- START -->
+            <ul class="add-new">
+                <li class="add-new-item">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Watering Frequency" formControlName="wateringFrequency">
+                    </mat-form-field>
+                </li>
+                <li class="add-new-item">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Watering Type" formControlName="wateringType" />
+                    </mat-form-field>
+                </li>
+            </ul>
+            <!-- END -->
+            <!-- START -->
+            <ul class="add-new">
+                <li class="add-new-item">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Fertalizer Frequency" formControlName="fertalizerFrequency">
+                    </mat-form-field>
+                </li>
+                <li class="add-new-item">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Fertalizer Type" formControlName="fertalizerType" />
+                    </mat-form-field>
+                </li>
+            </ul>
+            <!-- END -->
+            <!-- START -->
+            <ul class="add-new">
+                <li class="add-new-item">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Kingdom" formControlName="kingdom">
+                    </mat-form-field>
+                </li>
+                <li class="add-new-item">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Clade" formControlName="clade1" />
+                    </mat-form-field>
+                </li>
+            </ul>
+            <!-- END -->
+            <!-- START -->
+            <ul class="add-new">
+                <li class="add-new-item">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Clade" formControlName="clade2">
+                    </mat-form-field>
+                </li>
+                <li class="add-new-item">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Clade" formControlName="clade3" />
+                    </mat-form-field>
+                </li>
+            </ul>
+
+            <!-- START -->
+            <ul class="add-new">
+                <li class="add-new-item">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Order" formControlName="order">
+                    </mat-form-field>
+                </li>
+                <li class="add-new-item">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Family" formControlName="family" />
+                    </mat-form-field>
+                </li>
+            </ul>
+            <!-- END -->
+            <!-- START -->
+            <ul class="add-new">
+                <li class="add-new-item">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="SubFamily" formControlName="subFamily">
+                    </mat-form-field>
+                </li>
+                <li class="add-new-item">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Genus" formControlName="genus" />
+                    </mat-form-field>
+                </li>
+            </ul>
+            <!-- END -->
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-raised-button (click)="cancel()">Cancel</button>
+    <button mat-raised-button (click)="save()" color="accent">Save</button>
+</mat-dialog-actions>

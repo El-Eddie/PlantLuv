@@ -1,0 +1,51 @@
+<mat-card class='plant-card'>
+    <div class='thumbnail-container'>
+        <div class="thumbnail">
+            <img src={{planttype.thumbnailURL}}>
+        </div>
+    </div>
+    <div class="plant-content">
+        <mat-card-content class="mat-card-content plant-card-content">
+            <div class="plant-title">
+                <h5>{{planttype.latinName}}</h5>
+                <h3>{{planttype.commonName}}</h3>
+            </div>
+            <div class="plant-icons">
+                <div class="plant-item-label">
+                    Light Requirement:
+                </div>
+                <div class="plant-item-icon">
+                    <mat-icon class="info-icon" svgIcon="{{planttype.lightLevel | lightLevelIcon}}" matTooltip="{{planttype.lightLevel}} Light"></mat-icon>
+                </div>
+            </div>
+            <div class="plant-icons">
+                <div class="plant-item-label">
+                    Difficulty:
+                </div>
+                <div class="plant-item-text-icon rating">
+                    <mat-icon class="info-icon " svgIcon="{{planttype.difficulty | difficultyIcons }}" matTooltip="{{planttype.difficulty}} Difficulty"></mat-icon>
+                </div>
+            </div>
+            <div class="plant-icons">
+                <div class="plant-item-label">
+                    Toxic To:
+                </div>
+                <div class='plant-item-icon' *ngFor="let animal of planttype.toxisity">
+                    <mat-icon class="info-icon" svgIcon="{{animal | toxisityIcon}}" matTooltip="{{animal}}"></mat-icon>
+                </div>
+            </div>
+        </mat-card-content>
+        <div class="bottom-actions">
+            <button class="action-button" mat-raised-button (click)="typeDetails()">
+            <span class="material-icons">
+            fullscreen
+            </span> View Details
+            </button>
+            <button class="action-button" mat-raised-button>
+            <span class="material-icons">
+              save
+              </span> Save
+          </button>
+        </div>
+    </div>
+</mat-card>

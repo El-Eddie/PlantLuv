@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PlantLuv.Files;
-using PlantLuv.Plants;
+using PlantLuv.PlantOptions;
 
 namespace PlantLuv.SqlDbServices
 {

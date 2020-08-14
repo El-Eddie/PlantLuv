@@ -101,9 +101,9 @@ namespace PlantLuv.SqlDbServices.Migrations
                     b.ToTable("FileMetadata");
                 });
 
-            modelBuilder.Entity("PlantLuv.Plants.PlantType", b =>
+            modelBuilder.Entity("PlantLuv.PlantOptions.PlantType", b =>
                 {
-                    b.Property<int>("TypeId")
+                    b.Property<int>("PlantTypeID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -114,11 +114,8 @@ namespace PlantLuv.SqlDbServices.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Dificulty")
+                    b.Property<int>("Difficulty")
                         .HasColumnType("int");
-
-                    b.Property<string>("Family")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("FertalizerType")
                         .HasColumnType("int");
@@ -126,7 +123,10 @@ namespace PlantLuv.SqlDbServices.Migrations
                     b.Property<int>("FertilizerFrequency")
                         .HasColumnType("int");
 
-                    b.Property<int>("HumidityLevel")
+                    b.Property<int>("HumidityHighLevel")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HumidityLowLevel")
                         .HasColumnType("int");
 
                     b.Property<string>("LatinName")
@@ -138,14 +138,38 @@ namespace PlantLuv.SqlDbServices.Migrations
                     b.Property<int>("LightTime")
                         .HasColumnType("int");
 
+                    b.Property<string>("ScienceClade1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ScienceClade2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ScienceClade3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ScienceFamily")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ScienceGenus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ScienceKingdom")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ScienceOrder")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ScienceSubfamily")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<double>("SoilPh")
                         .HasColumnType("float");
 
                     b.Property<int>("SoilType")
                         .HasColumnType("int");
 
-                    b.Property<int>("StockImageID")
-                        .HasColumnType("int");
+                    b.Property<string>("StockImageID")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("ToxicToCats")
                         .HasColumnType("bit");
@@ -165,14 +189,14 @@ namespace PlantLuv.SqlDbServices.Migrations
                     b.Property<int>("WateringFrequency")
                         .HasColumnType("int");
 
-                    b.HasKey("TypeId");
+                    b.HasKey("PlantTypeID");
 
                     b.ToTable("PlantType");
                 });
 
             modelBuilder.Entity("PlantLuv.UserPlant", b =>
                 {
-                    b.Property<int>("PlantId")
+                    b.Property<int>("PlantID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -201,11 +225,11 @@ namespace PlantLuv.SqlDbServices.Migrations
                     b.Property<string>("OwnerID")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PlantTypeTypeId")
+                    b.Property<int?>("PlantTypeID")
                         .HasColumnType("int");
 
-                    b.Property<int>("PrimaryImageID")
-                        .HasColumnType("int");
+                    b.Property<string>("PrimaryImageID")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("ReceiveNotifications")
                         .HasColumnType("bit");
@@ -216,9 +240,9 @@ namespace PlantLuv.SqlDbServices.Migrations
                     b.Property<string>("WherePurchased")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("PlantId");
+                    b.HasKey("PlantID");
 
-                    b.HasIndex("PlantTypeTypeId");
+                    b.HasIndex("PlantTypeID");
 
                     b.ToTable("UserPlant");
                 });
@@ -291,9 +315,9 @@ namespace PlantLuv.SqlDbServices.Migrations
 
             modelBuilder.Entity("PlantLuv.UserPlant", b =>
                 {
-                    b.HasOne("PlantLuv.Plants.PlantType", "PlantType")
+                    b.HasOne("PlantLuv.PlantOptions.PlantType", "PlantType")
                         .WithMany()
-                        .HasForeignKey("PlantTypeTypeId");
+                        .HasForeignKey("PlantTypeID");
                 });
 #pragma warning restore 612, 618
         }

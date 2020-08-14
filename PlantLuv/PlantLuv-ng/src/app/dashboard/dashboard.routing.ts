@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TypeDashboardComponent } from './type-dashboard/type-dashboard.component';
+import { PlantTypeDashboardComponent } from './plant-type-dashboard/plant-type-dashboard.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { AuthenticatedGuard } from '../account/authenticated.guard';
 
@@ -14,7 +14,7 @@ const routes: Routes = [
   {
     path: 'care-sheets',
     pathMatch: 'full',
-    component: TypeDashboardComponent,
+    component: PlantTypeDashboardComponent,
     canActivate: [AuthenticatedGuard]
   },
   {

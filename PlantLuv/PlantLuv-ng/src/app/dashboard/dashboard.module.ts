@@ -12,48 +12,53 @@ import { MockPlantTypeService } from './service/z_mock-plant-type.service'
 import { SharedImportsModule } from '../shared/shared-imports.module'
 import { environment } from '../../environments/environment';
 
-import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
-import { PlantCardComponent } from './plant-list-card/plant-card.component';
 
-import { TypeListCardComponent } from './type-list-card/type-list-card.component';
-import { TypeDetailsComponent } from './type-details/type-details.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { UserPlantCardComponent } from './user-plant-card/user-plant-card.component';
+
+import { PlantCardComponent } from './plant-type-card/plant-type-card.component';
+import { PlantDetailsComponent } from './plant-type-details/plant-type-details.component';
 
 import { StoreModule } from '@ngrx/store'
 import { displayReducer } from '../store/nav-state'
-
+// Icon Pipes
 import { FavoritePipe } from './pipes/favorite.pipe';
 import { NotificationPipe } from './pipes/notification.pipe';
 import { LightLevelPipe } from './pipes/light-level.pipe';
 import { ToxisityPipe } from './pipes/toxisity.pipe';
-
+import { DifficultyPipe } from './pipes/difficulty.pipe'
+// Fitler
 import { FilterComponent } from './filter/filter.component';
-
-import { DeleteDialogComponent } from './pop-up/delete-dialog.component';
-import { ConfirmationSnackbarComponent } from './pop-up/confirmation-snackbar.component';
-import { RenameDialogComponent } from './pop-up/rename-dialog.component';
-import { TypeDashboardComponent } from './type-dashboard/type-dashboard.component';
-import { AddPlantComponent } from './add-plant/add-plant.component';
-import { UserDashboardRoutingModule } from './dashboard.routing'
-
+// Plant cards
+import { DeleteDialogComponent } from '../dashboard/pop-up/delete-dialog.component';
+import { ConfirmationSnackbarComponent } from '../dashboard/pop-up/confirmation-snackbar.component';
+import { RenameDialogComponent } from '../dashboard/pop-up/rename-dialog.component';
+import { PlantTypeDashboardComponent } from './plant-type-dashboard/plant-type-dashboard.component';
+import { AddPlantComponent } from './user-add-new-plant/user-add-new-plant.component';
+import { UserDashboardRoutingModule } from './dashboard.routing';
+import { PlantTypeAddNewComponent } from './plant-type-add-new-plant/plant-type-add-new-plant.component';
 
 @NgModule({
   declarations: [
     UserDashboardComponent,
     PlantCardComponent,
-    TypeListCardComponent,
-    TypeDetailsComponent,
+    UserPlantCardComponent,
+    PlantDetailsComponent,
 
+    // Icon Pipes
     LightLevelPipe,
     ToxisityPipe,
     FavoritePipe,
     NotificationPipe,
+    DifficultyPipe,
 
     FilterComponent,
     DeleteDialogComponent,
     RenameDialogComponent,
     ConfirmationSnackbarComponent,
-    TypeDashboardComponent,
+    PlantTypeDashboardComponent,
     AddPlantComponent,
+    PlantTypeAddNewComponent
   ],
 
   imports: [

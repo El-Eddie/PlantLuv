@@ -1,0 +1,172 @@
+<div id="type-container">
+    <mat-dialog-content>
+        <div class="plant-card">
+            <div class="plant-title">
+                <h5>{{type.latinName}}</h5>
+                <h3>{{type.commonName}}</h3>
+            </div>
+            <div class='thumbnail-container'>
+                <div class="thumbnail">
+                    <img src={{type.thumbnailURL}}>
+                </div>
+            </div>
+            <div id="plant-detail-container">
+                <p>{{type.description}}</p>
+            </div>
+            <!-- Row  -->
+            <div class="plant-card-content">
+                <div class="plant-item-label">
+                    Light Requirement:
+                </div>
+                <div class="plant-item-icon">
+                    <mat-icon class="info-icon" svgIcon="{{type.lightLevel | lightLevelIcon}}" matTooltip="{{type.lightLevel}} Light"></mat-icon>
+                </div>
+            </div>
+            <!-- End -->
+            <!-- Row  -->
+            <div class="plant-card-content">
+                <div class="plant-item-label">
+                    Difficulty:
+                </div>
+                <div class="plant-item-icon rating">
+                    <mat-icon class="info-icon " svgIcon="{{type.difficulty | difficultyIcons }}" matTooltip="{{type.difficulty}} Difficulty"></mat-icon>
+                </div>
+            </div>
+            <!-- End -->
+            <!-- Row  -->
+            <div class="plant-card-content">
+                <div class="plant-item-label">
+                    Toxic To:
+                </div>
+                <div class="plant-item-icon" *ngFor="let animal of type.toxisity">
+                    <mat-icon class="info-icon" svgIcon="{{animal | toxisityIcon}}" matTooltip="{{animal}}"></mat-icon>
+                </div>
+            </div>
+            <!-- End -->
+            <!-- Row  -->
+            <div class="plant-card-content">
+                <div class="plant-item-label">
+                    Humidity:
+                </div>
+                <div class="plant-item-icon">
+                    {{type.humidityLowLevel}}% - {{type.humidityHighLevel}}%
+                </div>
+            </div>
+            <!-- End -->
+            <!-- Row  -->
+            <div class="plant-card-content">
+                <div class="plant-item-label">
+                    Watering:
+                </div>
+                <div class="plant-item-icon">
+                    {{type.waterFrequency}}
+                </div>
+            </div>
+            <!-- End -->
+            <!-- Row  -->
+            <div class="plant-card-content">
+                <div class="plant-item-label">
+                    Fertalization Frequency:
+                </div>
+                <div class="plant-item-icon">
+                    {{type.fertalizerFrequency}}
+                </div>
+            </div>
+            <!-- End -->
+            <!-- Row  -->
+            <div class="plant-card-content">
+                <div class="plant-item-label">
+                    Kingdom:
+                </div>
+                <div class="plant-item-icon">
+                    {{type.kingdom}}
+                </div>
+            </div>
+            <!-- End -->
+            <!-- Row  -->
+            <div class="plant-card-content">
+                <div class="plant-item-label">
+                    Clade:
+                </div>
+                <div class="plant-item-icon">
+                    {{type.clade1}}
+                </div>
+            </div>
+            <!-- End -->
+            <!-- Row  -->
+            <div class="plant-card-content">
+                <div class="plant-item-label">
+                    Clade:
+                </div>
+                <div class="plant-item-icon">
+                    {{type.clade2}}
+                </div>
+            </div>
+            <!-- End -->
+            <!-- Row  -->
+            <div class="plant-card-content">
+                <div class="plant-item-label">
+                    Clade:
+                </div>
+                <div class="plant-item-icon">
+                    {{type.clade3}}
+                </div>
+            </div>
+            <!-- End -->
+            <!-- Row  -->
+            <div class="plant-card-content">
+                <div class="plant-item-label">
+                    Order:
+                </div>
+                <div class="plant-item-icon">
+                    {{type.order}}
+                </div>
+            </div>
+            <!-- End -->
+            <!-- Row  -->
+            <div class="plant-card-content">
+                <div class="plant-item-label">
+                    Family:
+                </div>
+                <div class="plant-item-icon">
+                    {{type.family}}
+                </div>
+            </div>
+            <!-- End -->
+            <!-- Row  -->
+            <div class="plant-card-content">
+                <div class="plant-item-label">
+                    Subfamily:
+                </div>
+                <div class="plant-item-icon">
+                    {{type.subFamily}}
+                </div>
+            </div>
+            <!-- End -->
+            <!-- Row  -->
+            <div class="plant-card-content">
+                <div class="plant-item-label">
+                    Genus:
+                </div>
+                <div class="plant-item-icon">
+                    {{type.genus}}
+                </div>
+            </div>
+            <!-- End -->
+        </div>
+    </mat-dialog-content>
+
+    <div class="bottom-actions">
+        <button class="action-button" mat-raised-button (click)="closePlant()">
+            <span class="material-icons">
+        cancel
+      </span> Close
+      </button>
+
+        <button class="action-button" mat-raised-button (click)="addPlant()">
+      <span class="material-icons">
+        save
+        </span> Save
+    </button>
+    </div>
+</div>
