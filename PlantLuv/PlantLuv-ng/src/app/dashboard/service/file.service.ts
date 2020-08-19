@@ -27,7 +27,7 @@ export class FileService {
       .pipe(memorize());
   }
 
-  public stockImageID(fileId: string, fileUse: string): string {
+  public thumbnailUrl(fileId: string, fileUse: string): string {
     if (!fileId || fileId.startsWith(clientGuidPrefix)) {
       return '/assets/placeholder-' + fileUse + '.jpg';
     }

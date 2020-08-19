@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.Linq;
+using NLog.LayoutRenderers.Wrappers;
 
 namespace PlantLuv.Web.ApiControllers
 {
@@ -124,8 +125,8 @@ namespace PlantLuv.Web.ApiControllers
 
 			PlantType plantType = _plantData.GetPlantType(model.PlantTypeID);
 
-			plant.LatinName = model.LatinName;
-			plant.CommonName = model.CommonName;
+			plant.LatinName = model.LatinName.Trim();
+			plant.CommonName = model.CommonName.Trim();
 			plant.StockImageID = model.StockImageID;
 			plant.Description = model.Description;
 			plant.Difficulty = model.Difficulty;
@@ -141,14 +142,14 @@ namespace PlantLuv.Web.ApiControllers
 			plant.ToxicToCats = model.ToxicToCats;
 			plant.ToxicToDogs = model.ToxicToDogs;
 			plant.ToxicToSmallAnimals = model.ToxicToSmallAnimals;
-			plant.ScienceKingdom = model.ScienceKingdom;
-			plant.ScienceClade1 = model.ScienceClade1;
-			plant.ScienceClade2 = model.ScienceClade2;
-			plant.ScienceClade3 = model.ScienceClade3;
-			plant.ScienceOrder = model.ScienceOrder;
-			plant.ScienceFamily = model.ScienceFamily;
-			plant.ScienceSubfamily = model.ScienceSubfamily;
-			plant.ScienceGenus = model.ScienceGenus;
+			plant.ScienceKingdom = model.ScienceKingdom.Trim();
+			plant.ScienceClade1 = model.ScienceClade1.Trim();
+			plant.ScienceClade2 = model.ScienceClade2.Trim();
+			plant.ScienceClade3 = model.ScienceClade3.Trim();
+			plant.ScienceOrder = model.ScienceOrder.Trim();
+			plant.ScienceFamily = model.ScienceFamily.Trim();
+			plant.ScienceSubfamily = model.ScienceSubfamily.Trim();
+			plant.ScienceGenus = model.ScienceGenus.Trim();
 
 			PlantTypeDisplayViewModel updated = new PlantTypeDisplayViewModel(plant);
 

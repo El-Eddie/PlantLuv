@@ -1,8 +1,9 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, Inject } from '@angular/core';
 import { PlantType } from '../models/plant-type.model';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PlantTypeAddNewComponent } from '../plant-type-add-new-plant/plant-type-add-new-plant.component';
 import { PlantTypeService } from '../service/plant-type.service';
+
 
 @Component({
   selector: 'app-plant-type-card',
@@ -17,9 +18,12 @@ export class PlantCardComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    private svc: PlantTypeService) { }
+    private svc: PlantTypeService,
+
+  ) { }
 
   ngOnInit() {
+
   }
 
   editPlantType() {
@@ -41,6 +45,5 @@ export class PlantCardComponent implements OnInit {
   typeDetails() {
     this.displayDetailsEvent.emit(this.planttype.plantTypeID)
   }
-
 
 }

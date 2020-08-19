@@ -17,10 +17,12 @@ export class PlantDetailsComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<PlantDetailsComponent>,
-    @Inject(MAT_DIALOG_DATA) public type: PlantType,
+    @Inject(MAT_DIALOG_DATA) public type: PlantType
   ) { }
 
-  ngOnInit(): void { this.gettoxisity() }
+  ngOnInit(): void {
+    this.gettoxisity()
+  }
 
   addPlant() {
     this.dialogRef.close({ addUserPlant: true });

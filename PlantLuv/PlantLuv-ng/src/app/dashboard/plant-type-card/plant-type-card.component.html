@@ -1,7 +1,12 @@
 <mat-card class='plant-card'>
+    <div class="edit_icon" (click)="editPlantType()">
+        <span class="material-icons">
+    edit
+    </span>
+    </div>
     <div class='thumbnail-container'>
         <div class="thumbnail">
-            <img src={{planttype.stockImageID}}>
+            <img src={{planttype.thumbnailUrl}}>
         </div>
     </div>
     <div class="plant-content">
@@ -30,7 +35,7 @@
                 <div class="plant-item-label">
                     Toxic To:
                 </div>
-                <div class='plant-item-icon' *ngFor="let animal of planttype.toxisity">
+                <div class='plant-item-icon' *ngFor="let animal of ">
                     <mat-icon class="info-icon" svgIcon="{{animal | toxisityIcon}}" matTooltip="{{animal}}"></mat-icon>
                 </div>
             </div>
@@ -47,10 +52,5 @@
               </span> Save to Collection
           </button>
         </div>
-        <button mat-mini-fab matTooltip="Update Plant" (click)="editPlantType()">
-          <span class="material-icons">
-
-            </span> Edit
-            </button>
     </div>
 </mat-card>

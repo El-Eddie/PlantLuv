@@ -134,7 +134,7 @@ export class AddPlantComponent implements OnInit {
     const today = new Date();
     var plant: NewUserPlant = { ...this.formGroup.value };
     plant.ownerId = this.activeUser
-    plant.stockImageID = this.defaultImage
+    plant.thumbnailUrl = this.defaultImage
     plant.typeId = this.selectedtypeId;
 
     if (!plant.receiveNotifications) { plant.receiveNotifications = false }
@@ -162,7 +162,7 @@ export class AddPlantComponent implements OnInit {
     this.typeList$.forEach(_array => {
       _array.forEach(_type => {
         if (_type.commonName.toUpperCase().match(input)) {
-          newPic = _type.stockImageID
+          newPic = _type.thumbnailUrl
         }
       })
     })
@@ -195,7 +195,7 @@ export class AddPlantComponent implements OnInit {
       this.fileService.upload(formData).subscribe((result: FileMetadata) => {
         this.uploadedFileId = result.fileId;
         this.uploadedFileName = file.name;
-        this.uploadedFileUrl = this.fileService.stockImageID(result.fileId, null);
+        this.uploadedFileUrl = this.fileService.thumbnailUrl(result.fileId, null);
       }, (err) => {
         this.snackbar.open("Image upload failed. Please try again later.", '', { duration: this.snackbarDuration })
       })
