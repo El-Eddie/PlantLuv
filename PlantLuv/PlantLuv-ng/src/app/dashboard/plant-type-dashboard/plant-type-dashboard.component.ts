@@ -23,7 +23,7 @@ export class PlantTypeDashboardComponent implements OnInit {
   tooltipDelay: number = 250;
 
   constructor(
-    private plantSerice: PlantService,
+    private plantService: PlantService,
     private typeService: PlantTypeService,
     private dialog: MatDialog,
   ) { }
@@ -39,7 +39,18 @@ export class PlantTypeDashboardComponent implements OnInit {
   updateFilter(value: string) { }
 
   addPlantType() {
-    this.dialog.open(PlantTypeAddNewComponent, { data: null, disableClose: true });
+    const popupResult = this.dialog.open(PlantTypeAddNewComponent, {
+      width: '450px',
+      data: null,
+      disableClose: true
+    });
+    popupResult.afterClosed().subscribe((result: PlantType) => {
+      if (result) {
+        this.typeService.create(result).subscribe
+          (() => {
+          });
+      }
+    });
   }
   displayDetailsCard(type: number) {
     this.typeService.grab(type).subscribe(plantType => {

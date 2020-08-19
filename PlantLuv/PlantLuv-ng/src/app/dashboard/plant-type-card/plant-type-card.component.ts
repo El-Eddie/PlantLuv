@@ -3,6 +3,7 @@ import { PlantType } from '../models/plant-type.model';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { PlantTypeAddNewComponent } from '../plant-type-add-new-plant/plant-type-add-new-plant.component';
 import { PlantTypeService } from '../service/plant-type.service';
+import { FileService } from '../service/file.service';
 
 
 @Component({
@@ -12,6 +13,7 @@ import { PlantTypeService } from '../service/plant-type.service';
 })
 
 export class PlantCardComponent implements OnInit {
+  public toxisity: string[] = [];
 
   @Input() planttype: PlantType;
   @Output() displayDetailsEvent: EventEmitter<number> = new EventEmitter();
@@ -19,11 +21,11 @@ export class PlantCardComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private svc: PlantTypeService,
-
+    public fileService: FileService
   ) { }
 
-  ngOnInit() {
-
+  ngOnInit(): void {
+    this.gettoxisity()
   }
 
   editPlantType() {
@@ -45,5 +47,15 @@ export class PlantCardComponent implements OnInit {
   typeDetails() {
     this.displayDetailsEvent.emit(this.planttype.plantTypeID)
   }
+  gettoxisity() {
 
+    if (this.planttype.toxicToCats) { this.toxisity.push("Cats") }
+
+    if (this.planttype.toxicToDogs) { this.toxisity.push("Dogs") }
+
+    if (this.planttype.toxicToSmallAnimals) { this.toxisity.push("Small-Animals") }
+
+    if (this.toxisity.length == 0) this.toxisity.push("Pet-Safe")
+
+  }
 }

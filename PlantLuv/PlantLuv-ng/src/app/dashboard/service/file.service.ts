@@ -27,23 +27,23 @@ export class FileService {
       .pipe(memorize());
   }
 
-  public thumbnailUrl(fileId: string, fileUse: string): string {
+  public thumbnailUrl(fileId: string): string {
     if (!fileId || fileId.startsWith(clientGuidPrefix)) {
-      return '/assets/placeholder-' + fileUse + '.jpg';
+      return '/assets/img/plants/plant-image-placeholder.png';
     }
     return '/api/file/' + fileId + '/thumbnail';
   }
 
-  public mediumUrl(fileId: string, fileUse: string): string {
+  public mediumUrl(fileId: string): string {
     if (!fileId || fileId.startsWith(clientGuidPrefix)) {
-      return '/assets/placeholder-' + fileUse + '.jpg';
+      return '/assets/img/plants/plant-image-placeholder.png';
     }
     return '/api/file/' + fileId + '/medium';
   }
 
-  public largeUrl(fileId: string, fileUse: string): string {
+  public largeUrl(fileId: string): string {
     if (!fileId || fileId.startsWith(clientGuidPrefix)) {
-      return '/assets/placeholder-' + fileUse + '.jpg';
+      return '/assets/img/plants/plant-image-placeholder.png';
     }
     return '/api/file/' + fileId + '/large';
   }

@@ -63,8 +63,8 @@ namespace PlantLuv.Web.ApiControllers
 
 			{
 				PlantTypeID = model.PlantTypeID,
-				LatinName = model.LatinName,
-				CommonName = model.CommonName,
+				LatinName = (model.LatinName ?? "").Trim(),
+				CommonName = (model.CommonName ?? "").Trim(),
 				StockImageID = model.StockImageID,
 				Description = model.Description,
 				Difficulty = model.Difficulty,
@@ -80,14 +80,14 @@ namespace PlantLuv.Web.ApiControllers
 				ToxicToCats = model.ToxicToCats,
 				ToxicToDogs = model.ToxicToDogs,
 				ToxicToSmallAnimals = model.ToxicToSmallAnimals,
-				ScienceKingdom = model.ScienceKingdom,
-				ScienceClade1 = model.ScienceClade1,
-				ScienceClade2 = model.ScienceClade2,
-				ScienceClade3 = model.ScienceClade3,
-				ScienceOrder = model.ScienceOrder,
-				ScienceFamily = model.ScienceFamily,
-				ScienceSubfamily = model.ScienceSubfamily,
-				ScienceGenus = model.ScienceGenus
+				ScienceKingdom = (model.ScienceKingdom ?? "").Trim(),
+				ScienceClade1 = (model.ScienceClade1 ?? "").Trim(),
+				ScienceClade2 = (model.ScienceClade2 ?? "").Trim(),
+				ScienceClade3 = (model.ScienceClade3 ?? "").Trim(),
+				ScienceOrder = (model.ScienceOrder ?? "").Trim(),
+				ScienceFamily = (model.ScienceFamily ?? "").Trim(),
+				ScienceSubfamily = (model.ScienceSubfamily ?? "").Trim(),
+				ScienceGenus = (model.ScienceGenus ?? "").Trim()
 			};
 
 			_plantData.Add(plant);
@@ -142,14 +142,15 @@ namespace PlantLuv.Web.ApiControllers
 			plant.ToxicToCats = model.ToxicToCats;
 			plant.ToxicToDogs = model.ToxicToDogs;
 			plant.ToxicToSmallAnimals = model.ToxicToSmallAnimals;
-			plant.ScienceKingdom = model.ScienceKingdom.Trim();
-			plant.ScienceClade1 = model.ScienceClade1.Trim();
-			plant.ScienceClade2 = model.ScienceClade2.Trim();
-			plant.ScienceClade3 = model.ScienceClade3.Trim();
-			plant.ScienceOrder = model.ScienceOrder.Trim();
-			plant.ScienceFamily = model.ScienceFamily.Trim();
-			plant.ScienceSubfamily = model.ScienceSubfamily.Trim();
+			plant.ScienceKingdom = (model.ScienceKingdom ?? "").Trim();
+			plant.ScienceClade1 = (model.ScienceClade1 ?? "").Trim();
+			plant.ScienceClade2 = (model.ScienceClade2 ?? "").Trim();
+			plant.ScienceClade3 = (model.ScienceClade3 ?? "").Trim();
+			plant.ScienceOrder = (model.ScienceOrder ?? "").Trim();
+			plant.ScienceFamily = (model.ScienceFamily ?? "").Trim();
+			plant.ScienceSubfamily = (model.ScienceSubfamily ?? "").Trim();
 			plant.ScienceGenus = model.ScienceGenus.Trim();
+
 
 			PlantTypeDisplayViewModel updated = new PlantTypeDisplayViewModel(plant);
 

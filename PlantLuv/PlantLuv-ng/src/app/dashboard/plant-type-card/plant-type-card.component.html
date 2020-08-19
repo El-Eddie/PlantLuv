@@ -6,7 +6,7 @@
     </div>
     <div class='thumbnail-container'>
         <div class="thumbnail">
-            <img src={{planttype.thumbnailUrl}}>
+            <img src={{fileService.mediumUrl(planttype.stockImageID)}}>
         </div>
     </div>
     <div class="plant-content">
@@ -35,7 +35,7 @@
                 <div class="plant-item-label">
                     Toxic To:
                 </div>
-                <div class='plant-item-icon' *ngFor="let animal of ">
+                <div class='plant-item-icon' *ngFor="let animal of toxisity">
                     <mat-icon class="info-icon" svgIcon="{{animal | toxisityIcon}}" matTooltip="{{animal}}"></mat-icon>
                 </div>
             </div>
@@ -44,12 +44,12 @@
             <button class="action-button" mat-raised-button (click)="typeDetails()">
             <span class="material-icons">
             fullscreen
-            </span> View Details
+            </span>View Details
             </button>
             <button class="action-button" mat-raised-button>
             <span class="material-icons">
               save
-              </span> Save to Collection
+              </span>Add to Collection
           </button>
         </div>
     </div>

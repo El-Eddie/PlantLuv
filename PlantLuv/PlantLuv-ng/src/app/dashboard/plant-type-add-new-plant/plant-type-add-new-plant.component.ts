@@ -93,7 +93,7 @@ export class PlantTypeAddNewComponent implements OnInit {
       this.fileService.upload(formData).subscribe((result: FileMetadata) => {
         this.uploadedFileId = result.fileId;
         this.uploadedFileName = file.name;
-        this.uploadedFileUrl = this.fileService.thumbnailUrl(result.fileId, null);
+        this.uploadedFileUrl = this.fileService.thumbnailUrl(result.fileId);
       }, (err) => {
         this.snackbar.open("Image upload failed. Please try again later.", '', { duration: this.snackbarDuration })
       })

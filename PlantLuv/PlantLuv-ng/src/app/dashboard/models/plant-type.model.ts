@@ -5,7 +5,7 @@ export interface PlantType {
   // imageInfo: PhotoData;
   // imageURL: string;
   thumbnailUrl: string;
-  // stockImageID: string;
+  stockImageID: string;
   commonName: string;
   latinName: string;
   description: string;

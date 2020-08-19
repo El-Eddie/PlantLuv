@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div id="plant-detail-container">
-                <p>{{type.description}}</p>
+                  <markdown [data]="type.description"></markdown>
             </div>
             <!-- Row  -->
             <div class="plant-card-content">
@@ -160,13 +160,13 @@
         <button class="action-button" mat-raised-button (click)="closePlant()">
             <span class="material-icons">
         cancel
-      </span> Close
+      </span>Close
       </button>
 
         <button class="action-button" mat-raised-button (click)="addPlant()">
       <span class="material-icons">
         save
-        </span> Save to Collection
+        </span>Add to Collection
     </button>
     </div>
 </div>
