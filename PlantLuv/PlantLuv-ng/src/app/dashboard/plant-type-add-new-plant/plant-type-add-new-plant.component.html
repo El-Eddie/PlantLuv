@@ -28,28 +28,24 @@
             <!-- START -->
             <ul class="add-new">
                 <li class="add-new-item">
-                    <mat-form-field>
-                        <input matInput type="text" placeholder="Difficulty Level" formControlName="diffisultyLevel">
-                    </mat-form-field>
+                    <mat-list>
+                        <h2 mat-subheader>Difficulty</h2>
+                        <mat-radio-group class="" formControlName="difficulty">
+                            <mat-radio-button value="beginner">Beginner</mat-radio-button>
+                            <mat-radio-button value="elementary">Elementary</mat-radio-button>
+                            <mat-radio-button value="intimidate">Intimidate</mat-radio-button>
+                            <mat-radio-button value="advanced">Advanced</mat-radio-button>
+                            <mat-radio-button value="expert">Expert</mat-radio-button>
+                        </mat-radio-group>
+                    </mat-list>
                 </li>
                 <li class="add-new-item">
-                    <mat-form-field>
-                        <input matInput type="text" placeholder="Toxic To" formControlName="toxicTo" />
-                    </mat-form-field>
-                </li>
-            </ul>
-            <!-- END -->
-            <!-- START -->
-            <ul class="add-new">
-                <li class="add-new-item">
-                    <mat-form-field>
-                        <input matInput type="text" placeholder="Humidity Low Level" formControlName="humidityLow">
-                    </mat-form-field>
-                </li>
-                <li class="add-new-item">
-                    <mat-form-field>
-                        <input matInput type="text" placeholder="Humidity High Level" formControlName="humidityHigh" />
-                    </mat-form-field>
+                    <mat-list>
+                        <h2 mat-subheader>Toxicity</h2>
+                        <mat-checkbox formControlName="toxicToCats">Cats</mat-checkbox>
+                        <mat-checkbox formControlName="toxicToDogs">Dogs</mat-checkbox>
+                        <mat-checkbox formControlName="toxicToSmallAnimals">Small-Animals</mat-checkbox>
+                    </mat-list>
                 </li>
             </ul>
             <!-- END -->
@@ -57,13 +53,42 @@
             <ul class="add-new">
                 <li class="add-new-item">
                     <mat-form-field>
-                        <input matInput type="text" placeholder="Light Level" formControlName="lightLevel">
+                        <input matInput type="text" placeholder="Humidity Low %" formControlName="humidityLowLevel">
                     </mat-form-field>
                 </li>
                 <li class="add-new-item">
                     <mat-form-field>
-                        <input matInput type="text" placeholder="Light Time" formControlName="lightTime" />
+                        <input matInput type="text" placeholder="Humidity High %" formControlName="humidityHighLevel" />
                     </mat-form-field>
+                </li>
+            </ul>
+            <!-- END -->
+            <!-- START -->
+            <ul class="add-new">
+                <li class="add-new-item">
+                    <mat-list>
+                        <h2 mat-subheader>Light Level</h2>
+                        <mat-radio-group class="" formControlName="lightLevel">
+                            <mat-radio-button value="low">Low</mat-radio-button>
+                            <mat-radio-button value="medium">Medium</mat-radio-button>
+                            <mat-radio-button value="bright">Bright</mat-radio-button>
+                        </mat-radio-group>
+                    </mat-list>
+                </li>
+                <li class="add-new-item">
+                    <mat-list>
+                        <h2 mat-subheader>Light Time</h2>
+                        <mat-radio-group class="" formControlName="lightTime">
+                            <mat-radio-button value="none">0</mat-radio-button>
+                            <mat-radio-button value="four">4 Hrs</mat-radio-button>
+                            <mat-radio-button value="six">6 Hrs</mat-radio-button>
+                            <mat-radio-button value="eight">8 Hrs</mat-radio-button>
+                            <mat-radio-button value="ten">10 Hrs</mat-radio-button>
+                            <mat-radio-button value="twelve">12 Hrs</mat-radio-button>
+                            <mat-radio-button value="fourteen">14 Hrs</mat-radio-button>
+                            <mat-radio-button value="sixteen">16 Hrs</mat-radio-button>
+                        </mat-radio-group>
+                    </mat-list>
                 </li>
             </ul>
             <!-- END -->
@@ -75,8 +100,87 @@
                     </mat-form-field>
                 </li>
                 <li class="add-new-item">
+                    <mat-list>
+                        <h2 mat-subheader>Soil Type</h2>
+                        <mat-radio-group class="" formControlName="soilType">
+                            <mat-radio-button value="1">Gravel</mat-radio-button>
+                            <mat-radio-button value="2">Potting</mat-radio-button>
+                            <mat-radio-button value="3">TopSoil</mat-radio-button>
+                            <mat-radio-button value="4">Gritty</mat-radio-button>
+                            <mat-radio-button value="5">PeatSoil</mat-radio-button>
+                        </mat-radio-group>
+                    </mat-list>
+                </li>
+            </ul>
+            <!-- END -->
+            <!-- START -->
+            <ul class="add-new">
+                <li class="add-new-item">
+                    <mat-list>
+                        <h2 mat-subheader>Watering Frequency</h2>
+                        <mat-radio-group class="" formControlName="wateringFrequency">
+                            <mat-radio-button value="1">Daily</mat-radio-button>
+                            <mat-radio-button value="2">BiWeekly</mat-radio-button>
+                            <mat-radio-button value="3">TriWeekly</mat-radio-button>
+                            <mat-radio-button value="4">Weekly</mat-radio-button>
+                            <mat-radio-button value="5">TriWeekly</mat-radio-button>
+                            <mat-radio-button value="6">Monthly</mat-radio-button>
+                            <mat-radio-button value="7">SemiMonthly</mat-radio-button>
+                        </mat-radio-group>
+                    </mat-list>
+                </li>
+                <li class="add-new-item">
+                    <mat-list>
+                        <h2 mat-subheader>Watering Type</h2>
+                        <mat-radio-group class="" formControlName="waterType">
+                            <mat-radio-button value="1">Tap</mat-radio-button>
+                            <mat-radio-button value="2">Distilled/Purified</mat-radio-button>
+                            <mat-radio-button value="3">Rain/RO Water</mat-radio-button>
+                        </mat-radio-group>
+                    </mat-list>
+                </li>
+            </ul>
+            <!-- END -->
+            <!-- START -->
+            <ul class="add-new">
+                <li class="add-new-item">
+                    <mat-list>
+                        <h2 mat-subheader>Fertalizer Frequency</h2>
+                        <mat-radio-group class="" formControlName="fertilizerFrequency">
+                            <mat-radio-button value="1">None</mat-radio-button>
+                            <mat-radio-button value="2">Weekly</mat-radio-button>
+                            <mat-radio-button value="3">Fortnight</mat-radio-button>
+                            <mat-radio-button value="4">Monthly</mat-radio-button>
+                            <mat-radio-button value="5">SemiMonthly</mat-radio-button>
+                        </mat-radio-group>
+                    </mat-list>
+                </li>
+                <li class="add-new-item">
+                    <mat-list>
+                        <h2 mat-subheader>Fertalizer Type</h2>
+                        <mat-radio-group class="" formControlName="fertalizerType">
+                            <mat-radio-button value="1">None</mat-radio-button>
+                            <mat-radio-button value="2">All Purpose (20-20-20)</mat-radio-button>
+                            <mat-radio-button value="3">All Purpose (24-8-16) </mat-radio-button>
+                            <mat-radio-button value="4">Rose & Flower (3-5-3)</mat-radio-button>
+                            <mat-radio-button value="5">Nitrogren Rich</mat-radio-button>
+                            <mat-radio-button value="6">Phosphate Rich</mat-radio-button>
+                            <mat-radio-button value="7">Potasium Rich</mat-radio-button>
+                        </mat-radio-group>
+                    </mat-list>
+                </li>
+            </ul>
+            <!-- END -->
+            <!-- START -->
+            <ul class="add-new">
+                <li class="add-new-item">
                     <mat-form-field>
-                        <input matInput type="text" placeholder="Soil Type" formControlName="soilType" />
+                        <input matInput type="text" placeholder="Kingdom" formControlName="scienceKingdom">
+                    </mat-form-field>
+                </li>
+                <li class="add-new-item">
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Clade" formControlName="scienceClade1" />
                     </mat-form-field>
                 </li>
             </ul>
@@ -85,54 +189,12 @@
             <ul class="add-new">
                 <li class="add-new-item">
                     <mat-form-field>
-                        <input matInput type="text" placeholder="Watering Frequency" formControlName="wateringFrequency">
+                        <input matInput type="text" placeholder="Clade" formControlName="scienceClade2">
                     </mat-form-field>
                 </li>
                 <li class="add-new-item">
                     <mat-form-field>
-                        <input matInput type="text" placeholder="Watering Type" formControlName="wateringType" />
-                    </mat-form-field>
-                </li>
-            </ul>
-            <!-- END -->
-            <!-- START -->
-            <ul class="add-new">
-                <li class="add-new-item">
-                    <mat-form-field>
-                        <input matInput type="text" placeholder="Fertalizer Frequency" formControlName="fertalizerFrequency">
-                    </mat-form-field>
-                </li>
-                <li class="add-new-item">
-                    <mat-form-field>
-                        <input matInput type="text" placeholder="Fertalizer Type" formControlName="fertalizerType" />
-                    </mat-form-field>
-                </li>
-            </ul>
-            <!-- END -->
-            <!-- START -->
-            <ul class="add-new">
-                <li class="add-new-item">
-                    <mat-form-field>
-                        <input matInput type="text" placeholder="Kingdom" formControlName="kingdom">
-                    </mat-form-field>
-                </li>
-                <li class="add-new-item">
-                    <mat-form-field>
-                        <input matInput type="text" placeholder="Clade" formControlName="clade1" />
-                    </mat-form-field>
-                </li>
-            </ul>
-            <!-- END -->
-            <!-- START -->
-            <ul class="add-new">
-                <li class="add-new-item">
-                    <mat-form-field>
-                        <input matInput type="text" placeholder="Clade" formControlName="clade2">
-                    </mat-form-field>
-                </li>
-                <li class="add-new-item">
-                    <mat-form-field>
-                        <input matInput type="text" placeholder="Clade" formControlName="clade3" />
+                        <input matInput type="text" placeholder="Clade" formControlName="scienceClade3" />
                     </mat-form-field>
                 </li>
             </ul>
@@ -141,12 +203,12 @@
             <ul class="add-new">
                 <li class="add-new-item">
                     <mat-form-field>
-                        <input matInput type="text" placeholder="Order" formControlName="order">
+                        <input matInput type="text" placeholder="Order" formControlName="scienceOrder">
                     </mat-form-field>
                 </li>
                 <li class="add-new-item">
                     <mat-form-field>
-                        <input matInput type="text" placeholder="Family" formControlName="family" />
+                        <input matInput type="text" placeholder="Family" formControlName="scienceFamily" />
                     </mat-form-field>
                 </li>
             </ul>
@@ -155,20 +217,35 @@
             <ul class="add-new">
                 <li class="add-new-item">
                     <mat-form-field>
-                        <input matInput type="text" placeholder="SubFamily" formControlName="subFamily">
+                        <input matInput type="text" placeholder="SubFamily" formControlName="scienceSubfamily">
                     </mat-form-field>
                 </li>
                 <li class="add-new-item">
                     <mat-form-field>
-                        <input matInput type="text" placeholder="Genus" formControlName="genus" />
+                        <input matInput type="text" placeholder="Genus" formControlName="scienceGenus" />
                     </mat-form-field>
                 </li>
             </ul>
             <!-- END -->
+            <ul class="add-new">
+                <li class="add-new-item">
+                    <input hidden (change)="fileChosen($event)" #fileInput accept=".jpg, .png, .jpeg, .bmp" type="file" />
+                    <div class="image-upload-container" *ngIf="!uploadedFileName">
+                        <button mat-raised-button color="primary" (click)="fileInput.click()">Upload Default Photo</button>
+                    </div>
+                    <div class="image-upload-container" *ngIf="uploadedFileName">
+                        <img class="placeholder-image" src={{uploadedFileUrl}}><br />
+                        <button mat-raised-button color="primary" (click)="clearImage()">Clear</button>
+                    </div>
+                </li>
+            </ul>
         </div>
     </form>
 </mat-dialog-content>
-<mat-dialog-actions align="end">
-    <button mat-raised-button (click)="cancel()">Cancel</button>
-    <button mat-raised-button (click)="save()" color="accent">Save</button>
-</mat-dialog-actions>
+
+<div class="bottom-actions">
+    <mat-dialog-actions align="end">
+        <button mat-raised-button (click)="cancel()">Cancel</button>
+        <button mat-raised-button (click)="save()" color="accent">Save</button>
+    </mat-dialog-actions>
+</div>

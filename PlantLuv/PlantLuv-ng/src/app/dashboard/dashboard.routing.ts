@@ -12,7 +12,7 @@ const routes: Routes = [
     canActivate: [AuthenticatedGuard]
   },
   {
-    path: 'care-sheets',
+    path: 'browse-plants',
     pathMatch: 'full',
     component: PlantTypeDashboardComponent,
     canActivate: [AuthenticatedGuard]

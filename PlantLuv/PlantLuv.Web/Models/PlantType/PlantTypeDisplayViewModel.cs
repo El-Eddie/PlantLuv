@@ -17,7 +17,7 @@ namespace PlantLuv.Web.Models.Plants
 		public int HumidityLowLevel { get; set; }
 		public int HumidityHighLevel { get; set; }
 		public LightLevel LightLevel { get; set; }
-		public int LightTime { get; set; }
+		public LightTime LightTime { get; set; }
 		public double SoilPh { get; set; }
 		public SoilType SoilType { get; set; }
 		public FertilizerFrequency FertilizerFrequency { get; set; }
@@ -46,7 +46,27 @@ namespace PlantLuv.Web.Models.Plants
 			this.CommonName = plant.CommonName;
 			this.StockImageID = plant.StockImageID;
 			this.Description = plant.Description;
-
+			this.Difficulty = plant.Difficulty;
+			this.HumidityLowLevel = plant.HumidityLowLevel;
+			this.HumidityHighLevel = plant.HumidityHighLevel;
+			this.LightLevel = plant.LightLevel;
+			this.LightTime = plant.LightTime;
+			this.SoilPh = plant.SoilPh;
+			this.FertilizerFrequency = plant.FertilizerFrequency;
+			this.FertalizerType = plant.FertalizerType;
+			this.WateringFrequency = plant.WateringFrequency;
+			this.WaterType = plant.WaterType;
+			this.ToxicToCats = plant.ToxicToCats;
+			this.ToxicToDogs = plant.ToxicToDogs;
+			this.ToxicToSmallAnimals = plant.ToxicToSmallAnimals;
+			this.ScienceKingdom = plant.ScienceKingdom;
+			this.ScienceClade1 = plant.ScienceClade1;
+			this.ScienceClade2 = plant.ScienceClade2;
+			this.ScienceClade3 = plant.ScienceClade3;
+			this.ScienceOrder = plant.ScienceOrder;
+			this.ScienceFamily = plant.ScienceFamily;
+			this.ScienceSubfamily = plant.ScienceSubfamily;
+			this.ScienceGenus = plant.ScienceGenus;
         }
 	}
 }

@@ -99,7 +99,7 @@ export class AddPlantComponent implements OnInit {
       _array.forEach(_type => {
         if (_type.commonName.toUpperCase().match(regexInput)) {
           isValid = true;
-          this.selectedtypeId = _type.typeId;
+          this.selectedtypeId = _type.plantTypeID;
         }
       })
     })
@@ -134,7 +134,7 @@ export class AddPlantComponent implements OnInit {
     const today = new Date();
     var plant: NewUserPlant = { ...this.formGroup.value };
     plant.ownerId = this.activeUser
-    plant.thumbnailURL = this.defaultImage
+    plant.stockImageID = this.defaultImage
     plant.typeId = this.selectedtypeId;
 
     if (!plant.receiveNotifications) { plant.receiveNotifications = false }
@@ -162,7 +162,7 @@ export class AddPlantComponent implements OnInit {
     this.typeList$.forEach(_array => {
       _array.forEach(_type => {
         if (_type.commonName.toUpperCase().match(input)) {
-          newPic = _type.thumbnailURL
+          newPic = _type.stockImageID
         }
       })
     })
@@ -190,12 +190,12 @@ export class AddPlantComponent implements OnInit {
         return;
       }
       const formData = new FormData();
-      formData.append('model', file)
+      formData.append('model', file) //needs to match up with c#
 
       this.fileService.upload(formData).subscribe((result: FileMetadata) => {
         this.uploadedFileId = result.fileId;
         this.uploadedFileName = file.name;
-        this.uploadedFileUrl = this.fileService.thumbnailUrl(result.fileId, null);
+        this.uploadedFileUrl = this.fileService.stockImageID(result.fileId, null);
       }, (err) => {
         this.snackbar.open("Image upload failed. Please try again later.", '', { duration: this.snackbarDuration })
       })

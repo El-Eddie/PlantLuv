@@ -24,7 +24,7 @@ export class IconService {
     this.registry.addSvgIcon('toxic-dog', this.sanitizer.bypassSecurityTrustResourceUrl('assets/img/icon/toxic-doggo.svg'));
     this.registry.addSvgIcon('toxic-human', this.sanitizer.bypassSecurityTrustResourceUrl('assets/img/icon/toxic-human.svg'));
     this.registry.addSvgIcon('toxic-smallAnimal', this.sanitizer.bypassSecurityTrustResourceUrl('assets/img/icon/toxic-smallAnimal.svg'));
-    this.registry.addSvgIcon('toxic-unknown', this.sanitizer.bypassSecurityTrustResourceUrl('assets/img/icon/toxic-safe.svg'));
+    this.registry.addSvgIcon('toxic-safe', this.sanitizer.bypassSecurityTrustResourceUrl('assets/img/icon/toxic-safe.svg'));
 
     // Water & Fertalize Icons
     this.registry.addSvgIcon('action-watering', this.sanitizer.bypassSecurityTrustResourceUrl('assets/img/icon/action-watering.svg'));

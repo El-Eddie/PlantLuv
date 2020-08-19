@@ -5,6 +5,7 @@ using System.Linq.Dynamic;
 using System.Reflection;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using PlantLuv.PlantOptions;
 
 namespace PlantLuv.SqlDbServices
 {
@@ -128,5 +129,58 @@ namespace PlantLuv.SqlDbServices
 			return propertyNames;
 		}
 
-	}
+        public void Add(PlantType plant)
+        {
+			_dbContext.PlantType.Add(plant);
+		}
+
+        public void Update(PlantType plant)
+        {
+            
+        }
+
+        public List<PlantType> Get(PlantTypeQueryParameters options)
+        {
+			IQueryable<PlantType> query = _dbContext.PlantType;
+
+			if (!String.IsNullOrWhiteSpace(options.Term))
+			{
+				query = query.Where(plant =>
+					plant.LatinName.Contains(options.Term) ||
+					plant.CommonName.Contains(options.Term) ||
+					plant.ScienceKingdom.Contains(options.Term) ||
+					plant.ScienceClade1.Contains(options.Term) ||
+					plant.ScienceClade2.Contains(options.Term) ||
+					plant.ScienceClade3.Contains(options.Term) ||
+					plant.ScienceFamily.Contains(options.Term) ||
+					plant.ScienceSubfamily.Contains(options.Term) ||
+					plant.ScienceGenus.Contains(options.Term)
+				);
+			}
+
+			if (!string.IsNullOrWhiteSpace(options.OrderBy))
+			{
+				string[] sortArray = ValidateSortStrings(options.OrderBy);
+				if (sortArray != null)
+				{
+					foreach (string field in sortArray)
+					{
+						query = query.OrderBy(field);
+					}
+				}
+			}
+
+			var list = query.Skip(options.PageIndex * options.Take).Take(options.Take).ToList();
+
+			return list;
+		}
+
+        public PlantType GetPlantType(int planttypeID)
+        {
+			var plant = _dbContext.PlantType
+				 .ToList()
+				 .FirstOrDefault(p => p.PlantTypeID == planttypeID);
+			return plant;
+		}
+    }
 }

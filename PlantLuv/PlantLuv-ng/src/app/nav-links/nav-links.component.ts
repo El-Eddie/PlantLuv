@@ -16,7 +16,7 @@ export class NavLinksComponent implements OnInit {
   page$: Observable<string>;
 
   constructor(
-    private store: Store<{page: string}>,
+    private store: Store<{ page: string }>,
     private router: Router
   ) {
     this.page$ = store.pipe(select('page'));
@@ -28,47 +28,44 @@ export class NavLinksComponent implements OnInit {
     // this.selectLink(page)
   }
 
-  displayUserPants(event){
+  displayUserPants(event) {
     this.store.dispatch(displayUserPants());
-    this.router.navigate(['./dashboard/user-plants']).then(() =>
-    {
+    this.router.navigate(['./dashboard/user-plants']).then(() => {
       this.selectLink(event.srcElement.id)
     })
   }
-  displayPlantTypes(event){
+  displayPlantTypes(event) {
     this.store.dispatch(displayPlantTypes());
-    this.router.navigate(['./dashboard/care-sheets']).then(() =>
-    {
+    this.router.navigate(['./dashboard/browse-plants']).then(() => {
       this.selectLink(event.srcElement.id)
     })
   }
-  displayAdminPage(event){
+  displayAdminPage(event) {
     // this.selectLink(event.srcElement.id)
   }
 
-  selectLink(selected: string){
+  selectLink(selected: string) {
     var links = document.getElementsByClassName("nav-link")
-    for (let i = 0; i < links.length; i++){
+    for (let i = 0; i < links.length; i++) {
       links[i].classList.remove("selected-link")
     }
-    if (selected){
+    if (selected) {
       document.getElementById(selected).classList.add("selected-link");
     }
   }
 
   getCurrentPageID(url): string | null {
-    var path: string = url.substr(url.indexOf('/', 1)+1);
+    var path: string = url.substr(url.indexOf('/', 1) + 1);
     if (!path) { return null; }
 
-    if (path.includes('/')){
+    if (path.includes('/')) {
       path = path.substr(0, path.indexOf('/'));
     }
 
     var linkID: string = ''
     var pathSegments = path.split('-');
 
-    pathSegments.forEach((n,i) =>
-    {
+    pathSegments.forEach((n, i) => {
       if (i) {
         linkID = linkID.concat(n[0].toUpperCase(), n.substr(1));
       } else {

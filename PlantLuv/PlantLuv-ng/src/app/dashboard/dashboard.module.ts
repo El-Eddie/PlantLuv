@@ -12,7 +12,6 @@ import { MockPlantTypeService } from './service/z_mock-plant-type.service'
 import { SharedImportsModule } from '../shared/shared-imports.module'
 import { environment } from '../../environments/environment';
 
-
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { UserPlantCardComponent } from './user-plant-card/user-plant-card.component';
 
@@ -70,14 +69,15 @@ import { PlantTypeAddNewComponent } from './plant-type-add-new-plant/plant-type-
   ],
   providers: [
     PlantService,
+    PlantTypeService
     // {
     //   provide: PlantService,
     //   useClass: environment.production ? PlantService : MockPlantService
     // },
-    {
-      provide: PlantTypeService,
-      useClass: environment.production ? PlantTypeService : MockPlantTypeService
-    }
+    // {
+    //   provide: PlantTypeService,
+    //   useClass: environment.production ? PlantTypeService : MockPlantTypeService
+    // }
   ],
 })
 

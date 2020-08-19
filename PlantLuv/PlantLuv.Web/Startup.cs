@@ -153,7 +153,6 @@ namespace PlantLuv.Web
             services.AddScoped<IFileData, SqlFileData>();
             services.AddScoped<IImageResizer, SixLaborsImageResizer>();
             services.AddScoped<IPlantData, SqlPlantData>();
-            services.AddScoped<ITypeData, SqlTypeData>();
 
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             services.AddScoped<IUrlHelper>(factory =>

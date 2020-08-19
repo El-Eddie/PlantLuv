@@ -7,7 +7,7 @@
             </div>
             <div class='thumbnail-container'>
                 <div class="thumbnail">
-                    <img src={{type.thumbnailURL}}>
+                    <img src={{type.stockImageID}}>
                 </div>
             </div>
             <div id="plant-detail-container">
@@ -38,7 +38,7 @@
                 <div class="plant-item-label">
                     Toxic To:
                 </div>
-                <div class="plant-item-icon" *ngFor="let animal of type.toxisity">
+                <div class="plant-item-icon" *ngFor="let animal of toxisity">
                     <mat-icon class="info-icon" svgIcon="{{animal | toxisityIcon}}" matTooltip="{{animal}}"></mat-icon>
                 </div>
             </div>
@@ -59,7 +59,7 @@
                     Watering:
                 </div>
                 <div class="plant-item-icon">
-                    {{type.waterFrequency}}
+                    {{type.wateringFrequency}}
                 </div>
             </div>
             <!-- End -->
@@ -69,7 +69,7 @@
                     Fertalization Frequency:
                 </div>
                 <div class="plant-item-icon">
-                    {{type.fertalizerFrequency}}
+                    {{type.fertilizerFrequency}}
                 </div>
             </div>
             <!-- End -->
@@ -79,7 +79,7 @@
                     Kingdom:
                 </div>
                 <div class="plant-item-icon">
-                    {{type.kingdom}}
+                    {{type.scienceKingdom}}
                 </div>
             </div>
             <!-- End -->
@@ -89,7 +89,7 @@
                     Clade:
                 </div>
                 <div class="plant-item-icon">
-                    {{type.clade1}}
+                    {{type.scienceClade1}}
                 </div>
             </div>
             <!-- End -->
@@ -99,7 +99,7 @@
                     Clade:
                 </div>
                 <div class="plant-item-icon">
-                    {{type.clade2}}
+                    {{type.scienceClade2}}
                 </div>
             </div>
             <!-- End -->
@@ -109,7 +109,7 @@
                     Clade:
                 </div>
                 <div class="plant-item-icon">
-                    {{type.clade3}}
+                    {{type.scienceClade3}}
                 </div>
             </div>
             <!-- End -->
@@ -119,7 +119,7 @@
                     Order:
                 </div>
                 <div class="plant-item-icon">
-                    {{type.order}}
+                    {{type.scienceOrder}}
                 </div>
             </div>
             <!-- End -->
@@ -129,7 +129,7 @@
                     Family:
                 </div>
                 <div class="plant-item-icon">
-                    {{type.family}}
+                    {{type.scienceFamily}}
                 </div>
             </div>
             <!-- End -->
@@ -139,7 +139,7 @@
                     Subfamily:
                 </div>
                 <div class="plant-item-icon">
-                    {{type.subFamily}}
+                    {{type.scienceSubfamily}}
                 </div>
             </div>
             <!-- End -->
@@ -149,7 +149,7 @@
                     Genus:
                 </div>
                 <div class="plant-item-icon">
-                    {{type.genus}}
+                    {{type.scienceGenus}}
                 </div>
             </div>
             <!-- End -->
@@ -166,7 +166,7 @@
         <button class="action-button" mat-raised-button (click)="addPlant()">
       <span class="material-icons">
         save
-        </span> Save
+        </span> Save to Collection
     </button>
     </div>
 </div>

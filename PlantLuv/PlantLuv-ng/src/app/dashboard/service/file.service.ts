@@ -20,14 +20,14 @@ export class FileService {
 
   public getFileMetadata(fileId: string): Observable<FileMetadata> {
     if (fileId.startsWith(clientGuidPrefix)) {
-      return of({fileId, size: 0, extension: '', contentType: ''});
+      return of({ fileId, size: 0, extension: '', contentType: '' });
     }
     return this.http
       .get<FileMetadata>(this.baseUrl + '/' + fileId + '/metadata')
       .pipe(memorize());
   }
 
-  public thumbnailUrl(fileId: string, fileUse: string): string {
+  public stockImageID(fileId: string, fileUse: string): string {
     if (!fileId || fileId.startsWith(clientGuidPrefix)) {
       return '/assets/placeholder-' + fileUse + '.jpg';
     }

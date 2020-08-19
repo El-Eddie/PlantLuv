@@ -19,7 +19,7 @@ namespace PlantLuv.PlantOptions
 		public int HumidityLowLevel { get; set; }
 		public int HumidityHighLevel { get; set; } 
 		public LightLevel LightLevel { get; set; }
-		public int LightTime { get; set; }
+		public LightTime LightTime { get; set; }
 		public double SoilPh { get; set; }
 		public SoilType SoilType { get; set; }
 		public FertilizerFrequency FertilizerFrequency { get; set; }
