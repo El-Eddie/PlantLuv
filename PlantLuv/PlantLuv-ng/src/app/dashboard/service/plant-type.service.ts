@@ -15,8 +15,8 @@ export class PlantTypeService {
     return this.httpClient.get<PlantType[]>(' proper_url_to_API ', { params: query })
   }
 
-  grab(name: string): Observable<PlantType>{
-    return this.httpClient.get<PlantType>(''+name)
+  grab(id: number): Observable<PlantType>{
+    return this.httpClient.get<PlantType>('')
   }
 
 }

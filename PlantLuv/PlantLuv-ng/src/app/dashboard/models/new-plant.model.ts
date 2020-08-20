@@ -1,7 +1,8 @@
 export interface NewUserPlant {
+  plantId: number;
   ownerId: string;
   plantType: string;
-  typeId: number;
+  PlantTypeID: number;
   nickName: string,
   birthday: Date;
   lastWatered: Date,

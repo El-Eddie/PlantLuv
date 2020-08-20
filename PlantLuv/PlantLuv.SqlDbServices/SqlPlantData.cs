@@ -23,7 +23,7 @@ namespace PlantLuv.SqlDbServices
 			var plant = _dbContext.UserPlant
 				.Include(plant => plant.PlantType)
 				.ToList()
-				.FirstOrDefault(p => p.PlantID == plantId);
+				.FirstOrDefault(p => p.PlantId == plantId);
 			return plant;
 		}
 
@@ -87,7 +87,7 @@ namespace PlantLuv.SqlDbServices
 		{
 			return _dbContext.UserPlant
 				.Include(plant => plant.PlantType)
-				.Where(p => plantIdList.Contains(p.PlantID))
+				.Where(p => plantIdList.Contains(p.PlantId))
 				.ToList();
 		}
 

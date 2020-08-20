@@ -32,7 +32,7 @@ namespace PlantLuv.Web.Models.Plants
         {
             this.PlantId = plant.PlantId;
             this.OwnerId = plant.OwnerID;
-            this.TypeId = plant.PlantType.TypeId;
+            this.TypeId = plant.PlantType.PlantTypeId;
 
             this.CommonName = plant.PlantType.CommonName;
             this.LattinName = plant.PlantType.LatinName;

@@ -20,6 +20,7 @@ export class UserPlantCardComponent implements OnInit {
   @Output() deletePlantEvent: EventEmitter<number> = new EventEmitter();
   @Output() viewCareSheetEvent: EventEmitter<number> = new EventEmitter();
   @Output() updatePlant: EventEmitter<Plant> = new EventEmitter();
+  @Output() editPlantEvent: EventEmitter<Plant> = new EventEmitter();
   imageUrl: string;
 
   constructor(
@@ -78,6 +79,9 @@ export class UserPlantCardComponent implements OnInit {
         this.updatePlant.emit(changedPlant);
       }
     });
+
   }
+
+  editPlant() { this.editPlantEvent.emit(this.plant); }
 
 }

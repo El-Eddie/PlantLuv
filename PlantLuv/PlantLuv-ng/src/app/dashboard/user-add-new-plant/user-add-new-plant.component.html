@@ -1,12 +1,12 @@
 <mat-dialog-content>
-    <h3>Add New Plant</h3>
+    <h3>{{title}}</h3>
     <form [formGroup]="formGroup">
         <div id="add-new-container">
             <ul class="add-new">
                 <li class="add-new-item">
                     <mat-form-field>
                         <mat-label>Plant Type</mat-label>
-                        <input #species type="text" matInput formControlName="plantType" (blur)="changeDefaultPicure($event)" [matAutocomplete]="options" (keyup)="changeDefaultPicure($event)">
+                        <input #species type="text" matInput formControlName="commonName" (blur)="changeDefaultPicure($event)" [matAutocomplete]="options" (keyup)="changeDefaultPicure($event)">
                         <mat-autocomplete #options="matAutocomplete" autoActiveFirstOption>
                             <mat-option *ngFor=" let type of filteredTypeList$ | async" [value]="type">{{type}}</mat-option>
                             <mat-option value={{otherOption}}>-- other/unlisted --</mat-option>

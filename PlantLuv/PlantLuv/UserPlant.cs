@@ -9,7 +9,7 @@ namespace PlantLuv
     public class UserPlant
     {
         [Key]
-        public int PlantID { get; set; }
+        public int PlantId { get; set; }
         public string OwnerID { get; set; }
         public string NickName { get; set; }
         public string WherePurchased { get; set; }

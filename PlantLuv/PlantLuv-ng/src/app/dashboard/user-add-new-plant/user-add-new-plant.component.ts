@@ -31,8 +31,8 @@ export class AddPlantComponent implements OnInit {
   selectedtypeId: number;
   snackbarDuration: number = 2500;
   defaultImage: string;
-  placeholderImage: string = "/assets/img/plants/plant-image-placeholder.png"
-  otherOption: string = "other/unlisted"
+  placeholderImage: string = "/assets/img/plants/plant-image-placeholder.png";
+  otherOption: string = "other/unlisted";
   acceptedFileTypes = [
     'image/jpeg',
     'image/jpg',
@@ -42,6 +42,7 @@ export class AddPlantComponent implements OnInit {
   uploadedFileUrl: string = null;
   uploadedFileId: string = null;
   uploadedFileName: string = null;
+  title: string;
 
   constructor(
     private plantService: PlantService,
@@ -50,21 +51,24 @@ export class AddPlantComponent implements OnInit {
     private snackbar: MatSnackBar,
     public dialogRef: MatDialogRef<AddPlantComponent>,
     public builder: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public type: PlantType | null
+    // @Inject(MAT_DIALOG_DATA) public injectedPlant:  null | Plant | PlantType
+    @Inject(MAT_DIALOG_DATA) public data:  {plant: null | Plant, plantType: null | PlantType}
   ) {
-    var selectedPlant = (this.type && this.type.commonName) ? this.type.commonName : '';
     this.formGroup = this.builder.group({
-      plantType: [
-        selectedPlant,
+      commonName: [
+        '',
         Validators.required, this.plantTypeValidator.bind(this)
       ],
-      nickName: ['',],
+      nickName: [''],
       birthday: [''],
       lastWatered: [''],
       lastFertalized: [''],
       wherePurchased: [''],
       receiveNotifications: ['']
-    })
+    });
+     if (this.data?.plant){
+       this.formGroup.patchValue(this.data.plant);
+    };
   }
 
 
@@ -75,13 +79,17 @@ export class AddPlantComponent implements OnInit {
       this.filteredTypeList$ = this.getOptions();
     })
 
-    this.filteredTypeList$ = this.formGroup.get("plantType").valueChanges.pipe(
+    this.filteredTypeList$ = this.formGroup.get("commonName").valueChanges.pipe(
       startWith(''),
       map(val => this.filterValue(val))
     )
 
-    this.defaultImage = this.placeholderImage;
+    this.defaultImage = this.getPlaceholderImage();
     this.activeUser = this.getLoggedInUser();
+
+    this.title = (this.data?.plant)
+      ? `Editing Your ${this.data.plant.nickName ?? this.data.plant.commonName}`
+      : "Add New Plant"
   }
 
 
@@ -91,7 +99,19 @@ export class AddPlantComponent implements OnInit {
   }
 
 
+  getPlaceholderImage(): string{
+    if (this.data?.plant) {
+      return this.fileService.thumbnailUrl(this.data.plant.primaryImageId, null);
+    } else if (this.data?.plantType) {
+      return this.fileService.thumbnailUrl(this.data.plantType.thumbnailURL, null);
+    } else {
+      return this.placeholderImage;
+    }
+  }
+
   plantTypeValidator(field: AbstractControl): ValidationErrors | null {
+    if (field.pristine) {return of(null)}
+
     const input = field.value.toUpperCase()
     var regexInput = "^" + input + "$";
     var isValid = false;
@@ -140,9 +160,9 @@ export class AddPlantComponent implements OnInit {
     const today = new Date();
     var plant: NewUserPlant = {...this.formGroup.value};
     plant.ownerId = this.activeUser;
-    plant.PrimaryImageID = this.uploadedFileId ? this.uploadedFileId : this.defaultImage;
+    plant.PrimaryImageID = this.uploadedFileId
 
-    plant.typeId = this.selectedtypeId;
+    plant.PlantTypeID = this.selectedtypeId;
 
     if (!plant.receiveNotifications) { plant.receiveNotifications = false }
 
@@ -150,19 +170,35 @@ export class AddPlantComponent implements OnInit {
     plant.lastFertalized = plant.lastFertalized ? plant.lastFertalized : today;
     plant.lastWatered = plant.lastWatered ? plant.lastWatered : today;
 
-    this.plantService.create(plant).subscribe(results => {
-      var message = "Plant added successfully"
-      this.snackbar.open(message, null, {
-        duration: this.snackbarDuration
+    if (this.data?.plant){
+      var updated: Plant = {...this.data.plant, ...plant}
+
+      this.plantService.save(updated).subscribe(results => {
+          var message = "Plant saved successfully"
+          this.snackbar.open(message, null, {
+            duration: this.snackbarDuration
+          });
+          this.dialogRef.close();
+        }, results => {
+          alert("There was an error saving your plant.\n Please check the information and try again.");
+        });
+    } else {
+      this.plantService.create(plant).subscribe(results => {
+        var message = "Plant added successfully"
+        this.snackbar.open(message, null, {
+          duration: this.snackbarDuration
+        });
+        this.dialogRef.close();
+      }, results => {
+        alert("There was an error saving your new plant.\n Please check the information and try again.");
       });
-      this.dialogRef.close();
-    }, results => {
-      alert("There was an error saving your new plant.\n Please check the information and try again.");
-    });
+    }
   }
 
 
   changeDefaultPicure(event: any) {
+
+
     const input: string = "^" + event.target.value.toUpperCase() + "$";
     var newPic: string = null
 
@@ -176,8 +212,6 @@ export class AddPlantComponent implements OnInit {
 
     if (newPic) {
       this.defaultImage = newPic;
-    } else {
-      this.defaultImage = this.placeholderImage;
     }
   }
 

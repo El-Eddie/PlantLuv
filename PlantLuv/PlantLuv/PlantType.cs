@@ -10,7 +10,7 @@ namespace PlantLuv.PlantOptions
 	public class PlantType
 	{
 		[Key]
-		public int PlantTypeID { get; set; }
+		public int PlantTypeId { get; set; }
 		public string LatinName { get; set; }
 		public string CommonName { get; set; }
 		public string StockImageID { get; set; }

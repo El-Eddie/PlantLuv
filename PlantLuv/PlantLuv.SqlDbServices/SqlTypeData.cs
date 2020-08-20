@@ -32,7 +32,7 @@ namespace PlantLuv.SqlDbServices
 
 		public PlantType Get(int typeId)
 		{
-			return _dbContext.PlantType.FirstOrDefault(x => x.PlantTypeID == typeId);
+			return _dbContext.PlantType.FirstOrDefault(x => x.PlantTypeId == typeId);
 		}
 
 		public List<PlantType> Search(PlantQueryParameters options)

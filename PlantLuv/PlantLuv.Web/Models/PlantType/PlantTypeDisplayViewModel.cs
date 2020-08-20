@@ -41,7 +41,7 @@ namespace PlantLuv.Web.Models.Plants
 
 		public PlantTypeDisplayViewModel(PlantType plant)
         {
-			this.PlantTypeID = plant.PlantTypeID;
+			this.PlantTypeID = plant.PlantTypeId;
 			this.LatinName = plant.LatinName;
 			this.CommonName = plant.CommonName;
 			this.StockImageID = plant.StockImageID;

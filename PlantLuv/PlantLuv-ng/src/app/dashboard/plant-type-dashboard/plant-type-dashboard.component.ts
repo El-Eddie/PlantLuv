@@ -41,21 +41,21 @@ export class PlantTypeDashboardComponent implements OnInit {
   addPlantType() {
     this.dialog.open(PlantTypeAddNewComponent, { data: null, disableClose: true });
   }
-  displayDetailsCard(type: string) {
-    this.typeService.grab(type).subscribe(plantType => {
+  displayDetailsCard(id: number) {
+    this.typeService.grab(id).subscribe(plantType => {
       const detailCard = this.dialog.open(PlantDetailsComponent, { data: plantType });
 
       detailCard.afterClosed().subscribe((addUserPlant: boolean) => {
         if (addUserPlant) {
-          this.addUserPlant(plantType.latinName);
+          this.addUserPlant(plantType.typeId);
         }
       })
     })
   }
 
-  addUserPlant(type: string) {
+  addUserPlant(id: number) {
     console.log('type')
-    this.typeService.grab(type).subscribe(plantType => {
+    this.typeService.grab(id).subscribe(plantType => {
       this.dialog.open(AddPlantComponent, { data: plantType });
     })
   }

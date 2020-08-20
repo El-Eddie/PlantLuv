@@ -25,8 +25,8 @@ export class MockPlantTypeService extends PlantTypeService {
     return of(results);
   }
 
-  grab(name: string): Observable<PlantType> {
-    return of(this.typeList.find(type => type.latinName.toUpperCase() == name.toUpperCase()));
+  grab(id: number): Observable<PlantType> {
+    return of(this.typeList.find(type => type.typeId == id));
   }
 
   getPlantTypes() {

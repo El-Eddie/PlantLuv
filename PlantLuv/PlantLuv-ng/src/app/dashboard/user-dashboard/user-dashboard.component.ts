@@ -152,15 +152,22 @@ export class UserDashboardComponent implements OnInit {
   }
 
 
-  displayDetailsCard(type: string) {
-    this.typeService.grab(type).subscribe(plantType => {
+  displayDetailsCard(id: number) {
+    this.typeService.grab(id).subscribe(plantType => {
       const detailCard = this.dialog.open(PlantDetailsComponent, { data: plantType });
     })
   }
 
 
-
   addPlant() {
-    this.dialog.open(AddPlantComponent, { data: null, disableClose: true });
+    const dialogBox = this.dialog.open(AddPlantComponent, { data: null, disableClose: true });
+    dialogBox.beforeClosed().subscribe(result => {
+      console.log("this is the result before close!");
+      console.log(result);
+    })
+  }
+
+  editPlant(plant: Plant) {
+    this.dialog.open(AddPlantComponent, { data: {plant: plant}, disableClose: true });
   }
 }

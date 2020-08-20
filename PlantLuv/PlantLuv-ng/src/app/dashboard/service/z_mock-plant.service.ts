@@ -40,6 +40,7 @@ export class MockPlantService extends PlantService {
 
   create(plant: NewUserPlant): Observable<Plant> {
     var newPlant: Plant = {
+      typeId: null,
       plantId: ++this.lastID,
       commonName: plant.plantType,
       latinName: "fakeus plantus",
