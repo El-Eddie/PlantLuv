@@ -162,7 +162,7 @@ export class AddPlantComponent implements OnInit {
     this.typeList$.forEach(_array => {
       _array.forEach(_type => {
         if (_type.commonName.toUpperCase().match(input)) {
-          newPic = _type.thumbnailUrl
+          newPic = _type.stockImageID
         }
       })
     })

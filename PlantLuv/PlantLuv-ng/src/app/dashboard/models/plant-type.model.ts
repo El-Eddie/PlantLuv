@@ -2,9 +2,6 @@ import { PhotoData } from "./photo-data.model"
 
 export interface PlantType {
   plantTypeID: number;
-  // imageInfo: PhotoData;
-  // imageURL: string;
-  thumbnailUrl: string;
   stockImageID: string;
   commonName: string;
   latinName: string;
@@ -32,4 +29,38 @@ export interface PlantType {
   scienceFamily: string,
   scienceSubfamily: string,
   scienceGenus: string
+}
+
+export function blankPlantType(): PlantType {
+  return {
+    plantTypeID: 0,
+    stockImageID: '',
+    commonName: '',
+    latinName: '',
+    description: '',
+    blurb: 'None',
+    lightLevel: 'low',
+    lightTime: '',
+    humidityLowLevel: '0',
+    humidityHighLevel: '100',
+    fertilizerFrequency: 'weekly',
+    fertalizerType: 'none',
+    soilPh: 0,
+    soilType: 'potting',
+    wateringFrequency: 'weekly',
+    waterType: 'tap',
+    difficulty: 'beginner',
+    toxicToCats: false,
+    toxicToDogs: false,
+    toxicToSmallAnimals: false,
+    scienceKingdom: '',
+    scienceClade1: '',
+    scienceClade2: '',
+    scienceClade3: '',
+    scienceOrder: '',
+    scienceFamily: '',
+    scienceSubfamily: '',
+    scienceGenus: '',
+  };
+
 }

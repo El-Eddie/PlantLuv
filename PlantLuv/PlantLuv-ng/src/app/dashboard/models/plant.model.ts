@@ -2,7 +2,7 @@ import { PhotoData } from './photo-data.model'
 
 export interface Plant {
   plantId: number;
-  ownerId: String;
+  ownerId: string;
   typeId: number;
   commonName: string,
   nickName?: string,

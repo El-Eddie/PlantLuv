@@ -3,6 +3,7 @@ import { PlantType } from '../models/plant-type.model'
 import { ImageDialogComponent } from '../image-dialog/image-dialog.component'
 import { PhotoData } from '../models/photo-data.model'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FileService } from '../service/file.service';
 
 @Component({
   selector: 'app-plant-details',
@@ -17,6 +18,7 @@ export class PlantDetailsComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<PlantDetailsComponent>,
+    public fileService: FileService,
     @Inject(MAT_DIALOG_DATA) public type: PlantType
   ) { }
 

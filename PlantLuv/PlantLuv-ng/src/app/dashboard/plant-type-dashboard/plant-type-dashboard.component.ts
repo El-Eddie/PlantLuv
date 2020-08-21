@@ -10,6 +10,7 @@ import { PlantTypeService } from '../service/plant-type.service';
 import { PlantDetailsComponent } from '../plant-type-details/plant-type-details.component'
 import { AddPlantComponent } from '../user-add-new-plant/user-add-new-plant.component'
 import { PlantTypeAddNewComponent } from '../plant-type-add-new-plant/plant-type-add-new-plant.component';
+import { HelpComponent } from '../help/help.component';
 
 @Component({
   selector: 'app-plant-dashboard',
@@ -50,6 +51,13 @@ export class PlantTypeDashboardComponent implements OnInit {
           (() => {
           });
       }
+    });
+  }
+  openHelp() {
+    const popupResult = this.dialog.open(HelpComponent, {
+      width: '450px',
+      data: null,
+      disableClose: true
     });
   }
   displayDetailsCard(type: number) {
