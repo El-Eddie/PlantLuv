@@ -37,6 +37,7 @@ import { AddPlantComponent } from './user-add-new-plant/user-add-new-plant.compo
 import { UserDashboardRoutingModule } from './dashboard.routing';
 import { PlantTypeAddNewComponent } from './plant-type-add-new-plant/plant-type-add-new-plant.component';
 import { MarkdownModule } from 'ngx-markdown';
+import { HelpComponent } from './help/help.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { MarkdownModule } from 'ngx-markdown';
     ConfirmationSnackbarComponent,
     PlantTypeDashboardComponent,
     AddPlantComponent,
-    PlantTypeAddNewComponent
+    PlantTypeAddNewComponent,
+    HelpComponent
   ],
 
   imports: [

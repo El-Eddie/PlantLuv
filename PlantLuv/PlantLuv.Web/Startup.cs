@@ -168,10 +168,10 @@ namespace PlantLuv.Web
 			IApplicationBuilder app, 
 			IWebHostEnvironment env)
 		{
-			if (env.IsDevelopment())
-			{
+			//if (env.IsDevelopment())
+			//{
 				app.UseDeveloperExceptionPage();
-			}
+			//}
 
 			app.UseCors(builder =>
 			{

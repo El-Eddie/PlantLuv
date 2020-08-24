@@ -17,12 +17,12 @@ namespace PlantLuv.Web.Models.Plants
 		public int HumidityLowLevel { get; set; }
 		public int HumidityHighLevel { get; set; }
 		public LightLevel LightLevel { get; set; }
-		public LightTime LightTime { get; set; }
-		public double SoilPh { get; set; }
+		public LightTime? LightTime { get; set; }
+		public double? SoilPh { get; set; }
 		public SoilType SoilType { get; set; }
-		public FertilizerFrequency FertilizerFrequency { get; set; }
+		public FertilizerFrequency? FertilizerFrequency { get; set; }
 		public FertalizerType FertalizerType { get; set; }
-		public WateringFrequency WateringFrequency { get; set; }
+		public WateringFrequency? WateringFrequency { get; set; }
 		public WaterType WaterType { get; set; }
 		public bool ToxicToCats { get; set; }
 		public bool ToxicToDogs { get; set; }

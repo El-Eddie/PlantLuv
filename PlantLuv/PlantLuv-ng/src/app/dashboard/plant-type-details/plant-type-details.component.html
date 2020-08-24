@@ -7,11 +7,11 @@
             </div>
             <div class='thumbnail-container'>
                 <div class="thumbnail">
-                    <img src={{imageURL}}>
+                    <img src={{fileService.largeUrl(type.stockImageID)}}>
                 </div>
             </div>
             <div id="plant-detail-container">
-                  <markdown [data]="type.description"></markdown>
+                <markdown [data]="type.description"></markdown>
             </div>
             <!-- Row  -->
             <div class="plant-card-content">

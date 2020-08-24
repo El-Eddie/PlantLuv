@@ -151,8 +151,10 @@
 
 .edit_icon {
     cursor: pointer;
-    color: $accent-mdlt;
+    color: $accent-black;
     float: right;
     z-index: 999;
     position: relative;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid $border-color;
 }

@@ -227,7 +227,11 @@ namespace PlantLuv.Web.ApiControllers
 
 		private DateTime GetNextWater(DateTime date, PlantType plantType)
 		{
-			return plantType.WateringFrequency switch
+			if (!plantType.WateringFrequency.HasValue)
+            {
+				return DateTime.MaxValue;
+            }
+			return plantType.WateringFrequency.Value switch
 			{
 				WateringFrequency.Daily => date.AddDays(1),
 				WateringFrequency.BiWeekly => date.AddDays(3),

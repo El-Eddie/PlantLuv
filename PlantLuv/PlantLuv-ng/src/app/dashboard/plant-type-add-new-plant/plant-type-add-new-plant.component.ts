@@ -1,12 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { PlantType } from '../models/plant-type.model';
+import { PlantType, blankPlantType } from '../models/plant-type.model';
 import { of, Observable } from 'rxjs';
 import { FileService } from '../service/file.service';
 import { FileMetadata } from '../models/file.model';
 import { MatSnackBar } from '@angular/material/snack-bar'
-
 
 @Component({
   selector: 'app-plant-type-add-new',
@@ -30,7 +29,6 @@ export class PlantTypeAddNewComponent implements OnInit {
   ];
   uploadedFileUrl: string = null;
   uploadedFileId: string = null;
-  uploadedFileName: string = null;
   otherOption: string = "other/unlisted"
 
   constructor(
@@ -40,6 +38,12 @@ export class PlantTypeAddNewComponent implements OnInit {
     private snackbar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public type: PlantType | null
   ) {
+    console.log(type)
+
+    if (!type) {
+      type = blankPlantType();
+    }
+    console.log(type)
 
     this.newPlantType = this.builder.group({
       stockImageID: [''],
@@ -69,14 +73,15 @@ export class PlantTypeAddNewComponent implements OnInit {
       scienceSubfamily: [''],
       scienceGenus: [''],
     });
-    if (this.type) {
-      this.newPlantType.patchValue(this.type);
+    if (type) {
+      this.newPlantType.patchValue(type);
+      this.uploadedFileId = type.stockImageID;
+      this.uploadedFileUrl = this.fileService.thumbnailUrl(type.stockImageID);
     }
   }
 
   clearImage() {
     this.uploadedFileUrl = null;
-    this.uploadedFileName = null;
     this.uploadedFileId = null;
   }
 
@@ -92,7 +97,6 @@ export class PlantTypeAddNewComponent implements OnInit {
 
       this.fileService.upload(formData).subscribe((result: FileMetadata) => {
         this.uploadedFileId = result.fileId;
-        this.uploadedFileName = file.name;
         this.uploadedFileUrl = this.fileService.thumbnailUrl(result.fileId);
       }, (err) => {
         this.snackbar.open("Image upload failed. Please try again later.", '', { duration: this.snackbarDuration })
@@ -110,7 +114,7 @@ export class PlantTypeAddNewComponent implements OnInit {
       return;
     }
 
-    var plant = { ...this.type, ...this.newPlantType.value };
+    var plant: PlantType = { ...this.type, ...this.newPlantType.value, stockImageID: this.uploadedFileId };
 
     this.dialogRef.close(plant)
   }

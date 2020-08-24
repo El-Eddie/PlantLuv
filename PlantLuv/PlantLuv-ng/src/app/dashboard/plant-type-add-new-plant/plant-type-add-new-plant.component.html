@@ -6,12 +6,12 @@
             <ul class="add-new">
                 <li class="add-new-item">
                     <mat-form-field>
-                        <input matInput type="text" placeholder="Latin Name" formControlName="latinName">
+                        <input matInput type="text" placeholder="Latin Name" formControlName="latinName" required/>
                     </mat-form-field>
                 </li>
                 <li class="add-new-item">
                     <mat-form-field>
-                        <input matInput type="text" placeholder="Common Name" formControlName="commonName" />
+                        <input matInput type="text" placeholder="Common Name" formControlName="commonName" required />
                     </mat-form-field>
                 </li>
             </ul>
@@ -120,12 +120,12 @@
                         <h2 mat-subheader>Watering Frequency</h2>
                         <mat-radio-group class="" formControlName="wateringFrequency">
                             <mat-radio-button value="daily">Daily</mat-radio-button>
-                            <mat-radio-button value="biWeekly">BiWeekly</mat-radio-button>
-                            <mat-radio-button value="triWeekly">TriWeekly</mat-radio-button>
+                            <mat-radio-button value="biWeekly">Bi-Weekly</mat-radio-button>
+                            <mat-radio-button value="triWeekly">Tri-Weekly</mat-radio-button>
                             <mat-radio-button value="weekly">Weekly</mat-radio-button>
-                            <mat-radio-button value="triWeekly">TriWeekly</mat-radio-button>
+                            <mat-radio-button value="triWeekly">Tri-Weekly</mat-radio-button>
                             <mat-radio-button value="monthly">Monthly</mat-radio-button>
-                            <mat-radio-button value="semiMonthly">SemiMonthly</mat-radio-button>
+                            <mat-radio-button value="semiMonthly">Semi-Monthly</mat-radio-button>
                         </mat-radio-group>
                     </mat-list>
                 </li>
@@ -229,11 +229,11 @@
             <!-- END -->
             <ul class="add-new">
                 <li class="add-new-item">
-                    <input hidden (change)="fileChosen($event)" #fileInput accept=".jpg, .png, .jpeg, .bmp" type="file" />
-                    <div class="image-upload-container" *ngIf="!uploadedFileName">
-                        <button mat-raised-button color="primary" (click)="fileInput.click()">Upload Default Photo</button>
+                    <input hidden (change)="fileChosen($event)" #fileInput accept=".jpg, .png, .jpeg, .bmp" type="file" required />
+                    <div class="image-upload-container" *ngIf="!uploadedFileId">
+                        <button mat-raised-button color="primary" (click)="fileInput.click()">Upload Stock Photo</button>
                     </div>
-                    <div class="image-upload-container" *ngIf="uploadedFileName">
+                    <div class="image-upload-container" *ngIf="uploadedFileId">
                         <img class="placeholder-image" src={{uploadedFileUrl}}><br />
                         <button mat-raised-button color="primary" (click)="clearImage()">Clear</button>
                     </div>

@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { PlantType } from '../models/plant-type.model'
 import { FileService } from '../service/file.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FileService } from '../service/file.service';
 
 @Component({
   selector: 'app-plant-details',
