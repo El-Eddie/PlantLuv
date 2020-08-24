@@ -52,7 +52,6 @@ export class AddPlantComponent implements OnInit {
     private snackbar: MatSnackBar,
     public dialogRef: MatDialogRef<AddPlantComponent>,
     public builder: FormBuilder,
-    // @Inject(MAT_DIALOG_DATA) public injectedPlant:  null | Plant | PlantType
     @Inject(MAT_DIALOG_DATA) public data:  {plant: null | Plant, plantType: null | PlantType}
   ) {
     this.formGroup = this.builder.group({
@@ -93,9 +92,8 @@ export class AddPlantComponent implements OnInit {
 
 
   getLoggedInUser(): string {
-    // let currentUser = localStorage.getItem('currentUser');
-    // return JSON.parse(currentUser).id;
-    return('ad1b3e60-4d01-42b9-9ffe-1d5bc52de2a3');
+    let currentUser = localStorage.getItem('currentUser');
+    return JSON.parse(currentUser).id;
   }
 
 

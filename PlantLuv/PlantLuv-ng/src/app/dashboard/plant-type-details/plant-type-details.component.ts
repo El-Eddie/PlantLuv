@@ -1,7 +1,6 @@
-import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { PlantType } from '../models/plant-type.model'
-import { ImageDialogComponent } from '../image-dialog/image-dialog.component'
-import { PhotoData } from '../models/photo-data.model'
+import { FileService } from '../service/file.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -14,14 +13,17 @@ export class PlantDetailsComponent implements OnInit {
   public toxisity: string[] = [];
 
   tooltipDelay: number = 250
+  imageURL: string;
 
   constructor(
     public dialogRef: MatDialogRef<PlantDetailsComponent>,
+    public fileService: FileService,
     @Inject(MAT_DIALOG_DATA) public type: PlantType
   ) { }
 
   ngOnInit(): void {
     this.gettoxisity()
+    this.imageURL = this.fileService.largeUrl(this.type.stockImageID)
   }
 
   addPlant() {

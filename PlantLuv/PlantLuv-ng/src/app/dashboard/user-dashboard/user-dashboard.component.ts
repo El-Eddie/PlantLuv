@@ -53,9 +53,8 @@ export class UserDashboardComponent implements OnInit {
 
 
   getLoggedInUser(): string {
-    // let currentUser = localStorage.getItem('currentUser');
-    // return JSON.parse(currentUser).id;
-    return('ad1b3e60-4d01-42b9-9ffe-1d5bc52de2a3');
+    let currentUser = localStorage.getItem('currentUser');
+    return JSON.parse(currentUser).id;
   }
 
 

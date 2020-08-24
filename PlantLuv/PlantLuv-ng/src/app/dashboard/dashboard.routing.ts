@@ -9,13 +9,13 @@ const routes: Routes = [
     path: 'user-plants',
     pathMatch: 'full',
     component: UserDashboardComponent,
-    // canActivate: [AuthenticatedGuard]
+    canActivate: [AuthenticatedGuard]
   },
   {
     path: 'browse-plants',
     pathMatch: 'full',
     component: PlantTypeDashboardComponent,
-    // canActivate: [AuthenticatedGuard]
+    canActivate: [AuthenticatedGuard]
   },
   {
     path: '',
