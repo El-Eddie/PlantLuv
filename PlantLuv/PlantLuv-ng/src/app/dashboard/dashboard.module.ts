@@ -12,7 +12,6 @@ import { MockPlantTypeService } from './service/z_mock-plant-type.service'
 import { SharedImportsModule } from '../shared/shared-imports.module'
 import { environment } from '../../environments/environment';
 
-
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { UserPlantCardComponent } from './user-plant-card/user-plant-card.component';
 
@@ -27,7 +26,7 @@ import { NotificationPipe } from './pipes/notification.pipe';
 import { LightLevelPipe } from './pipes/light-level.pipe';
 import { ToxisityPipe } from './pipes/toxisity.pipe';
 import { DifficultyPipe } from './pipes/difficulty.pipe'
-// Fitler
+// Filter
 import { FilterComponent } from './filter/filter.component';
 // Plant cards
 import { DeleteDialogComponent } from '../dashboard/pop-up/delete-dialog.component';
@@ -37,6 +36,7 @@ import { PlantTypeDashboardComponent } from './plant-type-dashboard/plant-type-d
 import { AddPlantComponent } from './user-add-new-plant/user-add-new-plant.component';
 import { UserDashboardRoutingModule } from './dashboard.routing';
 import { PlantTypeAddNewComponent } from './plant-type-add-new-plant/plant-type-add-new-plant.component';
+import { MarkdownModule } from 'ngx-markdown';
 
 @NgModule({
   declarations: [
@@ -65,19 +65,21 @@ import { PlantTypeAddNewComponent } from './plant-type-add-new-plant/plant-type-
     CommonModule,
     HttpClientModule,
     SharedImportsModule,
+    MarkdownModule,
     UserDashboardRoutingModule,
     StoreModule.forFeature('page', displayReducer)
   ],
   providers: [
     PlantService,
+    PlantTypeService
     // {
     //   provide: PlantService,
     //   useClass: environment.production ? PlantService : MockPlantService
     // },
-    {
-      provide: PlantTypeService,
-      useClass: environment.production ? PlantTypeService : MockPlantTypeService
-    }
+    // {
+    //   provide: PlantTypeService,
+    //   useClass: environment.production ? PlantTypeService : MockPlantTypeService
+    // }
   ],
 })
 

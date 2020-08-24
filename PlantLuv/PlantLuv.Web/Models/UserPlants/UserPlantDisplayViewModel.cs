@@ -11,7 +11,7 @@ namespace PlantLuv.Web.Models.Plants
         public int TypeId { get; set; }
 
         public string CommonName { get; set; }
-        public string LattinName { get; set; }
+        public string LatinName { get; set; }
         public string NickName { get; set; }
         public string WherePurchased { get; set; }
 
@@ -23,7 +23,7 @@ namespace PlantLuv.Web.Models.Plants
 
         public bool ReceiveNotifications { get; set; }
         public bool IsFavorite { get; set; }
-        public string PrimaryImageId { get; set; }
+        public string PrimaryImageID { get; set; }
 
         public string LightLevel { get; set; }
         public List<string> Toxisity { get; set; }
@@ -32,10 +32,10 @@ namespace PlantLuv.Web.Models.Plants
         {
             this.PlantId = plant.PlantId;
             this.OwnerId = plant.OwnerID;
-            this.TypeId = plant.PlantType.PlantTypeId;
+            this.TypeId = plant.PlantType.PlantTypeID;
 
             this.CommonName = plant.PlantType.CommonName;
-            this.LattinName = plant.PlantType.LatinName;
+            this.LatinName = plant.PlantType.LatinName;
             this.NickName = plant.NickName;
             this.WherePurchased = plant.WherePurchased;
 
@@ -47,7 +47,7 @@ namespace PlantLuv.Web.Models.Plants
 
             this.ReceiveNotifications = plant.ReceiveNotifications;
             this.IsFavorite = plant.IsFavorite;
-            this.PrimaryImageId = plant.PrimaryImageID;
+            this.PrimaryImageID = plant.PrimaryImageID;
 
             this.LightLevel = plant.PlantType.LightLevel.ToString();
             this.Toxisity = GetToxisityAray(plant.PlantType);

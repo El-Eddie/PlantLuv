@@ -23,7 +23,7 @@ export class PlantTypeDashboardComponent implements OnInit {
   tooltipDelay: number = 250;
 
   constructor(
-    private plantSerice: PlantService,
+    private plantService: PlantService,
     private typeService: PlantTypeService,
     private dialog: MatDialog,
   ) { }
@@ -39,23 +39,35 @@ export class PlantTypeDashboardComponent implements OnInit {
   updateFilter(value: string) { }
 
   addPlantType() {
-    this.dialog.open(PlantTypeAddNewComponent, { data: null, disableClose: true });
+    const popupResult = this.dialog.open(PlantTypeAddNewComponent, {
+      width: '450px',
+      data: null,
+      disableClose: true
+    });
+    popupResult.afterClosed().subscribe((result: PlantType) => {
+      if (result) {
+        this.typeService.create(result).subscribe
+          (() => {
+          });
+      }
+    });
   }
-  displayDetailsCard(id: number) {
-    this.typeService.grab(id).subscribe(plantType => {
+  displayDetailsCard(type: number) {
+    this.typeService.grab(type).subscribe(plantType => {
       const detailCard = this.dialog.open(PlantDetailsComponent, { data: plantType });
 
       detailCard.afterClosed().subscribe((addUserPlant: boolean) => {
         if (addUserPlant) {
-          this.addUserPlant(plantType.typeId);
+          this.addUserPlant(plantType.plantTypeID);
         }
       })
     })
   }
 
-  addUserPlant(id: number) {
+
+  addUserPlant(type: number) {
     console.log('type')
-    this.typeService.grab(id).subscribe(plantType => {
+    this.typeService.grab(type).subscribe(plantType => {
       this.dialog.open(AddPlantComponent, { data: plantType });
     })
   }

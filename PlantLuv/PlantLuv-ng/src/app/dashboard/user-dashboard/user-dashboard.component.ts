@@ -53,10 +53,9 @@ export class UserDashboardComponent implements OnInit {
 
 
   getLoggedInUser(): string {
-    let currentUser = localStorage.getItem('currentUser');
-    return JSON.parse(currentUser).id;
-
-    //return "user@me.com";
+    // let currentUser = localStorage.getItem('currentUser');
+    // return JSON.parse(currentUser).id;
+    return('ad1b3e60-4d01-42b9-9ffe-1d5bc52de2a3');
   }
 
 
@@ -74,9 +73,26 @@ export class UserDashboardComponent implements OnInit {
     return plant.plantId;
   }
 
+  updateBehaviorSubject(newValues: Plant[]){
+    let vals = this.plantList$.getValue();
+    newValues.forEach((p: Plant) => {
+      let index = vals.findIndex(thing => {
+        return thing.plantId == p.plantId
+      });
+      vals.splice(index,1,p)
+
+      // to be implemented when waterPlants is refactored to hadnle one plant
+      // vals.map(v => {
+      //   let match = v.plantId == p.plantId ;
+      //   return match ? p : v;
+      // });
+    });
+    this.plantList$.next(vals);
+  }
 
   waterPlant(...ids: number[]) {
     this.plantService.waterPlant(ids).subscribe((plants: Plant[]) => {
+      this.updateBehaviorSubject(plants)
       if (plants.length > 1) {
         var message = "Your plants have been marked as watered"
       } else {
@@ -95,6 +111,7 @@ export class UserDashboardComponent implements OnInit {
 
   fertalizePlant(...ids: number[]) {
     this.plantService.fertalizePlant(ids).subscribe((plants: Plant[]) => {
+      this.updateBehaviorSubject(plants)
       if (plants.length > 1) {
         var message = "Your plants have been marked as fed"
       } else {
@@ -112,7 +129,9 @@ export class UserDashboardComponent implements OnInit {
 
 
   deletePlant(id: number) {
-    this.plantService.delete(id);
+    this.plantService.delete(id).subscribe(() => {
+      this.GetUserPlants(this.getLoggedInUser())
+    });
   }
 
 
@@ -145,7 +164,8 @@ export class UserDashboardComponent implements OnInit {
 
 
   updatePlant(plant: Plant) {
-    this.plantService.save(plant).subscribe(() => {
+    this.plantService.save(plant).subscribe((plant: Plant) => {
+      this.updateBehaviorSubject([plant])
     }, error => {
       alert("There was a problem recording your action.\n Please try again later.");
     });
@@ -160,14 +180,16 @@ export class UserDashboardComponent implements OnInit {
 
 
   addPlant() {
-    const dialogBox = this.dialog.open(AddPlantComponent, { data: null, disableClose: true });
-    dialogBox.beforeClosed().subscribe(result => {
-      console.log("this is the result before close!");
-      console.log(result);
-    })
+    const dialog = this.dialog.open(AddPlantComponent, { data: null, disableClose: true });
+    dialog.afterClosed().subscribe(plant =>{
+      this.updateBehaviorSubject([plant])
+    });
   }
 
   editPlant(plant: Plant) {
-    this.dialog.open(AddPlantComponent, { data: {plant: plant}, disableClose: true });
+    const dialog = this.dialog.open(AddPlantComponent, { data: {plant: plant}, disableClose: true });
+    dialog.afterClosed().subscribe(plant =>{
+      this.updateBehaviorSubject([plant])
+    });
   }
 }

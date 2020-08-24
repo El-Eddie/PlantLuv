@@ -14,13 +14,16 @@ namespace PlantLuv.Web.Models.Plants
 		public string LatinName { get; set; }
 		[Required]
 		public string CommonName { get; set; }
+		[Required]
 		public string StockImageID { get; set; }
 		public string Description { get; set; }
 		public DifficultyLevel Difficulty { get; set; }
+		[MaxLength(3)]
 		public int HumidityLowLevel { get; set; }
+		[MaxLength(3)]
 		public int HumidityHighLevel { get; set; }
 		public LightLevel LightLevel { get; set; }
-		public int LightTime { get; set; }
+		public LightTime LightTime { get; set; }
 		public double SoilPh { get; set; }
 		public SoilType SoilType { get; set; }
 		public FertilizerFrequency FertilizerFrequency { get; set; }
@@ -30,9 +33,6 @@ namespace PlantLuv.Web.Models.Plants
 		public bool ToxicToCats { get; set; }
 		public bool ToxicToDogs { get; set; }
 		public bool ToxicToSmallAnimals { get; set; }
-		public bool ToxicToHumans { get; set; }
-
-		//Scientific Information
 		public string ScienceKingdom { get; set; }
 		public string ScienceClade1 { get; set; }
 		public string ScienceClade2 { get; set; }

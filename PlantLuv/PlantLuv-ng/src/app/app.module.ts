@@ -1,6 +1,6 @@
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { NgModule, SecurityContext } from '@angular/core';
 
 import { Routes, RouterModule, ROUTES, Router } from '@angular/router';
 import { AppComponent } from './app.component';
@@ -18,6 +18,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { AccountModule } from './account/account.module';
 import { AppRoutingModule } from './app-routing.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { MarkdownModule } from 'ngx-markdown';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,9 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     AppRoutingModule,
     HttpClientModule,
     StoreModule.forRoot({}),
+    MarkdownModule.forRoot({
+      sanitize: SecurityContext.NONE
+    }),
     StoreDevtoolsModule.instrument({
       name: 'PlantLuv App',
       maxAge: 25,

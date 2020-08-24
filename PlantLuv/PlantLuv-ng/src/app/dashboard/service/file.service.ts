@@ -20,30 +20,30 @@ export class FileService {
 
   public getFileMetadata(fileId: string): Observable<FileMetadata> {
     if (fileId.startsWith(clientGuidPrefix)) {
-      return of({fileId, size: 0, extension: '', contentType: ''});
+      return of({ fileId, size: 0, extension: '', contentType: '' });
     }
     return this.http
       .get<FileMetadata>(this.baseUrl + '/' + fileId + '/metadata')
       .pipe(memorize());
   }
 
-  public thumbnailUrl(fileId: string, fileUse: string): string {
+  public thumbnailUrl(fileId: string): string {
     if (!fileId || fileId.startsWith(clientGuidPrefix)) {
-      return '/assets/placeholder-' + fileUse + '.jpg';
+      return '/assets/img/plants/plant-image-placeholder.png';
     }
     return '/api/file/' + fileId + '/thumbnail';
   }
 
-  public mediumUrl(fileId: string, fileUse: string): string {
+  public mediumUrl(fileId: string): string {
     if (!fileId || fileId.startsWith(clientGuidPrefix)) {
-      return '/assets/placeholder-' + fileUse + '.jpg';
+      return '/assets/img/plants/plant-image-placeholder.png';
     }
     return '/api/file/' + fileId + '/medium';
   }
 
-  public largeUrl(fileId: string, fileUse: string): string {
+  public largeUrl(fileId: string): string {
     if (!fileId || fileId.startsWith(clientGuidPrefix)) {
-      return '/assets/placeholder-' + fileUse + '.jpg';
+      return '/assets/img/plants/plant-image-placeholder.png';
     }
     return '/api/file/' + fileId + '/large';
   }

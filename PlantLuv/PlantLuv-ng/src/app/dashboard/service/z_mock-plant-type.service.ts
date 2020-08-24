@@ -26,19 +26,19 @@ export class MockPlantTypeService extends PlantTypeService {
   }
 
   grab(id: number): Observable<PlantType> {
-    return of(this.typeList.find(type => type.typeId == id));
+    return of(this.typeList.find(type => type.plantTypeID == id));
   }
 
   getPlantTypes() {
     this.typeList = [
       {
-        typeId: 1,
+        plantTypeID: 1,
         // imageInfo: {
         //   imgURL: "assets/img/snow_queen_pothos-full.jpg",
         //   imgWidth: 867,
         //   imgHeight: 971
         // },
-        thumbnailURL: "assets/img/plants/snow_queen_pothos-thumb.jpg",
+        stockImageID: "29FF400B-7FC8-471D-8204-BE2D1BA4D388",
         commonName: "Snow Queen Pothos",
         latinName: "Epipremnum aureum",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
@@ -46,58 +46,67 @@ export class MockPlantTypeService extends PlantTypeService {
         lightLevel: "Low",
         humidityLowLevel: "60",
         humidityHighLevel: "85",
-        fertalizerFrequency: "Monthly",
+        fertilizerFrequency: "Monthly",
         fertalizerType: "",
         soilType: "Potting soil",
-        soilPH: "Acidic",
+        soilPh: 1,
         waterType: "Tap",
-        waterFrequency: "When soil becomes dry",
-        toxisity: ['Cats', 'Dogs'],
+        wateringFrequency: "When soil becomes dry",
+        // toxisity: ['Cats', 'Dogs'],
         difficulty: 'Beginner',
         // Scientific Information
-        kingdom: "Plantae",
-        clade1: "Tracheophytes",
-        clade2: "Angiosperms",
-        clade3: "Monocots",
-        order: "Alismatales",
-        family: "Araceae",
-        subFamily: "Pothoideae",
-        genus: "Pothos"
+        scienceKingdom: "Plantae",
+        scienceClade1: "Tracheophytes",
+        scienceClade2: "Angiosperms",
+        scienceClade3: "Monocots",
+        scienceOrder: "Alismatales",
+        scienceFamily: "Araceae",
+        scienceSubfamily: "Pothoideae",
+        scienceGenus: "Pothos",
+        toxicToCats: false,
+        toxicToDogs: false,
+        toxicToSmallAnimals: false,
+        lightTime: "long"
 
       },
       {
-        typeId: 2,
+        plantTypeID: 2,
         // imageInfo: {
         //   imgURL: "assets/img/snow_queen_pothos-full.jpg",
         //   imgWidth: 867,
         //   imgHeight: 971
         // },
-        thumbnailURL: "assets/img/plants/snow_queen_pothos-thumb.jpg",
-        commonName: "Snow Queen Pothos",
+        stockImageID: "1C54ABB7-BF4D-44DF-8C19-AB1F4C5F6ECA",
+        commonName: "Marble Queen Pothos",
         latinName: "Epipremnum aureum",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         blurb: "",
-        lightLevel: "Bright",
+        lightLevel: "Low",
         humidityLowLevel: "60",
         humidityHighLevel: "85",
-        fertalizerFrequency: "Monthly",
+        fertilizerFrequency: "Monthly",
         fertalizerType: "",
         soilType: "Potting soil",
-        soilPH: "Acidic",
+        soilPh: 1,
         waterType: "Tap",
-        waterFrequency: "When soil becomes dry",
-        toxisity: ['Cats', 'Dogs'],
+        wateringFrequency: "When soil becomes dry",
+        // toxisity: ['Cats', 'Dogs'],
         difficulty: 'Beginner',
         // Scientific Information
-        kingdom: "Plantae",
-        clade1: "Tracheophytes",
-        clade2: "Angiosperms",
-        clade3: "Monocots",
-        order: "Alismatales",
-        family: "Araceae",
-        subFamily: "Pothoideae",
-        genus: "Pothos"
+        scienceKingdom: "Plantae",
+        scienceClade1: "Tracheophytes",
+        scienceClade2: "Angiosperms",
+        scienceClade3: "Monocots",
+        scienceOrder: "Alismatales",
+        scienceFamily: "Araceae",
+        scienceSubfamily: "Pothoideae",
+        scienceGenus: "Pothos",
+        toxicToCats: false,
+        toxicToDogs: false,
+        toxicToSmallAnimals: false,
+        lightTime: "long"
       }
     ]
   }
 }
+//

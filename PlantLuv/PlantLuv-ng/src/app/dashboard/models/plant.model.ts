@@ -15,9 +15,9 @@ export interface Plant {
   height: number; //wont need
   birthday: Date;
   receiveNotifications: boolean;
-  primaryImageId: string;
-  imageIds?: number[];
-  thumbnailURL?: string;
+  primaryImageID: string;
+  imageIDs?: number[];
+  thumbnailUrl?: string;
   isPublic: boolean;  //not implementing social yet
   isFavorite: boolean;
   lightLevel: string;

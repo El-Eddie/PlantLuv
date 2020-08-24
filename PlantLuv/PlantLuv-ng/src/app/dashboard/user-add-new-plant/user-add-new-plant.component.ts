@@ -5,9 +5,9 @@ import { NewUserPlant } from '../models/new-plant.model';
 import { PlantTypeService } from '../service/plant-type.service';
 import { PlantService } from '../service/plant.service'
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl, PatternValidator, ValidatorFn, NgModel, ValidationErrors } from '@angular/forms';
-import { Observable, Subscription, from, of } from 'rxjs';
-import { map, startWith, filter } from 'rxjs/operators';
+import { FormBuilder, FormGroup, Validators, AbstractControl, FormControl, PatternValidator, ValidatorFn, NgModel, ValidationErrors, AsyncValidatorFn } from '@angular/forms';
+import { Observable, Subscription, from, of, BehaviorSubject } from 'rxjs';
+import { map, startWith, filter, debounceTime } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { nextTick, config } from 'process';
 import { async } from 'rxjs/internal/scheduler/async';
@@ -24,7 +24,8 @@ export class AddPlantComponent implements OnInit {
 
   activeUser: string;
   formGroup: FormGroup;
-  typeList$: Observable<PlantType[]>;
+  // typeList$: Observable<PlantType[]>;
+  typeList$ = new BehaviorSubject<PlantType[]>([]);
   typeArray: PlantType[];
   typeList: string[] = [];
   filteredTypeList$: Observable<string[]>;
@@ -57,7 +58,7 @@ export class AddPlantComponent implements OnInit {
     this.formGroup = this.builder.group({
       commonName: [
         '',
-        Validators.required, this.plantTypeValidator.bind(this)
+        [Validators.required, this.plantTypeValidator.bind(this)]
       ],
       nickName: [''],
       birthday: [''],
@@ -73,63 +74,61 @@ export class AddPlantComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.typeList$ = this.typeService.search("")
-
-    this.typeList$.subscribe(() => {
+    this.typeService.search("").subscribe((value: PlantType[]) => {
+      this.typeList$.next(value);
       this.filteredTypeList$ = this.getOptions();
-    })
-
-    this.filteredTypeList$ = this.formGroup.get("commonName").valueChanges.pipe(
-      startWith(''),
-      map(val => this.filterValue(val))
-    )
+      this.filteredTypeList$ = this.formGroup.get("commonName").valueChanges.pipe(
+        startWith(''),
+        map(val => this.filterValue(val))
+      )
+    });
 
     this.defaultImage = this.getPlaceholderImage();
     this.activeUser = this.getLoggedInUser();
 
     this.title = (this.data?.plant)
-      ? `Editing Your ${this.data.plant.nickName ?? this.data.plant.commonName}`
+      ? "Editing Your " + this.data.plant.commonName
       : "Add New Plant"
   }
 
 
   getLoggedInUser(): string {
-    let currentUser = localStorage.getItem('currentUser');
-    return JSON.parse(currentUser).id;
+    // let currentUser = localStorage.getItem('currentUser');
+    // return JSON.parse(currentUser).id;
+    return('ad1b3e60-4d01-42b9-9ffe-1d5bc52de2a3');
   }
 
 
   getPlaceholderImage(): string{
     if (this.data?.plant) {
-      return this.fileService.thumbnailUrl(this.data.plant.primaryImageId, null);
+      return this.fileService.thumbnailUrl(this.data.plant.primaryImageID);
     } else if (this.data?.plantType) {
-      return this.fileService.thumbnailUrl(this.data.plantType.thumbnailURL, null);
+      return this.fileService.thumbnailUrl(this.data.plantType.stockImageID);
     } else {
       return this.placeholderImage;
     }
   }
 
   plantTypeValidator(field: AbstractControl): ValidationErrors | null {
-    if (field.pristine) {return of(null)}
+    if (field.pristine) {return null}
 
     const input = field.value.toUpperCase()
     var regexInput = "^" + input + "$";
-    var isValid = false;
+    var isValid= false;
 
     if (input == this.otherOption.toUpperCase()) {
       this.selectedtypeId = 0;
-      isValid = true;
+      return null;
     }
 
-    this.typeList$.forEach(_array => {
-      _array.forEach(_type => {
-        if (_type.commonName.toUpperCase().match(regexInput)) {
-          isValid = true;
-          this.selectedtypeId = _type.typeId;
-        }
-      })
+    this.typeList$.getValue().forEach(type => {
+      if (type.commonName.toUpperCase().match(regexInput)) {
+        isValid = true;
+        this.selectedtypeId = type.plantTypeID;
+      }
     })
-    return isValid ? of(null) : of({ 'invalidEntry': true });
+
+    return isValid ? null : { 'invalidEntry': true };
   }
 
 
@@ -140,12 +139,9 @@ export class AddPlantComponent implements OnInit {
 
 
   getOptions(): Observable<string[]> {
-    this.typeList$.forEach(_array => {
-      _array.forEach(_type => { // this works, but can/should we use map?
-        this.typeList.push(_type.commonName)
-      });
-    })
+    this.typeList = this.typeList$.getValue().map(t => t.commonName);
     return of(this.typeList);
+    // }))
   }
 
 
@@ -178,7 +174,7 @@ export class AddPlantComponent implements OnInit {
           this.snackbar.open(message, null, {
             duration: this.snackbarDuration
           });
-          this.dialogRef.close();
+          this.dialogRef.close(results);
         }, results => {
           alert("There was an error saving your plant.\n Please check the information and try again.");
         });
@@ -188,7 +184,7 @@ export class AddPlantComponent implements OnInit {
         this.snackbar.open(message, null, {
           duration: this.snackbarDuration
         });
-        this.dialogRef.close();
+        this.dialogRef.close(results);
       }, results => {
         alert("There was an error saving your new plant.\n Please check the information and try again.");
       });
@@ -197,22 +193,13 @@ export class AddPlantComponent implements OnInit {
 
 
   changeDefaultPicure(event: any) {
-
-
     const input: string = "^" + event.target.value.toUpperCase() + "$";
-    var newPic: string = null
 
-    this.typeList$.forEach(_array => {
-      _array.forEach(_type => {
-        if (_type.commonName.toUpperCase().match(input)) {
-          newPic = _type.thumbnailURL
-        }
-      })
+    this.typeList$.getValue().forEach(type => {
+      if (type.commonName.toUpperCase().match(input)) {
+        this.defaultImage = this.fileService.thumbnailUrl(type.stockImageID);
+      }
     })
-
-    if (newPic) {
-      this.defaultImage = newPic;
-    }
   }
 
 
@@ -231,12 +218,12 @@ export class AddPlantComponent implements OnInit {
         return;
       }
       const formData = new FormData();
-      formData.append('model', file)
+      formData.append('model', file) //needs to match up with c#
 
       this.fileService.upload(formData).subscribe((result: FileMetadata) => {
         this.uploadedFileId = result.fileId;
         this.uploadedFileName = file.name;
-        this.uploadedFileUrl = this.fileService.thumbnailUrl(result.fileId, null);
+        this.uploadedFileUrl = this.fileService.thumbnailUrl(result.fileId);
       }, (err) => {
         this.snackbar.open("Image upload failed. Please try again later.", '', { duration: this.snackbarDuration })
       })

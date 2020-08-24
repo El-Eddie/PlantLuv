@@ -10,13 +10,23 @@ export class PlantTypeService {
 
   constructor(private httpClient: HttpClient) { }
 
-  search(criteria: string): Observable<PlantType[]>{
+  search(criteria: string): Observable<PlantType[]> {
     const query = new HttpParams()
-    return this.httpClient.get<PlantType[]>(' proper_url_to_API ', { params: query })
+    return this.httpClient.get<PlantType[]>('api/planttype/search')
   }
 
-  grab(id: number): Observable<PlantType>{
-    return this.httpClient.get<PlantType>('')
+
+  grab(id: number): Observable<PlantType> {
+    return this.httpClient.get<PlantType>(`api/planttype/${id}`)
   }
 
+
+  update(plant: PlantType): Observable<PlantType> {
+    return this.httpClient.put<PlantType>(`api/planttype/${plant.plantTypeID}`, plant);
+  }
+
+
+  create(plant: PlantType): Observable<PlantType> {
+    return this.httpClient.post<PlantType>('api/planttype', plant)
+  }
 }

@@ -11,48 +11,47 @@ export class PlantService {
 
   constructor(private httpClient: HttpClient) { }
 
-  search(criteria: string): Observable<Plant[]>{
+  search(criteria: string): Observable<Plant[]> {
     const query = new HttpParams()  // ToDo: create method to transform criteria into HttpParams
     return this.httpClient.get<Plant[]>('', { params: query }) // ToDo: Fill in url to controller action here
   }
 
-  getUserPlants(id: string): Observable<Plant[]>{
+  getUserPlants(id: string): Observable<Plant[]> {
     return this.httpClient.get<Plant[]>(`api/plants/search?ownerId=${id}`);
   }
 
-  grab(id: number): Observable<Plant>{
+  grab(id: number): Observable<Plant> {
     return this.httpClient.get<Plant>(`api/plants/${id}`);
   }
 
-  save(plant: Plant): Observable<Plant>{
-    // return this.httpClient.post<Plant>(`api/plants/${plant.plantId}`, plant);
-    var val = this.httpClient.post<Plant>(`api/plants/${plant.plantId}`, plant);
-    console.log(val, typeof(val));
-    return val;
+
+  save(plant: Plant): Observable<Plant> {
+    return this.httpClient.post<Plant>(`api/plants/${plant.plantId}`, plant);
   }
 
-  create(plant: NewUserPlant): Observable<Plant>{
+
+  create(plant: NewUserPlant): Observable<Plant> {
     return this.httpClient.post<Plant>('api/plants', plant)
   }
 
-  delete(id: number): Observable<Plant>{
+
+  delete(id: number): Observable<Plant> {
     console.log(`deleting ${id}`)
     // return this.httpClient.delete<Plant>(`api/plants/${id}`)
     this.httpClient.delete<Plant>(`api/plants/${id}`).subscribe(results =>
       console.log(results));
-
     return of(null)
   }
 
-  waterPlant(ids: number[]): Observable<Plant[]>{
+
+  waterPlant(ids: number[]): Observable<Plant[]> {
     var model = {
       plantIdArray: ids,
       Timestamp: new Date()
     };
     return this.httpClient.patch<Plant[]>('api/plants/water', model)
   }
-
-  fertalizePlant(ids: number[]): Observable<Plant[]>{
+  fertalizePlant(ids: number[]): Observable<Plant[]> {
     var model = {
       plantIdArray: ids,
       Timestamp: new Date()

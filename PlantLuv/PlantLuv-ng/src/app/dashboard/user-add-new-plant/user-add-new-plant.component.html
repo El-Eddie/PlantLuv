@@ -3,23 +3,23 @@
     <form [formGroup]="formGroup">
         <div id="add-new-container">
             <ul class="add-new">
-                <li class="add-new-item">
-                    <mat-form-field>
-                        <mat-label>Plant Type</mat-label>
-                        <input #species type="text" matInput formControlName="commonName" (blur)="changeDefaultPicure($event)" [matAutocomplete]="options" (keyup)="changeDefaultPicure($event)">
-                        <mat-autocomplete #options="matAutocomplete" autoActiveFirstOption>
-                            <mat-option *ngFor=" let type of filteredTypeList$ | async" [value]="type">{{type}}</mat-option>
-                            <mat-option value={{otherOption}}>-- other/unlisted --</mat-option>
+              <li class="add-new-item">
+                <mat-form-field>
+                  <mat-label>Plant Type</mat-label>
+                  <input #species type="text" matInput formControlName="commonName" (blur)="changeDefaultPicure($event)" [matAutocomplete]="options" (keyup)="changeDefaultPicure($event)">
+                  <mat-autocomplete #options="matAutocomplete" autoActiveFirstOption>
+                    <mat-option *ngFor=" let type of filteredTypeList$ | async" [value]="type">{{type}}</mat-option>
+                    <!-- <mat-option value={{otherOption}}>-- other/unlisted --</mat-option> -->
                         </mat-autocomplete>
                         <mat-hint>Required</mat-hint>
-                        <mat-error>Please enter a plant species from the list or select other/unlisted</mat-error>
-                    </mat-form-field>
-                </li>
-                <li class="add-new-item">
-                    <mat-form-field>
-                        <input matInput placeholder="Plant Nickname" formControlName="nickName" />
-                    </mat-form-field>
-                </li>
+                        <mat-error>Please enter a plant</mat-error>
+                      </mat-form-field>
+                    </li>
+              <li class="add-new-item">
+                  <mat-form-field>
+                      <input matInput placeholder="Plant Nickname" formControlName="nickName" />
+                  </mat-form-field>
+              </li>
             </ul>
             <ul class="add-new">
                 <li class="add-new-item">
@@ -61,13 +61,13 @@
             <ul class="add-new">
                 <li class="add-new-item">
                     <input hidden (change)="fileChosen($event)" #fileInput accept=".jpg, .png, .jpeg, .bmp" type="file" />
-                    <div class="image-upload-container" *ngIf="!uploadedFileName">
+                    <div class="image-upload-container" *ngIf="!uploadedFileUrl">
                         <button mat-raised-button color="primary" (click)="fileInput.click()">Upload Your Photo</button>
                         <img class="placeholder-image" src={{defaultImage}}>
                     </div>
                 </li>
                 <li class="add-new-item">
-                    <div class="image-upload-container" *ngIf="uploadedFileName">
+                    <div class="image-upload-container" *ngIf="uploadedFileUrl">
                         <button mat-raised-button color="primary" (click)="clearImage()">Clear</button>
                         <figure>
                           <img class="placeholder-image" src={{uploadedFileUrl}}>

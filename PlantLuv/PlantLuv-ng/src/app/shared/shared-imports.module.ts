@@ -22,6 +22,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCheckboxModule } from '@angular/material/checkbox';;
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatRadioModule } from '@angular/material/radio';
 
 
 export const MATERAIL_MODULES = [
@@ -44,6 +45,7 @@ export const MATERAIL_MODULES = [
   MatDatepickerModule,
   MatCheckboxModule,
   MatAutocompleteModule,
+  MatRadioModule
 ]
 
 @NgModule({

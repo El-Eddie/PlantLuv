@@ -1,7 +1,12 @@
 <mat-card class='plant-card'>
+    <div class="edit_icon" (click)="editPlantType()">
+        <span class="material-icons">
+    edit
+    </span>
+    </div>
     <div class='thumbnail-container'>
         <div class="thumbnail">
-            <img src={{planttype.thumbnailURL}}>
+            <img src={{fileService.mediumUrl(planttype.stockImageID)}}>
         </div>
     </div>
     <div class="plant-content">
@@ -30,7 +35,7 @@
                 <div class="plant-item-label">
                     Toxic To:
                 </div>
-                <div class='plant-item-icon' *ngFor="let animal of planttype.toxisity">
+                <div class='plant-item-icon' *ngFor="let animal of toxisity">
                     <mat-icon class="info-icon" svgIcon="{{animal | toxisityIcon}}" matTooltip="{{animal}}"></mat-icon>
                 </div>
             </div>
@@ -39,12 +44,12 @@
             <button class="action-button" mat-raised-button (click)="typeDetails()">
             <span class="material-icons">
             fullscreen
-            </span> View Details
+            </span>View Details
             </button>
             <button class="action-button" mat-raised-button>
             <span class="material-icons">
               save
-              </span> Save
+              </span>Add to Collection
           </button>
         </div>
     </div>

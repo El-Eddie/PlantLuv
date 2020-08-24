@@ -1,7 +1,7 @@
 <mat-card class="plant-card">
     <div class='thumbnail-container'>
         <div class="thumbnail">
-            <img src={{this.imageUrl}} />
+            <img src={{imageUrl}} />
         </div>
         <div class='thumbnail-icons-container'>
             <button mat-icon-button aria-label="toggle favorite" (click)="toggleFavorite()" matTooltip="Toggle Favorite">
@@ -13,7 +13,7 @@
         </button>
         </div>
         <div class="thumnails-additional">
-            <button *ngIf="plant.imageIds && plant.imageIds.length" mat-icon-button aria-label="view photos" (click)="triggerSlideshow(plant.plantId)" matTooltip="View pictures of this plant">
+            <button *ngIf="plant.imageIDs && plant.imageIDs.length" mat-icon-button aria-label="view photos" (click)="triggerSlideshow(plant.plantId)" matTooltip="View pictures of this plant">
             <mat-icon>more_horiz</mat-icon>
         </button>
         </div>

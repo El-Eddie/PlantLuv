@@ -18,23 +18,19 @@ namespace PlantLuv.Web.ApiControllers
 	[Route("api/plants")]
 	public class UserPlantController : ControllerBase
 	{
-
 		readonly IPlantData _plantData;
-		readonly ITypeData _typeData;
 		readonly IUrlHelper _urlHelper;
 		readonly IHttpContextAccessor _contextAccessor;
 		public ILogger<UserPlantController> logger;
 
 		public UserPlantController(
 			IPlantData plantData,
-			ITypeData typeData,
 			IUrlHelper urlHelper,
 			IHttpContextAccessor contextAccessor,
 			ILogger<UserPlantController> logger
 		)
 		{
 			this._plantData = plantData;
-			this._typeData = typeData;
 			this._urlHelper = urlHelper;
 			this._contextAccessor = contextAccessor;
 			this.logger = logger;
@@ -96,7 +92,7 @@ namespace PlantLuv.Web.ApiControllers
 			if (!ModelState.IsValid)
 				return UnprocessableEntity(new ValidationErrorModel(ModelState));
 
-			PlantType type = _typeData.Get(model.PlantTypeID);
+			PlantType type = _plantData.GetPlantType(model.PlantTypeID);
 
 			UserPlant plant = new UserPlant
 			{
@@ -112,7 +108,7 @@ namespace PlantLuv.Web.ApiControllers
 				IsDeleted = false,
 				ReceiveNotifications = model.ReceiveNotifications,
 				IsFavorite = false,
-				PrimaryImageID = model.PrimaryImageID
+				PrimaryImageID = model.PrimaryImageID ?? type.StockImageID
 			};
 
 			_plantData.Add(plant);
@@ -134,7 +130,7 @@ namespace PlantLuv.Web.ApiControllers
 			if (!ModelState.IsValid)
 				return UnprocessableEntity(new ValidationErrorModel(ModelState));
 
-			PlantType plantType = _typeData.Get(model.TypeID);
+			PlantType plantType = _plantData.GetPlantType(model.TypeID);
 
 			plant.NickName = model.NickName;
 			plant.WherePurchased = model.WherePurchased;
