@@ -17,7 +17,6 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { AccountModule } from './account/account.module';
 import { AppRoutingModule } from './app-routing.module';
-import { ServiceWorkerModule } from '@angular/service-worker';
 import { MarkdownModule } from 'ngx-markdown';
 
 @NgModule({
@@ -41,8 +40,7 @@ import { MarkdownModule } from 'ngx-markdown';
       maxAge: 25,
       logOnly: environment.production
     }),
-    EffectsModule.forRoot([]),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    EffectsModule.forRoot([])
   ],
   providers: [
     //Title,
