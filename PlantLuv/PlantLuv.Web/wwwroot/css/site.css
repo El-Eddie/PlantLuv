@@ -210,4 +210,7 @@ span.circle {
   background: #0f3407;
   padding-bottom: 0.24em; }
 
+.navbar-expand-sm .navbar-nav {
+  justify-content: flex-end; }
+
 /*# sourceMappingURL=site.css.map */
