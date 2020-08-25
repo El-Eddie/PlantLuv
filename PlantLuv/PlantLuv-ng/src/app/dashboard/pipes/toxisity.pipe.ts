@@ -11,7 +11,7 @@ export class ToxisityPipe implements PipeTransform {
     switch (value.toUpperCase()) {
       case "DOGS": { return "toxic-dog" }
       case "CATS": { return "toxic-cat" }
-      case "SMALL ANIMALS": { return "toxic-smallAnimal" }
+      case "SMALL-ANIMALS": { return "toxic-smallanimal" }
       default: { return "toxic-safe" }
     }
   }

@@ -55,7 +55,7 @@ export class PlantCardComponent implements OnInit {
 
     if (this.planttype.toxicToSmallAnimals) { this.toxisity.push("Small-Animals") }
 
-    if (this.toxisity.length == 0) this.toxisity.push("Pet-Safe")
+    if (this.toxisity.length === 0) this.toxisity.push("Pet-Safe")
 
   }
 }

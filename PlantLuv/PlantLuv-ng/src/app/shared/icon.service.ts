@@ -20,10 +20,9 @@ export class IconService {
     this.registry.addSvgIcon('light-high', this.sanitizer.bypassSecurityTrustResourceUrl('assets/img/icon/light-high.svg'));
 
     // Toxicity Icons
-    this.registry.addSvgIcon('toxic-cat', this.sanitizer.bypassSecurityTrustResourceUrl('assets/img/icon/toxic-kitty.svg'));
-    this.registry.addSvgIcon('toxic-dog', this.sanitizer.bypassSecurityTrustResourceUrl('assets/img/icon/toxic-doggo.svg'));
-    this.registry.addSvgIcon('toxic-human', this.sanitizer.bypassSecurityTrustResourceUrl('assets/img/icon/toxic-human.svg'));
-    this.registry.addSvgIcon('toxic-smallAnimal', this.sanitizer.bypassSecurityTrustResourceUrl('assets/img/icon/toxic-smallAnimal.svg'));
+    this.registry.addSvgIcon('toxic-cat', this.sanitizer.bypassSecurityTrustResourceUrl('assets/img/icon/toxic-cat.svg'));
+    this.registry.addSvgIcon('toxic-dog', this.sanitizer.bypassSecurityTrustResourceUrl('assets/img/icon/toxic-dog.svg'));
+    this.registry.addSvgIcon('toxic-smallanimal', this.sanitizer.bypassSecurityTrustResourceUrl('assets/img/icon/toxic-smallanimal.svg'));
     this.registry.addSvgIcon('toxic-safe', this.sanitizer.bypassSecurityTrustResourceUrl('assets/img/icon/toxic-safe.svg'));
 
     // Water & Fertalize Icons

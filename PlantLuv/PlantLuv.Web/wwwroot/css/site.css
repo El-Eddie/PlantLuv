@@ -8,6 +8,13 @@
   background: url(../images/bg2.jpg);
   background-size: cover; }
 
+.btn-primary {
+  background: #333;
+  margin-top: 1em; }
+
+h1 {
+  margin: 0.45em 0; }
+
 nav {
   font-family: "Barlow Semi Condensed", Arial, sans-serif;
   text-transform: uppercase;
@@ -23,7 +30,7 @@ nav {
   justify-content: normal; }
 
 .headerstacked {
-  height: 25vh; }
+  min-height: 25vh; }
 
 .mdl-layout__header {
   background-color: transparent;
@@ -59,17 +66,17 @@ nav {
   color: #d3d3d3;
   padding: 1em; }
   .reviews :before {
-    content: ' " ';
+    content: '" ';
     font-size: 1.3em; }
   .reviews :after {
-    content: ' " ';
+    content: ' "';
     font-size: 1.3em; }
   .reviews img {
     border-radius: 10em;
-    width: 100px;
-    height: 100px;
+    width: 85px;
+    height: 85px;
     padding: 2px;
-    border: 1px solid #d3d3d3;
+    border: 2px solid #d3d3d3;
     text-align: left;
     float: right; }
 
@@ -189,16 +196,18 @@ footer {
     display: none; } }
 /* How It Works */
 span.circle {
-  border-radius: 0.8em;
-  -moz-border-radius: 0.8em;
-  -webkit-border-radius: 0.8em;
-  color: #333;
+  border-radius: 2em;
+  -moz-border-radius: 2em;
+  -webkit-border-radius: 2em;
+  color: #fff;
   display: inline-block;
   font-weight: bold;
-  line-height: 1.6em;
+  line-height: 1.8em;
   text-align: center;
-  width: 1.65em;
+  width: 2em;
   border: 1px solid #333;
-  border: 2px; }
+  border: 2px;
+  background: #0f3407;
+  padding-bottom: 0.24em; }
 
 /*# sourceMappingURL=site.css.map */

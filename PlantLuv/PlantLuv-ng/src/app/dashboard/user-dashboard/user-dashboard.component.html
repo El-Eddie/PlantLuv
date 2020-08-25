@@ -16,7 +16,7 @@
               <span class="material-icons">
                 sort
                 </span>
-            </button> -->
+            </button>
             <button mat-mini-fab matTooltip="Mark All Plants Watered" [matTooltipShowDelay]="tooltipDelay " [matTooltipHideDelay]="tooltipDelay ">
               <span class="material-icons ">
                 opacity
@@ -27,7 +27,7 @@
               <span class="material-icons">
                 landscape
                 </span>
-            </button>
+            </button>-->
         </div>
     </div>
     <div id="page-header">
@@ -41,14 +41,8 @@
         </div>
     </div>
     <div id="dash-main">
-        <app-user-plant-card *ngFor="let plant of (refinedList$ | async); trackBy:trackByPlantId"
-          [plant]="plant"
-          (waterPlantEvent)="waterPlant($event)"
-          (fertalizePlantEvent)="fertalizePlant($event)"
-          (deletePlantEvent)="deletePlant($event)"
-          (viewCareSheetEvent)="displayDetailsCard($event)"
-          (editPlantEvent)="editPlant($event)"
-          (updatePlant)="updatePlant($event)">
+        <app-user-plant-card *ngFor="let plant of (refinedList$ | async); trackBy:trackByPlantId" [plant]="plant" (waterPlantEvent)="waterPlant($event)" (fertalizePlantEvent)="fertalizePlant($event)" (deletePlantEvent)="deletePlant($event)" (viewCareSheetEvent)="displayDetailsCard($event)"
+            (editPlantEvent)="editPlant($event)" (updatePlant)="updatePlant($event)">
         </app-user-plant-card>
 
     </div>
