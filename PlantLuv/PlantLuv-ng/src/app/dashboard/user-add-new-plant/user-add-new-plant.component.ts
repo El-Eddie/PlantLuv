@@ -24,7 +24,6 @@ export class AddPlantComponent implements OnInit {
 
   activeUser: string;
   formGroup: FormGroup;
-  // typeList$: Observable<PlantType[]>;
   typeList$ = new BehaviorSubject<PlantType[]>([]);
   typeArray: PlantType[];
   typeList: string[] = [];
@@ -52,7 +51,7 @@ export class AddPlantComponent implements OnInit {
     private snackbar: MatSnackBar,
     public dialogRef: MatDialogRef<AddPlantComponent>,
     public builder: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public data:  {plant: null | Plant, plantType: null | PlantType}
+    @Inject(MAT_DIALOG_DATA) public data:  {plant: null | Plant, plantType: PlantType | null}
   ) {
     this.formGroup = this.builder.group({
       commonName: [
@@ -68,7 +67,10 @@ export class AddPlantComponent implements OnInit {
     });
      if (this.data?.plant){
        this.formGroup.patchValue(this.data.plant);
-    };
+    } else if (this.data?.plantType){
+      this.formGroup.patchValue({"commonName": this.data.plantType.commonName})
+      this.selectedtypeId = this.data.plantType.plantTypeID;
+    }
   }
 
 
@@ -139,7 +141,6 @@ export class AddPlantComponent implements OnInit {
   getOptions(): Observable<string[]> {
     this.typeList = this.typeList$.getValue().map(t => t.commonName);
     return of(this.typeList);
-    // }))
   }
 
 
@@ -155,6 +156,8 @@ export class AddPlantComponent implements OnInit {
     var plant: NewUserPlant = {...this.formGroup.value};
     plant.ownerId = this.activeUser;
     plant.PrimaryImageID = this.uploadedFileId
+
+
 
     plant.PlantTypeID = this.selectedtypeId;
 

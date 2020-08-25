@@ -72,13 +72,18 @@ export class UserDashboardComponent implements OnInit {
     return plant.plantId;
   }
 
+
   updateBehaviorSubject(newValues: Plant[]){
     let vals = this.plantList$.getValue();
     newValues.forEach((p: Plant) => {
       let index = vals.findIndex(thing => {
         return thing.plantId == p.plantId
       });
-      vals.splice(index,1,p)
+      if (index == -1) {
+        vals.push(p);
+      } else {
+        vals.splice(index,1,p)
+      }
 
       // to be implemented when waterPlants is refactored to hadnle one plant
       // vals.map(v => {
@@ -88,6 +93,7 @@ export class UserDashboardComponent implements OnInit {
     });
     this.plantList$.next(vals);
   }
+
 
   waterPlant(...ids: number[]) {
     this.plantService.waterPlant(ids).subscribe((plants: Plant[]) => {
@@ -174,6 +180,11 @@ export class UserDashboardComponent implements OnInit {
   displayDetailsCard(id: number) {
     this.typeService.grab(id).subscribe(plantType => {
       const detailCard = this.dialog.open(PlantDetailsComponent, { data: plantType });
+      detailCard.afterClosed().subscribe((addPlant: boolean) => {
+        if (addPlant) {
+          this.addPlantFromInfo(plantType);
+        }
+      })
     })
   }
 
@@ -181,14 +192,29 @@ export class UserDashboardComponent implements OnInit {
   addPlant() {
     const dialog = this.dialog.open(AddPlantComponent, { data: null, disableClose: true });
     dialog.afterClosed().subscribe(plant =>{
-      this.updateBehaviorSubject([plant])
+      if (plant) {
+        this.updateBehaviorSubject([plant])
+      };
     });
   }
+
+
+  addPlantFromInfo(type: PlantType) {
+    const dialog = this.dialog.open(AddPlantComponent, { data: {plantType: type}, disableClose: true });
+    dialog.afterClosed().subscribe(plant =>{
+      if (plant) {
+        this.updateBehaviorSubject([plant])
+      };
+    });
+  }
+
 
   editPlant(plant: Plant) {
     const dialog = this.dialog.open(AddPlantComponent, { data: {plant: plant}, disableClose: true });
     dialog.afterClosed().subscribe(plant =>{
-      this.updateBehaviorSubject([plant])
+      if (plant) {
+        this.updateBehaviorSubject([plant])
+      };
     });
   }
 }

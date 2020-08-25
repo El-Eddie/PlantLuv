@@ -19,7 +19,7 @@ namespace PlantLuv.Web.Models.Plants
         public DateTime WaterAgain { get; set; }
         public DateTime LastFertalized { get; set; }
         public DateTime FertalizeAgain { get; set; }
-        public DateTime Birtdhday { get; set; }
+        public DateTime Birthday { get; set; }
 
         public bool ReceiveNotifications { get; set; }
         public bool IsFavorite { get; set; }
@@ -43,7 +43,7 @@ namespace PlantLuv.Web.Models.Plants
             this.WaterAgain = plant.WaterAgain;
             this.LastFertalized = plant.LastFertalized;
             this.FertalizeAgain = plant.FertalizeAgain;
-            this.Birtdhday = plant.Birtdhday;
+            this.Birthday = plant.Birtdhday;
 
             this.ReceiveNotifications = plant.ReceiveNotifications;
             this.IsFavorite = plant.IsFavorite;
