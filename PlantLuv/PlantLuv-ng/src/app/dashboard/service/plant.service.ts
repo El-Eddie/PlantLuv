@@ -16,9 +16,11 @@ export class PlantService {
     return this.httpClient.get<Plant[]>('', { params: query }) // ToDo: Fill in url to controller action here
   }
 
+
   getUserPlants(id: string): Observable<Plant[]> {
     return this.httpClient.get<Plant[]>(`api/plants/search?ownerId=${id}`);
   }
+
 
   grab(id: number): Observable<Plant> {
     return this.httpClient.get<Plant>(`api/plants/${id}`);
@@ -36,11 +38,7 @@ export class PlantService {
 
 
   delete(id: number): Observable<Plant> {
-    console.log(`deleting ${id}`)
-    // return this.httpClient.delete<Plant>(`api/plants/${id}`)
-    this.httpClient.delete<Plant>(`api/plants/${id}`).subscribe(results =>
-      console.log(results));
-    return of(null)
+    return this.httpClient.delete<Plant>(`api/plants/${id}`)
   }
 
 
@@ -51,6 +49,8 @@ export class PlantService {
     };
     return this.httpClient.patch<Plant[]>('api/plants/water', model)
   }
+
+
   fertalizePlant(ids: number[]): Observable<Plant[]> {
     var model = {
       plantIdArray: ids,
@@ -58,5 +58,4 @@ export class PlantService {
     };
     return this.httpClient.patch<Plant[]>('api/plants/feed', model)
   }
-
 }

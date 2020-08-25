@@ -75,8 +75,8 @@ export class PlantTypeDashboardComponent implements OnInit {
 
   addUserPlant(type: number) {
     console.log('type')
-    this.typeService.grab(type).subscribe(plantType => {
-      this.dialog.open(AddPlantComponent, { data: plantType });
+    this.typeService.grab(type).subscribe(t => {
+      this.dialog.open(AddPlantComponent, { data: {plantType: t }});
     })
   }
 }

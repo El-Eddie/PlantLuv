@@ -17,6 +17,7 @@ export class PlantCardComponent implements OnInit {
 
   @Input() planttype: PlantType;
   @Output() displayDetailsEvent: EventEmitter<number> = new EventEmitter();
+  @Output() addUserPlantEvent: EventEmitter<number> = new EventEmitter();
 
   constructor(
     private dialog: MatDialog,
@@ -42,6 +43,10 @@ export class PlantCardComponent implements OnInit {
           });
       }
     });
+  }
+
+  addUserPlant() {
+    this.addUserPlantEvent.emit(this.planttype.plantTypeID)
   }
 
   typeDetails() {
