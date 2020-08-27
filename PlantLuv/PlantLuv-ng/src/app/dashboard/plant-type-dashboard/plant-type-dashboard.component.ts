@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject, Subscription, combineLatest } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { Store, select } from '@ngrx/store'
 
@@ -11,6 +11,7 @@ import { PlantDetailsComponent } from '../plant-type-details/plant-type-details.
 import { AddPlantComponent } from '../user-add-new-plant/user-add-new-plant.component'
 import { PlantTypeAddNewComponent } from '../plant-type-add-new-plant/plant-type-add-new-plant.component';
 import { HelpComponent } from '../help/help.component';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-plant-dashboard',
@@ -18,9 +19,11 @@ import { HelpComponent } from '../help/help.component';
   styleUrls: ['./plant-type-dashboard.component.scss']
 })
 export class PlantTypeDashboardComponent implements OnInit {
-
   plantList$: Observable<PlantType[]>;
+  filterValue$ = new BehaviorSubject<string>('');
   filterValue: string = "";
+  filter: Subscription;
+  refinedList$ = new BehaviorSubject<Plant[]>([]);
   tooltipDelay: number = 250;
 
   constructor(
@@ -31,13 +34,30 @@ export class PlantTypeDashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPlantTypes(this.filterValue);
+    this.filterPlants();
   }
 
   getPlantTypes(criteria: string) {
     this.plantList$ = this.typeService.search(criteria)
   }
 
-  updateFilter(value: string) { }
+  updateFilterValue(input) {
+    this.filterValue$.next(input);
+  }
+  filterPlants(): void {
+    combineLatest([this.plantList$, this.filterValue$])
+      .pipe(map(([plantList, filterValue]) => {
+        filterValue = filterValue;
+        return plantList.filter(plant => {
+          return (
+            plant.commonName.toUpperCase().match(filterValue) ||
+            plant.latinName.toUpperCase().match(filterValue)
+          )
+        })
+      })).subscribe(list => {
+        this.refinedList$.next;
+      })
+  }
 
   addPlantType() {
     const popupResult = this.dialog.open(PlantTypeAddNewComponent, {
@@ -60,6 +80,7 @@ export class PlantTypeDashboardComponent implements OnInit {
       disableClose: true
     });
   }
+
   displayDetailsCard(type: number) {
     this.typeService.grab(type).subscribe(plantType => {
       const detailCard = this.dialog.open(PlantDetailsComponent, { data: plantType });
@@ -76,7 +97,7 @@ export class PlantTypeDashboardComponent implements OnInit {
   addUserPlant(type: number) {
     console.log('type')
     this.typeService.grab(type).subscribe(t => {
-      this.dialog.open(AddPlantComponent, { data: {plantType: t }});
+      this.dialog.open(AddPlantComponent, { data: { plantType: t } });
     })
   }
 }
